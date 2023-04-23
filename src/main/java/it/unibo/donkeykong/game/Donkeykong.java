@@ -1,4 +1,4 @@
-package it.unibo.donkeykong;
+package it.unibo.donkeykong.game;
 
 public class Donkeykong {
     
