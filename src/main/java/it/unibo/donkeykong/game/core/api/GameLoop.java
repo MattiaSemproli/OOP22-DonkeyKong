@@ -1,4 +1,4 @@
-package it.unibo.donkeykong.core.api;
+package it.unibo.donkeykong.game.core.api;
 
 import java.awt.Graphics;
 
