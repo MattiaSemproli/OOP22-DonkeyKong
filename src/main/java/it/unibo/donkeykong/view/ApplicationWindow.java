@@ -1,6 +1,5 @@
 package it.unibo.donkeykong.view;
 
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 /**
