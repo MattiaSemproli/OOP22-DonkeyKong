@@ -21,7 +21,7 @@ public class MouseInputs implements MouseListener {
     @Override
     public void mouseEntered(MouseEvent arg0) {
         
-    
+    }
 
     @Override
     public void mouseExited(MouseEvent arg0) {
