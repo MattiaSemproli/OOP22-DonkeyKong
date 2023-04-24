@@ -44,5 +44,5 @@ public interface Entity {
     /**
      * @return the entity's type
      */
-    Type getType();
+    Type getEntityType();
 }

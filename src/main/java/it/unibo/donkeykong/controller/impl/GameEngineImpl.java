@@ -1,21 +1,18 @@
 package it.unibo.donkeykong.controller.impl;
 
+import java.awt.Graphics;
+
 import it.unibo.donkeykong.controller.api.GameEngine;
 import it.unibo.donkeykong.utilities.Constants;
-import it.unibo.donkeykong.view.GamePanel;
-import it.unibo.donkeykong.view.GameWindow;
+import it.unibo.donkeykong.view.ApplicationPanel;
 
 public class GameEngineImpl implements GameEngine, Runnable{
 
-    private final GamePanel dkPanel;
-    private GameWindow dkWindow;
+    private ApplicationPanel dkPanel;
     private Thread gameThread;
 
-    public GameEngineImpl() {
-
-        this.dkPanel = new GamePanel();
-        this.dkWindow = new GameWindow(dkPanel);
-        dkPanel.requestFocus();
+    public GameEngineImpl(final ApplicationPanel dkPanel) {
+        this.dkPanel = dkPanel;
         startGameLoop();
     }
 
@@ -70,6 +67,12 @@ public class GameEngineImpl implements GameEngine, Runnable{
 
     @Override
     public void update() {
+
+        
+    }
+
+    @Override
+    public void draw(Graphics g) {
 
         
     }

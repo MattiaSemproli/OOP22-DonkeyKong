@@ -1,14 +1,14 @@
 package it.unibo.donkeykong.inputs;
 
 import java.awt.event.KeyListener;
-import it.unibo.donkeykong.view.GamePanel;
+import it.unibo.donkeykong.view.ApplicationPanel;
 import java.awt.event.KeyEvent;
 
 public final class KeyboardInputs implements KeyListener {
 
-    private final GamePanel dkPanel;
+    private final ApplicationPanel dkPanel;
 
-    public KeyboardInputs(final GamePanel dkPanel) {
+    public KeyboardInputs(final ApplicationPanel dkPanel) {
         this.dkPanel = dkPanel;
     }
 
