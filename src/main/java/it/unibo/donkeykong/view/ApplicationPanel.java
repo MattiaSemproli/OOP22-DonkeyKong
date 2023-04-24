@@ -9,9 +9,9 @@ import it.unibo.donkeykong.utilities.Constants;
 /**
  * Game panel.
  */
-public final class GamePanel extends JPanel {
+public final class ApplicationPanel extends JPanel {
 
-  public GamePanel() {
+  public ApplicationPanel() {
     setSize();
   }
 

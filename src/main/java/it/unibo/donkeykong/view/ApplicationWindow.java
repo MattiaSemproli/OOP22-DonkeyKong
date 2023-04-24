@@ -6,7 +6,7 @@ import javax.swing.JFrame;
 /**
  * Game window.
  */
-public class GameWindow {
+public class ApplicationWindow {
   /**
    * The window represents "the box" of the game application.
    * It contains a single panel that displays the game world and other graphical elements.
@@ -14,7 +14,7 @@ public class GameWindow {
    * 
    * @param dkPanel The panel containing the content to be displayed in the window.
    */
-  public GameWindow(final GamePanel dkPanel) {
+  public ApplicationWindow(final ApplicationPanel dkPanel) {
     final JFrame jframe = new JFrame();
     jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     jframe.add(dkPanel);
