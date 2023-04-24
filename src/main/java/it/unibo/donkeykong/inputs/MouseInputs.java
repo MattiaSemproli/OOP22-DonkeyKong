@@ -9,7 +9,7 @@ public class MouseInputs implements MouseListener {
 
     private final GamePanel dkPanel;
 
-    public MouseInputs(GamePanel dkPanel) {
+    public MouseInputs(final GamePanel dkPanel) {
         this.dkPanel = dkPanel;
     }
 
