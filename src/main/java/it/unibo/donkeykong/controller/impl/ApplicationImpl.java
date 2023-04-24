@@ -12,10 +12,15 @@ public class ApplicationImpl implements Application {
     private GameEngineImpl gameEngine;
 
     public ApplicationImpl() {
-        this.dkPanel = new ApplicationPanel();
+        this.dkPanel = new ApplicationPanel(this);
         this.dkWindow = new ApplicationWindow(dkPanel);
         dkPanel.requestFocus();
         this.gameEngine = new GameEngineImpl(dkPanel);
+    }
+
+    @Override
+    public GameEngineImpl getGameEngine() {
+        return this.gameEngine;
     }
     
 }

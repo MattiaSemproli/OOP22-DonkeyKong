@@ -1,9 +1,10 @@
 package it.unibo.donkeykong.controller.impl;
 
+import java.awt.Graphics;
+
 import it.unibo.donkeykong.controller.api.GameEngine;
 import it.unibo.donkeykong.utilities.Constants;
 import it.unibo.donkeykong.view.ApplicationPanel;
-import it.unibo.donkeykong.view.ApplicationWindow;
 
 public class GameEngineImpl implements GameEngine, Runnable{
 
@@ -66,6 +67,12 @@ public class GameEngineImpl implements GameEngine, Runnable{
 
     @Override
     public void update() {
+
+        
+    }
+
+    @Override
+    public void draw(Graphics g) {
 
         
     }
