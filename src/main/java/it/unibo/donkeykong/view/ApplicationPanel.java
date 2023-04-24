@@ -34,6 +34,7 @@ public final class ApplicationPanel extends JPanel {
   @Override
   public void paintComponent(final Graphics g) {
     super.paintComponent(g);
+    this.application.getGameEngine().draw(g);
   }
 
 }
