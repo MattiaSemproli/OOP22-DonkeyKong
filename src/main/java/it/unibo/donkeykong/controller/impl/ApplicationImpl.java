@@ -22,5 +22,9 @@ public class ApplicationImpl implements Application {
     public GameEngineImpl getGameEngine() {
         return this.gameEngine;
     }
-    
+
+    public void WindowsFocusLost() {
+        
+    }
+
 }
