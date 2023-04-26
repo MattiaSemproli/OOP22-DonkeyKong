@@ -5,39 +5,39 @@ package it.unibo.donkeykong.utilities;
  */
 public enum Type {
     /**
-     * Player
+     * Player.
      */
     PLAYER,
     /**
-     * Boss of the level
+     * Boss of the level.
      */
     MONKEY,
     /**
-     * Princess
+     * Princess.
      */
     PRINCESS,
     /**
-     * Barrel
+     * Barrel.
      */
     BARREL,
     /**
-     * Block, like roof or floor
+     * Block, like roof or floor.
      */
     BLOCK,
     /**
-     * Block empty, nothing exist there
+     * Block empty, nothing exist there.
      */
     BLACK_BLOCK,
     /**
-     * Ladder
+     * Ladder.
      */
     LADDER,
     /**
-     * Block with ladder
+     * Block with ladder.
      */
     BLOCK_LADDER,
     /**
-     * Powerup
+     * Powerup.
      */
     POWER_UP,
 }

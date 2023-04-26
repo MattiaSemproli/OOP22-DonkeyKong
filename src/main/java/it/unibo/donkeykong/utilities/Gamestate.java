@@ -40,7 +40,6 @@ public enum Gamestate {
     public static Gamestate gamestate = MENU;
 
     /**
-     * 
      * @return the currently state of the game
      */
     public static Gamestate getGamestate() {
