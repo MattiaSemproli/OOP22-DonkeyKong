@@ -16,6 +16,11 @@ public final class ApplicationPanel extends JPanel {
 
   private final transient ApplicationImpl application;
 
+  /**
+   * Application constructor.
+   * 
+   * @param application application.
+   */
   public ApplicationPanel(final ApplicationImpl application) {
     this.application = application;
     setSize();
@@ -27,6 +32,9 @@ public final class ApplicationPanel extends JPanel {
     setPreferredSize(new Dimension(Constants.GAME_WIDTH, Constants.GAME_HEIGHT));
   }
 
+  /**
+   * @return application.
+   */
   public ApplicationImpl getApplication() {
     return this.application;
   }
