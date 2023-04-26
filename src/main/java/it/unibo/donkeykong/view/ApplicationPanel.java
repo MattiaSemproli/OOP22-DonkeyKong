@@ -10,7 +10,7 @@ import it.unibo.donkeykong.inputs.MouseInputs;
 import it.unibo.donkeykong.utilities.Constants;
 
 /**
- * Game panel.
+ * Application panel.
  */
 public final class ApplicationPanel extends JPanel {
 

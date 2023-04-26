@@ -3,7 +3,7 @@ package it.unibo.donkeykong.view;
 import javax.swing.JFrame;
 
 /**
- * Game window.
+ * Application window.
  */
 public class ApplicationWindow {
   /**
