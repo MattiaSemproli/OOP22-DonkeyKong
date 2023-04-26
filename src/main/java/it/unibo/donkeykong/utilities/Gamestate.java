@@ -17,10 +17,6 @@ public enum Gamestate {
      */
     CHOSING_LEVELS,
     /**
-     * Currently in the shop.
-     */
-    SHOP,
-    /**
      * Currently playing.
      */
     PLAYING,
