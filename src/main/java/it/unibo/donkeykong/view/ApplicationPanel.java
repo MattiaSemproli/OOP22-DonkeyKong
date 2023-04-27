@@ -47,9 +47,6 @@ public final class ApplicationPanel extends JPanel {
   @Override
   public void paintComponent(final Graphics g) {
     super.paintComponent(g);
-    //this.application.getGameEngine().draw(g);
-    g.drawImage(new ImageIcon("src/main/res/menu_layout.png").getImage(), GAME_WIDTH/2-300, GAME_HEIGHT/2-300, 600, 600, null);
-    g.drawImage(new ImageIcon("src/main/res/play_button.png").getImage(), GAME_WIDTH/4 + 150, GAME_HEIGHT/4 + 50, 150, 100, null);
-    g.drawImage(new ImageIcon("src/main/res/settings_button.png").getImage(), GAME_WIDTH/4 + 150, GAME_HEIGHT/4 + 150, 150, 100, null);
+    this.application.getGameEngine().draw(g);
   }
 }

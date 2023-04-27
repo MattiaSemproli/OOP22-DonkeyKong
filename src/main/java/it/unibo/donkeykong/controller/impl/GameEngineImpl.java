@@ -4,6 +4,7 @@ import java.awt.Graphics;
 
 import it.unibo.donkeykong.controller.api.GameEngine;
 import it.unibo.donkeykong.view.ApplicationPanel;
+import it.unibo.donkeykong.view.MainMenuView;
 import static it.unibo.donkeykong.utilities.Constants.GameLoop.*;
 
 public class GameEngineImpl implements GameEngine, Runnable{
@@ -73,8 +74,8 @@ public class GameEngineImpl implements GameEngine, Runnable{
 
     @Override
     public void draw(Graphics g) {
-
-        
+        MainMenuView c = new MainMenuView();
+        c.draw(g);
     }
 
 }
