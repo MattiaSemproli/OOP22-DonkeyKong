@@ -3,8 +3,8 @@ package it.unibo.donkeykong.controller.impl;
 import java.awt.Graphics;
 
 import it.unibo.donkeykong.controller.api.GameEngine;
-import it.unibo.donkeykong.utilities.Constants;
 import it.unibo.donkeykong.view.ApplicationPanel;
+import static it.unibo.donkeykong.utilities.Constants.GameLoop.*;
 
 public class GameEngineImpl implements GameEngine, Runnable{
 
@@ -25,16 +25,16 @@ public class GameEngineImpl implements GameEngine, Runnable{
     @Override
     public void run() {
 
-        double timePerFrame = Constants.NANOSECOND / Constants.FPS_SET;
-        double timePerUpdate = Constants.NANOSECOND / Constants.UPS_SET;
+        double timePerFrame = NANOSECOND / FPS_SET;
+        double timePerUpdate = NANOSECOND / UPS_SET;
         long previousTime = System.nanoTime();
         long lastCheck = System.currentTimeMillis();
 
-        int frames = Constants.FRAME_DEFAULT;
-        int updates = Constants.UPDATES_DEFAULT;
+        int frames = FRAME_DEFAULT;
+        int updates = UPDATES_DEFAULT;
 
-        double deltaU = Constants.DELTAU_DEFAULT;
-        double deltaF = Constants.DELTAF_DEFAULT;
+        double deltaU = DELTAU_DEFAULT;
+        double deltaF = DELTAF_DEFAULT;
 
         while (true) {
             final long actualTime = System.nanoTime();

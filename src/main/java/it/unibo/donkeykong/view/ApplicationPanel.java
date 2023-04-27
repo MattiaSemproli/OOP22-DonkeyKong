@@ -7,7 +7,7 @@ import java.awt.Dimension;
 import it.unibo.donkeykong.controller.impl.ApplicationImpl;
 import it.unibo.donkeykong.inputs.KeyboardInputs;
 import it.unibo.donkeykong.inputs.MouseInputs;
-import it.unibo.donkeykong.utilities.Constants;
+import static it.unibo.donkeykong.utilities.Constants.Window.*;
 
 /**
  * Application panel.
@@ -29,7 +29,7 @@ public final class ApplicationPanel extends JPanel {
   }
 
   private void setSize() {
-    setPreferredSize(new Dimension(Constants.GAME_WIDTH, Constants.GAME_HEIGHT));
+    setPreferredSize(new Dimension(GAME_WIDTH, GAME_HEIGHT));
   }
 
   /**
