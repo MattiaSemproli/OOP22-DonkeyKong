@@ -22,4 +22,15 @@ public class Constants {
         public final static int DELTAU_DEFAULT = 0;
     } 
 
+    public static final class MenuAssets {
+        public static final String title = "";
+        public static final String menuBackground = "";
+        public static final String menuTexture = "/menu_layout.png";
+        public static final String gameLegend = "";
+        public static final String playButton = "/play_button.png";
+        public static final String settingsButton = "/settings_button.png";
+        public static final String quitButton = "/quit_button.png";
+        public static final String levelsButton = "";
+    }
+
 }
