@@ -1,7 +1,12 @@
 package it.unibo.donkeykong.view;
 
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.io.InputStream;
 import java.awt.Dimension;
 
 import it.unibo.donkeykong.controller.impl.ApplicationImpl;
@@ -42,7 +47,9 @@ public final class ApplicationPanel extends JPanel {
   @Override
   public void paintComponent(final Graphics g) {
     super.paintComponent(g);
-    this.application.getGameEngine().draw(g);
+    //this.application.getGameEngine().draw(g);
+    g.drawImage(new ImageIcon("src/main/res/menu_layout.png").getImage(), GAME_WIDTH/2-300, GAME_HEIGHT/2-300, 600, 600, null);
+    g.drawImage(new ImageIcon("src/main/res/play_button.png").getImage(), GAME_WIDTH/4 + 150, GAME_HEIGHT/4 + 50, 150, 100, null);
+    g.drawImage(new ImageIcon("src/main/res/settings_button.png").getImage(), GAME_WIDTH/4 + 150, GAME_HEIGHT/4 + 150, 150, 100, null);
   }
-
 }
