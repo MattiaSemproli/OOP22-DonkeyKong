@@ -31,6 +31,9 @@ public class Constants {
         public static final String settingsButton = "/settings_button.png";
         public static final String quitButton = "/quit_button.png";
         public static final String levelsButton = "";
+        public static final int menuTextureBox = 500;
+        public static final int buttonHeight = 75;
+        public static final int buttonWidth = 150;
     }
 
 }
