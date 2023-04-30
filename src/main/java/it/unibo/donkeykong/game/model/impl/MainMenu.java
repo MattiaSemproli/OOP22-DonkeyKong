@@ -31,7 +31,7 @@ public class MainMenu implements GameEngine {
                                                             MenuAssets.buttonWidth, MenuAssets.buttonHeight, Gamestate.PLAYING);
         this.funcButtons[MenuAssets.levelsB] = new ButtonImpl(menuX + (MenuAssets.menuTextureBox - MenuAssets.buttonWidth) / 2,
                                                               menuY + MenuAssets.menuTextureBox / 10 + MenuAssets.buttonHeight,
-                                                              MenuAssets.buttonWidth, MenuAssets.buttonHeight, Gamestate.PLAYING);
+                                                              MenuAssets.buttonWidth, MenuAssets.buttonHeight, Gamestate.CHOSING_LEVELS);
     }
 
     private void createUtilityButtons() {

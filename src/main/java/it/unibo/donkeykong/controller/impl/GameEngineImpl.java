@@ -3,6 +3,7 @@ package it.unibo.donkeykong.controller.impl;
 import java.awt.Graphics;
 
 import it.unibo.donkeykong.controller.api.GameEngine;
+import it.unibo.donkeykong.utilities.Gamestate;
 import it.unibo.donkeykong.view.ApplicationPanel;
 import static it.unibo.donkeykong.utilities.Constants.GameLoop.*;
 
@@ -67,14 +68,34 @@ public class GameEngineImpl implements GameEngine, Runnable{
 
     @Override
     public void update() {
-
         
     }
 
     @Override
     public void draw(Graphics g) {
-        MainMenuController mmc = new MainMenuController();
-        mmc.draw(g);
+        switch(Gamestate.getGamestate()){
+            case MENU:
+                final MainMenuController mmc = new MainMenuController();
+                mmc.draw(g);
+                break;
+            case CHOSING_LEVELS:
+                break;
+            case PLAYING:
+                break;
+            case SETTINGS:
+                final SettingsController sc = new SettingsController();
+                sc.draw(g);
+                break;
+            case PAUSE:
+                break;
+            case DEATH:
+                break;
+            case WIN:
+                break;
+            default:
+                Runtime.getRuntime().exit(0);
+                break;
+        }
     }
 
 }

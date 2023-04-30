@@ -5,15 +5,15 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import it.unibo.donkeykong.controller.api.GameEngine;
-import it.unibo.donkeykong.game.model.impl.MainMenu;
-import it.unibo.donkeykong.view.MainMenuView;
+import it.unibo.donkeykong.game.model.impl.Settings;
+import it.unibo.donkeykong.view.SettingsView;
 
-public class MainMenuController implements MouseListener, GameEngine {
+public class SettingsController implements MouseListener, GameEngine {
 
-    private final MainMenuView menuView;
+    private final SettingsView settingsView;
 
-    public MainMenuController() {
-        this.menuView = new MainMenuView(this);
+    public SettingsController() {
+        this.settingsView = new SettingsView(this);
     }
 
     @Override
@@ -22,11 +22,11 @@ public class MainMenuController implements MouseListener, GameEngine {
 
     @Override
     public void draw(Graphics g) {
-        this.menuView.draw(g);
+        this.settingsView.draw(g);
     }
 
-    public final MainMenu getMainMenu() {
-        return new MainMenu();
+    public final Settings getSettings() {
+        return new Settings();
     }
 
     @Override
@@ -48,4 +48,5 @@ public class MainMenuController implements MouseListener, GameEngine {
     @Override
     public void mouseExited(MouseEvent e) {
     }
+    
 }
