@@ -1,6 +1,7 @@
 package it.unibo.donkeykong.controller.impl;
 
 import it.unibo.donkeykong.controller.api.GameEngine;
+import it.unibo.donkeykong.game.model.impl.MainMenu;
 import it.unibo.donkeykong.view.MainMenuView;
 
 import java.awt.Graphics;
@@ -17,12 +18,15 @@ public class MainMenuController implements MouseListener, GameEngine{
 
     @Override
     public void update() {
-        this.menuView.update();
     }
 
     @Override
     public void draw(Graphics g) {
         this.menuView.draw(g);
+    }
+
+    public final MainMenu getMainMenu() {
+        return new MainMenu();
     }
 
     @Override

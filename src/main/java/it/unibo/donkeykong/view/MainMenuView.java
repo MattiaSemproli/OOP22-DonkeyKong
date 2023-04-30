@@ -9,6 +9,8 @@ import it.unibo.donkeykong.controller.api.GameEngine;
 import it.unibo.donkeykong.controller.impl.MainMenuController;
 import it.unibo.donkeykong.utilities.Constants.MenuAssets;
 import it.unibo.donkeykong.utilities.Constants.Window;
+import static it.unibo.donkeykong.utilities.Constants.MenuAssets.menuX;
+import static it.unibo.donkeykong.utilities.Constants.MenuAssets.menuY;
 
 public class MainMenuView implements GameEngine{
 
@@ -20,22 +22,16 @@ public class MainMenuView implements GameEngine{
 
     @Override
     public void update() {
-
     }
 
     @Override
     public void draw(final Graphics g) {
-        final int menuX = Window.GAME_WIDTH / 2 - MenuAssets.menuTextureBox / 2;
-        final int menuY = Window.GAME_HEIGHT / 2 - MenuAssets.menuTextureBox / 2;
-
-        this.drawBackgroundAssets(menuX, menuY, g);
-        this.drawFuncButtons(menuX, menuY, g);
-        this.drawLegend(menuX, menuY, g);
-        this.drawUtilityButtons(menuX, menuY, g);
-        
+        this.drawBackgroundAssets(g);
+        this.drawLegend(g);
+        this.menuController.getMainMenu().draw(g);
     }
-
-    private void drawBackgroundAssets(final int menuX, final int menuY, final Graphics g){
+    
+    private void drawBackgroundAssets(final Graphics g){
         g.drawImage(new ImageIcon("src/main/res/menu_background.png").getImage(), 0, 0, Window.GAME_WIDTH, Window.GAME_HEIGHT, null);
         g.drawImage(new ImageIcon("src/main/res/menu_layout.png").getImage(), 
                     menuX, menuY, 
@@ -44,19 +40,8 @@ public class MainMenuView implements GameEngine{
                     menuX + 115, menuY - 65, 
                     250, 125, null);
     }
-
-    private void drawFuncButtons(final int menuX, final int menuY, final Graphics g){
-        g.drawImage(new ImageIcon("src/main/res/play_button.png").getImage(), 
-                    menuX + (MenuAssets.menuTextureBox - MenuAssets.buttonWidth) / 2, 
-                    menuY + MenuAssets.menuTextureBox / 10, 
-                    MenuAssets.buttonWidth, MenuAssets.buttonHeight, null);
-        g.drawImage(new ImageIcon("src/main/res/levels_button.png").getImage(), 
-                    menuX + (MenuAssets.menuTextureBox - MenuAssets.buttonWidth) / 2, 
-                    menuY + MenuAssets.menuTextureBox / 10 + MenuAssets.buttonHeight, 
-                    MenuAssets.buttonWidth, MenuAssets.buttonHeight, null);
-    }
-
-    private void drawLegend(final int menuX, final int menuY, final Graphics g){
+    
+    private void drawLegend(final Graphics g){
         g.drawImage(new ImageIcon("src/main/res/aKey.png").getImage(), 
                     menuX + MenuAssets.menuTextureBox / 10, menuY + MenuAssets.buttonHeight * 3,
                     MenuAssets.legendKeyBox, MenuAssets.legendKeyBox, null);
@@ -108,14 +93,4 @@ public class MainMenuView implements GameEngine{
                     menuY + MenuAssets.menuTextureBox / 2 + MenuAssets.legendKeyBox * 3);   
     }
 
-    private void drawUtilityButtons(final int menuX, final int menuY, final Graphics g){
-        g.drawImage(new ImageIcon("src/main/res/settings_button.png").getImage(),
-                    menuX + MenuAssets.menuTextureBox / 12, 
-                    menuY + MenuAssets.menuTextureBox - MenuAssets.buttonHeight - MenuAssets.menuTextureBox / 8, 
-                    MenuAssets.buttonWidth, MenuAssets.buttonHeight, null);
-        g.drawImage(new ImageIcon("src/main/res/quit_button.png").getImage(),
-                    menuX + MenuAssets.menuTextureBox - MenuAssets.buttonWidth - MenuAssets.menuTextureBox / 12, 
-                    menuY + MenuAssets.menuTextureBox - MenuAssets.buttonHeight - MenuAssets.menuTextureBox / 8, 
-                    MenuAssets.buttonWidth, MenuAssets.buttonHeight, null);     
-    }
 }
