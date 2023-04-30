@@ -1,12 +1,7 @@
 package it.unibo.donkeykong.view;
 
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import java.awt.Graphics;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.io.InputStream;
 import java.awt.Dimension;
 
 import it.unibo.donkeykong.controller.impl.ApplicationImpl;

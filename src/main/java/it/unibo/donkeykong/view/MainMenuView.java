@@ -6,13 +6,16 @@ import java.awt.Graphics;
 import javax.swing.ImageIcon;
 
 import it.unibo.donkeykong.controller.api.GameEngine;
+import it.unibo.donkeykong.controller.impl.MainMenuController;
 import it.unibo.donkeykong.utilities.Constants.MenuAssets;
 import it.unibo.donkeykong.utilities.Constants.Window;
 
 public class MainMenuView implements GameEngine{
 
-    public MainMenuView() {
+    private final MainMenuController menuController;
 
+    public MainMenuView(final MainMenuController menuController) {
+        this.menuController = menuController;
     }
 
     @Override
