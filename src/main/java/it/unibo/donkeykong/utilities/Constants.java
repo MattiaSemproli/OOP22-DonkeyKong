@@ -23,20 +23,26 @@ public class Constants {
     } 
 
     public static final class MenuAssets {
-        public static final String title = "";
-        public static final String menuBackground = "";
-        public static final String menuTexture = "/menu_layout.png";
+        public static final String title = "src/main/res/title.png";
+        public static final String menuBackground = "src/main/res/menu_background.png";
+        public static final String menuTexture = "src/main/res/menu_layout.png";
         public static final String gameLegend = "";
-        public static final String playButton = "/play_button.png";
-        public static final String settingsButton = "/settings_button.png";
-        public static final String quitButton = "/quit_button.png";
-        public static final String levelsButton = "";
+        public static final String playButton = "src/main/res/play_button.png";
+        public static final String settingsButton = "src/main/res/settings_button.png";
+        public static final String quitButton = "src/main/res/quit_button.png";
+        public static final String levelsButton = "src/main/res/levels_button.png";
         public static final int menuTextureBox = 500;
         public static final int buttonHeight = 75;
         public static final int buttonWidth = 200;
         public static final int legendKeyBox = 32;
         public static final int menuX = Window.GAME_WIDTH / 2 - menuTextureBox / 2;
         public static final int menuY = Window.GAME_HEIGHT / 2 - menuTextureBox / 2;
+        public static final int numFunctionButtons = 2;
+        public static final int numUtilityButtons = 2;
+        public static final int playB = 0;
+        public static final int levelsB = 1;
+        public static final int settingsB = 0;
+        public static final int quitB = 1;
     }
 
 }
