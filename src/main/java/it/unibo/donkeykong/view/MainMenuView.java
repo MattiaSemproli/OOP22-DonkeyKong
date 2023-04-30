@@ -45,45 +45,74 @@ public class MainMenuView implements GameEngine{
     private void drawFuncButtons(final int menuX, final int menuY, final Graphics g){
         g.drawImage(new ImageIcon("src/main/res/play_button.png").getImage(), 
                     menuX + (MenuAssets.menuTextureBox - MenuAssets.buttonWidth) / 2, 
-                    menuY + MenuAssets.menuTextureBox/10, 
+                    menuY + MenuAssets.menuTextureBox / 10, 
                     MenuAssets.buttonWidth, MenuAssets.buttonHeight, null);
-        g.drawImage(new ImageIcon("src/main/res/button_layout.png").getImage(), 
+        g.drawImage(new ImageIcon("src/main/res/levels_button.png").getImage(), 
                     menuX + (MenuAssets.menuTextureBox - MenuAssets.buttonWidth) / 2, 
-                    menuY + MenuAssets.menuTextureBox/10 + MenuAssets.buttonHeight, 
+                    menuY + MenuAssets.menuTextureBox / 10 + MenuAssets.buttonHeight, 
                     MenuAssets.buttonWidth, MenuAssets.buttonHeight, null);
-        g.setColor(new Color(181,78,47,255));
-        g.setFont(new Font("Arial", Font.BOLD, 25));
-        g.drawString("LEVELS", 
-                    menuX + (MenuAssets.menuTextureBox - MenuAssets.buttonWidth) / 2 + 30, 
-                    menuY + MenuAssets.menuTextureBox/10 + MenuAssets.buttonHeight + 45);
     }
 
     private void drawLegend(final int menuX, final int menuY, final Graphics g){
-        g.setColor(new Color(238,163,46,255));
+        g.drawImage(new ImageIcon("src/main/res/aKey.png").getImage(), 
+                    menuX + MenuAssets.menuTextureBox / 10, menuY + MenuAssets.buttonHeight * 3,
+                    MenuAssets.legendKeyBox, MenuAssets.legendKeyBox, null);
+        g.drawImage(new ImageIcon("src/main/res/dKey.png").getImage(), 
+                    menuX + MenuAssets.menuTextureBox / 10, menuY + MenuAssets.buttonHeight * 3 + MenuAssets.legendKeyBox,
+                    MenuAssets.legendKeyBox, MenuAssets.legendKeyBox, null);
+        g.drawImage(new ImageIcon("src/main/res/wKey.png").getImage(), 
+                    menuX + MenuAssets.menuTextureBox / 10, menuY + MenuAssets.buttonHeight * 3 + MenuAssets.legendKeyBox * 2,
+                    MenuAssets.legendKeyBox, MenuAssets.legendKeyBox, null);
+        g.drawImage(new ImageIcon("src/main/res/sKey.png").getImage(), 
+                    menuX + MenuAssets.menuTextureBox / 10, menuY + MenuAssets.buttonHeight * 3 + MenuAssets.legendKeyBox * 3,
+                    MenuAssets.legendKeyBox, MenuAssets.legendKeyBox, null);
+        
+        g.drawImage(new ImageIcon("src/main/res/left_arrow.png").getImage(), 
+                    menuX + MenuAssets.menuTextureBox / 10 + MenuAssets.legendKeyBox, menuY + MenuAssets.buttonHeight * 3,
+                    MenuAssets.legendKeyBox, MenuAssets.legendKeyBox, null);
+        g.drawImage(new ImageIcon("src/main/res/right_arrow.png").getImage(), 
+                    menuX + MenuAssets.menuTextureBox / 10 + MenuAssets.legendKeyBox, menuY + MenuAssets.buttonHeight * 3 + MenuAssets.legendKeyBox,
+                    MenuAssets.legendKeyBox, MenuAssets.legendKeyBox, null);
+        g.drawImage(new ImageIcon("src/main/res/up_arrow.png").getImage(), 
+                    menuX + MenuAssets.menuTextureBox / 10 + MenuAssets.legendKeyBox, menuY + MenuAssets.buttonHeight * 3 + MenuAssets.legendKeyBox * 2,
+                    MenuAssets.legendKeyBox, MenuAssets.legendKeyBox, null);
+        g.drawImage(new ImageIcon("src/main/res/down_arrow.png").getImage(), 
+                    menuX + MenuAssets.menuTextureBox / 10 + MenuAssets.legendKeyBox, menuY + MenuAssets.buttonHeight * 3 + MenuAssets.legendKeyBox * 3,
+                    MenuAssets.legendKeyBox, MenuAssets.legendKeyBox, null);
+
+        g.setColor(Color.WHITE);
         g.setFont(new Font("Arial", Font.BOLD, 20));
-        g.drawString("Space to jump", menuX + MenuAssets.menuTextureBox/10 + 10, menuY + MenuAssets.menuTextureBox/2);
-        g.setColor(new Color(238,163,46,255));
+        g.drawString("TO MOVE LEFT", 
+                    menuX + MenuAssets.menuTextureBox / 10 + MenuAssets.legendKeyBox * 2, 
+                    menuY + MenuAssets.menuTextureBox / 2);            
+    
+        g.setColor(Color.WHITE);
         g.setFont(new Font("Arial", Font.BOLD, 20));
-        g.drawString("R to move right", menuX + MenuAssets.menuTextureBox/10 + 10, menuY + MenuAssets.menuTextureBox/2+20);
-        g.setColor(new Color(238,163,46,255));
+        g.drawString("TO MOVE RIGHT",
+                    menuX + MenuAssets.menuTextureBox / 10 + MenuAssets.legendKeyBox * 2,
+                    menuY + MenuAssets.menuTextureBox / 2 + MenuAssets.legendKeyBox);
+                    
+        g.setColor(Color.WHITE);
         g.setFont(new Font("Arial", Font.BOLD, 20));
-        g.drawString("L to move left", menuX + MenuAssets.menuTextureBox/10 + 10, menuY + MenuAssets.menuTextureBox/2+40);
-        g.setColor(new Color(238,163,46,255));
+        g.drawString("TO MOVE UP", 
+                    menuX + MenuAssets.menuTextureBox / 10 + MenuAssets.legendKeyBox * 2, 
+                    menuY + MenuAssets.menuTextureBox / 2  + MenuAssets.legendKeyBox * 2);
+
+        g.setColor(Color.WHITE);
         g.setFont(new Font("Arial", Font.BOLD, 20));
-        g.drawString("W to move up on a ladder", menuX + MenuAssets.menuTextureBox/10 + 10, menuY + MenuAssets.menuTextureBox/2+60);
-        g.setColor(new Color(238,163,46,255));
-        g.setFont(new Font("Arial", Font.BOLD, 20));
-        g.drawString("S to move down on a ladder", menuX + MenuAssets.menuTextureBox/10 + 10, menuY + MenuAssets.menuTextureBox/2+80);
+        g.drawString("TO MOVE DOWN", 
+                    menuX + MenuAssets.menuTextureBox / 10 + MenuAssets.legendKeyBox * 2, 
+                    menuY + MenuAssets.menuTextureBox / 2 + MenuAssets.legendKeyBox * 3);   
     }
 
     private void drawUtilityButtons(final int menuX, final int menuY, final Graphics g){
         g.drawImage(new ImageIcon("src/main/res/settings_button.png").getImage(),
-                    menuX + MenuAssets.menuTextureBox/10, 
-                    menuY + MenuAssets.menuTextureBox - MenuAssets.buttonHeight - MenuAssets.menuTextureBox/8, 
+                    menuX + MenuAssets.menuTextureBox / 12, 
+                    menuY + MenuAssets.menuTextureBox - MenuAssets.buttonHeight - MenuAssets.menuTextureBox / 8, 
                     MenuAssets.buttonWidth, MenuAssets.buttonHeight, null);
         g.drawImage(new ImageIcon("src/main/res/quit_button.png").getImage(),
-                    menuX + MenuAssets.menuTextureBox - MenuAssets.buttonWidth - MenuAssets.menuTextureBox/10, 
-                    menuY + MenuAssets.menuTextureBox - MenuAssets.buttonHeight - MenuAssets.menuTextureBox/8, 
+                    menuX + MenuAssets.menuTextureBox - MenuAssets.buttonWidth - MenuAssets.menuTextureBox / 12, 
+                    menuY + MenuAssets.menuTextureBox - MenuAssets.buttonHeight - MenuAssets.menuTextureBox / 8, 
                     MenuAssets.buttonWidth, MenuAssets.buttonHeight, null);     
     }
 }

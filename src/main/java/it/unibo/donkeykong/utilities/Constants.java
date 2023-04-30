@@ -33,7 +33,8 @@ public class Constants {
         public static final String levelsButton = "";
         public static final int menuTextureBox = 500;
         public static final int buttonHeight = 75;
-        public static final int buttonWidth = 150;
+        public static final int buttonWidth = 200;
+        public static final int legendKeyBox = 32;
     }
 
 }
