@@ -30,7 +30,7 @@ public class SettingsView implements GameEngine {
     }
 
     @Override
-    public void draw(final Graphics g) {
+    public final void draw(final Graphics g) {
         this.drawBackgroundAssets(g);
         this.settingsController.getSettings().draw(g);
     }

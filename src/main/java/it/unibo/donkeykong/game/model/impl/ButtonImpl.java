@@ -32,17 +32,17 @@ public class ButtonImpl implements Button {
     }
 
     @Override
-    public boolean isMouseOver() {
+    public final boolean isMouseOver() {
         return false;
     }
 
     @Override
-    public boolean isMousePressed() {
+    public final boolean isMousePressed() {
         return false;
     }
 
     @Override
-    public ArrayList<Pair<Integer, Integer>> getCorners() {
+    public final ArrayList<Pair<Integer, Integer>> getCorners() {
         return new ArrayList<>() {
             {
                 add(new Pair<Integer, Integer>(x, y));
@@ -57,12 +57,12 @@ public class ButtonImpl implements Button {
     }
 
     @Override
-    public Pair<Integer, Integer> getButtonPos() {
+    public final Pair<Integer, Integer> getButtonPos() {
         return new Pair<Integer, Integer>(this.x, this.y);
     }
 
     @Override
-    public Pair<Integer, Integer> getButtonDim() {
+    public final Pair<Integer, Integer> getButtonDim() {
         return new Pair<Integer, Integer>(this.width, this.height);
     }
 }

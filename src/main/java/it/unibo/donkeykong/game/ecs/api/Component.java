@@ -1,11 +1,11 @@
 package it.unibo.donkeykong.game.ecs.api;
 
 /**
- * Component interface
+ * Component interface.
  */
 public interface Component {
     /**
-     * Update component every frame
+     * Update component every frame.
      */
-    public void update();
+    void update();
 }

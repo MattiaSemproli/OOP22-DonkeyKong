@@ -8,10 +8,16 @@ import it.unibo.donkeykong.controller.api.GameEngine;
 import it.unibo.donkeykong.game.model.impl.Settings;
 import it.unibo.donkeykong.view.SettingsView;
 
+/**
+ * Settings controller.
+ */
 public class SettingsController implements MouseListener, GameEngine {
 
     private final SettingsView settingsView;
 
+    /**
+     * Constructor.
+     */
     public SettingsController() {
         this.settingsView = new SettingsView(this);
     }
@@ -21,32 +27,36 @@ public class SettingsController implements MouseListener, GameEngine {
     }
 
     @Override
-    public void draw(Graphics g) {
+    public final void draw(final Graphics g) {
         this.settingsView.draw(g);
     }
 
+    /**
+     * Get the settings model.
+     * @return new settings model.
+     */
     public final Settings getSettings() {
         return new Settings();
     }
 
     @Override
-    public void mouseClicked(MouseEvent e) {
+    public void mouseClicked(final MouseEvent e) {
     }
 
     @Override
-    public void mousePressed(MouseEvent e) {
+    public void mousePressed(final MouseEvent e) {
     }
 
     @Override
-    public void mouseReleased(MouseEvent e) {
+    public void mouseReleased(final MouseEvent e) {
     }
 
     @Override
-    public void mouseEntered(MouseEvent e) {
+    public void mouseEntered(final MouseEvent e) {
     }
 
     @Override
-    public void mouseExited(MouseEvent e) {
+    public void mouseExited(final MouseEvent e) {
     }
-    
+
 }

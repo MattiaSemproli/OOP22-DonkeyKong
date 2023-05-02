@@ -32,34 +32,34 @@ public class EntityImpl implements Entity {
     }
 
     @Override
-    public Set<Component> getAllComponents() {
+    public final Set<Component> getAllComponents() {
         return new HashSet<>(this.components);
     }
 
     @Override
-    public <E extends Component> Optional<E> getComponent(Class<E> classComponent) {
+    public final <E extends Component> Optional<E> getComponent(final Class<E> classComponent) {
         return this.components.stream().filter(classComponent::isInstance).map(classComponent::cast).findAny();
     }
 
     @Override
-    public Entity addComponent(AbstractComponent component) {
+    public final Entity addComponent(final AbstractComponent component) {
         component.setEntity(this);
         this.components.add(component);
         return this;
     }
 
     @Override
-    public Pair<Float, Float> getPosition() {
+    public final Pair<Float, Float> getPosition() {
         return this.pos;
     }
 
     @Override
-    public void setPosition(Pair<Float, Float> pos) {
+    public final void setPosition(final Pair<Float, Float> pos) {
         this.pos = new Pair<Float, Float>(pos.getX(), pos.getY());
     }
 
     @Override
-    public Type getEntityType() {
+    public final Type getEntityType() {
         return this.type;
     }
 

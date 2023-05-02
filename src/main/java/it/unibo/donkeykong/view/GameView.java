@@ -26,7 +26,7 @@ public class GameView implements GameEngine {
     }
 
     @Override
-    public void draw(final Graphics g) {
+    public final void draw(final Graphics g) {
         this.gameController.getGame();
     }
 

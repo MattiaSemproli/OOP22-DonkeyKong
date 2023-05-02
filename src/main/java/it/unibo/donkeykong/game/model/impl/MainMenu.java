@@ -26,7 +26,7 @@ public class MainMenu implements GameEngine {
     }
 
     @Override
-    public void draw(final Graphics g) {
+    public final void draw(final Graphics g) {
         this.drawFuncButtons(g);
         this.drawUtilityButtons(g);
     }
