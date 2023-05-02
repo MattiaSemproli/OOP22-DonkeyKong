@@ -4,8 +4,14 @@ import java.awt.Graphics;
 
 import it.unibo.donkeykong.controller.api.GameEngine;
 
+/** 
+ * Settings model. 
+ */
 public class Settings implements GameEngine {
 
+    /**
+     * Constructor.
+     */
     public Settings() {
     }
 
@@ -14,7 +20,7 @@ public class Settings implements GameEngine {
     }
 
     @Override
-    public void draw(Graphics g) {
+    public void draw(final Graphics g) {
     }
-    
+
 }

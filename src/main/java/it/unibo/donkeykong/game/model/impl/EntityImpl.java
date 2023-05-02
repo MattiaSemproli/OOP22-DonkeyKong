@@ -10,16 +10,25 @@ import it.unibo.donkeykong.game.model.api.Entity;
 import it.unibo.donkeykong.utilities.Pair;
 import it.unibo.donkeykong.utilities.Type;
 
+/**
+ * Entity implementation.
+ */
 public class EntityImpl implements Entity {
 
     private final Type type;
     private final Set<Component> components;
-    private Pair<Float,Float> pos;
+    private Pair<Float, Float> pos;
 
-    public EntityImpl(final Type type, final Pair<Float,Float> pos) {
+    /**
+     * Constructor.
+     * 
+     * @param type type of the entity.
+     * @param pos  position of the entity.
+     */
+    public EntityImpl(final Type type, final Pair<Float, Float> pos) {
         this.type = type;
         this.components = new HashSet<>();
-        this.pos = new Pair<Float,Float>(pos.getX(), pos.getY());
+        this.pos = new Pair<Float, Float>(pos.getX(), pos.getY());
     }
 
     @Override
@@ -46,12 +55,12 @@ public class EntityImpl implements Entity {
 
     @Override
     public void setPosition(Pair<Float, Float> pos) {
-        this.pos = new Pair<Float,Float>(pos.getX(), pos.getY());
+        this.pos = new Pair<Float, Float>(pos.getX(), pos.getY());
     }
 
     @Override
     public Type getEntityType() {
         return this.type;
     }
-    
+
 }

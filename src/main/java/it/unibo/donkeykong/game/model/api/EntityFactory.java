@@ -6,27 +6,27 @@ package it.unibo.donkeykong.game.model.api;
 public interface EntityFactory {
 
     /**
-     * Create a player
+     * Create a player.
      */
     Entity generatePlayer();
 
     /**
-     * Create a barrel
+     * Create a barrel.
      */
     Entity generateBarrel();
-    
+
     /**
-     * Create a monkey
+     * Create a monkey.
      */
     Entity generateMonkey();
-    
+
     /**
-     * Create a princess
+     * Create a princess.
      */
     Entity generatePrincess();
 
     /**
-     * Create a power up
+     * Create a power up.
      */
     Entity generatePowerUp();
 }

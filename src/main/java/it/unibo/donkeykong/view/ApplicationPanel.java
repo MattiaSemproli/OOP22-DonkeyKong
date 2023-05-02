@@ -7,7 +7,8 @@ import java.awt.Dimension;
 import it.unibo.donkeykong.controller.impl.ApplicationImpl;
 import it.unibo.donkeykong.inputs.KeyboardInputs;
 import it.unibo.donkeykong.inputs.MouseInputs;
-import static it.unibo.donkeykong.utilities.Constants.Window.*;
+import static it.unibo.donkeykong.utilities.Constants.Window.GAME_HEIGHT;
+import static it.unibo.donkeykong.utilities.Constants.Window.GAME_WIDTH;
 
 /**
  * Application panel.

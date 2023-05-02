@@ -5,10 +5,17 @@ import java.awt.Graphics;
 import it.unibo.donkeykong.controller.api.GameEngine;
 import it.unibo.donkeykong.controller.impl.GameController;
 
-public class GameView implements GameEngine{
+/**
+ * Game view.
+ */
+public class GameView implements GameEngine {
 
     private final GameController gameController;
 
+    /**
+     * 
+     * @param gameController set the controller to this view.
+     */
     public GameView(final GameController gameController) {
         this.gameController = gameController;
     }
@@ -19,7 +26,7 @@ public class GameView implements GameEngine{
     }
 
     @Override
-    public void draw(Graphics g) {
+    public void draw(final Graphics g) {
         this.gameController.getGame();
     }
 
