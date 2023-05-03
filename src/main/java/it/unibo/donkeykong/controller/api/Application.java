@@ -4,5 +4,5 @@ import it.unibo.donkeykong.controller.impl.GameEngineImpl;
 
 public interface Application {
 
-    public GameEngineImpl getGameEngine();
+    GameEngineImpl getGameEngine();
 }
