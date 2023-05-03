@@ -5,9 +5,9 @@ import java.awt.Graphics;
 import it.unibo.donkeykong.controller.api.GameEngine;
 import it.unibo.donkeykong.utilities.Gamestate;
 import it.unibo.donkeykong.view.ApplicationPanel;
-import static it.unibo.donkeykong.utilities.Constants.GameLoop.*;
+import static it.unibo.donkeykong.utilities.Constants.GameLoop;
 
-public class GameEngineImpl implements GameEngine, Runnable{
+public class GameEngineImpl implements GameEngine, Runnable {
 
     private ApplicationPanel dkPanel;
     private Thread gameThread;
@@ -26,16 +26,16 @@ public class GameEngineImpl implements GameEngine, Runnable{
     @Override
     public void run() {
 
-        double timePerFrame = NANOSECOND / FPS_SET;
-        double timePerUpdate = NANOSECOND / UPS_SET;
+        double timePerFrame = GameLoop.NANOSECOND / GameLoop.FPS_SET;
+        double timePerUpdate = GameLoop.NANOSECOND / GameLoop.UPS_SET;
         long previousTime = System.nanoTime();
         long lastCheck = System.currentTimeMillis();
 
-        int frames = FRAME_DEFAULT;
-        int updates = UPDATES_DEFAULT;
+        int frames = GameLoop.FRAME_DEFAULT;
+        int updates = GameLoop.UPDATES_DEFAULT;
 
-        double deltaU = DELTAU_DEFAULT;
-        double deltaF = DELTAF_DEFAULT;
+        double deltaU = GameLoop.DELTAU_DEFAULT;
+        double deltaF = GameLoop.DELTAF_DEFAULT;
 
         while (true) {
             final long actualTime = System.nanoTime();
@@ -68,12 +68,11 @@ public class GameEngineImpl implements GameEngine, Runnable{
 
     @Override
     public void update() {
-        
     }
 
     @Override
-    public void draw(Graphics g) {
-        switch(Gamestate.getGamestate()){
+    public void draw(final Graphics g) {
+        switch (Gamestate.getGamestate()) {
             case MENU:
                 final MainMenuController mmc = new MainMenuController();
                 mmc.draw(g);
