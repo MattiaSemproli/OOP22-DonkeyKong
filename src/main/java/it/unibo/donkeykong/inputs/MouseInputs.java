@@ -5,37 +5,39 @@ import java.awt.event.MouseListener;
 
 import it.unibo.donkeykong.view.ApplicationPanel;
 
+/**
+ * MouseInputsImpl class.
+ */
 public class MouseInputs implements MouseListener {
 
     private final ApplicationPanel dkPanel;
 
+    /**
+     * MouseInputsImpl constructor.
+     * 
+     * @param dkPanel Panel of application.
+     */
     public MouseInputs(final ApplicationPanel dkPanel) {
         this.dkPanel = dkPanel;
     }
 
     @Override
-    public void mouseClicked(MouseEvent arg0) {
-        
+    public void mouseClicked(final MouseEvent arg0) {
     }
 
     @Override
-    public void mouseEntered(MouseEvent arg0) {
-        
+    public void mouseEntered(final MouseEvent arg0) {
     }
 
     @Override
-    public void mouseExited(MouseEvent arg0) {
-        
+    public void mouseExited(final MouseEvent arg0) {
     }
 
     @Override
-    public void mousePressed(MouseEvent arg0) {
-        
+    public void mousePressed(final MouseEvent arg0) {
     }
 
     @Override
-    public void mouseReleased(MouseEvent arg0) {
-        
+    public void mouseReleased(final MouseEvent arg0) {
     }
-    
 }
