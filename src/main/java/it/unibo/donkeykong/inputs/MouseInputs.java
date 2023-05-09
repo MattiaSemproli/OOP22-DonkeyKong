@@ -22,22 +22,21 @@ public class MouseInputs implements MouseListener {
         this.dkPanel = dkPanel;
     }
 
-    
     @Override
     public void mousePressed(final MouseEvent mouseKey) {
         switch (Gamestate.getGamestate()) {
             case MENU:
-            break;
+                break;
             case SETTINGS:
-              break;
+                break;
             case PLAYING:
-              break;
+                break;
             case PAUSE:
             case WIN:
             case DEATH:
-              break;
+                break;
             default:
-              break;
+                break;
         }
     }
 
@@ -45,28 +44,28 @@ public class MouseInputs implements MouseListener {
     public void mouseReleased(final MouseEvent mouseKey) {
         switch (Gamestate.getGamestate()) {
             case MENU:
-              break;
+                break;
             case SETTINGS:
-              break;
+                break;
             case PLAYING:
-            break;
+                break;
             case PAUSE:
             case WIN:
             case DEATH:
-            break;
+                break;
             default:
-            break;
+                break;
         }
     }
-    
+
     @Override
     public void mouseClicked(final MouseEvent mouseKey) {
     }
-    
+
     @Override
     public void mouseEntered(final MouseEvent mouseKey) {
     }
-    
+
     @Override
     public void mouseExited(final MouseEvent mouseKey) {
     }
