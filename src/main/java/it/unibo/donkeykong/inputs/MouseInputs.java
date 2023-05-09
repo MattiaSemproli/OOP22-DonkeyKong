@@ -3,6 +3,7 @@ package it.unibo.donkeykong.inputs;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import it.unibo.donkeykong.utilities.Gamestate;
 import it.unibo.donkeykong.view.ApplicationPanel;
 
 /**
@@ -35,9 +36,37 @@ public class MouseInputs implements MouseListener {
 
     @Override
     public void mousePressed(final MouseEvent arg0) {
+        switch (Gamestate.getGamestate()) {
+            case MENU:
+              break;
+            case SETTINGS:
+              break;
+            case PLAYING:
+              break;
+            case PAUSE:
+            case WIN:
+            case DEATH:
+              break;
+            default:
+              break;
+        }
     }
 
     @Override
     public void mouseReleased(final MouseEvent arg0) {
+        switch (Gamestate.getGamestate()) {
+            case MENU:
+              break;
+            case SETTINGS:
+              break;
+            case PLAYING:
+              break;
+            case PAUSE:
+            case WIN:
+            case DEATH:
+              break;
+            default:
+              break;
+        }
     }
 }
