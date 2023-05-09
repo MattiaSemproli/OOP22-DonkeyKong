@@ -10,15 +10,16 @@ import static it.unibo.donkeykong.utilities.Constants.GameLoop;
 public class GameEngineImpl implements GameEngine, Runnable {
 
     private ApplicationPanel dkPanel;
+    private ApplicationImpl applicationImpl;
     private Thread gameThread;
 
-    public GameEngineImpl(final ApplicationPanel dkPanel) {
+    public GameEngineImpl(final ApplicationPanel dkPanel, final ApplicationImpl applicationImpl) {
         this.dkPanel = dkPanel;
+        this.applicationImpl = applicationImpl;
         startGameLoop();
     }
 
     private void startGameLoop() {
-
         gameThread = new Thread(this);
         gameThread.start();
     }
@@ -74,16 +75,14 @@ public class GameEngineImpl implements GameEngine, Runnable {
     public void draw(final Graphics g) {
         switch (Gamestate.getGamestate()) {
             case MENU:
-                final MainMenuController mmc = new MainMenuController();
-                mmc.draw(g);
+                applicationImpl.getMainMenuController().draw(g);
                 break;
             case CHOSING_LEVELS:
                 break;
             case PLAYING:
                 break;
             case SETTINGS:
-                final SettingsController sc = new SettingsController();
-                sc.draw(g);
+                applicationImpl.getSettingsController().draw(g);
                 break;
             case PAUSE:
                 break;
