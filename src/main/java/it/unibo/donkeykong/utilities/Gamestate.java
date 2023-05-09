@@ -33,7 +33,7 @@ public enum Gamestate {
      */
     DEATH;
 
-    public static Gamestate gamestate = MENU;
+    private static Gamestate gamestate = MENU;
 
     /**
      * @return the currently state of the game
