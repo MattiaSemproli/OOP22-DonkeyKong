@@ -69,6 +69,28 @@ public class GameEngineImpl implements GameEngine, Runnable {
 
     @Override
     public void update() {
+        switch (Gamestate.getGamestate()) {
+            case MENU:
+                applicationImpl.getMainMenuController().update();
+                this.applicationImpl.initialize();
+                break;
+            case CHOSING_LEVELS:
+                break;
+            case PLAYING:
+                break;
+            case SETTINGS:
+                applicationImpl.getSettingsController().update();
+                break;
+            case PAUSE:
+                break;
+            case DEATH:
+                break;
+            case WIN:
+                break;
+            default:
+                Runtime.getRuntime().exit(0);
+                break;
+        }
     }
 
     @Override
