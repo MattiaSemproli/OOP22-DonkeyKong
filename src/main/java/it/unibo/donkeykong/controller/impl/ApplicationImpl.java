@@ -12,6 +12,7 @@ public class ApplicationImpl implements Application {
     private GameEngineImpl gameEngine;
     private MainMenuController mainMenuController;
     private SettingsController settingsController;
+    private GameController gameController;
     private Game game;
 
     public ApplicationImpl() {
@@ -34,6 +35,7 @@ public class ApplicationImpl implements Application {
     public void initialize() {
         this.mainMenuController = new MainMenuController();
         this.settingsController = new SettingsController();
+        this.gameController = new GameController();
     }
 
     public MainMenuController getMainMenuController() {
@@ -46,5 +48,9 @@ public class ApplicationImpl implements Application {
 
     public Game getGame() {
         return this.game;
+    }
+
+    public GameController getGameController() {
+        return this.gameController;
     }
 }
