@@ -46,11 +46,11 @@ public class ApplicationImpl implements Application {
         return this.settingsController;
     }
 
-    public Game getGame() {
-        return this.game;
-    }
-
     public GameController getGameController() {
         return this.gameController;
+    }
+
+    public Game getGame() {
+        return this.game;
     }
 }
