@@ -6,21 +6,35 @@ import it.unibo.donkeykong.utilities.Constants.Window;
 
 public class CollisionComponent extends AbstractComponent {
 
-    private Rectangle2D.Float hitbox;
+    private final boolean isSolid;
     private float x, y;
     private int width, height;
-
-    public CollisionComponent(final float x, final float y) {
-        this.x = (int) (x * Window.TILES_DEFAULT_SIZE);
-        this.y = (int) (y * Window.TILES_DEFAULT_SIZE);
-        initHitbox();
-    }
+    private Rectangle2D.Float hitbox;
 
     @Override
     public void update() {
+        hitbox.x = this.getEntity().getPosition().getX()*Window.TILES_DEFAULT_SIZE;
+        hitbox.y = this.getEntity().getPosition().getY()*Window.TILES_DEFAULT_SIZE;
+    }
+
+    public CollisionComponent(final float x, final float y, final boolean isSolid) {
+        this.x = (int) (x * Window.TILES_DEFAULT_SIZE);
+        this.y = (int) (y * Window.TILES_DEFAULT_SIZE);
+        this.isSolid = isSolid;
+        initHitbox();
+    }
+
+    public Rectangle2D getHitbox() {
+        return this.hitbox;
+    }
+
+    public boolean isSolid() {
+        return this.isSolid;
     }
 
     private void initHitbox() {
+        this.width = (int)Window.TILES_DEFAULT_SIZE;
+        this.height = this.width;
         hitbox = new Rectangle2D.Float(x, y, width, height);
     }
 }
