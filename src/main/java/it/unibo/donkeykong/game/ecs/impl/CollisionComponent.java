@@ -2,7 +2,6 @@ package it.unibo.donkeykong.game.ecs.impl;
 
 import java.awt.geom.Rectangle2D;
 
-import it.unibo.donkeykong.utilities.Constants;
 import it.unibo.donkeykong.utilities.Constants.Window;
 
 public class CollisionComponent extends AbstractComponent {
