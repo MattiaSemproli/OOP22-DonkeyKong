@@ -1,5 +1,8 @@
 package it.unibo.donkeykong.game.model.api;
 
+import it.unibo.donkeykong.utilities.Pair;
+import it.unibo.donkeykong.utilities.Type;
+
 /**
  * This interface manages the creation of different entities.
  */
@@ -15,7 +18,7 @@ public interface EntityFactory {
      * Create a barrel.
      * @return a barrel type entity.
      */
-    Entity generateBarrel();
+    Entity generateBarrel(Pair<Float,Float> position, Type type);
 
     /**
      * Create a monkey.
