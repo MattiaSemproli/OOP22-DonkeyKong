@@ -20,7 +20,7 @@ public class Constants {
         public final static int UPDATES_DEFAULT = 0;
         public final static int DELTAF_DEFAULT = 0;
         public final static int DELTAU_DEFAULT = 0;
-    } 
+    }
 
     public static final class MenuAssets {
         public static final String title = "src/main/res/title.png";
@@ -45,4 +45,8 @@ public class Constants {
         public static final int quitB = 1;
     }
 
+    public static final class Barrel {
+        public static final float initialPositionX = 0.f;
+        public static final float initialPositionY = 0.f;
+    }
 }
