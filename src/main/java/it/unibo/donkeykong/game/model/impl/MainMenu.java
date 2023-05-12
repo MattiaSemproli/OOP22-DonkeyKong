@@ -1,6 +1,8 @@
 package it.unibo.donkeykong.game.model.impl;
 
 import java.awt.Graphics;
+import java.util.ArrayList;
+import java.util.Arrays;
 import javax.swing.ImageIcon;
 
 import it.unibo.donkeykong.controller.api.GameEngine;
@@ -23,6 +25,10 @@ public class MainMenu implements GameEngine {
     public MainMenu() {
         this.createFuncButtons();
         this.createUtilityButtons();
+    }
+
+    @Override
+    public void update() {
     }
 
     @Override
@@ -49,7 +55,7 @@ public class MainMenu implements GameEngine {
         this.utilityButtons[MenuAssets.quitB] = new ButtonImpl(
                 menuX + MenuAssets.menuTextureBox - MenuAssets.buttonWidth - MenuAssets.menuTextureBox / 12,
                 menuY + MenuAssets.menuTextureBox - MenuAssets.buttonHeight - MenuAssets.menuTextureBox / 8,
-                MenuAssets.buttonWidth, MenuAssets.buttonHeight, null);
+                MenuAssets.buttonWidth, MenuAssets.buttonHeight, Gamestate.EXIT);
     }
 
     private void drawFuncButtons(final Graphics g) {
@@ -78,7 +84,10 @@ public class MainMenu implements GameEngine {
                 utilityButtons[MenuAssets.quitB].getButtonDim().getY(), null);
     }
 
-    @Override
-    public void update() {
+    public final ArrayList<ButtonImpl> getButtons() {
+        return new ArrayList<ButtonImpl>(){{
+            addAll(Arrays.asList(funcButtons));
+            addAll(Arrays.asList(utilityButtons));
+        }};
     }
 }

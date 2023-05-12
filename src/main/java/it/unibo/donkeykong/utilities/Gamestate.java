@@ -31,7 +31,11 @@ public enum Gamestate {
     /**
      * Currently in you died (death = lose) view.
      */
-    DEATH;
+    DEATH, 
+    /**
+     * Currently exiting the game.
+     */
+    EXIT;
 
     private static Gamestate gamestate = MENU;
 

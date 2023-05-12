@@ -29,6 +29,7 @@ public class MainMenuView implements GameEngine {
 
     @Override
     public void update() {
+        this.menuController.getMainMenu().update();
     }
 
     @Override

@@ -1,6 +1,6 @@
 package it.unibo.donkeykong.game.model.api;
 
-import java.util.ArrayList;
+import java.awt.Rectangle;
 
 import it.unibo.donkeykong.utilities.Pair;
 
@@ -8,21 +8,10 @@ import it.unibo.donkeykong.utilities.Pair;
  * This interface models a button.
  */
 public interface Button {
-
     /**
-     * @return a boolean if the mouse is over the button.
+     * @return a rectangle created with the button top left corner and the button bottom right corner.
      */
-    boolean isMouseOver();
-
-    /**
-     * @return a boolean if the button is pressed.
-     */
-    boolean isMousePressed();
-
-    /**
-     * @return an array of pairs containing top-left and bottom-right corners.
-     */
-    ArrayList<Pair<Integer, Integer>> getCorners();
+    Rectangle getCorners();
 
     /**
      * Set the game state.

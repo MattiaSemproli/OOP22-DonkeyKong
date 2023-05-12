@@ -5,6 +5,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import it.unibo.donkeykong.controller.api.GameEngine;
+import it.unibo.donkeykong.game.model.impl.ButtonImpl;
 import it.unibo.donkeykong.game.model.impl.MainMenu;
 import it.unibo.donkeykong.view.MainMenuView;
 
@@ -14,16 +15,19 @@ import it.unibo.donkeykong.view.MainMenuView;
 public class MainMenuController implements MouseListener, GameEngine {
 
     private final MainMenuView menuView;
+    private final MainMenu menu;
 
     /**
      * Constructor.
      */
     public MainMenuController() {
         this.menuView = new MainMenuView(this);
+        this.menu = new MainMenu();
     }
 
     @Override
     public void update() {
+        this.menuView.update();
     }
 
     @Override
@@ -36,15 +40,21 @@ public class MainMenuController implements MouseListener, GameEngine {
      * @return new main menu model.
      */
     public final MainMenu getMainMenu() {
-        return new MainMenu();
+        return this.menu;
+    }
+    
+    @Override
+    public void mousePressed(final MouseEvent e) {
+        for (final ButtonImpl b : this.menu.getButtons()) {
+            if (b.getCorners().contains(e.getPoint())) {
+                b.applyGamestate();
+                break;
+            }
+        }
     }
 
     @Override
     public void mouseClicked(final MouseEvent e) {
-    }
-
-    @Override
-    public void mousePressed(final MouseEvent e) {
     }
 
     @Override

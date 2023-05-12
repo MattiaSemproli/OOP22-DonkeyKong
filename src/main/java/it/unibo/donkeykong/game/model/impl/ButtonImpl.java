@@ -1,6 +1,6 @@
 package it.unibo.donkeykong.game.model.impl;
 
-import java.util.ArrayList;
+import java.awt.Rectangle;
 
 import it.unibo.donkeykong.game.model.api.Button;
 import it.unibo.donkeykong.utilities.Gamestate;
@@ -32,23 +32,8 @@ public class ButtonImpl implements Button {
     }
 
     @Override
-    public final boolean isMouseOver() {
-        return false;
-    }
-
-    @Override
-    public final boolean isMousePressed() {
-        return false;
-    }
-
-    @Override
-    public final ArrayList<Pair<Integer, Integer>> getCorners() {
-        return new ArrayList<>() {
-            {
-                add(new Pair<Integer, Integer>(x, y));
-                add(new Pair<Integer, Integer>(x + width, y + height));
-            }
-        };
+    public final Rectangle getCorners() {
+        return new Rectangle(this.x, this.y, this.width, this.height);
     }
 
     @Override

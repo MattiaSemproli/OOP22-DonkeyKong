@@ -87,6 +87,9 @@ public class GameEngineImpl implements GameEngine, Runnable {
                 break;
             case WIN:
                 break;
+            case EXIT:
+                Runtime.getRuntime().exit(0);
+                break;
             default:
                 Runtime.getRuntime().exit(0);
                 break;
@@ -111,6 +114,9 @@ public class GameEngineImpl implements GameEngine, Runnable {
             case DEATH:
                 break;
             case WIN:
+                break;
+            case EXIT:
+                Runtime.getRuntime().exit(0);
                 break;
             default:
                 Runtime.getRuntime().exit(0);
