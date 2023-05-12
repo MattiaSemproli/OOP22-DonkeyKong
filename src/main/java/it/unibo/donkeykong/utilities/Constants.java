@@ -51,6 +51,9 @@ public class Constants {
             public static final int numVolumeButtons = 2;
             public static final int volOnB = 0;
             public static final int volOffB = 1;
+            public static final int squareButtonSize = 75;
+            public static final int homeButtonRightDistance = 125;
+            public static final int homeButtonBottomDistance = 150;
         }
     }
 

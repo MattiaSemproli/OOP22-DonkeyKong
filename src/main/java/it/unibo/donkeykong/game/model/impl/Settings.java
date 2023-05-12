@@ -2,7 +2,6 @@ package it.unibo.donkeykong.game.model.impl;
 
 import java.awt.Graphics;
 import java.util.ArrayList;
-import java.util.Arrays;
 import javax.swing.ImageIcon;
 
 import it.unibo.donkeykong.controller.api.GameEngine;
@@ -35,15 +34,27 @@ public class Settings implements GameEngine, ViewModel {
     @Override
     public void draw(final Graphics g) {
         g.drawImage(new ImageIcon(SettingsAssets.homeButton).getImage(),
-                this.backHome.getButtonPos().getX(),
-                this.backHome.getButtonPos().getY(),
-                this.backHome.getButtonDim().getX(),
-                this.backHome.getButtonDim().getY(), null);
+                    this.backHome.getButtonPos().getX(),
+                    this.backHome.getButtonPos().getY(),
+                    this.backHome.getButtonDim().getX(),
+                    this.backHome.getButtonDim().getY(), null);
+        g.drawImage(new ImageIcon(SettingsAssets.roundedVolumeOn).getImage(), 
+                    MenuAssets.menuTextureBox / 2 - SettingsAssets.squareButtonSize / 2, 
+                    menuY + SettingsAssets.squareButtonSize, 
+                    SettingsAssets.squareButtonSize, 
+                    SettingsAssets.squareButtonSize, null);
+        g.drawImage(new ImageIcon(SettingsAssets.roundedVolumeOff).getImage(), 
+                    MenuAssets.menuTextureBox / 2 + SettingsAssets.squareButtonSize * 2, 
+                    menuY + SettingsAssets.squareButtonSize, 
+                    SettingsAssets.squareButtonSize, 
+                    SettingsAssets.squareButtonSize, null);
     }
     
     private void createButtons() {
-        this.backHome = new ButtonImpl(menuX+MenuAssets.menuTextureBox/2, 
-                                       menuY+MenuAssets.menuTextureBox/2, 50, 50, Gamestate.MENU);
+        this.backHome = new ButtonImpl(menuX + MenuAssets.menuTextureBox - SettingsAssets.homeButtonRightDistance, 
+                                       menuY + MenuAssets.menuTextureBox - SettingsAssets.homeButtonBottomDistance, 
+                                       SettingsAssets.squareButtonSize, 
+                                       SettingsAssets.squareButtonSize, Gamestate.MENU);
 
         this.volumeButtons[SettingsAssets.volOnB] = new ButtonImpl(0, 0, 0, 0, null);
         this.volumeButtons[SettingsAssets.volOffB] = new ButtonImpl(0, 0, 0, 0, null);
@@ -52,8 +63,7 @@ public class Settings implements GameEngine, ViewModel {
     @Override
     public final ArrayList<ButtonImpl> getButtons() {
         return new ArrayList<ButtonImpl>(){{
-            addAll(Arrays.asList());
-            addAll(Arrays.asList());
+            add(backHome);
         }};
     }
 }
