@@ -5,8 +5,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import it.unibo.donkeykong.controller.api.GameEngine;
-import it.unibo.donkeykong.game.model.impl.ButtonImpl;
 import it.unibo.donkeykong.game.model.impl.MainMenu;
+import it.unibo.donkeykong.utilities.ButtonFuncUtilities;
 import it.unibo.donkeykong.view.MainMenuView;
 
 /**
@@ -45,12 +45,7 @@ public class MainMenuController implements MouseListener, GameEngine {
     
     @Override
     public void mousePressed(final MouseEvent e) {
-        for (final ButtonImpl b : this.menu.getButtons()) {
-            if (b.getCorners().contains(e.getPoint())) {
-                b.applyGamestate();
-                break;
-            }
-        }
+        ButtonFuncUtilities.getButtonPressed(e, this.menu.getButtons()).ifPresent(b -> b.applyGamestate());
     }
 
     @Override
