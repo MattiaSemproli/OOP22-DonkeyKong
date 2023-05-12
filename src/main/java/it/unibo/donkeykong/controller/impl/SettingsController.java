@@ -6,6 +6,7 @@ import java.awt.event.MouseListener;
 
 import it.unibo.donkeykong.controller.api.GameEngine;
 import it.unibo.donkeykong.game.model.impl.Settings;
+import it.unibo.donkeykong.utilities.ButtonFuncUtilities;
 import it.unibo.donkeykong.view.SettingsView;
 
 /**
@@ -14,16 +15,19 @@ import it.unibo.donkeykong.view.SettingsView;
 public class SettingsController implements MouseListener, GameEngine {
 
     private final SettingsView settingsView;
+    private final Settings settings;
 
     /**
      * Constructor.
      */
     public SettingsController() {
         this.settingsView = new SettingsView(this);
+        this.settings = new Settings();
     }
 
     @Override
     public void update() {
+        this.settingsView.update();
     }
 
     @Override
@@ -36,11 +40,12 @@ public class SettingsController implements MouseListener, GameEngine {
      * @return new settings model.
      */
     public final Settings getSettings() {
-        return new Settings();
+        return this.settings;
     }
 
     @Override
     public void mouseClicked(final MouseEvent e) {
+        ButtonFuncUtilities.getButtonPressed(e, this.settings.getButtons()).ifPresent(b -> b.applyGamestate());
     }
 
     @Override

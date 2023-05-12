@@ -27,6 +27,7 @@ public class SettingsView implements GameEngine {
 
     @Override
     public void update() {
+        this.settingsController.getSettings().update();
     }
 
     @Override

@@ -6,7 +6,7 @@ import it.unibo.donkeykong.controller.api.GameEngine;
 import it.unibo.donkeykong.utilities.Gamestate;
 import it.unibo.donkeykong.view.ApplicationPanel;
 import static it.unibo.donkeykong.utilities.Constants.GameLoop;
-
+    
 public class GameEngineImpl implements GameEngine, Runnable {
 
     private ApplicationPanel dkPanel;

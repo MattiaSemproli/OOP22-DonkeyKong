@@ -43,6 +43,15 @@ public class Constants {
         public static final int levelsB = 1;
         public static final int settingsB = 0;
         public static final int quitB = 1;
+
+        public static final class SettingsAssets {
+            public static final String homeButton = "src/main/res/square_home_button.png";
+            public static final String roundedVolumeOn = "src/main/res/square_volume_on_button.png";
+            public static final String roundedVolumeOff = "src/main/res/square_volume_off_button.png";
+            public static final int numVolumeButtons = 2;
+            public static final int volOnB = 0;
+            public static final int volOffB = 1;
+        }
     }
 
     public static final class Barrel {
