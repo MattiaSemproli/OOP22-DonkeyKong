@@ -6,6 +6,7 @@ import java.util.Arrays;
 import javax.swing.ImageIcon;
 
 import it.unibo.donkeykong.controller.api.GameEngine;
+import it.unibo.donkeykong.game.model.api.ViewModel;
 import it.unibo.donkeykong.utilities.Gamestate;
 import it.unibo.donkeykong.utilities.Constants.MenuAssets;
 import static it.unibo.donkeykong.utilities.Constants.MenuAssets.menuX;
@@ -14,7 +15,7 @@ import static it.unibo.donkeykong.utilities.Constants.MenuAssets.menuY;
 /**
  * Main menu model.
  */
-public class MainMenu implements GameEngine {
+public class MainMenu implements GameEngine, ViewModel {
 
     private final ButtonImpl[] funcButtons = new ButtonImpl[MenuAssets.numFunctionButtons];
     private final ButtonImpl[] utilityButtons = new ButtonImpl[MenuAssets.numUtilityButtons];
@@ -84,10 +85,13 @@ public class MainMenu implements GameEngine {
                 utilityButtons[MenuAssets.quitB].getButtonDim().getY(), null);
     }
 
+    @Override
     public final ArrayList<ButtonImpl> getButtons() {
         return new ArrayList<ButtonImpl>(){{
             addAll(Arrays.asList(funcButtons));
             addAll(Arrays.asList(utilityButtons));
         }};
     }
+
+   
 }
