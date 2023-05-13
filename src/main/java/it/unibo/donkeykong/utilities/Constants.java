@@ -61,4 +61,8 @@ public class Constants {
         public static final float initialPositionX = 0.f;
         public static final float initialPositionY = 0.f;
     }
+
+    public static final class Level {
+        public static final String levelOne = "src/main/res/level_one_data.png";
+    }
 }
