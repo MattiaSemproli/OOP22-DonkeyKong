@@ -22,7 +22,7 @@ public class GameController implements GameEngine {
 
     @Override
     public void update() {
-
+        this.gameView.update();
     }
 
     @Override

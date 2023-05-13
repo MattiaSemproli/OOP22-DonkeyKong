@@ -3,10 +3,10 @@ package it.unibo.donkeykong.view;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
-import javax.swing.ImageIcon;
 
 import it.unibo.donkeykong.controller.api.GameEngine;
 import it.unibo.donkeykong.controller.impl.MainMenuController;
+import it.unibo.donkeykong.utilities.ResourceFuncUtilities;
 import it.unibo.donkeykong.utilities.Constants.MenuAssets;
 import it.unibo.donkeykong.utilities.Constants.Window;
 import static it.unibo.donkeykong.utilities.Constants.MenuAssets.menuX;
@@ -40,44 +40,44 @@ public class MainMenuView implements GameEngine {
     }
 
     private void drawBackgroundAssets(final Graphics g) {
-        g.drawImage(new ImageIcon(MenuAssets.menuBackground).getImage(), 0, 0, Window.GAME_WIDTH, Window.GAME_HEIGHT,
+        g.drawImage(ResourceFuncUtilities.getSources(MenuAssets.menuBackground), 0, 0, Window.GAME_WIDTH, Window.GAME_HEIGHT,
                 null);
-        g.drawImage(new ImageIcon(MenuAssets.menuTexture).getImage(),
+        g.drawImage(ResourceFuncUtilities.getSources(MenuAssets.menuTexture),
                 menuX, menuY,
                 MenuAssets.menuTextureBox, MenuAssets.menuTextureBox, null);
-        g.drawImage(new ImageIcon("src/main/res/title.png").getImage(),
+        g.drawImage(ResourceFuncUtilities.getSources("title.png"),
                 menuX + 115, menuY - 65,
                 250, 125, null);
     }
 
     private void drawLegend(final Graphics g) {
-        g.drawImage(new ImageIcon("src/main/res/aKey.png").getImage(),
+        g.drawImage(ResourceFuncUtilities.getSources("aKey.png"),
                 menuX + MenuAssets.menuTextureBox / 10, menuY + MenuAssets.buttonHeight * 3,
                 MenuAssets.legendKeyBox, MenuAssets.legendKeyBox, null);
-        g.drawImage(new ImageIcon("src/main/res/dKey.png").getImage(),
+        g.drawImage(ResourceFuncUtilities.getSources("dKey.png"),
                 menuX + MenuAssets.menuTextureBox / 10, menuY + MenuAssets.buttonHeight * 3 + MenuAssets.legendKeyBox,
                 MenuAssets.legendKeyBox, MenuAssets.legendKeyBox, null);
-        g.drawImage(new ImageIcon("src/main/res/wKey.png").getImage(),
+        g.drawImage(ResourceFuncUtilities.getSources("wKey.png"),
                 menuX + MenuAssets.menuTextureBox / 10,
                 menuY + MenuAssets.buttonHeight * 3 + MenuAssets.legendKeyBox * 2,
                 MenuAssets.legendKeyBox, MenuAssets.legendKeyBox, null);
-        g.drawImage(new ImageIcon("src/main/res/sKey.png").getImage(),
+        g.drawImage(ResourceFuncUtilities.getSources("sKey.png"),
                 menuX + MenuAssets.menuTextureBox / 10,
                 menuY + MenuAssets.buttonHeight * 3 + MenuAssets.legendKeyBox * 3,
                 MenuAssets.legendKeyBox, MenuAssets.legendKeyBox, null);
 
-        g.drawImage(new ImageIcon("src/main/res/left_arrow.png").getImage(),
+        g.drawImage(ResourceFuncUtilities.getSources("left_arrow.png"),
                 menuX + MenuAssets.menuTextureBox / 10 + MenuAssets.legendKeyBox, menuY + MenuAssets.buttonHeight * 3,
                 MenuAssets.legendKeyBox, MenuAssets.legendKeyBox, null);
-        g.drawImage(new ImageIcon("src/main/res/right_arrow.png").getImage(),
+        g.drawImage(ResourceFuncUtilities.getSources("right_arrow.png"),
                 menuX + MenuAssets.menuTextureBox / 10 + MenuAssets.legendKeyBox,
                 menuY + MenuAssets.buttonHeight * 3 + MenuAssets.legendKeyBox,
                 MenuAssets.legendKeyBox, MenuAssets.legendKeyBox, null);
-        g.drawImage(new ImageIcon("src/main/res/up_arrow.png").getImage(),
+        g.drawImage(ResourceFuncUtilities.getSources("up_arrow.png"),
                 menuX + MenuAssets.menuTextureBox / 10 + MenuAssets.legendKeyBox,
                 menuY + MenuAssets.buttonHeight * 3 + MenuAssets.legendKeyBox * 2,
                 MenuAssets.legendKeyBox, MenuAssets.legendKeyBox, null);
-        g.drawImage(new ImageIcon("src/main/res/down_arrow.png").getImage(),
+        g.drawImage(ResourceFuncUtilities.getSources("down_arrow.png"),
                 menuX + MenuAssets.menuTextureBox / 10 + MenuAssets.legendKeyBox,
                 menuY + MenuAssets.buttonHeight * 3 + MenuAssets.legendKeyBox * 3,
                 MenuAssets.legendKeyBox, MenuAssets.legendKeyBox, null);

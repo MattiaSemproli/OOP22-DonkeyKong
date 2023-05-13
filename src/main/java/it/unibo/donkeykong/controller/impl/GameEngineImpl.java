@@ -77,6 +77,7 @@ public class GameEngineImpl implements GameEngine, Runnable {
             case CHOSING_LEVELS:
                 break;
             case PLAYING:
+                applicationImpl.getGameController().update();
                 break;
             case SETTINGS:
                 applicationImpl.getSettingsController().update();
@@ -105,6 +106,7 @@ public class GameEngineImpl implements GameEngine, Runnable {
             case CHOSING_LEVELS:
                 break;
             case PLAYING:
+                applicationImpl.getGameController().draw(g);
                 break;
             case SETTINGS:
                 applicationImpl.getSettingsController().draw(g);

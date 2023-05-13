@@ -22,12 +22,12 @@ public class GameView implements GameEngine {
 
     @Override
     public void update() {
-
+        this.gameController.getGame().update();
     }
 
     @Override
     public final void draw(final Graphics g) {
-        this.gameController.getGame();
+        this.gameController.getGame().draw(g);
     }
 
 }

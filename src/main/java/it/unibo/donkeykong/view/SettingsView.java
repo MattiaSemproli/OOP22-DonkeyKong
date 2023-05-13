@@ -1,10 +1,10 @@
 package it.unibo.donkeykong.view;
 
 import java.awt.Graphics;
-import javax.swing.ImageIcon;
 
 import it.unibo.donkeykong.controller.api.GameEngine;
 import it.unibo.donkeykong.controller.impl.SettingsController;
+import it.unibo.donkeykong.utilities.ResourceFuncUtilities;
 import it.unibo.donkeykong.utilities.Constants.MenuAssets;
 import it.unibo.donkeykong.utilities.Constants.Window;
 import static it.unibo.donkeykong.utilities.Constants.MenuAssets.menuX;
@@ -37,9 +37,9 @@ public class SettingsView implements GameEngine {
     }
 
     private void drawBackgroundAssets(final Graphics g) {
-        g.drawImage(new ImageIcon(MenuAssets.menuBackground).getImage(), 0, 0, Window.GAME_WIDTH, Window.GAME_HEIGHT,
+        g.drawImage(ResourceFuncUtilities.getSources(MenuAssets.menuBackground), 0, 0, Window.GAME_WIDTH, Window.GAME_HEIGHT,
                 null);
-        g.drawImage(new ImageIcon(MenuAssets.menuTexture).getImage(),
+        g.drawImage(ResourceFuncUtilities.getSources(MenuAssets.menuTexture),
                 menuX, menuY,
                 MenuAssets.menuTextureBox, MenuAssets.menuTextureBox, null);
     }

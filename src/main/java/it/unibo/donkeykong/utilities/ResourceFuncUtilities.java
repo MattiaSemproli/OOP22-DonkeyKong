@@ -1,8 +1,9 @@
 package it.unibo.donkeykong.utilities;
 
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 
 import javax.imageio.ImageIO;
 
@@ -19,19 +20,12 @@ public final class ResourceFuncUtilities {
      * @param fileName name of the file.
      * @return         the image.
      */
-    public static BufferedImage getSources(final String fileName){
-        BufferedImage img = null;
-        InputStream s = ResourceFuncUtilities.class.getResourceAsStream("src/main/res/" + fileName);
+    public static BufferedImage getSources(final String fileName) {
+        BufferedImage img = null;        
         try {
-            img = ImageIO.read(s);
+            img = ImageIO.read(new FileInputStream(new File("src/main/res/" + fileName)));
         } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                s.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            throw new IllegalStateException("Error while reading the file: " + fileName);
         }
         return img;
     }
