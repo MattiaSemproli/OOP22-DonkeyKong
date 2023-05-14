@@ -21,7 +21,7 @@ public class GameView implements GameEngine {
     }
 
     @Override
-    public void update() {
+    public final void update() {
         this.gameController.getGame().update();
     }
 

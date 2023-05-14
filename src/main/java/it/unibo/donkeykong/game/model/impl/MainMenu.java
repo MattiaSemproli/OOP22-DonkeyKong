@@ -87,11 +87,12 @@ public class MainMenu implements GameEngine, ViewModel {
 
     @Override
     public final ArrayList<ButtonImpl> getButtons() {
-        return new ArrayList<ButtonImpl>(){{
-            addAll(Arrays.asList(funcButtons));
-            addAll(Arrays.asList(utilityButtons));
-        }};
+        return new ArrayList<ButtonImpl>() {
+            {
+                addAll(Arrays.asList(funcButtons));
+                addAll(Arrays.asList(utilityButtons));
+            }
+        };
     }
 
-   
 }

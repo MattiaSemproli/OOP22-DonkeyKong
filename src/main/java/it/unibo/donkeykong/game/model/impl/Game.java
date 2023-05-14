@@ -30,12 +30,12 @@ public class Game implements GameEngine, ViewModel {
     }
 
     private void drawLevel(final Graphics g) {
-        Map<Pair<Integer,Integer>, Integer> lvl = this.level.getLevelData();
-        for(int r = 0; r < Window.TILES_IN_HEIGHT; r++){
-            for(int c = 0; c < Window.TILES_IN_WIDTH; c++){
-                g.drawImage(this.level.getLevelSprite(lvl.get(new Pair<>(r, c))), 
-                            SCALED_TILES_SIZE * r, SCALED_TILES_SIZE * c,
-                            SCALED_TILES_SIZE, SCALED_TILES_SIZE, null);
+        Map<Pair<Integer, Integer>, Integer> lvl = this.level.getLevelData();
+        for (int r = 0; r < Window.TILES_IN_HEIGHT; r++) {
+            for (int c = 0; c < Window.TILES_IN_WIDTH; c++) {
+                g.drawImage(this.level.getLevelSprite(lvl.get(new Pair<>(r, c))),
+                        SCALED_TILES_SIZE * r, SCALED_TILES_SIZE * c,
+                        SCALED_TILES_SIZE, SCALED_TILES_SIZE, null);
             }
         }
 

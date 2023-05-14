@@ -28,11 +28,11 @@ public class Settings implements GameEngine, ViewModel {
     }
 
     @Override
-    public void update() {
+    public final void update() {
     }
 
     @Override
-    public void draw(final Graphics g) {
+    public final void draw(final Graphics g) {
         g.drawImage(getSources(SettingsAssets.homeButton),
                     this.backHome.getButtonPos().getX(),
                     this.backHome.getButtonPos().getY(),
@@ -49,7 +49,7 @@ public class Settings implements GameEngine, ViewModel {
                     SettingsAssets.squareButtonSize, 
                     SettingsAssets.squareButtonSize, null);
     }
-    
+
     private void createButtons() {
         this.backHome = new ButtonImpl(menuX + MenuAssets.menuTextureBox - SettingsAssets.homeButtonRightDistance, 
                                        menuY + MenuAssets.menuTextureBox - SettingsAssets.homeButtonBottomDistance, 
@@ -62,7 +62,7 @@ public class Settings implements GameEngine, ViewModel {
 
     @Override
     public final ArrayList<ButtonImpl> getButtons() {
-        return new ArrayList<ButtonImpl>(){{
+        return new ArrayList<ButtonImpl>() {{
             add(backHome);
         }};
     }

@@ -26,7 +26,7 @@ public class SettingsController implements MouseListener, GameEngine {
     }
 
     @Override
-    public void update() {
+    public final void update() {
         this.settingsView.update();
     }
 
@@ -37,21 +37,22 @@ public class SettingsController implements MouseListener, GameEngine {
 
     /**
      * Get the settings model.
+     * 
      * @return new settings model.
      */
     public final Settings getSettings() {
         return this.settings;
     }
-    
+
     @Override
-    public void mousePressed(final MouseEvent e) {
+    public final void mousePressed(final MouseEvent e) {
         ButtonFuncUtilities.getButtonPressed(e, this.settings.getButtons()).ifPresent(b -> b.applyGamestate());
     }
-    
+
     @Override
     public void mouseClicked(final MouseEvent e) {
     }
-    
+
     @Override
     public void mouseReleased(final MouseEvent e) {
     }
@@ -63,5 +64,4 @@ public class SettingsController implements MouseListener, GameEngine {
     @Override
     public void mouseExited(final MouseEvent e) {
     }
-
 }

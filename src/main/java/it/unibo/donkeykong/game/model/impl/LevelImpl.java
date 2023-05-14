@@ -13,47 +13,57 @@ import static it.unibo.donkeykong.utilities.Constants.Level.levelSpritesLength;
 import static it.unibo.donkeykong.utilities.Constants.Window.TILES_DEFAULT_SIZE;
 import static it.unibo.donkeykong.utilities.ResourceFuncUtilities.getBufferedSources;
 
+/**
+ * This class manages a new level.
+ */
 public class LevelImpl implements Level {
 
-    private final Map<Pair<Integer,Integer>, Integer> levelData;
+    private final Map<Pair<Integer, Integer>, Integer> levelData;
     private final BufferedImage[] spritesArray = new BufferedImage[levelSpritesLength];
 
+    /**
+     * Constructor.
+     * 
+     * @param levelSpriteName the level to be created.
+     */
     public LevelImpl(final String levelSpriteName) {
         this.levelData = createLevel(levelSpriteName);
         this.importLevelSprites();
     }
 
-    private Map<Pair<Integer,Integer>, Integer> createLevel(final String levelSpriteName) {
-        return new HashMap<>(){{
-            BufferedImage img = getBufferedSources(levelOne);
-            for(int r = 0; r < img.getHeight(); r++) {
-                for(int c = 0; c < img.getWidth(); c++) {
-                    Color color = new Color(img.getRGB(c, r));
-                    int value = color.getRed();
-                    if(value >= 3) {
-                        value = 0;
+    private Map<Pair<Integer, Integer>, Integer> createLevel(final String levelSpriteName) {
+        return new HashMap<>() {
+            {
+                BufferedImage img = getBufferedSources(levelOne);
+                for (int r = 0; r < img.getHeight(); r++) {
+                    for (int c = 0; c < img.getWidth(); c++) {
+                        Color color = new Color(img.getRGB(c, r));
+                        int value = color.getRed();
+                        if (value >= 3) {
+                            value = 0;
+                        }
+                        put(new Pair<>(c, r), value);
                     }
-                    put(new Pair<>(c, r), value);
                 }
             }
-        }};
+        };
     }
 
-    private void importLevelSprites(){
+    private void importLevelSprites() {
         BufferedImage img = getBufferedSources(levelSprites);
-        for(int i = 0; i < levelSpritesLength; i++) {
+        for (int i = 0; i < levelSpritesLength; i++) {
             spritesArray[i] = img.getSubimage(i * TILES_DEFAULT_SIZE, 0, TILES_DEFAULT_SIZE, TILES_DEFAULT_SIZE);
         }
     }
 
     @Override
-    public BufferedImage getLevelSprite(final int val) {
+    public final BufferedImage getLevelSprite(final int val) {
         return this.spritesArray[val];
     }
 
     @Override
-    public Map<Pair<Integer, Integer>, Integer> getLevelData() {
+    public final Map<Pair<Integer, Integer>, Integer> getLevelData() {
         return this.levelData;
     }
-    
+
 }

@@ -24,8 +24,14 @@ public final class ResourceFuncUtilities {
         return new ImageIcon(fileName).getImage();
     }
 
-    public static BufferedImage getBufferedSources(final String string) {
-        File file = new File(string);
+    /**
+     * Get the buffered image from the file name.
+     * 
+     * @param fileName name of the file.
+     * @return       the buffered image.
+     */
+    public static BufferedImage getBufferedSources(final String fileName) {
+        File file = new File(fileName);
         BufferedImage img = null;
         try {
             img = ImageIO.read(file);

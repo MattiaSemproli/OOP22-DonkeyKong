@@ -26,7 +26,7 @@ public class MainMenuController implements MouseListener, GameEngine {
     }
 
     @Override
-    public void update() {
+    public final void update() {
         this.menuView.update();
     }
 
@@ -37,14 +37,15 @@ public class MainMenuController implements MouseListener, GameEngine {
 
     /**
      * Get the main menu model.
+     * 
      * @return new main menu model.
      */
     public final MainMenu getMainMenu() {
         return this.menu;
     }
-    
+
     @Override
-    public void mousePressed(final MouseEvent e) {
+    public final void mousePressed(final MouseEvent e) {
         ButtonFuncUtilities.getButtonPressed(e, this.menu.getButtons()).ifPresent(b -> b.applyGamestate());
     }
 

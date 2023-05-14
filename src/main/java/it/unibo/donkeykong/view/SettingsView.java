@@ -26,7 +26,7 @@ public class SettingsView implements GameEngine {
     }
 
     @Override
-    public void update() {
+    public final void update() {
         this.settingsController.getSettings().update();
     }
 
@@ -37,7 +37,7 @@ public class SettingsView implements GameEngine {
     }
 
     private void drawBackgroundAssets(final Graphics g) {
-        g.drawImage(getSources(MenuAssets.menuBackground), 0, 0, Window.GAME_WIDTH, Window.GAME_HEIGHT,null);
+        g.drawImage(getSources(MenuAssets.menuBackground), 0, 0, Window.GAME_WIDTH, Window.GAME_HEIGHT, null);
         g.drawImage(getSources(MenuAssets.menuTexture), menuX, menuY, MenuAssets.menuTextureBox, MenuAssets.menuTextureBox, null);
     }
 
