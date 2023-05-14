@@ -1,11 +1,11 @@
 package it.unibo.donkeykong.utilities;
 
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 
 /**
  * Functional utilities for resources.
@@ -20,12 +20,17 @@ public final class ResourceFuncUtilities {
      * @param fileName name of the file.
      * @return         the image.
      */
-    public static BufferedImage getSources(final String fileName) {
-        BufferedImage img = null;        
+    public static Image getSources(final String fileName) {
+        return new ImageIcon(fileName).getImage();
+    }
+
+    public static BufferedImage getBufferedSources(final String string) {
+        File file = new File(string);
+        BufferedImage img = null;
         try {
-            img = ImageIO.read(new FileInputStream(new File("src/main/res/" + fileName)));
+            img = ImageIO.read(file);
         } catch (IOException e) {
-            throw new IllegalStateException("Error while reading the file: " + fileName);
+            e.printStackTrace();
         }
         return img;
     }

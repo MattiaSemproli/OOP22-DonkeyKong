@@ -1,16 +1,16 @@
 package it.unibo.donkeykong.game.model.impl;
 
+import java.util.Arrays;
 import java.awt.Graphics;
 import java.util.ArrayList;
-import java.util.Arrays;
 
-import it.unibo.donkeykong.controller.api.GameEngine;
-import it.unibo.donkeykong.game.model.api.ViewModel;
 import it.unibo.donkeykong.utilities.Gamestate;
-import it.unibo.donkeykong.utilities.ResourceFuncUtilities;
+import it.unibo.donkeykong.game.model.api.ViewModel;
+import it.unibo.donkeykong.controller.api.GameEngine;
 import it.unibo.donkeykong.utilities.Constants.MenuAssets;
 import static it.unibo.donkeykong.utilities.Constants.MenuAssets.menuX;
 import static it.unibo.donkeykong.utilities.Constants.MenuAssets.menuY;
+import static it.unibo.donkeykong.utilities.ResourceFuncUtilities.getSources;
 
 /**
  * Main menu model.
@@ -60,12 +60,12 @@ public class MainMenu implements GameEngine, ViewModel {
     }
 
     private void drawFuncButtons(final Graphics g) {
-        g.drawImage(ResourceFuncUtilities.getSources(MenuAssets.playButton),
+        g.drawImage(getSources(MenuAssets.playButton),
                 funcButtons[MenuAssets.playB].getButtonPos().getX(),
                 funcButtons[MenuAssets.playB].getButtonPos().getY(),
                 funcButtons[MenuAssets.playB].getButtonDim().getX(),
                 funcButtons[MenuAssets.playB].getButtonDim().getY(), null);
-        g.drawImage(ResourceFuncUtilities.getSources(MenuAssets.levelsButton),
+        g.drawImage(getSources(MenuAssets.levelsButton),
                 funcButtons[MenuAssets.levelsB].getButtonPos().getX(),
                 funcButtons[MenuAssets.levelsB].getButtonPos().getY(),
                 funcButtons[MenuAssets.levelsB].getButtonDim().getX(),
@@ -73,12 +73,12 @@ public class MainMenu implements GameEngine, ViewModel {
     }
 
     private void drawUtilityButtons(final Graphics g) {
-        g.drawImage(ResourceFuncUtilities.getSources(MenuAssets.settingsButton),
+        g.drawImage(getSources(MenuAssets.settingsButton),
                 utilityButtons[MenuAssets.settingsB].getButtonPos().getX(),
                 utilityButtons[MenuAssets.settingsB].getButtonPos().getY(),
                 utilityButtons[MenuAssets.settingsB].getButtonDim().getX(),
                 utilityButtons[MenuAssets.settingsB].getButtonDim().getY(), null);
-        g.drawImage(ResourceFuncUtilities.getSources(MenuAssets.quitButton),
+        g.drawImage(getSources(MenuAssets.quitButton),
                 utilityButtons[MenuAssets.quitB].getButtonPos().getX(),
                 utilityButtons[MenuAssets.quitB].getButtonPos().getY(),
                 utilityButtons[MenuAssets.quitB].getButtonDim().getX(),

@@ -3,14 +3,14 @@ package it.unibo.donkeykong.game.model.impl;
 import java.awt.Graphics;
 import java.util.ArrayList;
 
-import it.unibo.donkeykong.controller.api.GameEngine;
-import it.unibo.donkeykong.game.model.api.ViewModel;
 import it.unibo.donkeykong.utilities.Gamestate;
-import it.unibo.donkeykong.utilities.ResourceFuncUtilities;
+import it.unibo.donkeykong.game.model.api.ViewModel;
+import it.unibo.donkeykong.controller.api.GameEngine;
 import it.unibo.donkeykong.utilities.Constants.MenuAssets;
-import it.unibo.donkeykong.utilities.Constants.MenuAssets.SettingsAssets;
 import static it.unibo.donkeykong.utilities.Constants.MenuAssets.menuX;
 import static it.unibo.donkeykong.utilities.Constants.MenuAssets.menuY;
+import it.unibo.donkeykong.utilities.Constants.MenuAssets.SettingsAssets;
+import static it.unibo.donkeykong.utilities.ResourceFuncUtilities.getSources;
 
 /** 
  * Settings model. 
@@ -33,17 +33,17 @@ public class Settings implements GameEngine, ViewModel {
 
     @Override
     public void draw(final Graphics g) {
-        g.drawImage(ResourceFuncUtilities.getSources(SettingsAssets.homeButton),
+        g.drawImage(getSources(SettingsAssets.homeButton),
                     this.backHome.getButtonPos().getX(),
                     this.backHome.getButtonPos().getY(),
                     this.backHome.getButtonDim().getX(),
                     this.backHome.getButtonDim().getY(), null);
-        g.drawImage(ResourceFuncUtilities.getSources(SettingsAssets.roundedVolumeOn), 
+        g.drawImage(getSources(SettingsAssets.roundedVolumeOn), 
                     MenuAssets.menuTextureBox / 2 - SettingsAssets.squareButtonSize / 2, 
                     menuY + SettingsAssets.squareButtonSize, 
                     SettingsAssets.squareButtonSize, 
                     SettingsAssets.squareButtonSize, null);
-        g.drawImage(ResourceFuncUtilities.getSources(SettingsAssets.roundedVolumeOff), 
+        g.drawImage(getSources(SettingsAssets.roundedVolumeOff), 
                     MenuAssets.menuTextureBox / 2 + SettingsAssets.squareButtonSize * 2, 
                     menuY + SettingsAssets.squareButtonSize, 
                     SettingsAssets.squareButtonSize, 

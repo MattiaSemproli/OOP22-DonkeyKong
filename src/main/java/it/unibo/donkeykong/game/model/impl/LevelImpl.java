@@ -1,16 +1,17 @@
 package it.unibo.donkeykong.game.model.impl;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.awt.Color;
+import java.util.HashMap;
 import java.awt.image.BufferedImage;
 
-import it.unibo.donkeykong.game.model.api.Level;
-import it.unibo.donkeykong.utilities.ResourceFuncUtilities;
 import it.unibo.donkeykong.utilities.Pair;
-import static it.unibo.donkeykong.utilities.Constants.Window.TILES_DEFAULT_SIZE;
+import it.unibo.donkeykong.game.model.api.Level;
+import static it.unibo.donkeykong.utilities.Constants.Level.levelOne;
 import static it.unibo.donkeykong.utilities.Constants.Level.levelSprites;
 import static it.unibo.donkeykong.utilities.Constants.Level.levelSpritesLength;
+import static it.unibo.donkeykong.utilities.Constants.Window.TILES_DEFAULT_SIZE;
+import static it.unibo.donkeykong.utilities.ResourceFuncUtilities.getBufferedSources;
 
 public class LevelImpl implements Level {
 
@@ -24,7 +25,7 @@ public class LevelImpl implements Level {
 
     private Map<Pair<Integer,Integer>, Integer> createLevel(final String levelSpriteName) {
         return new HashMap<>(){{
-            BufferedImage img = ResourceFuncUtilities.getSources("level_one_data.png");
+            BufferedImage img = getBufferedSources(levelOne);
             for(int r = 0; r < img.getHeight(); r++) {
                 for(int c = 0; c < img.getWidth(); c++) {
                     Color color = new Color(img.getRGB(c, r));
@@ -39,7 +40,7 @@ public class LevelImpl implements Level {
     }
 
     private void importLevelSprites(){
-        BufferedImage img = ResourceFuncUtilities.getSources(levelSprites);
+        BufferedImage img = getBufferedSources(levelSprites);
         for(int i = 0; i < levelSpritesLength; i++) {
             spritesArray[i] = img.getSubimage(i * TILES_DEFAULT_SIZE, 0, TILES_DEFAULT_SIZE, TILES_DEFAULT_SIZE);
         }

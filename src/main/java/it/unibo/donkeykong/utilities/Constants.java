@@ -23,14 +23,14 @@ public class Constants {
     }
 
     public static final class MenuAssets {
-        public static final String title = "title.png";
-        public static final String menuBackground = "menu_background.png";
-        public static final String menuTexture = "menu_layout.png";
-        public static final String gameLegend = "";
-        public static final String playButton = "play_button.png";
-        public static final String settingsButton = "settings_button.png";
-        public static final String quitButton = "quit_button.png";
-        public static final String levelsButton = "levels_button.png";
+        public static final String title = "src/main/res/title.png";
+        public static final String menuBackground = "src/main/res/menu_background.png";
+        public static final String menuTexture = "src/main/res/menu_layout.png";
+        public static final String gameLegend = "src/main/res/";
+        public static final String playButton = "src/main/res/play_button.png";
+        public static final String settingsButton = "src/main/res/settings_button.png";
+        public static final String quitButton = "src/main/res/quit_button.png";
+        public static final String levelsButton = "src/main/res/levels_button.png";
         public static final int menuTextureBox = 500;
         public static final int buttonHeight = 75;
         public static final int buttonWidth = 200;
@@ -45,9 +45,9 @@ public class Constants {
         public static final int quitB = 1;
 
         public static final class SettingsAssets {
-            public static final String homeButton = "square_home_button.png";
-            public static final String roundedVolumeOn = "square_volume_on_button.png";
-            public static final String roundedVolumeOff = "square_volume_off_button.png";
+            public static final String homeButton = "src/main/res/square_home_button.png";
+            public static final String roundedVolumeOn = "src/main/res/square_volume_on_button.png";
+            public static final String roundedVolumeOff = "src/main/res/square_volume_off_button.png";
             public static final int numVolumeButtons = 2;
             public static final int volOnB = 0;
             public static final int volOffB = 1;
@@ -63,8 +63,8 @@ public class Constants {
     }
 
     public static final class Level {
-        public static final String levelOne = "level_one_data.png";
-        public static final String levelSprites = "platform_ladder.png";
+        public static final String levelOne = "src/main/res/level_one_data.png";
+        public static final String levelSprites = "src/main/res/platform_ladder.png";
         public static final int levelSpritesLength = 4;
     }
 }
