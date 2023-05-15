@@ -9,7 +9,7 @@ import it.unibo.donkeykong.view.ApplicationPanel;
 /**
  * MouseInputsImpl class.
  */
-public class MouseInputs implements MouseListener {
+public final class MouseInputs implements MouseListener {
 
     private final ApplicationPanel dkPanel;
 
