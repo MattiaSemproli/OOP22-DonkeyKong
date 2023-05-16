@@ -1,7 +1,9 @@
 package it.unibo.donkeykong.utilities;
 
-import static it.unibo.donkeykong.utilities.ResourceFuncUtilities.loadSources;
+import static it.unibo.donkeykong.utilities.ResourceFuncUtilities.getSources;
+import static it.unibo.donkeykong.utilities.ResourceFuncUtilities.getSources;
 
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.util.HashMap;
 import java.util.Map;
@@ -58,24 +60,24 @@ public class Constants {
         public static final int settingsB = 0;
         public static final int quitB = 1;
 
-        public static final Map<String, BufferedImage> menuSources = new HashMap<>();
+        public static final Map<String, Image> menuSources = new HashMap<>();
 
         public static final void loadMenuSources() {
-            menuSources.put(menuBackground, loadSources(menuBackground));
-            menuSources.put(menuTexture, loadSources(menuTexture));
-            menuSources.put(title, loadSources(title));
-            menuSources.put(playButton, loadSources(playButton));
-            menuSources.put(settingsButton, loadSources(settingsButton));
-            menuSources.put(quitButton, loadSources(quitButton));
-            menuSources.put(levelsButton, loadSources(levelsButton));
-            menuSources.put(aKey, loadSources(aKey));
-            menuSources.put(dKey, loadSources(dKey));
-            menuSources.put(wKey, loadSources(wKey));
-            menuSources.put(sKey, loadSources(sKey));
-            menuSources.put(left, loadSources(left));
-            menuSources.put(right, loadSources(right));
-            menuSources.put(up, loadSources(up));
-            menuSources.put(down, loadSources(down));
+            menuSources.put(menuBackground, getSources(menuBackground));
+            menuSources.put(menuTexture, getSources(menuTexture));
+            menuSources.put(title, getSources(title));
+            menuSources.put(playButton, getSources(playButton));
+            menuSources.put(settingsButton, getSources(settingsButton));
+            menuSources.put(quitButton, getSources(quitButton));
+            menuSources.put(levelsButton, getSources(levelsButton));
+            menuSources.put(aKey, getSources(aKey));
+            menuSources.put(dKey, getSources(dKey));
+            menuSources.put(wKey, getSources(wKey));
+            menuSources.put(sKey, getSources(sKey));
+            menuSources.put(left, getSources(left));
+            menuSources.put(right, getSources(right));
+            menuSources.put(up, getSources(up));
+            menuSources.put(down, getSources(down));
         }
 
         public static final class SettingsAssets {
@@ -90,13 +92,13 @@ public class Constants {
             public static final int homeButtonRightDistance = 125;
             public static final int homeButtonBottomDistance = 150;
 
-            public static final Map<String, BufferedImage> settingsSources = new HashMap<>();
+            public static final Map<String, Image> settingsSources = new HashMap<>();
 
             public static final void loadSettingsSources() {
-                settingsSources.put(homeButton, loadSources(homeButton));
-                settingsSources.put(roundedVolumeOn, loadSources(roundedVolumeOn));
-                settingsSources.put(roundedVolumeOff, loadSources(roundedVolumeOff));
-                settingsSources.put(roundedSettingsButton, loadSources(roundedSettingsButton));
+                settingsSources.put(homeButton, getSources(homeButton));
+                settingsSources.put(roundedVolumeOn, getSources(roundedVolumeOn));
+                settingsSources.put(roundedVolumeOff, getSources(roundedVolumeOff));
+                settingsSources.put(roundedSettingsButton, getSources(roundedSettingsButton));
             }
         }
     }

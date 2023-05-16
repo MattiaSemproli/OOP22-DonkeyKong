@@ -1,7 +1,7 @@
 package it.unibo.donkeykong.inputs;
 
-import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import it.unibo.donkeykong.utilities.Gamestate;
 import it.unibo.donkeykong.view.ApplicationPanel;
@@ -26,24 +26,28 @@ public final class KeyboardInputs implements KeyListener {
     public void keyPressed(final KeyEvent key) {
         switch (Gamestate.getGamestate()) {
             case PLAYING:
-              break;
+                this.dkPanel.getApplication().getGameController().keyPressed(key);
+                break;
             case PAUSE:
-              break;
+                this.dkPanel.getApplication().getPauseController().keyPressed(key);
+                break;
             default:
-              break;
-          }
+                break;
+        }
     }
 
     @Override
     public void keyReleased(final KeyEvent key) {
         switch (Gamestate.getGamestate()) {
             case PLAYING:
-              break;
+                this.dkPanel.getApplication().getGameController().keyReleased(key);
+                break;
             case PAUSE:
-              break;
+                this.dkPanel.getApplication().getPauseController().keyReleased(key);
+                break;
             default:
-              break;
-          }
+                break;
+        }
     }
 
     @Override

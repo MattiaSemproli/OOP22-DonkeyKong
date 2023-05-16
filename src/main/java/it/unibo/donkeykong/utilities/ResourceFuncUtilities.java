@@ -23,7 +23,7 @@ public final class ResourceFuncUtilities {
      * @return         the image.
      */
     public static Image getSources(final String fileName) {
-        return new ImageIcon(fileName).getImage();
+        return new ImageIcon("src/main/resources/" + fileName + ".png").getImage();
     }
 
     /**
@@ -33,7 +33,7 @@ public final class ResourceFuncUtilities {
      * @return       the buffered image.
      */
     public static BufferedImage getBufferedSources(final String fileName) {
-        File file = new File(fileName);
+        File file = new File("src/main/resources/" + fileName + ".png");
         BufferedImage img = null;
         try {
             img = ImageIO.read(file);
