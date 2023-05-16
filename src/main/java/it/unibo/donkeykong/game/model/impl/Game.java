@@ -11,9 +11,8 @@ import java.util.Map;
 import it.unibo.donkeykong.controller.api.GameEngine;
 import it.unibo.donkeykong.game.model.api.Level;
 import it.unibo.donkeykong.game.model.api.ViewModel;
-import it.unibo.donkeykong.utilities.Constants.MenuAssets;
-import it.unibo.donkeykong.utilities.Constants.Window;
 import it.unibo.donkeykong.utilities.Constants.MenuAssets.SettingsAssets;
+import it.unibo.donkeykong.utilities.Constants.Window;
 import it.unibo.donkeykong.utilities.Pair;
 
 public class Game implements GameEngine, ViewModel {
