@@ -17,12 +17,14 @@ import it.unibo.donkeykong.view.GameView;
  */
 public class GameController implements GameEngine, MouseListener, KeyListener {
 
+    private final Game game;
     private final GameView gameView;
 
     /**
      * Constructor.
      */
     public GameController() {
+        this.game = new Game();
         this.gameView = new GameView(this);
     }
 
@@ -41,7 +43,7 @@ public class GameController implements GameEngine, MouseListener, KeyListener {
      * @return new game model.
      */
     public final Game getGame() {
-        return new Game();
+        return this.game;
     }
 
     @Override
