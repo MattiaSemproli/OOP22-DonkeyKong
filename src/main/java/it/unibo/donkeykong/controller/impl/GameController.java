@@ -1,15 +1,21 @@
 package it.unibo.donkeykong.controller.impl;
 
 import java.awt.Graphics;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import it.unibo.donkeykong.controller.api.GameEngine;
 import it.unibo.donkeykong.game.model.impl.Game;
+import it.unibo.donkeykong.utilities.ButtonFuncUtilities;
+import it.unibo.donkeykong.utilities.Gamestate;
 import it.unibo.donkeykong.view.GameView;
 
 /**
  * Game controller.
  */
-public class GameController implements GameEngine {
+public class GameController implements GameEngine, MouseListener, KeyListener {
 
     private final GameView gameView;
 
@@ -36,6 +42,42 @@ public class GameController implements GameEngine {
      */
     public final Game getGame() {
         return new Game();
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+        ButtonFuncUtilities.getButtonPressed(e, this.game.getButtons()).ifPresent(b -> b.applyGamestate());
+    }
+    
+    @Override
+    public void keyReleased(KeyEvent e) {
+        if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+            Gamestate.setGamestate(Gamestate.PAUSE);
+        }
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
     }
 
 }

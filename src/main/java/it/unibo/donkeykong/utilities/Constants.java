@@ -1,10 +1,10 @@
 package it.unibo.donkeykong.utilities;
 
+import static it.unibo.donkeykong.utilities.ResourceFuncUtilities.loadSources;
+
 import java.awt.image.BufferedImage;
 import java.util.HashMap;
 import java.util.Map;
-
-import static it.unibo.donkeykong.utilities.ResourceFuncUtilities.loadSources;
 
 public class Constants {
 
