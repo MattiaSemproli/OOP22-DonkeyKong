@@ -1,5 +1,6 @@
 package it.unibo.donkeykong.game.model.impl;
 
+import it.unibo.donkeykong.game.ecs.impl.BarrelComponent;
 import it.unibo.donkeykong.game.ecs.impl.CollisionComponent;
 import it.unibo.donkeykong.game.model.api.Entity;
 import it.unibo.donkeykong.game.model.api.EntityFactory;
@@ -17,7 +18,8 @@ public class EntityFactoryImpl implements EntityFactory {
     @Override
     public final Entity generateBarrel(final Pair<Float,Float> position, final Type type) {
         return new EntityImpl(type, position)
-                        .addComponent(new CollisionComponent(Barrel.initialPositionX, Barrel.initialPositionY, false));
+                        .addComponent(new BarrelComponent(Barrel.firstLevelDirection))
+                        .addComponent(new CollisionComponent(Barrel.initialPositionXLevel1, Barrel.initialPositionYLevel1, false));
     }
 
     @Override
