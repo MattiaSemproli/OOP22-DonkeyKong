@@ -1,5 +1,9 @@
 package it.unibo.donkeykong.game.model.impl;
 
+import static it.unibo.donkeykong.utilities.Constants.Level.levelOne;
+import static it.unibo.donkeykong.utilities.Constants.MenuAssets.SettingsAssets.settingsSources;
+import static it.unibo.donkeykong.utilities.Constants.Window.SCALED_TILES_SIZE;
+
 import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.Map;
@@ -7,10 +11,10 @@ import java.util.Map;
 import it.unibo.donkeykong.controller.api.GameEngine;
 import it.unibo.donkeykong.game.model.api.Level;
 import it.unibo.donkeykong.game.model.api.ViewModel;
-import it.unibo.donkeykong.utilities.Pair;
+import it.unibo.donkeykong.utilities.Constants.MenuAssets;
 import it.unibo.donkeykong.utilities.Constants.Window;
-import static it.unibo.donkeykong.utilities.Constants.Level.levelOne;
-import static it.unibo.donkeykong.utilities.Constants.Window.SCALED_TILES_SIZE;
+import it.unibo.donkeykong.utilities.Constants.MenuAssets.SettingsAssets;
+import it.unibo.donkeykong.utilities.Pair;
 
 public class Game implements GameEngine, ViewModel {
 
@@ -27,6 +31,9 @@ public class Game implements GameEngine, ViewModel {
     @Override
     public void draw(Graphics g) {
         this.drawLevel(g);
+        g.drawImage(settingsSources.get(SettingsAssets.roundedSettingsButton), 
+                    Window.GAME_WIDTH - SCALED_TILES_SIZE - Window.TILES_DEFAULT_SIZE, Window.TILES_DEFAULT_SIZE,
+                    SCALED_TILES_SIZE, SCALED_TILES_SIZE, null);
     }
 
     private void drawLevel(final Graphics g) {

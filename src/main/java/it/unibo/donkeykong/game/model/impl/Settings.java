@@ -1,16 +1,17 @@
 package it.unibo.donkeykong.game.model.impl;
 
-import java.awt.Graphics;
-import java.util.ArrayList;
-
-import it.unibo.donkeykong.utilities.Gamestate;
-import it.unibo.donkeykong.game.model.api.ViewModel;
-import it.unibo.donkeykong.controller.api.GameEngine;
-import it.unibo.donkeykong.utilities.Constants.MenuAssets;
-import it.unibo.donkeykong.utilities.Constants.MenuAssets.SettingsAssets;
 import static it.unibo.donkeykong.utilities.Constants.MenuAssets.menuX;
 import static it.unibo.donkeykong.utilities.Constants.MenuAssets.menuY;
 import static it.unibo.donkeykong.utilities.Constants.MenuAssets.SettingsAssets.settingsSources;
+
+import java.awt.Graphics;
+import java.util.ArrayList;
+
+import it.unibo.donkeykong.controller.api.GameEngine;
+import it.unibo.donkeykong.game.model.api.ViewModel;
+import it.unibo.donkeykong.utilities.Constants.MenuAssets;
+import it.unibo.donkeykong.utilities.Constants.MenuAssets.SettingsAssets;
+import it.unibo.donkeykong.utilities.Gamestate;
 
 /** 
  * Settings model. 

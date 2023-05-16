@@ -82,6 +82,7 @@ public class Constants {
             public static final String homeButton = "square_home_button";
             public static final String roundedVolumeOn = "square_volume_on_button";
             public static final String roundedVolumeOff = "square_volume_off_button";
+            public static final String roundedSettingsButton = "square_option_button";
             public static final int numVolumeButtons = 2;
             public static final int volOnB = 0;
             public static final int volOffB = 1;
@@ -92,9 +93,10 @@ public class Constants {
             public static final Map<String, BufferedImage> settingsSources = new HashMap<>();
 
             public static final void loadSettingsSources() {
-                menuSources.put(homeButton, loadSources(homeButton));
-                menuSources.put(roundedVolumeOn, loadSources(roundedVolumeOn));
-                menuSources.put(roundedVolumeOff, loadSources(roundedVolumeOff));
+                settingsSources.put(homeButton, loadSources(homeButton));
+                settingsSources.put(roundedVolumeOn, loadSources(roundedVolumeOn));
+                settingsSources.put(roundedVolumeOff, loadSources(roundedVolumeOff));
+                settingsSources.put(roundedSettingsButton, loadSources(roundedSettingsButton));
             }
         }
     }
