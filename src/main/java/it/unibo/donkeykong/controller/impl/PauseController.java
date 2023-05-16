@@ -29,12 +29,12 @@ public class PauseController implements MouseListener, KeyListener, GameEngine  
     }
 
     @Override
-    public void update() {
+    public final void update() {
         this.pauseView.update();
     }
 
     @Override
-    public void draw(Graphics g) {
+    public final void draw(Graphics g) {
         this.pauseView.draw(g);
     }
 
@@ -51,20 +51,21 @@ public class PauseController implements MouseListener, KeyListener, GameEngine  
     public void mousePressed(MouseEvent e) {
         ButtonFuncUtilities.getButtonPressed(e, this.pause.getButtons()).ifPresent(b -> b.applyGamestate());
     }
-    
+
     @Override
-    public void keyReleased(KeyEvent e) {
+    public void keyPressed(KeyEvent e) {
         if (Gamestate.getGamestate().equals(Gamestate.PAUSE) && e.getKeyCode() == KeyEvent.VK_ESCAPE) {
             Gamestate.setGamestate(Gamestate.PLAYING);
         }
     }
-    
+
     @Override
     public void keyTyped(KeyEvent e) {
     }
 
     @Override
-    public void keyPressed(KeyEvent e) {
+    public void keyReleased(KeyEvent e) {
+        
     }
 
     @Override

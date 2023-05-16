@@ -30,7 +30,7 @@ public class MainMenu implements GameEngine, ViewModel {
     }
 
     @Override
-    public void update() {
+    public final void update() {
     }
 
     @Override
@@ -88,12 +88,9 @@ public class MainMenu implements GameEngine, ViewModel {
 
     @Override
     public final ArrayList<ButtonImpl> getButtons() {
-        return new ArrayList<ButtonImpl>() {
-            {
+        return new ArrayList<ButtonImpl>() {{
                 addAll(Arrays.asList(funcButtons));
                 addAll(Arrays.asList(utilityButtons));
-            }
-        };
+        }};
     }
-
 }

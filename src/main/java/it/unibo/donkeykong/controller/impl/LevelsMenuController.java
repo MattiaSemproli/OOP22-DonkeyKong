@@ -5,48 +5,45 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import it.unibo.donkeykong.controller.api.GameEngine;
-import it.unibo.donkeykong.game.model.impl.Settings;
+import it.unibo.donkeykong.game.model.impl.LevelsMenu;
 import it.unibo.donkeykong.utilities.ButtonFuncUtilities;
-import it.unibo.donkeykong.view.SettingsView;
+import it.unibo.donkeykong.view.LevelsMenuView;
 
-/**
- * Settings controller.
- */
-public class SettingsController implements MouseListener, GameEngine {
+public class LevelsMenuController implements MouseListener, GameEngine {
 
-    private final SettingsView settingsView;
-    private final Settings settings;
+    private final LevelsMenuView levelsMenuView;
+    private final LevelsMenu levelsMenu;
 
     /**
      * Constructor.
      */
-    public SettingsController() {
-        this.settingsView = new SettingsView(this);
-        this.settings = new Settings();
+    public LevelsMenuController() {
+        this.levelsMenuView = new LevelsMenuView(this);
+        this.levelsMenu = new LevelsMenu();
     }
 
     @Override
     public final void update() {
-        this.settingsView.update();
+        this.levelsMenuView.update();
     }
 
     @Override
     public final void draw(final Graphics g) {
-        this.settingsView.draw(g);
+        this.levelsMenuView.draw(g);
     }
 
     /**
-     * Get the settings model.
+     * Get the levelsMenu model.
      * 
-     * @return the settings model.
+     * @return the levelsMenu model.
      */
-    public final Settings getSettings() {
-        return this.settings;
+    public final LevelsMenu getLevelsMenu() {
+        return this.levelsMenu;
     }
 
     @Override
     public final void mousePressed(final MouseEvent e) {
-        ButtonFuncUtilities.getButtonPressed(e, this.settings.getButtons()).ifPresent(b -> b.applyGamestate());
+        ButtonFuncUtilities.getButtonPressed(e, this.levelsMenu.getButtons()).ifPresent(b -> b.applyGamestate());
     }
 
     @Override

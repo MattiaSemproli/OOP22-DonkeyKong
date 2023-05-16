@@ -3,9 +3,9 @@ package it.unibo.donkeykong.controller.impl;
 import java.awt.Graphics;
 
 import it.unibo.donkeykong.controller.api.GameEngine;
+import it.unibo.donkeykong.utilities.Constants.GameLoop;
 import it.unibo.donkeykong.utilities.Gamestate;
 import it.unibo.donkeykong.view.ApplicationPanel;
-import static it.unibo.donkeykong.utilities.Constants.GameLoop;
     
 public class GameEngineImpl implements GameEngine, Runnable {
 
@@ -71,18 +71,20 @@ public class GameEngineImpl implements GameEngine, Runnable {
     public void update() {
         switch (Gamestate.getGamestate()) {
             case MENU:
-                applicationImpl.getMainMenuController().update();
+                this.applicationImpl.getMainMenuController().update();
                 this.applicationImpl.initialize();
                 break;
             case CHOSING_LEVELS:
+                this.applicationImpl.getLevelsMenuController().update();
                 break;
             case PLAYING:
-                applicationImpl.getGameController().update();
+                this.applicationImpl.getGameController().update();
                 break;
             case SETTINGS:
-                applicationImpl.getSettingsController().update();
+                this.applicationImpl.getSettingsController().update();
                 break;
             case PAUSE:
+                this.applicationImpl.getPauseController().update();
                 break;
             case DEATH:
                 break;
@@ -101,17 +103,20 @@ public class GameEngineImpl implements GameEngine, Runnable {
     public void draw(final Graphics g) {
         switch (Gamestate.getGamestate()) {
             case MENU:
-                applicationImpl.getMainMenuController().draw(g);
+                this.applicationImpl.getMainMenuController().draw(g);
                 break;
             case CHOSING_LEVELS:
+                this.applicationImpl.getLevelsMenuController().draw(g);
                 break;
             case PLAYING:
-                applicationImpl.getGameController().draw(g);
+                this.applicationImpl.getGameController().draw(g);
                 break;
             case SETTINGS:
-                applicationImpl.getSettingsController().draw(g);
+                this.applicationImpl.getSettingsController().draw(g);
                 break;
             case PAUSE:
+                this.applicationImpl.getGameController().draw(g);
+                this.applicationImpl.getPauseController().draw(g);
                 break;
             case DEATH:
                 break;

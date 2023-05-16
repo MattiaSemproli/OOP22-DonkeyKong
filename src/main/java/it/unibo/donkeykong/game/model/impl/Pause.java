@@ -18,7 +18,7 @@ public class Pause implements GameEngine, ViewModel {
 
     @Override
     public ArrayList<ButtonImpl> getButtons() {
-        return new ArrayList<>() {{
+        return new ArrayList<ButtonImpl>() {{
             
         }};
     }
