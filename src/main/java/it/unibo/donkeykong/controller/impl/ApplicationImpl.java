@@ -16,6 +16,7 @@ public class ApplicationImpl implements Application {
     private Game game;
 
     public ApplicationImpl() {
+        loadAllSources();
         initialize();
         this.dkPanel = new ApplicationPanel(this);
         new ApplicationWindow(dkPanel);
@@ -30,6 +31,11 @@ public class ApplicationImpl implements Application {
 
     public void startGame() {
         this.game = new Game();
+    }
+
+    private void loadAllSources() {
+        Constants.MenuAssets.loadMenuSources();
+        Constants.MenuAssets.SettingsAssets.loadSettingsSources();
     }
 
     public void initialize() {

@@ -10,7 +10,7 @@ import it.unibo.donkeykong.controller.api.GameEngine;
 import it.unibo.donkeykong.utilities.Constants.MenuAssets;
 import static it.unibo.donkeykong.utilities.Constants.MenuAssets.menuX;
 import static it.unibo.donkeykong.utilities.Constants.MenuAssets.menuY;
-import static it.unibo.donkeykong.utilities.ResourceFuncUtilities.getSources;
+import static it.unibo.donkeykong.utilities.Constants.MenuAssets.menuSources;
 
 /**
  * Main menu model.
@@ -60,12 +60,12 @@ public class MainMenu implements GameEngine, ViewModel {
     }
 
     private void drawFuncButtons(final Graphics g) {
-        g.drawImage(getSources(MenuAssets.playButton),
+        g.drawImage(menuSources.get(MenuAssets.playButton),
                 funcButtons[MenuAssets.playB].getButtonPos().getX(),
                 funcButtons[MenuAssets.playB].getButtonPos().getY(),
                 funcButtons[MenuAssets.playB].getButtonDim().getX(),
                 funcButtons[MenuAssets.playB].getButtonDim().getY(), null);
-        g.drawImage(getSources(MenuAssets.levelsButton),
+        g.drawImage(menuSources.get(MenuAssets.levelsButton),
                 funcButtons[MenuAssets.levelsB].getButtonPos().getX(),
                 funcButtons[MenuAssets.levelsB].getButtonPos().getY(),
                 funcButtons[MenuAssets.levelsB].getButtonDim().getX(),
@@ -73,12 +73,12 @@ public class MainMenu implements GameEngine, ViewModel {
     }
 
     private void drawUtilityButtons(final Graphics g) {
-        g.drawImage(getSources(MenuAssets.settingsButton),
+        g.drawImage(menuSources.get(MenuAssets.settingsButton),
                 utilityButtons[MenuAssets.settingsB].getButtonPos().getX(),
                 utilityButtons[MenuAssets.settingsB].getButtonPos().getY(),
                 utilityButtons[MenuAssets.settingsB].getButtonDim().getX(),
                 utilityButtons[MenuAssets.settingsB].getButtonDim().getY(), null);
-        g.drawImage(getSources(MenuAssets.quitButton),
+        g.drawImage(menuSources.get(MenuAssets.quitButton),
                 utilityButtons[MenuAssets.quitB].getButtonPos().getX(),
                 utilityButtons[MenuAssets.quitB].getButtonPos().getY(),
                 utilityButtons[MenuAssets.quitB].getButtonDim().getX(),
