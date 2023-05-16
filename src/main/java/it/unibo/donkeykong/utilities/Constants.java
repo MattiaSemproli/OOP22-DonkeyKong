@@ -1,7 +1,7 @@
 package it.unibo.donkeykong.utilities;
 
 import static it.unibo.donkeykong.utilities.ResourceFuncUtilities.getSources;
-import static it.unibo.donkeykong.utilities.ResourceFuncUtilities.getSources;
+import static it.unibo.donkeykong.utilities.ResourceFuncUtilities.loadSources;
 
 import java.awt.Image;
 import java.awt.image.BufferedImage;
@@ -63,7 +63,7 @@ public class Constants {
         public static final Map<String, Image> menuSources = new HashMap<>();
 
         public static final void loadMenuSources() {
-            menuSources.put(menuBackground, getSources(menuBackground));
+            menuSources.put(menuBackground, loadSources(menuBackground));
             menuSources.put(menuTexture, getSources(menuTexture));
             menuSources.put(title, getSources(title));
             menuSources.put(playButton, getSources(playButton));

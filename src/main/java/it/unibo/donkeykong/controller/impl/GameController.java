@@ -52,7 +52,7 @@ public class GameController implements GameEngine, MouseListener, KeyListener {
     }
     
     @Override
-    public void keyReleased(KeyEvent e) {
+    public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
             Gamestate.setGamestate(Gamestate.PAUSE);
         }
@@ -63,7 +63,7 @@ public class GameController implements GameEngine, MouseListener, KeyListener {
     }
 
     @Override
-    public void keyPressed(KeyEvent e) {
+    public void keyReleased(KeyEvent e) {
     }
 
     @Override
