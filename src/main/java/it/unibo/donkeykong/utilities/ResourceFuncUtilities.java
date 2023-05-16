@@ -4,6 +4,8 @@ import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
@@ -37,6 +39,29 @@ public final class ResourceFuncUtilities {
             img = ImageIO.read(file);
         } catch (IOException e) {
             e.printStackTrace();
+        }
+        return img;
+    }
+
+    /**
+     * Get the sources in alternative way.
+     * 
+     * @param fileName name of the file.
+     * @return         the buffered image.
+     */
+    public static BufferedImage loadSources(final String fileName){
+        BufferedImage img = null;
+        InputStream s = ResourceFuncUtilities.class.getResourceAsStream("/" + fileName +".png");
+        try {
+            img = ImageIO.read(s);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                s.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
         return img;
     }

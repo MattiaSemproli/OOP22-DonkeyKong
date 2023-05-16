@@ -7,57 +7,58 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import it.unibo.donkeykong.controller.api.GameEngine;
-import it.unibo.donkeykong.game.model.impl.Game;
+import it.unibo.donkeykong.game.model.impl.Pause;
 import it.unibo.donkeykong.utilities.ButtonFuncUtilities;
 import it.unibo.donkeykong.utilities.Gamestate;
-import it.unibo.donkeykong.view.GameView;
+import it.unibo.donkeykong.view.PauseView;
 
 /**
- * Game controller.
+ * Pause controller.
  */
-public class GameController implements GameEngine, MouseListener, KeyListener {
+public class PauseController implements MouseListener, KeyListener, GameEngine  {
 
-    private final Game game;
-    private final GameView gameView;
+    private final PauseView pauseView;
+    private final Pause pause;
 
     /**
      * Constructor.
      */
-    public GameController() {
-        this.game = new Game();
-        this.gameView = new GameView(this);
+    public PauseController() {
+        this.pauseView = new PauseView(this);
+        this.pause = new Pause();
     }
 
     @Override
-    public final void update() {
-        this.gameView.update();
+    public void update() {
+        this.pauseView.update();
     }
 
     @Override
-    public final void draw(final Graphics g) {
-        this.gameView.draw(g);
+    public void draw(Graphics g) {
+        this.pauseView.draw(g);
     }
 
     /**
-     * Get the game model.
-     * @return new game model.
+     * Get the pause model.
+     * 
+     * @return pause model.
      */
-    public final Game getGame() {
-        return this.game;
+    public final Pause getPause() {
+        return this.pause;
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
-        ButtonFuncUtilities.getButtonPressed(e, this.game.getButtons()).ifPresent(b -> b.applyGamestate());
+        ButtonFuncUtilities.getButtonPressed(e, this.pause.getButtons()).ifPresent(b -> b.applyGamestate());
     }
     
     @Override
     public void keyReleased(KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-            Gamestate.setGamestate(Gamestate.PAUSE);
+        if (Gamestate.getGamestate().equals(Gamestate.PAUSE) && e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+            Gamestate.setGamestate(Gamestate.PLAYING);
         }
     }
-
+    
     @Override
     public void keyTyped(KeyEvent e) {
     }
@@ -81,5 +82,4 @@ public class GameController implements GameEngine, MouseListener, KeyListener {
     @Override
     public void mouseExited(MouseEvent e) {
     }
-
 }
