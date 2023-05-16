@@ -3,6 +3,7 @@ package it.unibo.donkeykong.controller.impl;
 import java.awt.Graphics;
 
 import it.unibo.donkeykong.controller.api.GameEngine;
+import it.unibo.donkeykong.utilities.AudioUtilities;
 import it.unibo.donkeykong.utilities.Constants.GameLoop;
 import it.unibo.donkeykong.utilities.Gamestate;
 import it.unibo.donkeykong.view.ApplicationPanel;
@@ -91,7 +92,7 @@ public class GameEngineImpl implements GameEngine, Runnable {
             case WIN:
                 break;
             case EXIT:
-                this.applicationImpl.stopSoundtrack();
+                AudioUtilities.stopSoundtrack();
                 Runtime.getRuntime().exit(0);
                 break;
             default:

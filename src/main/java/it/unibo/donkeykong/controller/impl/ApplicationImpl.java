@@ -1,16 +1,11 @@
 package it.unibo.donkeykong.controller.impl;
 
-import java.io.File;
-
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-
 import it.unibo.donkeykong.controller.api.Application;
+import it.unibo.donkeykong.game.model.impl.Game;
+import it.unibo.donkeykong.utilities.AudioUtilities;
 import it.unibo.donkeykong.utilities.Constants;
 import it.unibo.donkeykong.view.ApplicationPanel;
 import it.unibo.donkeykong.view.ApplicationWindow;
-import it.unibo.donkeykong.game.model.impl.Game;
 
 public class ApplicationImpl implements Application {
 
@@ -22,41 +17,15 @@ public class ApplicationImpl implements Application {
     private PauseController pauseController;
     private LevelsMenuController levelsMenuController;
     private Game game;
-    private Clip clip;
 
     public ApplicationImpl() {
-        this.playSoundtrack();
+        AudioUtilities.playSoundtrack(Constants.Audio.menuMusic0);
         loadAllSources();
         initialize();
         this.dkPanel = new ApplicationPanel(this);
         new ApplicationWindow(dkPanel);
         dkPanel.requestFocus();
         this.gameEngine = new GameEngineImpl(dkPanel, this);
-    }
-
-    public void playSoundtrack() {
-        try {
-            // Load the soundtrack file
-            File soundtrackFile = new File("src/main/resources/soundtrack.wav");
-            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(soundtrackFile);
-
-            // Create a Clip and open the audio input stream
-            clip = AudioSystem.getClip();
-            clip.open(audioInputStream);
-
-            // Set the song to loop indefinitely
-            clip.loop(Clip.LOOP_CONTINUOUSLY);
-
-            // Start playing the soundtrack
-            clip.start();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void stopSoundtrack() {
-        clip.stop();
-        clip.close();
     }
 
     @Override
@@ -71,6 +40,7 @@ public class ApplicationImpl implements Application {
     private void loadAllSources() {
         Constants.MenuAssets.loadMenuSources();
         Constants.MenuAssets.SettingsAssets.loadSettingsSources();
+        Constants.Audio.loadThemes();
     }
 
     public void initialize() {
