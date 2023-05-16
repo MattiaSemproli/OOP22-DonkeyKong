@@ -91,6 +91,7 @@ public class GameEngineImpl implements GameEngine, Runnable {
             case WIN:
                 break;
             case EXIT:
+                this.applicationImpl.stopSoundtrack();
                 Runtime.getRuntime().exit(0);
                 break;
             default:
