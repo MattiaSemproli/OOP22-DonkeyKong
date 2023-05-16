@@ -58,8 +58,10 @@ public class Constants {
     }
 
     public static final class Barrel {
-        public static final float initialPositionX = 0.f;
-        public static final float initialPositionY = 0.f;
+        public static final int velocity = 2;
+        public static final float initialPositionXLevel1 = 0.f;
+        public static final float initialPositionYLevel1 = 0.f;
+        public static final Direction firstLevelDirection = Direction.RIGHT;
     }
 
     public static final class Level {
