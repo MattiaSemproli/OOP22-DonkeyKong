@@ -28,6 +28,9 @@ public final class MouseInputs implements MouseListener {
             case MENU:
                 this.dkPanel.getApplication().getMainMenuController().mousePressed(mouseKey);
                 break;
+            case CHOSING_LEVELS:
+                this.dkPanel.getApplication().getLevelsMenuController().mousePressed(mouseKey);
+                break;
             case SETTINGS:
                 this.dkPanel.getApplication().getSettingsController().mousePressed(mouseKey);
                 break;
@@ -51,14 +54,17 @@ public final class MouseInputs implements MouseListener {
             case MENU:
                 this.dkPanel.getApplication().getMainMenuController().mouseReleased(mouseKey);
                 break;
+            case CHOSING_LEVELS:
+                this.dkPanel.getApplication().getLevelsMenuController().mouseReleased(mouseKey);
+                break;
             case SETTINGS:
                 this.dkPanel.getApplication().getSettingsController().mouseReleased(mouseKey);
                 break;
             case PLAYING:
-                this.dkPanel.getApplication().getGameController().mousePressed(mouseKey);
+                this.dkPanel.getApplication().getGameController().mouseReleased(mouseKey);
                 break;
             case PAUSE:
-                this.dkPanel.getApplication().getPauseController().mousePressed(mouseKey);
+                this.dkPanel.getApplication().getPauseController().mouseReleased(mouseKey);
                 break;
             case WIN:
             case DEATH:
