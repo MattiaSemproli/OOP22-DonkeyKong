@@ -18,8 +18,8 @@ public class EntityFactoryImpl implements EntityFactory {
     @Override
     public final Entity generateBarrel(final Pair<Float,Float> position, final Type type) {
         return new EntityImpl(type, position)
-                        .addComponent(new BarrelComponent(Barrel.firstLevelDirection))
-                        .addComponent(new CollisionComponent(Barrel.initialPositionXLevel1, Barrel.initialPositionYLevel1, false));
+                        .addComponent(new BarrelComponent(Barrel.firstLevelDirection, position))
+                        .addComponent(new CollisionComponent(position.getX(), position.getY(), false));
     }
 
     @Override
