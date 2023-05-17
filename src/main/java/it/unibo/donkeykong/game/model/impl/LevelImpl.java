@@ -39,7 +39,7 @@ public class LevelImpl implements Level {
                     for (int c = 0; c < img.getWidth(); c++) {
                         Color color = new Color(img.getRGB(c, r));
                         int value = color.getRed();
-                        if (value >= 3) {
+                        if (value >= levelSpritesLength) {
                             value = 0;
                         }
                         put(new Pair<>(c, r), value);

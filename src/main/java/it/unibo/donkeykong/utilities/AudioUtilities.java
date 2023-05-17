@@ -17,6 +17,7 @@ public final class AudioUtilities {
     private static boolean isMuted;
 
     public static void playSoundtrack(final String fileName) {
+        if(true) return;
         if(filePlaying != null) {
             if(filePlaying != fileName){
                 stopSoundtrack();
@@ -32,6 +33,7 @@ public final class AudioUtilities {
     }
 
     private static void startSong(final String fileName) {
+        if(true) return;
         try {
             File soundtrackFile = new File("src/main/resources/" + fileName);
             AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(soundtrackFile);
@@ -51,6 +53,7 @@ public final class AudioUtilities {
     }
 
     public static void stopSoundtrack() {
+        if(true) return;
         if(clip != null) {
             clip.stop();
             clip.close();
@@ -71,11 +74,13 @@ public final class AudioUtilities {
     }
 
     public static void updateVolume() {
+        if(true) return;
         FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
         gainControl.setValue(((gainControl.getMaximum() - gainControl.getMinimum()) * Constants.Audio.baseVolume) + gainControl.getMinimum());
     }
 
     public static void setMuted(final boolean mute) {
+        if(true) return;
         if(mute != isMuted) {
             isMuted = mute;
             BooleanControl booleanControl = (BooleanControl) clip.getControl(BooleanControl.Type.MUTE);

@@ -117,7 +117,14 @@ public class Constants {
     public static final class Level {
         public static final String levelOne = "level_one_data";
         public static final String levelSprites = "platform_ladder";
-        public static final int levelSpritesLength = 4;
+        public static final int blackBlock = 0;
+        public static final int platformBlock = 1;
+        public static final int coloredLadder = 2;
+        public static final int whiteLadder = 3;
+        public static final int blockWithUpperLadder = 4;
+        public static final int blockWithLowerLadder = 5;
+        public static final int blockWithDoubleLadder = 6;
+        public static final int levelSpritesLength = 7;
     }
 
     public static final class Audio {
