@@ -38,7 +38,7 @@ public class GameController implements GameEngine, MouseListener, KeyListener {
     }
 
     public void startGame() {
-        this.gameplay = new GameplayImpl();
+        this.gameplay = new GameplayImpl(this);
     }
 
     @Override
@@ -68,7 +68,11 @@ public class GameController implements GameEngine, MouseListener, KeyListener {
     @Override
     public void keyPressed(KeyEvent e) { 
         if (e.getKeyCode() != KeyEvent.VK_ESCAPE) {
-            this.keyInputs.add(e);
+            if (e.getKeyCode() == KeyEvent.VK_A ||
+                e.getKeyCode() == KeyEvent.VK_D ||
+                e.getKeyCode() == KeyEvent.VK_SPACE) {
+                this.keyInputs.add(e);
+            }
         } 
     }
    
