@@ -18,13 +18,15 @@ import it.unibo.donkeykong.view.MainMenuView;
  */
 public class MainMenuController implements MouseListener, GameEngine {
 
+    private final ApplicationImpl application;
     private final MainMenuView menuView;
     private final MainMenu menu;
 
     /**
      * Constructor.
      */
-    public MainMenuController() {
+    public MainMenuController(final ApplicationImpl application) {
+        this.application = application;
         this.menuView = new MainMenuView(this);
         this.menu = new MainMenu();
     }
@@ -53,6 +55,7 @@ public class MainMenuController implements MouseListener, GameEngine {
         ButtonFuncUtilities.getButtonPressed(e, this.menu.getButtons()).ifPresent(b -> b.applyGamestate());
         if(Gamestate.getGamestate().equals(Gamestate.PLAYING)) {
             AudioUtilities.playSoundtrack(Audio.gameMusic0);
+            this.application.getGameController().startGame();
         }
     }
 

@@ -33,10 +33,6 @@ public class ApplicationImpl implements Application {
         return this.gameEngine;
     }
 
-    public void startGame() {
-        this.game = new Game();
-    }
-
     private void loadAllSources() {
         Constants.MenuAssets.loadMenuSources();
         Constants.MenuAssets.SettingsAssets.loadSettingsSources();
@@ -45,11 +41,11 @@ public class ApplicationImpl implements Application {
     }
 
     public void initialize() {
-        this.mainMenuController = new MainMenuController();
-        this.settingsController = new SettingsController();
-        this.gameController = new GameController();
-        this.pauseController = new PauseController();
-        this.levelsMenuController = new LevelsMenuController();
+        this.mainMenuController = new MainMenuController(this);
+        this.settingsController = new SettingsController(this);
+        this.gameController = new GameController(this);
+        this.pauseController = new PauseController(this);
+        this.levelsMenuController = new LevelsMenuController(this);
     }
 
     public MainMenuController getMainMenuController() {

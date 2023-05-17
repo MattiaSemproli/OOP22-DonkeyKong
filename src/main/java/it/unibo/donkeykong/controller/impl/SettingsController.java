@@ -15,13 +15,15 @@ import it.unibo.donkeykong.view.SettingsView;
  */
 public class SettingsController implements MouseListener, GameEngine {
 
+    private final ApplicationImpl application;
     private final SettingsView settingsView;
     private final Settings settings;
 
     /**
      * Constructor.
      */
-    public SettingsController() {
+    public SettingsController(final ApplicationImpl application) {
+        this.application = application;
         this.settingsView = new SettingsView(this);
         this.settings = new Settings();
     }
