@@ -43,11 +43,6 @@ public class CollisionComponent extends AbstractComponent {
     private void checkOutField() {
         final Entity entity = this.getEntity();
         Pair<Float,Float> nextPos = null;
-        if (entity.getEntityType() == Type.BARREL) {
-            if (hitbox.x > Window.GAME_WIDTH || hitbox.x < 0) {
-                entity.getComponent(BarrelComponent.class).get().changeDirection();
-            }
-        }
     }
 
     private void initHitbox() {

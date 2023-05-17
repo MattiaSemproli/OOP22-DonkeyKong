@@ -48,4 +48,6 @@ public interface Entity {
     Type getEntityType();
 
     GameplayImpl getGameplay();
+
+    void setGameplay(GameplayImpl gameplay);
 }

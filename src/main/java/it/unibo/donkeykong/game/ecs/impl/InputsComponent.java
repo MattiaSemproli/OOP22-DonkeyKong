@@ -8,6 +8,5 @@ public class InputsComponent extends AbstractComponent {
 
     @Override
     public void update() {
-        this.input = this.getEntity().
     }    
 }

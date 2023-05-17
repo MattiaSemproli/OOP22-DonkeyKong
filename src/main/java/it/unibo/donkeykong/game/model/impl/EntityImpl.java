@@ -18,6 +18,7 @@ public class EntityImpl implements Entity {
     private final Type type;
     private final Set<Component> components;
     private Pair<Float, Float> pos;
+    private GameplayImpl gameplay;
 
     /**
      * Constructor.
@@ -61,6 +62,16 @@ public class EntityImpl implements Entity {
     @Override
     public final Type getEntityType() {
         return this.type;
+    }
+
+    @Override
+    public GameplayImpl getGameplay() {
+        return this.gameplay;
+    }
+
+    @Override
+    public void setGameplay(final GameplayImpl gameplay) {
+        this.gameplay = gameplay;
     }
 
 }

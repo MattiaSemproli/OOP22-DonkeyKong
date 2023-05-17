@@ -11,13 +11,15 @@ import it.unibo.donkeykong.view.LevelsMenuView;
 
 public class LevelsMenuController implements MouseListener, GameEngine {
 
+    private final ApplicationImpl application;
     private final LevelsMenuView levelsMenuView;
     private final LevelsMenu levelsMenu;
 
     /**
      * Constructor.
      */
-    public LevelsMenuController() {
+    public LevelsMenuController(final ApplicationImpl application) {
+        this.application = application;
         this.levelsMenuView = new LevelsMenuView(this);
         this.levelsMenu = new LevelsMenu();
     }

@@ -19,13 +19,15 @@ import it.unibo.donkeykong.view.PauseView;
  */
 public class PauseController implements MouseListener, KeyListener, GameEngine  {
 
+    private final ApplicationImpl application;
     private final PauseView pauseView;
     private final Pause pause;
 
     /**
      * Constructor.
      */
-    public PauseController() {
+    public PauseController(final ApplicationImpl application) {
+        this.application = application;
         this.pauseView = new PauseView(this);
         this.pause = new Pause();
     }
