@@ -5,6 +5,8 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
+import java.util.List;
 
 import it.unibo.donkeykong.controller.api.GameEngine;
 import it.unibo.donkeykong.game.model.impl.Game;
@@ -17,15 +19,17 @@ import it.unibo.donkeykong.view.GameView;
  */
 public class GameController implements GameEngine, MouseListener, KeyListener {
 
-    private final Game game;
     private final GameView gameView;
+    private final Game game;
+    private final List<KeyEvent> keyInputs;
 
     /**
      * Constructor.
      */
     public GameController() {
-        this.game = new Game();
         this.gameView = new GameView(this);
+        this.game = new Game();
+        this.keyInputs = new ArrayList<>();
     }
 
     @Override
@@ -52,18 +56,30 @@ public class GameController implements GameEngine, MouseListener, KeyListener {
     }
     
     @Override
-    public void keyPressed(KeyEvent e) {
+    public void keyPressed(KeyEvent e) { 
+        if (e.getKeyCode() != KeyEvent.VK_ESCAPE) {
+            this.keyInputs.add(e);
+        } 
+    }
+   
+    @Override
+    public void keyReleased(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
             Gamestate.setGamestate(Gamestate.PAUSE);
+        } 
+        else {
+            if (this.keyInputs.contains(e)) {
+                this.keyInputs.remove(e);
+            }
         }
     }
 
+    public final ArrayList<KeyEvent> getInputs() {
+        return new ArrayList<>(this.keyInputs);
+    }
+    
     @Override
     public void keyTyped(KeyEvent e) {
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
     }
 
     @Override

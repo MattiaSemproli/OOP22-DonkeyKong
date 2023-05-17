@@ -7,6 +7,7 @@ import it.unibo.donkeykong.game.ecs.api.Component;
 import it.unibo.donkeykong.game.ecs.impl.AbstractComponent;
 import it.unibo.donkeykong.utilities.Pair;
 import it.unibo.donkeykong.utilities.Type;
+import it.unibo.donkeykong.game.model.impl.GameplayImpl;
 
 /**
  * This interface models the structure of an entity.
@@ -45,4 +46,6 @@ public interface Entity {
      * @return the entity's type
      */
     Type getEntityType();
+
+    GameplayImpl getGameplay();
 }
