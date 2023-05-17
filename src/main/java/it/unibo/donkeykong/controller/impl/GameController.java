@@ -17,15 +17,15 @@ import it.unibo.donkeykong.view.GameView;
  */
 public class GameController implements GameEngine, MouseListener, KeyListener {
 
-    private final Game game;
     private final GameView gameView;
+    private final Game game;
 
     /**
      * Constructor.
      */
     public GameController() {
-        this.game = new Game();
         this.gameView = new GameView(this);
+        this.game = new Game();
     }
 
     @Override
