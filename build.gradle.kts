@@ -45,7 +45,7 @@ dependencies {
 
 application {
     // Define the main class for the application.
-    mainClass.set("it.unibo.donkeykong")
+    mainClass.set("it.unibo.donkeykong.game.Donkeykong")
 }
 
 spotbugs {

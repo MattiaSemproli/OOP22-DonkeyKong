@@ -1,10 +1,11 @@
 package it.unibo.donkeykong.controller.impl;
 
 import it.unibo.donkeykong.controller.api.Application;
+import it.unibo.donkeykong.game.model.impl.Game;
+import it.unibo.donkeykong.utilities.AudioUtilities;
 import it.unibo.donkeykong.utilities.Constants;
 import it.unibo.donkeykong.view.ApplicationPanel;
 import it.unibo.donkeykong.view.ApplicationWindow;
-import it.unibo.donkeykong.game.model.impl.Game;
 
 public class ApplicationImpl implements Application {
 
@@ -14,9 +15,11 @@ public class ApplicationImpl implements Application {
     private SettingsController settingsController;
     private GameController gameController;
     private PauseController pauseController;
+    private LevelsMenuController levelsMenuController;
     private Game game;
 
     public ApplicationImpl() {
+        AudioUtilities.playSoundtrack(Constants.Audio.menuMusic0);
         loadAllSources();
         initialize();
         this.dkPanel = new ApplicationPanel(this);
@@ -37,6 +40,7 @@ public class ApplicationImpl implements Application {
     private void loadAllSources() {
         Constants.MenuAssets.loadMenuSources();
         Constants.MenuAssets.SettingsAssets.loadSettingsSources();
+        Constants.Audio.loadThemes();
     }
 
     public void initialize() {
@@ -44,6 +48,7 @@ public class ApplicationImpl implements Application {
         this.settingsController = new SettingsController();
         this.gameController = new GameController();
         this.pauseController = new PauseController();
+        this.levelsMenuController = new LevelsMenuController();
     }
 
     public MainMenuController getMainMenuController() {
@@ -60,6 +65,10 @@ public class ApplicationImpl implements Application {
 
     public PauseController getPauseController() {
         return this.pauseController;
+    }
+
+    public LevelsMenuController getLevelsMenuController() {
+        return this.levelsMenuController;
     }
 
     public Game getGame() {

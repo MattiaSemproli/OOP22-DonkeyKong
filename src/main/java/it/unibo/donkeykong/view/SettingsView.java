@@ -1,14 +1,15 @@
 package it.unibo.donkeykong.view;
 
+import static it.unibo.donkeykong.utilities.Constants.MenuAssets.menuSources;
+import static it.unibo.donkeykong.utilities.Constants.MenuAssets.menuX;
+import static it.unibo.donkeykong.utilities.Constants.MenuAssets.menuY;
+
 import java.awt.Graphics;
 
 import it.unibo.donkeykong.controller.api.GameEngine;
-import it.unibo.donkeykong.utilities.Constants.Window;
-import it.unibo.donkeykong.utilities.Constants.MenuAssets;
 import it.unibo.donkeykong.controller.impl.SettingsController;
-import static it.unibo.donkeykong.utilities.Constants.MenuAssets.menuX;
-import static it.unibo.donkeykong.utilities.Constants.MenuAssets.menuY;
-import static it.unibo.donkeykong.utilities.Constants.MenuAssets.menuSources;
+import it.unibo.donkeykong.utilities.Constants.MenuAssets;
+import it.unibo.donkeykong.utilities.Constants.Window;
 
 /**
  * Settings view.

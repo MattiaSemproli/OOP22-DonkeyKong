@@ -1,16 +1,17 @@
 package it.unibo.donkeykong.game.model.impl;
 
-import java.util.Arrays;
-import java.awt.Graphics;
-import java.util.ArrayList;
-
-import it.unibo.donkeykong.utilities.Gamestate;
-import it.unibo.donkeykong.game.model.api.ViewModel;
-import it.unibo.donkeykong.controller.api.GameEngine;
-import it.unibo.donkeykong.utilities.Constants.MenuAssets;
+import static it.unibo.donkeykong.utilities.Constants.MenuAssets.menuSources;
 import static it.unibo.donkeykong.utilities.Constants.MenuAssets.menuX;
 import static it.unibo.donkeykong.utilities.Constants.MenuAssets.menuY;
-import static it.unibo.donkeykong.utilities.Constants.MenuAssets.menuSources;
+
+import java.awt.Graphics;
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import it.unibo.donkeykong.controller.api.GameEngine;
+import it.unibo.donkeykong.game.model.api.ViewModel;
+import it.unibo.donkeykong.utilities.Constants.MenuAssets;
+import it.unibo.donkeykong.utilities.Gamestate;
 
 /**
  * Main menu model.
@@ -29,7 +30,7 @@ public class MainMenu implements GameEngine, ViewModel {
     }
 
     @Override
-    public void update() {
+    public final void update() {
     }
 
     @Override
@@ -87,12 +88,9 @@ public class MainMenu implements GameEngine, ViewModel {
 
     @Override
     public final ArrayList<ButtonImpl> getButtons() {
-        return new ArrayList<ButtonImpl>() {
-            {
+        return new ArrayList<ButtonImpl>() {{
                 addAll(Arrays.asList(funcButtons));
                 addAll(Arrays.asList(utilityButtons));
-            }
-        };
+        }};
     }
-
 }

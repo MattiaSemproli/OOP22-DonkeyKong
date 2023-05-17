@@ -1,9 +1,7 @@
 package it.unibo.donkeykong.utilities;
 
-import static it.unibo.donkeykong.utilities.ResourceFuncUtilities.getSources;
-import static it.unibo.donkeykong.utilities.ResourceFuncUtilities.getSources;
+import static it.unibo.donkeykong.utilities.ResourceFuncUtilities.loadSources;
 
-import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.util.HashMap;
 import java.util.Map;
@@ -60,24 +58,24 @@ public class Constants {
         public static final int settingsB = 0;
         public static final int quitB = 1;
 
-        public static final Map<String, Image> menuSources = new HashMap<>();
+        public static final Map<String, BufferedImage> menuSources = new HashMap<>();
 
         public static final void loadMenuSources() {
-            menuSources.put(menuBackground, getSources(menuBackground));
-            menuSources.put(menuTexture, getSources(menuTexture));
-            menuSources.put(title, getSources(title));
-            menuSources.put(playButton, getSources(playButton));
-            menuSources.put(settingsButton, getSources(settingsButton));
-            menuSources.put(quitButton, getSources(quitButton));
-            menuSources.put(levelsButton, getSources(levelsButton));
-            menuSources.put(aKey, getSources(aKey));
-            menuSources.put(dKey, getSources(dKey));
-            menuSources.put(wKey, getSources(wKey));
-            menuSources.put(sKey, getSources(sKey));
-            menuSources.put(left, getSources(left));
-            menuSources.put(right, getSources(right));
-            menuSources.put(up, getSources(up));
-            menuSources.put(down, getSources(down));
+            menuSources.put(menuBackground, loadSources(menuBackground));
+            menuSources.put(menuTexture, loadSources(menuTexture));
+            menuSources.put(title, loadSources(title));
+            menuSources.put(playButton, loadSources(playButton));
+            menuSources.put(settingsButton, loadSources(settingsButton));
+            menuSources.put(quitButton, loadSources(quitButton));
+            menuSources.put(levelsButton, loadSources(levelsButton));
+            menuSources.put(aKey, loadSources(aKey));
+            menuSources.put(dKey, loadSources(dKey));
+            menuSources.put(wKey, loadSources(wKey));
+            menuSources.put(sKey, loadSources(sKey));
+            menuSources.put(left, loadSources(left));
+            menuSources.put(right, loadSources(right));
+            menuSources.put(up, loadSources(up));
+            menuSources.put(down, loadSources(down));
         }
 
         public static final class SettingsAssets {
@@ -85,20 +83,26 @@ public class Constants {
             public static final String roundedVolumeOn = "square_volume_on_button";
             public static final String roundedVolumeOff = "square_volume_off_button";
             public static final String roundedSettingsButton = "square_option_button";
+            public static final String themesButton = "button_layout";
+            public static final String backToPlayButton = "square_playagain_button";
             public static final int numVolumeButtons = 2;
             public static final int volOnB = 0;
             public static final int volOffB = 1;
             public static final int squareButtonSize = 75;
             public static final int homeButtonRightDistance = 125;
             public static final int homeButtonBottomDistance = 150;
+            public static final int repeatButtonLeftDistance = 125;
+            public static final int repeatButtonBottomDistance = 150;
 
-            public static final Map<String, Image> settingsSources = new HashMap<>();
+            public static final Map<String, BufferedImage> settingsSources = new HashMap<>();
 
             public static final void loadSettingsSources() {
-                settingsSources.put(homeButton, getSources(homeButton));
-                settingsSources.put(roundedVolumeOn, getSources(roundedVolumeOn));
-                settingsSources.put(roundedVolumeOff, getSources(roundedVolumeOff));
-                settingsSources.put(roundedSettingsButton, getSources(roundedSettingsButton));
+                settingsSources.put(homeButton, loadSources(homeButton));
+                settingsSources.put(roundedVolumeOn, loadSources(roundedVolumeOn));
+                settingsSources.put(roundedVolumeOff, loadSources(roundedVolumeOff));
+                settingsSources.put(roundedSettingsButton, loadSources(roundedSettingsButton));
+                settingsSources.put(themesButton, loadSources(themesButton));
+                settingsSources.put(backToPlayButton, loadSources(backToPlayButton));
             }
         }
     }
@@ -116,5 +120,27 @@ public class Constants {
         public static final String levelOne = "level_one_data";
         public static final String levelSprites = "platform_ladder";
         public static final int levelSpritesLength = 4;
+    }
+
+    public static final class Audio {
+        public final static String menuMusic0 = "soundtrack.wav";
+        public final static String menuMusic1 = "soundtrack1.wav";
+        public final static String gameMusic0 = "game.wav";
+        public final static String gameMusic1 = "game1.wav";
+        public final static int numThemesButtons = 2;
+        public final static int numGameThemesButtons = 2;
+        public final static float baseVolume = 0.5f;
+    
+        public static final Map<String, Integer> themeSources = new HashMap<>();
+        public static final Map<String, Integer> gameSources = new HashMap<>();
+
+        public static final void loadThemes() {
+            themeSources.put(menuMusic0, 0);
+            themeSources.put(menuMusic1, 1);
+            
+            gameSources.put(gameMusic0, 0);
+            gameSources.put(gameMusic1, 1);
+        }
+
     }
 }

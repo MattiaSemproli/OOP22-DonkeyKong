@@ -11,17 +11,22 @@ import java.util.Map;
 import it.unibo.donkeykong.controller.api.GameEngine;
 import it.unibo.donkeykong.game.model.api.Level;
 import it.unibo.donkeykong.game.model.api.ViewModel;
-import it.unibo.donkeykong.utilities.Constants.MenuAssets;
-import it.unibo.donkeykong.utilities.Constants.Window;
 import it.unibo.donkeykong.utilities.Constants.MenuAssets.SettingsAssets;
+import it.unibo.donkeykong.utilities.Constants.Window;
+import it.unibo.donkeykong.utilities.Gamestate;
 import it.unibo.donkeykong.utilities.Pair;
 
 public class Game implements GameEngine, ViewModel {
 
     private final Level level;
+    private ButtonImpl settingsPauseButton;
 
     public Game() {
         this.level = new LevelImpl(levelOne);
+        this.settingsPauseButton = new ButtonImpl(Window.GAME_WIDTH - SCALED_TILES_SIZE - Window.TILES_DEFAULT_SIZE, 
+                                                  Window.TILES_DEFAULT_SIZE, 
+                                                  SCALED_TILES_SIZE, 
+                                                  SCALED_TILES_SIZE, Gamestate.PAUSE);
     }
 
     @Override
@@ -32,8 +37,8 @@ public class Game implements GameEngine, ViewModel {
     public void draw(Graphics g) {
         this.drawLevel(g);
         g.drawImage(settingsSources.get(SettingsAssets.roundedSettingsButton), 
-                    Window.GAME_WIDTH - SCALED_TILES_SIZE - Window.TILES_DEFAULT_SIZE, Window.TILES_DEFAULT_SIZE,
-                    SCALED_TILES_SIZE, SCALED_TILES_SIZE, null);
+                    this.settingsPauseButton.getButtonPos().getX(), this.settingsPauseButton.getButtonPos().getY(),
+                    this.settingsPauseButton.getButtonDim().getX(), this.settingsPauseButton.getButtonDim().getY(), null);
     }
 
     private void drawLevel(final Graphics g) {
@@ -50,6 +55,8 @@ public class Game implements GameEngine, ViewModel {
 
     @Override
     public ArrayList<ButtonImpl> getButtons() {
-        throw new UnsupportedOperationException("Unimplemented method 'getButtons'");
+        return new ArrayList<ButtonImpl>() {{
+            add(settingsPauseButton);
+        }};
     }
 }
