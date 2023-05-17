@@ -41,6 +41,7 @@ public class ApplicationImpl implements Application {
         Constants.MenuAssets.loadMenuSources();
         Constants.MenuAssets.SettingsAssets.loadSettingsSources();
         Constants.Audio.loadThemes();
+        Constants.Level.loadLevelSources();
     }
 
     public void initialize() {

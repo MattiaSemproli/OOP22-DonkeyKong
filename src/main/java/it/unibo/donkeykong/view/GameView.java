@@ -32,7 +32,7 @@ public class GameView implements GameEngine {
     public final void draw(final Graphics g) {
         this.gameController.getGame().draw(g);
         g.drawImage(new ImageIcon("src/main/resources/mariosingletry.png").getImage(), 36, Window.GAME_HEIGHT - 84, 48, 48, null);
-        g.drawImage(new ImageIcon("src/main/resources/peachessingletry.png").getImage(), 48 * 5, 60, 48, 48, null);
+        g.drawImage(new ImageIcon("src/main/resources/peachessingletry.png").getImage(), 48 * 5, 42, 48, 66, null);
     }
 
 }

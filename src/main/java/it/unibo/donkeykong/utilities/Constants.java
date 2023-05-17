@@ -119,6 +119,10 @@ public class Constants {
     public static final class Level {
         public static final String levelOne = "level_one_data";
         public static final String levelSprites = "platform_ladder";
+        public static final String levelOneSource = "level_one";
+        public static final String levelTwoSource = "level_two";
+        public static final String levelThreeSource = "level_three";
+        public static final String levelFourSource = "level_four";
         public static final int blackBlock = 0;
         public static final int platformBlock = 1;
         public static final int coloredLadder = 2;
@@ -127,6 +131,16 @@ public class Constants {
         public static final int blockWithLowerLadder = 5;
         public static final int blockWithDoubleLadder = 6;
         public static final int levelSpritesLength = 7;
+        public static final int numLevelsButtons = 4;
+
+        public static final Map<String, Pair<BufferedImage, Integer>> levelSources = new HashMap<>();
+
+        public static final void loadLevelSources() {
+            levelSources.put(levelOneSource, new Pair<BufferedImage,Integer>(loadSources(levelOneSource), 0));
+            levelSources.put(levelTwoSource, new Pair<BufferedImage,Integer>(loadSources("empty_level"), 1));
+            levelSources.put(levelThreeSource, new Pair<BufferedImage,Integer>(loadSources("empty_level"), 2));
+            levelSources.put(levelFourSource, new Pair<BufferedImage,Integer>(loadSources("empty_level"), 3));
+        }
     }
 
     public static final class Audio {
