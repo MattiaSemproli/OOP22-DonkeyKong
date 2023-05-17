@@ -7,7 +7,7 @@ import it.unibo.donkeykong.utilities.Constants.Barrel;
 public class BarrelComponent extends AbstractComponent {
 
     private Direction direction;
-    private final int velocity;
+    private int velocity;
     private Pair<Float,Float> actualPos;
     private int bounces;
 
@@ -20,11 +20,6 @@ public class BarrelComponent extends AbstractComponent {
 
     @Override
     public void update() {
-        if(this.bounces == Barrel.maxBounces) {
-            
-        } else {
-            
-        }
     }
 
     public Direction getDirection() {
@@ -33,10 +28,17 @@ public class BarrelComponent extends AbstractComponent {
 
     public void changeDirection() {
         this.direction = this.direction.getOppositeDirection();
-        this.bounces ++;
     }
 
     public int getVelocity() {
         return velocity;
+    }
+
+    public void setVelocity(int velocity) {
+        this.velocity = velocity;
+    }
+
+    public void increaseBounces() {
+        this.bounces ++;
     }
 }
