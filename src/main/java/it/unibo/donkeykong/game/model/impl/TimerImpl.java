@@ -15,7 +15,7 @@ public class TimerImpl implements Timer{
     @Override
     public void startTimer() {
         int startingTime = Math.round(System.currentTimeMillis());
-        int actualTime = Math.round(System.currentTimeMillis());
+        int actualTime = startingTime;
         int passedTime = 0;
         while(true) {
             actualTime = Math.round(System.currentTimeMillis());
