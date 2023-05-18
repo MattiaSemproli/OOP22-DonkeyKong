@@ -21,7 +21,7 @@ import it.unibo.donkeykong.utilities.Gamestate;
 
 public class LevelsMenu implements ViewModel {
     
-    private ButtonImpl backHome;
+    private ButtonImpl backHome, levelOneButton;
     private Rectangle[] levelsButtons = new Rectangle[Level.numLevelsButtons];
     
     /**
@@ -37,10 +37,11 @@ public class LevelsMenu implements ViewModel {
                                        menuY + MenuAssets.menuTextureBox - SettingsAssets.homeButtonBottomDistance, 
                                        SettingsAssets.squareButtonSize, 
                                        SettingsAssets.squareButtonSize, Gamestate.MENU);
-        this.levelsButtons[levelSources.get(Level.levelOneSource).getY()] = new Rectangle(menuX + 50, 
-                                                                                          menuY + 50, 
-                                                                                          192, 
-                                                                                          135);
+        this.levelOneButton = new ButtonImpl(levelSources.get(Level.levelOneSource).getX(),
+                                             menuX + 50, 
+                                             menuY + 50, 
+                                             192, 
+                                             135, Gamestate.PLAYING);
         this.levelsButtons[levelSources.get(Level.levelTwoSource).getY()] = new Rectangle(menuX + MenuAssets.menuTextureBox - 50 - 192, 
                                                                                           menuY + 50, 
                                                                                           192, 
@@ -59,13 +60,13 @@ public class LevelsMenu implements ViewModel {
     public final ArrayList<ButtonImpl> getButtons() {
         return new ArrayList<ButtonImpl>() {{
             add(backHome);
+            add(levelOneButton);
         }};
     }
 
     @Override
     public Map<Rectangle, BufferedImage> getAlternativeButtons() {
         return new HashMap<>() {{
-            put(levelsButtons[levelSources.get(Level.levelOneSource).getY()], levelSources.get(Level.levelOneSource).getX());
             put(levelsButtons[levelSources.get(Level.levelTwoSource).getY()], levelSources.get(Level.levelTwoSource).getX());
             put(levelsButtons[levelSources.get(Level.levelThreeSource).getY()], levelSources.get(Level.levelThreeSource).getX());
             put(levelsButtons[levelSources.get(Level.levelFourSource).getY()], levelSources.get(Level.levelFourSource).getX());
