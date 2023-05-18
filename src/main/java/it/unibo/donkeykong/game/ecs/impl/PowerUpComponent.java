@@ -1,6 +1,7 @@
 package it.unibo.donkeykong.game.ecs.impl;
 
 import it.unibo.donkeykong.utilities.PowerUpType;
+
 /**
  * This component manage all powerUps.
  */
@@ -8,9 +9,9 @@ public class PowerUpComponent extends AbstractComponent {
     private final PowerUpType powerUpType;
 
     /**
-     * This method set the type of powerUp.
+     * Powerup constructor.
      * 
-     * @param powerUpType type of powerUp
+     * @param powerUpType the tpe of powerup.
      */
     public PowerUpComponent(final PowerUpType powerUpType) {
         this.powerUpType = powerUpType;
@@ -21,7 +22,7 @@ public class PowerUpComponent extends AbstractComponent {
     }
 
     /**
-     * @return powerup type
+     * @return the type of powerup.
      */
     public PowerUpType getPowerUpType() {
         return this.powerUpType;
