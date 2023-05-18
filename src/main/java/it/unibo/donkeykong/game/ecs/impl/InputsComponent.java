@@ -5,12 +5,15 @@ import java.util.Optional;
 
 import it.unibo.donkeykong.utilities.Direction;
 
+/**
+ * Component that handles game inputs. 
+ */
 public class InputsComponent extends AbstractComponent {
 
     private Optional<KeyEvent> input;
 
     @Override
-    public void update() {
+    public final void update() {
         this.input = this.getEntity().getGameplay().getController().getInputs().stream().findFirst();
         if (this.input.isPresent()) {
             switch (this.input.get().getKeyCode()) {
@@ -26,7 +29,7 @@ public class InputsComponent extends AbstractComponent {
             }
         }
     }
-    
+
     private void move(final Direction direction) {
         final Optional<MovementComponent> moveOptional = this.getEntity().getComponent(MovementComponent.class);
         if (moveOptional.isPresent()) {
