@@ -1,15 +1,18 @@
 package it.unibo.donkeykong.game.ecs.impl;
 
 import it.unibo.donkeykong.utilities.PowerUpType;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import it.unibo.donkeykong.utilities.Constants;
 
 /**
  * This component handles all powerUp.
  */
-public class PowerUpHandlerComponent {
+public class PowerUpHandlerComponent extends AbstractComponent{
     private int lifes;
     private int slow;
-    private boolean doubledmg;
     private boolean shield;
     private boolean immunity;
     private boolean freeze;
@@ -22,7 +25,6 @@ public class PowerUpHandlerComponent {
         this.shield = false;
         this.immunity = false;
         this.freeze = false;
-        this.doubledmg = false;
     }
 
     /**
@@ -36,19 +38,38 @@ public class PowerUpHandlerComponent {
      * Set lifesNumber.
      */
     public void setLifesNumber(final int lifes) {
-        this.lifes = lifes;
+        if (getLifesNumber() < 3 && getLifesNumber() >= 1) {
+            this.lifes++;
+        }
+    }
+
+    /**
+     * Set shield.
+     */
+    public void setShield() {
+        this.shield = true;
     }
 
     /**
      * This method reduce the player's life when a barrel hit the player.
      */
-    public void hitPlayer(final boolean shield, final boolean immunity, final boolean doubledmg) {
+    public void hitPlayer(final boolean doubledmg) {
         if (!this.shield && !this.immunity) {
-            this.lifes -= 1;
+            this.lifes -= doubledmg ? 2 : 1;
         }
-        if (this.doubledmg) {
-            this.lifes -= 1;
+        else if(this.shield) {
+            this.lifes -= doubledmg ? 1 : 0;
+            this.shield = false;
         }
+    }
+
+    public List<Integer> getStatusPowerUp() {
+        return new ArrayList<>() {{
+            add(lifes);
+            add(shield ? 1 : 0);
+            add(freeze ? 1 : 0);
+            add(immunity ? 1 : 0);
+        }};
     }
 
     /**
@@ -57,7 +78,7 @@ public class PowerUpHandlerComponent {
     public void addPowerUp(final PowerUpType powerUpType) {
         switch (powerUpType) {
             case SHIELD:
-                this.shield = true;
+                setShield();
                 break;
             case HEART:
                 if (getLifesNumber() < 3 && getLifesNumber() >= 1) {
@@ -70,13 +91,15 @@ public class PowerUpHandlerComponent {
             case SNOWFLAKE:
                 this.freeze = true;
                 break;
-            case DOUBLE_DAMAGE:
-                this.doubledmg = true;
-                break;
             case SLOW:
+                this.getEntity();  //decrease speed 
                 break;
             default:
                 break;
         }
+    }
+
+    @Override
+    public void update() {
     }
 }
