@@ -7,7 +7,10 @@ import static it.unibo.donkeykong.utilities.Constants.MenuAssets.SettingsAssets.
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 import it.unibo.donkeykong.controller.api.GameEngine;
@@ -19,7 +22,7 @@ import it.unibo.donkeykong.utilities.Constants.MenuAssets;
 import it.unibo.donkeykong.utilities.Constants.MenuAssets.SettingsAssets;
 import it.unibo.donkeykong.utilities.Gamestate;
 
-public class Pause implements GameEngine, ViewModel, VolumeSettings {
+public class Pause implements ViewModel, VolumeSettings {
 
     private ButtonImpl backHome, backToPlay;
     private final Rectangle[] volumeButtons = new Rectangle[SettingsAssets.numVolumeButtons];
@@ -32,51 +35,15 @@ public class Pause implements GameEngine, ViewModel, VolumeSettings {
         this.createButtons();
     }
 
-    @Override
-    public void update() {
-    }
-
-    @Override
-    public void draw(Graphics g) {
-        g.drawImage(settingsSources.get(SettingsAssets.homeButton),
-                    this.backHome.getButtonPos().getX(),
-                    this.backHome.getButtonPos().getY(),
-                    this.backHome.getButtonDim().getX(),
-                    this.backHome.getButtonDim().getY(), null);
-        g.drawImage(settingsSources.get(SettingsAssets.backToPlayButton),
-                    this.backToPlay.getButtonPos().getX(),
-                    this.backToPlay.getButtonPos().getY(),
-                    this.backToPlay.getButtonDim().getX(),
-                    this.backToPlay.getButtonDim().getY(), null);
-        g.drawImage(settingsSources.get(SettingsAssets.roundedVolumeOn), 
-                    this.volumeButtons[SettingsAssets.volOnB].x,
-                    this.volumeButtons[SettingsAssets.volOnB].y,
-                    this.volumeButtons[SettingsAssets.volOnB].height,
-                    this.volumeButtons[SettingsAssets.volOnB].width, null);
-        g.drawImage(settingsSources.get(SettingsAssets.roundedVolumeOff), 
-                    this.volumeButtons[SettingsAssets.volOffB].x,
-                    this.volumeButtons[SettingsAssets.volOffB].y,
-                    this.volumeButtons[SettingsAssets.volOffB].height,
-                    this.volumeButtons[SettingsAssets.volOffB].width, null);
-        g.drawImage(settingsSources.get(SettingsAssets.themesButton),
-                    this.gameThemesButtons[Audio.themeSources.get(Audio.menuMusic0)].x,
-                    this.gameThemesButtons[Audio.themeSources.get(Audio.menuMusic0)].y, 
-                    this.gameThemesButtons[Audio.themeSources.get(Audio.menuMusic0)].height, 
-                    this.gameThemesButtons[Audio.themeSources.get(Audio.menuMusic0)].width, null);
-        g.drawImage(settingsSources.get(SettingsAssets.themesButton),
-                    this.gameThemesButtons[Audio.themeSources.get(Audio.menuMusic1)].x,
-                    this.gameThemesButtons[Audio.themeSources.get(Audio.menuMusic1)].y, 
-                    this.gameThemesButtons[Audio.themeSources.get(Audio.menuMusic1)].height, 
-                    this.gameThemesButtons[Audio.themeSources.get(Audio.menuMusic1)].width, null);
-    }
-
     private void createButtons() {
-        this.backHome = new ButtonImpl(menuX + MenuAssets.menuTextureBox - SettingsAssets.homeButtonRightDistance, 
+        this.backHome = new ButtonImpl(settingsSources.get(SettingsAssets.homeButton),
+                                       menuX + MenuAssets.menuTextureBox - SettingsAssets.homeButtonRightDistance, 
                                        menuY + MenuAssets.menuTextureBox - SettingsAssets.homeButtonBottomDistance, 
                                        SettingsAssets.squareButtonSize, 
                                        SettingsAssets.squareButtonSize, Gamestate.MENU);
         
-        this.backToPlay = new ButtonImpl(menuX + SettingsAssets.repeatButtonLeftDistance - SettingsAssets.squareButtonSize, 
+        this.backToPlay = new ButtonImpl(settingsSources.get(SettingsAssets.backToPlayButton),
+                                         menuX + SettingsAssets.repeatButtonLeftDistance - SettingsAssets.squareButtonSize, 
                                          menuY + MenuAssets.menuTextureBox - SettingsAssets.repeatButtonBottomDistance, 
                                          SettingsAssets.squareButtonSize, 
                                          SettingsAssets.squareButtonSize, Gamestate.PLAYING);
@@ -89,11 +56,11 @@ public class Pause implements GameEngine, ViewModel, VolumeSettings {
                                                                    menuY + SettingsAssets.squareButtonSize, 
                                                                    SettingsAssets.squareButtonSize, 
                                                                    SettingsAssets.squareButtonSize);
-        this.gameThemesButtons[Audio.themeSources.get(Audio.menuMusic0)] = new Rectangle(MenuAssets.menuTextureBox / 2 - SettingsAssets.squareButtonSize / 2, 
+        this.gameThemesButtons[Audio.gameSources.get(Audio.gameMusic0)] = new Rectangle(MenuAssets.menuTextureBox / 2 - SettingsAssets.squareButtonSize / 2, 
                                                                                      menuY + SettingsAssets.squareButtonSize * 3, 
                                                                                      SettingsAssets.squareButtonSize, 
                                                                                      SettingsAssets.squareButtonSize);
-        this.gameThemesButtons[Audio.themeSources.get(Audio.menuMusic1)] = new Rectangle(MenuAssets.menuTextureBox / 2 + SettingsAssets.squareButtonSize * 2, 
+        this.gameThemesButtons[Audio.gameSources.get(Audio.gameMusic1)] = new Rectangle(MenuAssets.menuTextureBox / 2 + SettingsAssets.squareButtonSize * 2, 
                                                                                      menuY + SettingsAssets.squareButtonSize * 3, 
                                                                                      SettingsAssets.squareButtonSize, 
                                                                                      SettingsAssets.squareButtonSize);
@@ -123,6 +90,16 @@ public class Pause implements GameEngine, ViewModel, VolumeSettings {
         return new ArrayList<ButtonImpl>() {{
             add(backHome);
             add(backToPlay);            
+        }};
+    }
+
+    @Override
+    public Map<Rectangle, BufferedImage> getAlternativeButtons() {
+        return new HashMap<>() {{
+            put(volumeButtons[SettingsAssets.volOnB], settingsSources.get(SettingsAssets.roundedVolumeOn));
+            put(volumeButtons[SettingsAssets.volOffB], settingsSources.get(SettingsAssets.roundedVolumeOff));
+            put(gameThemesButtons[Audio.gameSources.get(Audio.gameMusic0)], settingsSources.get(SettingsAssets.themesButton));
+            put(gameThemesButtons[Audio.gameSources.get(Audio.gameMusic1)], settingsSources.get(SettingsAssets.themesButton));
         }};
     }
     

@@ -5,7 +5,10 @@ import static it.unibo.donkeykong.utilities.Constants.MenuAssets.SettingsAssets.
 import static it.unibo.donkeykong.utilities.Constants.Window.SCALED_TILES_SIZE;
 
 import java.awt.Graphics;
+import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 import it.unibo.donkeykong.controller.api.GameEngine;
@@ -16,41 +19,41 @@ import it.unibo.donkeykong.utilities.Constants.Window;
 import it.unibo.donkeykong.utilities.Gamestate;
 import it.unibo.donkeykong.utilities.Pair;
 
-public class Game implements GameEngine, ViewModel {
+public class Game implements ViewModel {
 
     private final Level level;
-    private ButtonImpl settingsPauseButton;
+    private Map<Rectangle, BufferedImage> dataLevel = new HashMap<>();
+    private final ButtonImpl settingsPauseButton;
 
     public Game() {
         this.level = new LevelImpl(levelOne);
-        this.settingsPauseButton = new ButtonImpl(Window.GAME_WIDTH - SCALED_TILES_SIZE - Window.TILES_DEFAULT_SIZE, 
+        this.mapDataLevel();
+        this.settingsPauseButton = new ButtonImpl(settingsSources.get(SettingsAssets.roundedSettingsButton), 
+                                                  Window.GAME_WIDTH - SCALED_TILES_SIZE - Window.TILES_DEFAULT_SIZE, 
                                                   Window.TILES_DEFAULT_SIZE, 
                                                   SCALED_TILES_SIZE, 
                                                   SCALED_TILES_SIZE, Gamestate.PAUSE);
     }
 
-    @Override
-    public void update() {
-    }
-
-    @Override
-    public void draw(Graphics g) {
-        this.drawLevel(g);
-        g.drawImage(settingsSources.get(SettingsAssets.roundedSettingsButton), 
-                    this.settingsPauseButton.getButtonPos().getX(), this.settingsPauseButton.getButtonPos().getY(),
-                    this.settingsPauseButton.getButtonDim().getX(), this.settingsPauseButton.getButtonDim().getY(), null);
-    }
-
-    private void drawLevel(final Graphics g) {
+    private void mapDataLevel() {
         Map<Pair<Integer, Integer>, Integer> lvl = this.level.getLevelData();
         for (int r = 0; r < Window.TILES_IN_HEIGHT; r++) {
             for (int c = 0; c < Window.TILES_IN_WIDTH; c++) {
-                g.drawImage(this.level.getLevelSprite(lvl.get(new Pair<>(r, c))),
-                        SCALED_TILES_SIZE * r, SCALED_TILES_SIZE * c,
-                        SCALED_TILES_SIZE, SCALED_TILES_SIZE, null);
+                this.dataLevel.put(new Rectangle(SCALED_TILES_SIZE * r, 
+                                                 SCALED_TILES_SIZE * c, 
+                                                 SCALED_TILES_SIZE, 
+                                                 SCALED_TILES_SIZE),
+                                   this.level.getLevelSprite(lvl.get(new Pair<>(r, c))));
             }
         }
+    }
 
+    
+    /**
+     * This method is used by the GameView to get the data of the level to be drawn.
+     */
+    public Map<Rectangle, BufferedImage> getDataLevel() {
+        return new HashMap<>(this.dataLevel);
     }
 
     @Override
@@ -58,5 +61,10 @@ public class Game implements GameEngine, ViewModel {
         return new ArrayList<ButtonImpl>() {{
             add(settingsPauseButton);
         }};
+    }
+
+    @Override
+    public Map<Rectangle, BufferedImage> getAlternativeButtons() {
+        return new HashMap<>();
     }
 }

@@ -26,7 +26,6 @@ public final class PauseView implements GameEngine {
 
     @Override
     public void update() {
-        this.pauseController.getPause().update();
     }
 
     @Override
@@ -37,7 +36,22 @@ public final class PauseView implements GameEngine {
             pause.setColor(new Color(0, 0, 0, 128));
             pause.fillRect(0, 0, Window.GAME_WIDTH, Window.GAME_HEIGHT);
             pause.drawImage(menuSources.get(MenuAssets.menuTexture), menuX, menuY, MenuAssets.menuTextureBox, MenuAssets.menuTextureBox, null);
-            this.pauseController.getPause().draw(g);
+            this.pauseController.getPause()
+                                .getButtons()
+                                .forEach(b -> g.drawImage(b.getButtonImage(), 
+                                                          b.getButtonPos().getX(), 
+                                                          b.getButtonPos().getY(),
+                                                          b.getButtonDim().getX(),
+                                                          b.getButtonDim().getY(),
+                                                          null));
+            this.pauseController.getPause()
+                                .getAlternativeButtons()
+                                .forEach((rectangle, image) -> g.drawImage(image, 
+                                                                           rectangle.x, 
+                                                                           rectangle.y, 
+                                                                           rectangle.width,
+                                                                           rectangle.height,
+                                                                           null));
         }
     }
 }

@@ -44,7 +44,9 @@ public class GameController implements GameEngine, MouseListener, KeyListener {
     @Override
     public final void update() {
         this.gameView.update();
-        this.gameplay.update();
+        if(this.gameplay != null) {
+            this.gameplay.update();
+        }
     }
 
     @Override

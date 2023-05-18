@@ -7,7 +7,11 @@ import static it.unibo.donkeykong.utilities.Constants.MenuAssets.SettingsAssets.
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import it.unibo.donkeykong.controller.api.GameEngine;
@@ -22,7 +26,7 @@ import it.unibo.donkeykong.utilities.Gamestate;
 /** 
  * Settings model. 
  */
-public class Settings implements GameEngine, ViewModel, VolumeSettings {
+public class Settings implements ViewModel, VolumeSettings {
 
     private ButtonImpl backHome;
     private final Rectangle[] volumeButtons = new Rectangle[SettingsAssets.numVolumeButtons];
@@ -35,41 +39,9 @@ public class Settings implements GameEngine, ViewModel, VolumeSettings {
         this.createButtons();
     }
 
-    @Override
-    public final void update() {
-    }
-
-    @Override
-    public final void draw(final Graphics g) {
-        g.drawImage(settingsSources.get(SettingsAssets.homeButton),
-                    this.backHome.getButtonPos().getX(),
-                    this.backHome.getButtonPos().getY(),
-                    this.backHome.getButtonDim().getX(),
-                    this.backHome.getButtonDim().getY(), null);
-        g.drawImage(settingsSources.get(SettingsAssets.roundedVolumeOn), 
-                    this.volumeButtons[SettingsAssets.volOnB].x,
-                    this.volumeButtons[SettingsAssets.volOnB].y,
-                    this.volumeButtons[SettingsAssets.volOnB].height,
-                    this.volumeButtons[SettingsAssets.volOnB].width, null);
-        g.drawImage(settingsSources.get(SettingsAssets.roundedVolumeOff), 
-                    this.volumeButtons[SettingsAssets.volOffB].x,
-                    this.volumeButtons[SettingsAssets.volOffB].y,
-                    this.volumeButtons[SettingsAssets.volOffB].height,
-                    this.volumeButtons[SettingsAssets.volOffB].width, null);
-        g.drawImage(settingsSources.get(SettingsAssets.themesButton),
-                    this.themesButtons[Audio.themeSources.get(Audio.menuMusic0)].x,
-                    this.themesButtons[Audio.themeSources.get(Audio.menuMusic0)].y, 
-                    this.themesButtons[Audio.themeSources.get(Audio.menuMusic0)].height, 
-                    this.themesButtons[Audio.themeSources.get(Audio.menuMusic0)].width, null);
-        g.drawImage(settingsSources.get(SettingsAssets.themesButton),
-                    this.themesButtons[Audio.themeSources.get(Audio.menuMusic1)].x,
-                    this.themesButtons[Audio.themeSources.get(Audio.menuMusic1)].y, 
-                    this.themesButtons[Audio.themeSources.get(Audio.menuMusic1)].height, 
-                    this.themesButtons[Audio.themeSources.get(Audio.menuMusic1)].width, null);
-    }
-
     private void createButtons() {
-        this.backHome = new ButtonImpl(menuX + MenuAssets.menuTextureBox - SettingsAssets.homeButtonRightDistance, 
+        this.backHome = new ButtonImpl(settingsSources.get(SettingsAssets.homeButton),
+                                       menuX + MenuAssets.menuTextureBox - SettingsAssets.homeButtonRightDistance, 
                                        menuY + MenuAssets.menuTextureBox - SettingsAssets.homeButtonBottomDistance, 
                                        SettingsAssets.squareButtonSize, 
                                        SettingsAssets.squareButtonSize, Gamestate.MENU);
@@ -111,10 +83,22 @@ public class Settings implements GameEngine, ViewModel, VolumeSettings {
         }
     }
 
+    
+
     @Override
     public final ArrayList<ButtonImpl> getButtons() {
-        return new ArrayList<ButtonImpl>() {{
+        return new ArrayList<>() {{
             add(backHome);
+        }};
+    }
+
+    @Override
+    public Map<Rectangle, BufferedImage> getAlternativeButtons() {
+        return new HashMap<>() {{
+            put(volumeButtons[SettingsAssets.volOnB], settingsSources.get(SettingsAssets.roundedVolumeOn));
+            put(volumeButtons[SettingsAssets.volOffB], settingsSources.get(SettingsAssets.roundedVolumeOff));
+            put(themesButtons[Audio.themeSources.get(Audio.menuMusic0)], settingsSources.get(SettingsAssets.themesButton));
+            put(themesButtons[Audio.themeSources.get(Audio.menuMusic1)], settingsSources.get(SettingsAssets.themesButton));
         }};
     }
 }

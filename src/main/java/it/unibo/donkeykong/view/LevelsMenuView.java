@@ -25,13 +25,27 @@ public class LevelsMenuView implements GameEngine {
 
     @Override
     public final void update() {
-        this.levelsMenuController.getLevelsMenu().update();
     }
 
     @Override
     public final void draw(final Graphics g) {
         this.drawBackgroundAssets(g);
-        this.levelsMenuController.getLevelsMenu().draw(g);
+        this.levelsMenuController.getLevelsMenu()
+                                 .getButtons()
+                                 .forEach(b -> g.drawImage(b.getButtonImage(), 
+                                                           b.getButtonPos().getX(), 
+                                                           b.getButtonPos().getY(),
+                                                           b.getButtonDim().getX(),
+                                                           b.getButtonDim().getY(),
+                                                           null));
+        this.levelsMenuController.getLevelsMenu()
+                                 .getAlternativeButtons()
+                                 .forEach((rectangle, image) -> g.drawImage(image, 
+                                                                            rectangle.x, 
+                                                                            rectangle.y, 
+                                                                            rectangle.width,
+                                                                            rectangle.height,
+                                                                            null));
     }
 
     private void drawBackgroundAssets(final Graphics g) {

@@ -30,14 +30,20 @@ public class MainMenuView implements GameEngine {
 
     @Override
     public final void update() {
-        this.menuController.getMainMenu().update();
     }
 
     @Override
     public final void draw(final Graphics g) {
         this.drawBackgroundAssets(g);
         this.drawLegend(g);
-        this.menuController.getMainMenu().draw(g);
+        this.menuController.getMainMenu()
+                           .getButtons()
+                           .forEach(b -> g.drawImage(b.getButtonImage(), 
+                                                      b.getButtonPos().getX(), 
+                                                      b.getButtonPos().getY(),
+                                                      b.getButtonDim().getX(),
+                                                      b.getButtonDim().getY(),
+                                                      null));
     }
 
     private void drawBackgroundAssets(final Graphics g) {
