@@ -12,6 +12,9 @@ import it.unibo.donkeykong.utilities.Constants.Audio;
 import it.unibo.donkeykong.utilities.Gamestate;
 import it.unibo.donkeykong.view.LevelsMenuView;
 
+/**
+ * Levels menu controller.
+ */
 public class LevelsMenuController implements MouseListener, GameEngine {
 
     private final ApplicationImpl application;
@@ -20,6 +23,8 @@ public class LevelsMenuController implements MouseListener, GameEngine {
 
     /**
      * Constructor.
+     * 
+     * @param application the application.
      */
     public LevelsMenuController(final ApplicationImpl application) {
         this.application = application;
@@ -49,7 +54,7 @@ public class LevelsMenuController implements MouseListener, GameEngine {
     @Override
     public final void mousePressed(final MouseEvent e) {
         ButtonFuncUtilities.getButtonPressed(e, this.levelsMenu.getButtons()).ifPresent(b -> b.applyGamestate());
-        if(Gamestate.getGamestate().equals(Gamestate.PLAYING)) {
+        if (Gamestate.getGamestate().equals(Gamestate.PLAYING)) {
             AudioUtilities.playSoundtrack(Audio.gameMusic0);
             this.application.getGameController().startGame();
         }

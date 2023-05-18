@@ -5,25 +5,26 @@ import static it.unibo.donkeykong.utilities.Constants.MenuAssets.menuX;
 import static it.unibo.donkeykong.utilities.Constants.MenuAssets.menuY;
 import static it.unibo.donkeykong.utilities.Constants.MenuAssets.SettingsAssets.settingsSources;
 
-import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import it.unibo.donkeykong.controller.api.GameEngine;
 import it.unibo.donkeykong.game.model.api.ViewModel;
 import it.unibo.donkeykong.utilities.Constants.Level;
 import it.unibo.donkeykong.utilities.Constants.MenuAssets;
 import it.unibo.donkeykong.utilities.Constants.MenuAssets.SettingsAssets;
 import it.unibo.donkeykong.utilities.Gamestate;
 
+/**
+ * Levels menu model.
+ */
 public class LevelsMenu implements ViewModel {
-    
+
     private ButtonImpl backHome, levelOneButton;
     private Rectangle[] levelsButtons = new Rectangle[Level.numLevelsButtons];
-    
+
     /**
      * Constructor.
      */
@@ -65,7 +66,7 @@ public class LevelsMenu implements ViewModel {
     }
 
     @Override
-    public Map<Rectangle, BufferedImage> getAlternativeButtons() {
+    public final Map<Rectangle, BufferedImage> getAlternativeButtons() {
         return new HashMap<>() {{
             put(levelsButtons[levelSources.get(Level.levelTwoSource).getY()], levelSources.get(Level.levelTwoSource).getX());
             put(levelsButtons[levelSources.get(Level.levelThreeSource).getY()], levelSources.get(Level.levelThreeSource).getX());

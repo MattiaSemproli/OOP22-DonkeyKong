@@ -4,7 +4,6 @@ import static it.unibo.donkeykong.utilities.Constants.MenuAssets.menuSources;
 import static it.unibo.donkeykong.utilities.Constants.MenuAssets.menuX;
 import static it.unibo.donkeykong.utilities.Constants.MenuAssets.menuY;
 
-import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
@@ -12,7 +11,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-import it.unibo.donkeykong.controller.api.GameEngine;
 import it.unibo.donkeykong.game.model.api.ViewModel;
 import it.unibo.donkeykong.utilities.Constants.MenuAssets;
 import it.unibo.donkeykong.utilities.Gamestate;
@@ -64,7 +62,7 @@ public class MainMenu implements ViewModel {
     }
 
     @Override
-    public Map<Rectangle, BufferedImage> getAlternativeButtons() {
+    public final Map<Rectangle, BufferedImage> getAlternativeButtons() {
         return new HashMap<>();
     }
 }

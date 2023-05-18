@@ -24,9 +24,10 @@ public class ButtonImpl implements Button {
      * @param width  width of the button.
      * @param height height of the button.
      * @param state  state of the button.
+     * @param i      image of the button.
      */
-    public ButtonImpl(final BufferedImage img, final int x, final int y, final int width, final int height, final Gamestate state) {
-        this.img = img;
+    public ButtonImpl(final BufferedImage i, final int x, final int y, final int width, final int height, final Gamestate state) {
+        this.img = i;
         this.x = x;
         this.y = y;
         this.width = width;
@@ -55,7 +56,7 @@ public class ButtonImpl implements Button {
     }
 
     @Override
-    public BufferedImage getButtonImage() {
+    public final BufferedImage getButtonImage() {
         return this.img;
     }
 }

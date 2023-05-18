@@ -48,7 +48,8 @@ public class MainMenuView implements GameEngine {
 
     private void drawBackgroundAssets(final Graphics g) {
         g.drawImage(menuSources.get(MenuAssets.menuBackground), 0, 0, Window.GAME_WIDTH, Window.GAME_HEIGHT, null);
-        g.drawImage(menuSources.get(MenuAssets.menuTexture), menuX, menuY, MenuAssets.menuTextureBox, MenuAssets.menuTextureBox, null);
+        g.drawImage(menuSources.get(MenuAssets.menuTexture), menuX, menuY, MenuAssets.menuTextureBox, MenuAssets.menuTextureBox, 
+                    null);
         g.drawImage(menuSources.get(MenuAssets.title), menuX + 115, menuY - 65, 250, 125, null);
     }
 

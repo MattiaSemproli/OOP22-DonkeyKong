@@ -11,6 +11,9 @@ import it.unibo.donkeykong.controller.impl.LevelsMenuController;
 import it.unibo.donkeykong.utilities.Constants.MenuAssets;
 import it.unibo.donkeykong.utilities.Constants.Window;
 
+/**
+ * Levels menu view.
+ */
 public class LevelsMenuView implements GameEngine {
 
     private final LevelsMenuController levelsMenuController;

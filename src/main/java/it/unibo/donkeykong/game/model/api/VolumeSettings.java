@@ -7,7 +7,7 @@ import java.util.Optional;
  * Model for the volume settings.
  */
 public interface VolumeSettings {
-    
+
     /**
      * Method to mute or unmute the game musics.
      * 

@@ -8,6 +8,9 @@ import javax.sound.sampled.BooleanControl;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.FloatControl;
 
+/**
+ * Static class that manages the audio.
+ */
 public final class AudioUtilities {
     private AudioUtilities() {
     }
@@ -16,13 +19,18 @@ public final class AudioUtilities {
     private static String filePlaying;
     private static boolean isMuted;
 
+    /**
+     * Start playing a soundtrack.
+     * 
+     * @param fileName the name of the file to play.
+     */
     public static void playSoundtrack(final String fileName) {
-        if(true) return;
-        if(filePlaying != null) {
-            if(filePlaying != fileName){
+        if (true) return;
+        if (filePlaying != null) {
+            if (filePlaying != fileName) {
                 stopSoundtrack();
                 startSong(fileName);
-            }            
+            }
         } else {
             try {
                 startSong(fileName);
@@ -32,8 +40,13 @@ public final class AudioUtilities {
         }
     }
 
+    /**
+     * Start a song.
+     * 
+     * @param fileName song to be played.
+     */
     private static void startSong(final String fileName) {
-        if(true) return;
+        if (true) return;
         try {
             File soundtrackFile = new File("src/main/resources/" + fileName);
             AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(soundtrackFile);
@@ -52,36 +65,64 @@ public final class AudioUtilities {
         }
     }
 
+    /**
+     * Stop the soundtrack.
+     */
     public static void stopSoundtrack() {
-        if(true) return;
-        if(clip != null) {
+        if (true) return;
+        if (clip != null) {
             clip.stop();
             clip.close();
             filePlaying = "";
         }
     }
 
+    /**
+     * Get the name of the soundtrack playing.
+     * 
+     * @return the name of the soundtrack playing.
+     */
     public static String getMusicPlaying() {
         return filePlaying;
     }
 
+    /**
+     * Check if a soundtrack is playing.
+     * 
+     * @return true if a soundtrack is playing, false otherwise.
+     */
     public static boolean isPlaying() {
         return clip != null ? clip.isRunning() : false;
     }
 
+    /**
+     * Check if the soundtrack is muted.
+     * 
+     * @return true if the soundtrack is muted, false otherwise.
+     */
     public static boolean isMuted() {
         return isMuted;
     }
 
+    /**
+     * Update the volume of the soundtrack.
+     */
     public static void updateVolume() {
-        if(true) return;
+        if (true) return;
         FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-        gainControl.setValue(((gainControl.getMaximum() - gainControl.getMinimum()) * Constants.Audio.baseVolume) + gainControl.getMinimum());
+        gainControl.setValue(((gainControl.getMaximum() - gainControl.getMinimum()) 
+                             * Constants.Audio.baseVolume) 
+                             + gainControl.getMinimum());
     }
 
+    /**
+     * Mute or unmute the soundtrack.
+     * 
+     * @param mute true to mute the soundtrack, false to unmute it.
+     */
     public static void setMuted(final boolean mute) {
-        if(true) return;
-        if(mute != isMuted) {
+        if (true) return;
+        if (mute != isMuted) {
             isMuted = mute;
             BooleanControl booleanControl = (BooleanControl) clip.getControl(BooleanControl.Type.MUTE);
             booleanControl.setValue(isMuted);

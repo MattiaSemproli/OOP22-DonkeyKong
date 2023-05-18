@@ -4,17 +4,14 @@ import static it.unibo.donkeykong.utilities.Constants.MenuAssets.menuX;
 import static it.unibo.donkeykong.utilities.Constants.MenuAssets.menuY;
 import static it.unibo.donkeykong.utilities.Constants.MenuAssets.SettingsAssets.settingsSources;
 
-import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-import it.unibo.donkeykong.controller.api.GameEngine;
 import it.unibo.donkeykong.game.model.api.ViewModel;
 import it.unibo.donkeykong.game.model.api.VolumeSettings;
 import it.unibo.donkeykong.utilities.AudioUtilities;
@@ -66,9 +63,9 @@ public class Settings implements ViewModel, VolumeSettings {
 
     @Override
     public final Optional<Boolean> mute(final MouseEvent e) {
-        if(this.volumeButtons[SettingsAssets.volOnB].contains(e.getPoint())) {
+        if (this.volumeButtons[SettingsAssets.volOnB].contains(e.getPoint())) {
             return Optional.of(false);
-        } else if(this.volumeButtons[SettingsAssets.volOffB].contains(e.getPoint())) {
+        } else if (this.volumeButtons[SettingsAssets.volOffB].contains(e.getPoint())) {
             return Optional.of(true);
         }
         return Optional.empty();
@@ -76,14 +73,12 @@ public class Settings implements ViewModel, VolumeSettings {
 
     @Override
     public final void setTheme(final MouseEvent e) {
-        if(this.themesButtons[Audio.themeSources.get(Audio.menuMusic0)].contains(e.getPoint())) {
+        if (this.themesButtons[Audio.themeSources.get(Audio.menuMusic0)].contains(e.getPoint())) {
             AudioUtilities.playSoundtrack(Audio.menuMusic0);
-        } else if(this.themesButtons[Audio.themeSources.get(Audio.menuMusic1)].contains(e.getPoint())) {
+        } else if (this.themesButtons[Audio.themeSources.get(Audio.menuMusic1)].contains(e.getPoint())) {
             AudioUtilities.playSoundtrack(Audio.menuMusic1);
         }
     }
-
-    
 
     @Override
     public final ArrayList<ButtonImpl> getButtons() {
@@ -93,7 +88,7 @@ public class Settings implements ViewModel, VolumeSettings {
     }
 
     @Override
-    public Map<Rectangle, BufferedImage> getAlternativeButtons() {
+    public final Map<Rectangle, BufferedImage> getAlternativeButtons() {
         return new HashMap<>() {{
             put(volumeButtons[SettingsAssets.volOnB], settingsSources.get(SettingsAssets.roundedVolumeOn));
             put(volumeButtons[SettingsAssets.volOffB], settingsSources.get(SettingsAssets.roundedVolumeOff));
