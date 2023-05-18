@@ -49,9 +49,9 @@ public final class ResourceFuncUtilities {
      * @param fileName name of the file.
      * @return         the buffered image.
      */
-    public static BufferedImage loadSources(final String fileName){
+    public static BufferedImage loadSources(final String fileName) {
         BufferedImage img = null;
-        InputStream s = ResourceFuncUtilities.class.getResourceAsStream("/" + fileName +".png");
+        InputStream s = ResourceFuncUtilities.class.getResourceAsStream("/" + fileName + ".png");
         try {
             img = ImageIO.read(s);
         } catch (IOException e) {

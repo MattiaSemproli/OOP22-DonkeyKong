@@ -20,6 +20,11 @@ public final class PauseView implements GameEngine {
 
     private final PauseController pauseController;
 
+    /**
+     * Constructor.
+     * 
+     * @param pauseController set the controller to this view.
+     */
     public PauseView(final PauseController pauseController) {
         this.pauseController = pauseController;
     }
@@ -29,13 +34,14 @@ public final class PauseView implements GameEngine {
     }
 
     @Override
-    public void draw(Graphics g) {
+    public void draw(final Graphics g) {
         final Graphics2D pause;
         if (g instanceof Graphics2D) {
             pause = (Graphics2D) g;
             pause.setColor(new Color(0, 0, 0, 128));
             pause.fillRect(0, 0, Window.GAME_WIDTH, Window.GAME_HEIGHT);
-            pause.drawImage(menuSources.get(MenuAssets.menuTexture), menuX, menuY, MenuAssets.menuTextureBox, MenuAssets.menuTextureBox, null);
+            pause.drawImage(menuSources.get(MenuAssets.menuTexture), menuX, menuY, MenuAssets.menuTextureBox, MenuAssets.menuTextureBox, 
+                            null);
             this.pauseController.getPause()
                                 .getButtons()
                                 .forEach(b -> g.drawImage(b.getButtonImage(), 
