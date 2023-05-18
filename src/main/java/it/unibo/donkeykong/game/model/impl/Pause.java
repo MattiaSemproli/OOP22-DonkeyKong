@@ -4,7 +4,6 @@ import static it.unibo.donkeykong.utilities.Constants.MenuAssets.menuX;
 import static it.unibo.donkeykong.utilities.Constants.MenuAssets.menuY;
 import static it.unibo.donkeykong.utilities.Constants.MenuAssets.SettingsAssets.settingsSources;
 
-import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
@@ -13,7 +12,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
-import it.unibo.donkeykong.controller.api.GameEngine;
 import it.unibo.donkeykong.game.model.api.ViewModel;
 import it.unibo.donkeykong.game.model.api.VolumeSettings;
 import it.unibo.donkeykong.utilities.AudioUtilities;
@@ -22,6 +20,9 @@ import it.unibo.donkeykong.utilities.Constants.MenuAssets;
 import it.unibo.donkeykong.utilities.Constants.MenuAssets.SettingsAssets;
 import it.unibo.donkeykong.utilities.Gamestate;
 
+/**
+ * Pause game model.
+ */
 public class Pause implements ViewModel, VolumeSettings {
 
     private ButtonImpl backHome, backToPlay;
@@ -41,7 +42,7 @@ public class Pause implements ViewModel, VolumeSettings {
                                        menuY + MenuAssets.menuTextureBox - SettingsAssets.homeButtonBottomDistance, 
                                        SettingsAssets.squareButtonSize, 
                                        SettingsAssets.squareButtonSize, Gamestate.MENU);
-        
+
         this.backToPlay = new ButtonImpl(settingsSources.get(SettingsAssets.backToPlayButton),
                                          menuX + SettingsAssets.repeatButtonLeftDistance - SettingsAssets.squareButtonSize, 
                                          menuY + MenuAssets.menuTextureBox - SettingsAssets.repeatButtonBottomDistance, 
@@ -68,9 +69,9 @@ public class Pause implements ViewModel, VolumeSettings {
 
     @Override
     public final Optional<Boolean> mute(final MouseEvent e) {
-        if(this.volumeButtons[SettingsAssets.volOnB].contains(e.getPoint())) {
+        if (this.volumeButtons[SettingsAssets.volOnB].contains(e.getPoint())) {
             return Optional.of(false);
-        } else if(this.volumeButtons[SettingsAssets.volOffB].contains(e.getPoint())) {
+        } else if (this.volumeButtons[SettingsAssets.volOffB].contains(e.getPoint())) {
             return Optional.of(true);
         }
         return Optional.empty();
@@ -78,23 +79,23 @@ public class Pause implements ViewModel, VolumeSettings {
 
     @Override
     public final void setTheme(final MouseEvent e) {
-        if(this.gameThemesButtons[Audio.gameSources.get(Audio.gameMusic0)].contains(e.getPoint())) {
+        if (this.gameThemesButtons[Audio.gameSources.get(Audio.gameMusic0)].contains(e.getPoint())) {
             AudioUtilities.playSoundtrack(Audio.gameMusic0);
-        } else if(this.gameThemesButtons[Audio.gameSources.get(Audio.gameMusic1)].contains(e.getPoint())) {
+        } else if (this.gameThemesButtons[Audio.gameSources.get(Audio.gameMusic1)].contains(e.getPoint())) {
             AudioUtilities.playSoundtrack(Audio.gameMusic1);
         }
     }
 
     @Override
-    public ArrayList<ButtonImpl> getButtons() {
+    public final ArrayList<ButtonImpl> getButtons() {
         return new ArrayList<ButtonImpl>() {{
             add(backHome);
-            add(backToPlay);            
+            add(backToPlay);
         }};
     }
 
     @Override
-    public Map<Rectangle, BufferedImage> getAlternativeButtons() {
+    public final Map<Rectangle, BufferedImage> getAlternativeButtons() {
         return new HashMap<>() {{
             put(volumeButtons[SettingsAssets.volOnB], settingsSources.get(SettingsAssets.roundedVolumeOn));
             put(volumeButtons[SettingsAssets.volOffB], settingsSources.get(SettingsAssets.roundedVolumeOff));
@@ -102,5 +103,4 @@ public class Pause implements ViewModel, VolumeSettings {
             put(gameThemesButtons[Audio.gameSources.get(Audio.gameMusic1)], settingsSources.get(SettingsAssets.themesButton));
         }};
     }
-    
 }

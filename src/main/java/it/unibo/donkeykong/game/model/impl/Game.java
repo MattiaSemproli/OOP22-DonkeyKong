@@ -4,14 +4,12 @@ import static it.unibo.donkeykong.utilities.Constants.Level.levelOne;
 import static it.unibo.donkeykong.utilities.Constants.MenuAssets.SettingsAssets.settingsSources;
 import static it.unibo.donkeykong.utilities.Constants.Window.SCALED_TILES_SIZE;
 
-import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import it.unibo.donkeykong.controller.api.GameEngine;
 import it.unibo.donkeykong.game.model.api.Level;
 import it.unibo.donkeykong.game.model.api.ViewModel;
 import it.unibo.donkeykong.utilities.Constants.MenuAssets.SettingsAssets;
@@ -19,12 +17,18 @@ import it.unibo.donkeykong.utilities.Constants.Window;
 import it.unibo.donkeykong.utilities.Gamestate;
 import it.unibo.donkeykong.utilities.Pair;
 
+/**
+ * Game model (model of gameview like buttons etc...).
+ */
 public class Game implements ViewModel {
 
     private final Level level;
     private Map<Rectangle, BufferedImage> dataLevel = new HashMap<>();
     private final ButtonImpl settingsPauseButton;
 
+    /**
+     * Constructor.
+     */
     public Game() {
         this.level = new LevelImpl(levelOne);
         this.mapDataLevel();
@@ -48,23 +52,24 @@ public class Game implements ViewModel {
         }
     }
 
-    
     /**
      * This method is used by the GameView to get the data of the level to be drawn.
+     * 
+     * @return a map containing the data of the level to be drawn.
      */
     public Map<Rectangle, BufferedImage> getDataLevel() {
         return new HashMap<>(this.dataLevel);
     }
 
     @Override
-    public ArrayList<ButtonImpl> getButtons() {
+    public final ArrayList<ButtonImpl> getButtons() {
         return new ArrayList<ButtonImpl>() {{
             add(settingsPauseButton);
         }};
     }
 
     @Override
-    public Map<Rectangle, BufferedImage> getAlternativeButtons() {
+    public final Map<Rectangle, BufferedImage> getAlternativeButtons() {
         return new HashMap<>();
     }
 }

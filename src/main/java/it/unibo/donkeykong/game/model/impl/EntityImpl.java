@@ -65,12 +65,12 @@ public class EntityImpl implements Entity {
     }
 
     @Override
-    public GameplayImpl getGameplay() {
+    public final GameplayImpl getGameplay() {
         return this.gameplay;
     }
 
     @Override
-    public void setGameplay(final GameplayImpl gameplay) {
+    public final void setGameplay(final GameplayImpl gameplay) {
         this.gameplay = gameplay;
     }
 

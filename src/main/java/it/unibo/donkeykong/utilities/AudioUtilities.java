@@ -8,6 +8,9 @@ import javax.sound.sampled.BooleanControl;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.FloatControl;
 
+/**
+ * Static class that manages the audio.
+ */
 public final class AudioUtilities {
     private AudioUtilities() {
     }

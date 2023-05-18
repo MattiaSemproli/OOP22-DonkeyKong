@@ -25,6 +25,8 @@ public class PauseController implements MouseListener, KeyListener, GameEngine  
 
     /**
      * Constructor.
+     * 
+     * @param application the application.
      */
     public PauseController(final ApplicationImpl application) {
         this.application = application;
@@ -38,7 +40,7 @@ public class PauseController implements MouseListener, KeyListener, GameEngine  
     }
 
     @Override
-    public final void draw(Graphics g) {
+    public final void draw(final Graphics g) {
         this.pauseView.draw(g);
     }
 
@@ -52,43 +54,43 @@ public class PauseController implements MouseListener, KeyListener, GameEngine  
     }
 
     @Override
-    public void mousePressed(MouseEvent e) {
+    public final void mousePressed(final MouseEvent e) {
         ButtonFuncUtilities.getButtonPressed(e, this.pause.getButtons()).ifPresent(b -> b.applyGamestate());
-        if(Gamestate.getGamestate().equals(Gamestate.MENU)){
+        if (Gamestate.getGamestate().equals(Gamestate.MENU)) {
             AudioUtilities.playSoundtrack(Audio.menuMusic0);
         }
         this.pause.mute(e).ifPresent(mute -> AudioUtilities.setMuted(mute));
         this.pause.setTheme(e);
     }
-    
+
     @Override
-    public void keyReleased(KeyEvent e) {
+    public final void keyReleased(final KeyEvent e) {
         if (Gamestate.getGamestate().equals(Gamestate.PAUSE) && e.getKeyCode() == KeyEvent.VK_ESCAPE) {
             Gamestate.setGamestate(Gamestate.PLAYING);
         }
     }
 
     @Override
-    public void keyPressed(KeyEvent e) {      
+    public void keyPressed(final KeyEvent e) {
     }
 
     @Override
-    public void keyTyped(KeyEvent e) {
+    public void keyTyped(final KeyEvent e) {
     }
 
     @Override
-    public void mouseClicked(MouseEvent e) {
+    public void mouseClicked(final MouseEvent e) {
     }
 
     @Override
-    public void mouseReleased(MouseEvent e) {
+    public void mouseReleased(final MouseEvent e) {
     }
 
     @Override
-    public void mouseEntered(MouseEvent e) {
+    public void mouseEntered(final MouseEvent e) {
     }
 
     @Override
-    public void mouseExited(MouseEvent e) {
+    public void mouseExited(final MouseEvent e) {
     }
 }

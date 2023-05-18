@@ -47,7 +47,13 @@ public interface Entity {
      */
     Type getEntityType();
 
+    /**
+     * @return the gameplay where the entity is
+     */
     GameplayImpl getGameplay();
 
+    /**
+     * @param gameplay set gameplay in which the entity is
+     */
     void setGameplay(GameplayImpl gameplay);
 }
