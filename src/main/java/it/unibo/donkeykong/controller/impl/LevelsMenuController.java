@@ -6,7 +6,10 @@ import java.awt.event.MouseListener;
 
 import it.unibo.donkeykong.controller.api.GameEngine;
 import it.unibo.donkeykong.game.model.impl.LevelsMenu;
+import it.unibo.donkeykong.utilities.AudioUtilities;
 import it.unibo.donkeykong.utilities.ButtonFuncUtilities;
+import it.unibo.donkeykong.utilities.Constants.Audio;
+import it.unibo.donkeykong.utilities.Gamestate;
 import it.unibo.donkeykong.view.LevelsMenuView;
 
 public class LevelsMenuController implements MouseListener, GameEngine {
@@ -46,6 +49,10 @@ public class LevelsMenuController implements MouseListener, GameEngine {
     @Override
     public final void mousePressed(final MouseEvent e) {
         ButtonFuncUtilities.getButtonPressed(e, this.levelsMenu.getButtons()).ifPresent(b -> b.applyGamestate());
+        if(Gamestate.getGamestate().equals(Gamestate.PLAYING)) {
+            AudioUtilities.playSoundtrack(Audio.gameMusic0);
+            this.application.getGameController().startGame();
+        }
     }
 
     @Override

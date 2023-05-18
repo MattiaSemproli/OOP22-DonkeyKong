@@ -10,8 +10,8 @@ import it.unibo.donkeykong.controller.api.GameEngine;
 import it.unibo.donkeykong.game.model.impl.Pause;
 import it.unibo.donkeykong.utilities.AudioUtilities;
 import it.unibo.donkeykong.utilities.ButtonFuncUtilities;
-import it.unibo.donkeykong.utilities.Gamestate;
 import it.unibo.donkeykong.utilities.Constants.Audio;
+import it.unibo.donkeykong.utilities.Gamestate;
 import it.unibo.donkeykong.view.PauseView;
 
 /**

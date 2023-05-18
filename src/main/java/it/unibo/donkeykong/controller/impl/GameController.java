@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import it.unibo.donkeykong.controller.api.GameEngine;
-import it.unibo.donkeykong.game.model.api.Gameplay;
 import it.unibo.donkeykong.game.model.impl.Game;
 import it.unibo.donkeykong.game.model.impl.GameplayImpl;
 import it.unibo.donkeykong.utilities.ButtonFuncUtilities;
