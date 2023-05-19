@@ -20,7 +20,7 @@ public interface EntityFactory {
      * 
      * @return a barrel type entity.
      */
-    Entity generateBarrel(Pair<Float, Float> position, Type type);
+    Entity generateBarrel(Pair<Float, Float> position);
 
     /**
      * Create a monkey.
