@@ -7,13 +7,22 @@ import it.unibo.donkeykong.utilities.AudioUtilities;
 import it.unibo.donkeykong.utilities.Constants.GameLoop;
 import it.unibo.donkeykong.utilities.Gamestate;
 import it.unibo.donkeykong.view.ApplicationPanel;
-    
+
+/**
+ * GameEngine class, manage gameloop.
+ */
 public class GameEngineImpl implements GameEngine, Runnable {
 
     private ApplicationPanel dkPanel;
     private ApplicationImpl applicationImpl;
     private Thread gameThread;
 
+    /**
+     * Constructor.
+     * 
+     * @param dkPanel linked panel.
+     * @param applicationImpl linked application.
+     */
     public GameEngineImpl(final ApplicationPanel dkPanel, final ApplicationImpl applicationImpl) {
         this.dkPanel = dkPanel;
         this.applicationImpl = applicationImpl;
@@ -26,7 +35,7 @@ public class GameEngineImpl implements GameEngine, Runnable {
     }
 
     @Override
-    public void run() {
+    public final void run() {
 
         double timePerFrame = GameLoop.NANOSECOND / GameLoop.FPS_SET;
         double timePerUpdate = GameLoop.NANOSECOND / GameLoop.UPS_SET;
@@ -69,7 +78,7 @@ public class GameEngineImpl implements GameEngine, Runnable {
     }
 
     @Override
-    public void update() {
+    public final void update() {
         switch (Gamestate.getGamestate()) {
             case MENU:
                 this.applicationImpl.getMainMenuController().update();
@@ -102,7 +111,7 @@ public class GameEngineImpl implements GameEngine, Runnable {
     }
 
     @Override
-    public void draw(final Graphics g) {
+    public final void draw(final Graphics g) {
         switch (Gamestate.getGamestate()) {
             case MENU:
                 this.applicationImpl.getMainMenuController().draw(g);
@@ -132,5 +141,4 @@ public class GameEngineImpl implements GameEngine, Runnable {
                 break;
         }
     }
-
 }
