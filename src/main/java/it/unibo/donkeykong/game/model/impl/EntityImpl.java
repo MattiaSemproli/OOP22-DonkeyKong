@@ -18,7 +18,7 @@ public class EntityImpl implements Entity {
     private final Type type;
     private final Set<Component> components;
     private Pair<Float, Float> pos;
-    private GameplayImpl gameplay;
+    private final GameplayImpl gameplay;
 
     /**
      * Constructor.
@@ -26,10 +26,11 @@ public class EntityImpl implements Entity {
      * @param type type of the entity.
      * @param pos  position of the entity.
      */
-    public EntityImpl(final Type type, final Pair<Float, Float> pos) {
+    public EntityImpl(final Type type, final Pair<Float, Float> pos, final GameplayImpl gameplay) {
         this.type = type;
         this.components = new HashSet<>();
         this.pos = new Pair<Float, Float>(pos.getX(), pos.getY());
+        this.gameplay = gameplay;
     }
 
     @Override
@@ -67,11 +68,6 @@ public class EntityImpl implements Entity {
     @Override
     public final GameplayImpl getGameplay() {
         return this.gameplay;
-    }
-
-    @Override
-    public final void setGameplay(final GameplayImpl gameplay) {
-        this.gameplay = gameplay;
     }
 
 }

@@ -13,7 +13,7 @@ public interface EntityFactory {
      * 
      * @return a player type entity.
      */
-    Entity generatePlayer();
+    Entity generatePlayer(final Pair<Float, Float> position);
 
     /**
      * Create a barrel.

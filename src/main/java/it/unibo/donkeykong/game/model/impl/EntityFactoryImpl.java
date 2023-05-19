@@ -10,9 +10,20 @@ import it.unibo.donkeykong.utilities.Constants.Barrel;
 
 public class EntityFactoryImpl implements EntityFactory {
 
+    private final GameplayImpl gameplay;
+
+    /**
+     * Constructor.
+     * 
+     * @param gameplay where the entity is
+     */
+    public EntityFactoryImpl(final GameplayImpl gameplay) {
+        this.gameplay = gameplay;
+    }
+
     @Override
-    public Entity generatePlayer() {
-        return null;
+    public Entity generatePlayer(final Pair<Float, Float> position) {
+        return new EntityImpl(Type.PLAYER, position, this.gameplay);
     }
 
     @Override
