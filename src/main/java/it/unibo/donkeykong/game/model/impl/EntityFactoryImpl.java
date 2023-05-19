@@ -2,6 +2,8 @@ package it.unibo.donkeykong.game.model.impl;
 
 import it.unibo.donkeykong.game.ecs.impl.BarrelThrowComponent;
 import it.unibo.donkeykong.game.ecs.impl.CollisionComponent;
+import it.unibo.donkeykong.game.ecs.impl.InputsComponent;
+import it.unibo.donkeykong.game.ecs.impl.MovementComponent;
 import it.unibo.donkeykong.game.model.api.Entity;
 import it.unibo.donkeykong.game.model.api.EntityFactory;
 import it.unibo.donkeykong.utilities.Pair;
@@ -23,7 +25,9 @@ public class EntityFactoryImpl implements EntityFactory {
 
     @Override
     public Entity generatePlayer(final Pair<Float, Float> position) {
-        return new EntityImpl(Type.PLAYER, position, this.gameplay);
+        return new EntityImpl(Type.PLAYER, position, this.gameplay)
+                   .addComponent(new InputsComponent())
+                   .addComponent(new MovementComponent());
     }
 
     @Override
@@ -49,7 +53,7 @@ public class EntityFactoryImpl implements EntityFactory {
 
     @Override
     public Entity generateBlock(Pair<Float, Float> position) {
-        return new EntityImpl(Type.PRINCESS, position, this.gameplay);
+        return new EntityImpl(Type.BLOCK, position, this.gameplay);
     }
 
     @Override

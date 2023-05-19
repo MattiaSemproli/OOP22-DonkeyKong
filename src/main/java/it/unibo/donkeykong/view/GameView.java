@@ -6,6 +6,7 @@ import javax.swing.ImageIcon;
 
 import it.unibo.donkeykong.controller.api.GameEngine;
 import it.unibo.donkeykong.controller.impl.GameController;
+import it.unibo.donkeykong.utilities.ResourceFuncUtilities;
 import it.unibo.donkeykong.utilities.Constants.Window;
 
 /**
@@ -45,8 +46,34 @@ public class GameView implements GameEngine {
                                                      b.getButtonDim().getX(), 
                                                      b.getButtonDim().getY(), 
                                                      null));
-        g.drawImage(new ImageIcon("src/main/resources/mariosingletry.png").getImage(), 36, Window.GAME_HEIGHT - 84, 48, 48, null);
-        g.drawImage(new ImageIcon("src/main/resources/peachessingletry.png").getImage(), 48 * 5, 42, 48, 66, null);
+        this.gameController.getGameplay().getEntities().forEach(entity -> {
+            switch (entity.getEntityType()) {
+                case BARREL:
+                    break;
+                case BLOCK:
+                    break;
+                case BLOCK_LADDER_DOWN:
+                    break;
+                case BLOCK_LADDER_UP:
+                    break;
+                case BLOCK_LADDER_UPDOWN:
+                    break;
+                case LADDER:
+                    break;
+                case MONKEY:
+                    g.drawImage(ResourceFuncUtilities.loadSources("dksingletry"), Math.round(entity.getPosition().getX()), Math.round(entity.getPosition().getY()), 120, 96,  null);
+                    break;
+                case PLAYER:
+                    g.drawImage(ResourceFuncUtilities.loadSources("mariosingletry"), Math.round(entity.getPosition().getX()), Math.round(entity.getPosition().getY()), 48, 48, null);
+                    break;
+                case POWER_UP:
+                    break;
+                case PRINCESS:
+                    g.drawImage(ResourceFuncUtilities.loadSources("peachessingletry"), Math.round(entity.getPosition().getX()), Math.round(entity.getPosition().getY()), 48, 66, null);
+                    break;
+                default:
+                    break;
+            }
+        });
     }
-
 }

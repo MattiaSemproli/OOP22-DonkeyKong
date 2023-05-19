@@ -55,10 +55,18 @@ public class GameController implements GameEngine, MouseListener, KeyListener {
 
     /**
      * Get the game model.
-     * @return new game model.
+     * @return the game model.
      */
     public final Game getGame() {
         return this.game;
+    }
+
+    /**
+     * Get the gameplay model.
+     * @return the gameplay model.
+     */
+    public final GameplayImpl getGameplay() {
+        return this.gameplay;
     }
 
     @Override
