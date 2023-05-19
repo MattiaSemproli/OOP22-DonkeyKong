@@ -33,13 +33,13 @@ public class EntityFactoryImpl implements EntityFactory {
     }
 
     @Override
-    public Entity generateMonkey() {
-        return null;
+    public Entity generateMonkey(final Pair<Float, Float> position) {
+        return new EntityImpl(Type.MONKEY, position, this.gameplay);
     }
 
     @Override
-    public Entity generatePrincess() {
-        return null;
+    public Entity generatePrincess(final Pair<Float, Float> position) {
+        return new EntityImpl(Type.PRINCESS, position, this.gameplay);
     }
 
     @Override

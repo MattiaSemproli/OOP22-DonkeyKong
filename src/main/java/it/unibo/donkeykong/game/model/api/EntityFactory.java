@@ -27,14 +27,14 @@ public interface EntityFactory {
      * 
      * @return a monkey type entity.
      */
-    Entity generateMonkey();
+    Entity generateMonkey(final Pair<Float, Float> position);
 
     /**
      * Create a princess.
      * 
      * @return a princess type entity.
      */
-    Entity generatePrincess();
+    Entity generatePrincess(final Pair<Float, Float> position);
 
     /**
      * Create a power up.

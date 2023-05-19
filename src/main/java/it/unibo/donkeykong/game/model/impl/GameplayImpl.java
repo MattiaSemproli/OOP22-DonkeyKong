@@ -23,8 +23,8 @@ public class GameplayImpl implements Gameplay, GameEngine {
 
     private void initializeGame() {
         this.entityFactoryImpl.generatePlayer(new Pair<Float,Float>((float) 36, (float) 588));
-        this.entityFactoryImpl.generateMonkey();
-        this.entityFactoryImpl.generatePrincess();
+        this.entityFactoryImpl.generateMonkey(new Pair<Float,Float>((float) 96, (float) 96));
+        this.entityFactoryImpl.generatePrincess(new Pair<Float,Float>((float) 240, (float) 42));
     }
 
     @Override
