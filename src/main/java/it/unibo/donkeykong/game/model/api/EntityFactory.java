@@ -11,13 +11,15 @@ public interface EntityFactory {
     /**
      * Create a player.
      * 
+     * @param position starting position of the entity.
      * @return a player type entity.
      */
-    Entity generatePlayer(final Pair<Float, Float> position);
+    Entity generatePlayer(Pair<Float, Float> position);
 
     /**
      * Create a barrel.
      * 
+     * @param position starting position of the entity.
      * @return a barrel type entity.
      */
     Entity generateBarrel(Pair<Float, Float> position);
@@ -25,16 +27,18 @@ public interface EntityFactory {
     /**
      * Create a monkey.
      * 
+     * @param position starting position of the entity.
      * @return a monkey type entity.
      */
-    Entity generateMonkey(final Pair<Float, Float> position);
+    Entity generateMonkey(Pair<Float, Float> position);
 
     /**
      * Create a princess.
      * 
+     * @param position starting position of the entity.
      * @return a princess type entity.
      */
-    Entity generatePrincess(final Pair<Float, Float> position);
+    Entity generatePrincess(Pair<Float, Float> position);
 
     /**
      * Create a power up.
@@ -46,35 +50,40 @@ public interface EntityFactory {
     /**
      * Create a block.
      * 
+     * @param position starting position of the entity.
      * @return a platform block type entity.
      */
-    Entity generateBlock(final Pair<Float, Float> position);
+    Entity generateBlock(Pair<Float, Float> position);
 
     /**
      * Create a ladder.
      * 
+     * @param position starting position of the entity.
      * @return a ladder type entity.
      */
-    Entity generateLadder(final Pair<Float, Float> position);
+    Entity generateLadder(Pair<Float, Float> position);
 
     /**
      * Create a block with upper ladder.
      * 
+     * @param position starting position of the entity.
      * @return a block with upper ladder type entity.
      */
-    Entity generateBlockWithUpLadder(final Pair<Float, Float> position);
+    Entity generateBlockWithUpLadder(Pair<Float, Float> position);
 
     /**
      * Create a block with lower ladder.
      * 
+     * @param position starting position of the entity.
      * @return a block with upper lower type entity.
      */
-    Entity generateBlockWithDownLadder(final Pair<Float, Float> position);
+    Entity generateBlockWithDownLadder(Pair<Float, Float> position);
 
     /**
      * Create a block with both ladder.
      * 
+     * @param position starting position of the entity.
      * @return a block with both ladder type entity.
      */
-    Entity generateBlockWithUpDownLadder(final Pair<Float, Float> position);
+    Entity generateBlockWithUpDownLadder(Pair<Float, Float> position);
 }

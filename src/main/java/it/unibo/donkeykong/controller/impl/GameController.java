@@ -25,9 +25,11 @@ public class GameController implements GameEngine, MouseListener, KeyListener {
     private final Game game;
     private final List<KeyEvent> keyInputs;
     private GameplayImpl gameplay;
-    
+
     /**
      * Constructor.
+     * 
+     * @param application linked to this controller.
      */
     public GameController(final ApplicationImpl application) {
         this.application = application;
@@ -36,6 +38,9 @@ public class GameController implements GameEngine, MouseListener, KeyListener {
         this.keyInputs = new ArrayList<>();
     }
 
+    /**
+     * Create a new Gameplay.
+     */
     public void startGame() {
         this.gameplay = new GameplayImpl(this);
     }
@@ -43,7 +48,7 @@ public class GameController implements GameEngine, MouseListener, KeyListener {
     @Override
     public final void update() {
         this.gameView.update();
-        if(this.gameplay != null) {
+        if (this.gameplay != null) {
             this.gameplay.update();
         }
     }
@@ -70,55 +75,58 @@ public class GameController implements GameEngine, MouseListener, KeyListener {
     }
 
     @Override
-    public void mousePressed(MouseEvent e) {
+    public final void mousePressed(final MouseEvent e) {
         ButtonFuncUtilities.getButtonPressed(e, this.game.getButtons()).ifPresent(b -> b.applyGamestate());
     }
-    
+
     @Override
-    public void keyPressed(KeyEvent e) { 
+    public final void keyPressed(final KeyEvent e) { 
         if (e.getKeyCode() != KeyEvent.VK_ESCAPE) {
-            if (e.getKeyCode() == KeyEvent.VK_A ||
-                e.getKeyCode() == KeyEvent.VK_D ||
-                e.getKeyCode() == KeyEvent.VK_SPACE) {
+            if (e.getKeyCode() == KeyEvent.VK_A
+                || e.getKeyCode() == KeyEvent.VK_D
+                || e.getKeyCode() == KeyEvent.VK_SPACE) {
                 this.keyInputs.add(e);
             }
-        } 
+        }
     }
-   
+
     @Override
-    public void keyReleased(KeyEvent e) {
+    public final void keyReleased(final KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
             Gamestate.setGamestate(Gamestate.PAUSE);
-        } 
-        else {
+        } else {
             if (this.keyInputs.contains(e)) {
                 this.keyInputs.remove(e);
             }
         }
     }
 
+    /**
+     * Get all the inputs.
+     * 
+     * @return list of keys pressed.
+     */
     public final ArrayList<KeyEvent> getInputs() {
         return new ArrayList<>(this.keyInputs);
     }
-    
+
     @Override
-    public void keyTyped(KeyEvent e) {
+    public void keyTyped(final KeyEvent e) {
     }
 
     @Override
-    public void mouseClicked(MouseEvent e) {
+    public void mouseClicked(final MouseEvent e) {
     }
 
     @Override
-    public void mouseReleased(MouseEvent e) {
+    public void mouseReleased(final MouseEvent e) {
     }
 
     @Override
-    public void mouseEntered(MouseEvent e) {
+    public void mouseEntered(final MouseEvent e) {
     }
 
     @Override
-    public void mouseExited(MouseEvent e) {
+    public void mouseExited(final MouseEvent e) {
     }
-
 }

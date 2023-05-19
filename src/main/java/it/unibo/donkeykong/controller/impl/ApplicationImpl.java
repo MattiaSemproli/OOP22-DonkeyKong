@@ -7,6 +7,9 @@ import it.unibo.donkeykong.utilities.Constants;
 import it.unibo.donkeykong.view.ApplicationPanel;
 import it.unibo.donkeykong.view.ApplicationWindow;
 
+/**
+ * ApplicationImpl class, manage controllers.
+ */
 public class ApplicationImpl implements Application {
 
     private ApplicationPanel dkPanel;
@@ -18,6 +21,9 @@ public class ApplicationImpl implements Application {
     private LevelsMenuController levelsMenuController;
     private Game game;
 
+    /**
+     * Constructor.
+     */
     public ApplicationImpl() {
         AudioUtilities.playSoundtrack(Constants.Audio.menuMusic0);
         loadAllSources();
@@ -29,7 +35,7 @@ public class ApplicationImpl implements Application {
     }
 
     @Override
-    public GameEngineImpl getGameEngine() {
+    public final GameEngineImpl getGameEngine() {
         return this.gameEngine;
     }
 
@@ -40,7 +46,8 @@ public class ApplicationImpl implements Application {
         Constants.Level.loadLevelSources();
     }
 
-    public void initialize() {
+    @Override
+    public final void initialize() {
         this.mainMenuController = new MainMenuController(this);
         this.settingsController = new SettingsController(this);
         this.gameController = new GameController(this);
@@ -48,27 +55,33 @@ public class ApplicationImpl implements Application {
         this.levelsMenuController = new LevelsMenuController(this);
     }
 
-    public MainMenuController getMainMenuController() {
+    @Override
+    public final MainMenuController getMainMenuController() {
         return this.mainMenuController;
     }
 
-    public SettingsController getSettingsController() {
+    @Override
+    public final SettingsController getSettingsController() {
         return this.settingsController;
     }
 
-    public GameController getGameController() {
+    @Override
+    public final GameController getGameController() {
         return this.gameController;
     }
 
-    public PauseController getPauseController() {
+    @Override
+    public final PauseController getPauseController() {
         return this.pauseController;
     }
 
-    public LevelsMenuController getLevelsMenuController() {
+    @Override
+    public final LevelsMenuController getLevelsMenuController() {
         return this.levelsMenuController;
     }
 
-    public Game getGame() {
+    @Override
+    public final Game getGame() {
         return this.game;
     }
 }
