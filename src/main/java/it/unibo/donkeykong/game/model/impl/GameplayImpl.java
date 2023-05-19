@@ -10,18 +10,20 @@ import it.unibo.donkeykong.game.model.api.Gameplay;
 
 public class GameplayImpl implements Gameplay, GameEngine {
 
+    private final EntityFactoryImpl entityFactoryImpl;
     private final GameController controller;
     private ArrayList<Entity> entities = new ArrayList<>();
 
     public GameplayImpl(final GameController controller) {
         this.controller = controller;
+        this.entityFactoryImpl = new EntityFactoryImpl();
         this.initializeGame();
     }
 
     private void initializeGame() {
-        /* da creare dk e vari personaggi
-         * caricare levels ecc.
-         */
+        this.entityFactoryImpl.generatePlayer();
+        this.entityFactoryImpl.generateMonkey();
+        this.entityFactoryImpl.generatePrincess();
     }
 
     @Override
