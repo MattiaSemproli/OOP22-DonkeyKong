@@ -42,4 +42,39 @@ public interface EntityFactory {
      * @return a power up type entity.
      */
     Entity generatePowerUp();
+
+    /**
+     * Create a block.
+     * 
+     * @return a platform block type entity.
+     */
+    Entity generateBlock(final Pair<Float, Float> position);
+
+    /**
+     * Create a ladder.
+     * 
+     * @return a ladder type entity.
+     */
+    Entity generateLadder(final Pair<Float, Float> position);
+
+    /**
+     * Create a block with upper ladder.
+     * 
+     * @return a block with upper ladder type entity.
+     */
+    Entity generateBlockWithUpLadder(final Pair<Float, Float> position);
+
+    /**
+     * Create a block with lower ladder.
+     * 
+     * @return a block with upper lower type entity.
+     */
+    Entity generateBlockWithDownLadder(final Pair<Float, Float> position);
+
+    /**
+     * Create a block with both ladder.
+     * 
+     * @return a block with both ladder type entity.
+     */
+    Entity generateBlockWithUpDownLadder(final Pair<Float, Float> position);
 }

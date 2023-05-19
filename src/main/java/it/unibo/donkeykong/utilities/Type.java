@@ -25,17 +25,21 @@ public enum Type {
      */
     BLOCK,
     /**
-     * Block empty, nothing exist there.
-     */
-    BLACK_BLOCK,
-    /**
      * Ladder.
      */
     LADDER,
     /**
-     * Block with ladder.
+     * Block with upper ladder.
      */
-    BLOCK_LADDER,
+    BLOCK_LADDER_UP,
+    /**
+     * Block with lower ladder.
+     */
+    BLOCK_LADDER_DOWN,
+    /**
+     * Block with both ladder.
+     */
+    BLOCK_LADDER_UPDOWN,
     /**
      * Powerup.
      */

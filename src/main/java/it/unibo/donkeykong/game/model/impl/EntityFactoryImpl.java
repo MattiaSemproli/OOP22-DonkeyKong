@@ -46,4 +46,29 @@ public class EntityFactoryImpl implements EntityFactory {
     public Entity generatePowerUp() {
         return null;
     }
+
+    @Override
+    public Entity generateBlock(Pair<Float, Float> position) {
+        return new EntityImpl(Type.PRINCESS, position, this.gameplay);
+    }
+
+    @Override
+    public Entity generateLadder(Pair<Float, Float> position) {
+        return new EntityImpl(Type.LADDER, position, this.gameplay);
+    }
+
+    @Override
+    public Entity generateBlockWithUpLadder(Pair<Float, Float> position) {
+        return new EntityImpl(Type.BLOCK_LADDER_UP, position, this.gameplay);
+    }
+
+    @Override
+    public Entity generateBlockWithDownLadder(Pair<Float, Float> position) {
+        return new EntityImpl(Type.BLOCK_LADDER_DOWN, position, this.gameplay);
+    }
+
+    @Override
+    public Entity generateBlockWithUpDownLadder(Pair<Float, Float> position) {
+        return new EntityImpl(Type.BLOCK_LADDER_UPDOWN, position, this.gameplay);
+    }
 }
