@@ -56,32 +56,32 @@ public class ApplicationImpl implements Application {
     }
 
     @Override
-    public MainMenuController getMainMenuController() {
+    public final MainMenuController getMainMenuController() {
         return this.mainMenuController;
     }
 
     @Override
-    public SettingsController getSettingsController() {
+    public final SettingsController getSettingsController() {
         return this.settingsController;
     }
 
     @Override
-    public GameController getGameController() {
+    public final GameController getGameController() {
         return this.gameController;
     }
 
     @Override
-    public PauseController getPauseController() {
+    public final PauseController getPauseController() {
         return this.pauseController;
     }
 
     @Override
-    public LevelsMenuController getLevelsMenuController() {
+    public final LevelsMenuController getLevelsMenuController() {
         return this.levelsMenuController;
     }
 
     @Override
-    public Game getGame() {
+    public final Game getGame() {
         return this.game;
     }
 }
