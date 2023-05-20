@@ -61,10 +61,7 @@ public interface Application {
     LevelsMenuController getLevelsMenuController();
 
     /**
-     * Get Game.
-     * 
-     * @return linked Game.
+     * Create GameController and start Gameplay.
      */
-    Game getGame();
-
+    void startGameController();
 }
