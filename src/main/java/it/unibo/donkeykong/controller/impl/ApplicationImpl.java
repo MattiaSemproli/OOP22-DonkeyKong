@@ -26,10 +26,10 @@ public class ApplicationImpl implements Application {
         AudioUtilities.playSoundtrack(Constants.Audio.menuMusic0);
         loadAllSources();
         initialize();
+        this.gameEngine = new GameEngineImpl(dkPanel, this);
         this.dkPanel = new ApplicationPanel(this);
         new ApplicationWindow(dkPanel);
         dkPanel.requestFocus();
-        this.gameEngine = new GameEngineImpl(dkPanel, this);
     }
 
     @Override
