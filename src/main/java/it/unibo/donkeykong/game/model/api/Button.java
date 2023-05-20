@@ -3,6 +3,7 @@ package it.unibo.donkeykong.game.model.api;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
+import it.unibo.donkeykong.utilities.Gamestate;
 import it.unibo.donkeykong.utilities.Pair;
 
 /**
@@ -33,4 +34,9 @@ public interface Button {
      * @return the button image.
      */
     BufferedImage getButtonImage();
+    
+    /**
+     * @return the Gamestate of the button.
+     */
+    Gamestate getButtonGamestate();
 }

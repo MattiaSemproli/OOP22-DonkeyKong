@@ -59,4 +59,9 @@ public class ButtonImpl implements Button {
     public final BufferedImage getButtonImage() {
         return this.img;
     }
+
+    @Override
+    public Gamestate getButtonGamestate() {
+        return this.state;
+    }
 }
