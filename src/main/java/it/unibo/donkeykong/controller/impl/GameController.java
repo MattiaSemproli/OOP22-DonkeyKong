@@ -47,10 +47,8 @@ public class GameController implements GameEngine, MouseListener, KeyListener {
 
     @Override
     public final void update() {
+        this.gameplay.getEntities().forEach(e -> e.getAllComponents().forEach(c -> c.update()));
         this.gameView.update();
-        if (this.gameplay != null) {
-            this.gameplay.update();
-        }
     }
 
     @Override
