@@ -24,7 +24,8 @@ public class EntityImpl implements Entity {
      * Constructor.
      * 
      * @param type type of the entity.
-     * @param pos  position of the entity.
+     * @param pos position of the entity.
+     * @param gameplay gameplay where entity is placed.
      */
     public EntityImpl(final Type type, final Pair<Float, Float> pos, final GameplayImpl gameplay) {
         this.type = type;

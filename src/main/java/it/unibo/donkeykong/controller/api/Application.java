@@ -6,7 +6,6 @@ import it.unibo.donkeykong.controller.impl.LevelsMenuController;
 import it.unibo.donkeykong.controller.impl.MainMenuController;
 import it.unibo.donkeykong.controller.impl.PauseController;
 import it.unibo.donkeykong.controller.impl.SettingsController;
-import it.unibo.donkeykong.game.model.impl.Game;
 
 /**
  * Application class, models controllers management.

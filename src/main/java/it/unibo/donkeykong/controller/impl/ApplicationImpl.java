@@ -1,7 +1,6 @@
 package it.unibo.donkeykong.controller.impl;
 
 import it.unibo.donkeykong.controller.api.Application;
-import it.unibo.donkeykong.game.model.impl.Game;
 import it.unibo.donkeykong.utilities.AudioUtilities;
 import it.unibo.donkeykong.utilities.Constants;
 import it.unibo.donkeykong.view.ApplicationPanel;

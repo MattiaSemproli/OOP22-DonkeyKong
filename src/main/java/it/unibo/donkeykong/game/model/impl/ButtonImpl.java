@@ -61,7 +61,7 @@ public class ButtonImpl implements Button {
     }
 
     @Override
-    public Gamestate getButtonGamestate() {
+    public final Gamestate getButtonGamestate() {
         return this.state;
     }
 }

@@ -1,7 +1,6 @@
 package it.unibo.donkeykong.game.model.api;
 
 import it.unibo.donkeykong.utilities.Pair;
-import it.unibo.donkeykong.utilities.Type;
 
 /**
  * This interface manages the creation of different entities.

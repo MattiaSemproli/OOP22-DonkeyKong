@@ -61,16 +61,16 @@ public class GameplayImpl implements Gameplay, GameEngine {
     }
 
     @Override
-    public void draw(Graphics g) {
+    public void draw(final Graphics g) {
     }
 
     @Override
-    public ArrayList<Entity> getEntities() {
+    public final ArrayList<Entity> getEntities() {
         return this.entities;
     }
 
     @Override
-    public GameController getController() {
+    public final GameController getController() {
         return this.controller;
     }
 }

@@ -34,7 +34,7 @@ public interface Button {
      * @return the button image.
      */
     BufferedImage getButtonImage();
-    
+
     /**
      * @return the Gamestate of the button.
      */
