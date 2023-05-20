@@ -52,8 +52,16 @@ public class SettingsView implements GameEngine {
     }
 
     private void drawBackgroundAssets(final Graphics g) {
-        g.drawImage(getMenuSources().get(MenuAssets.menuBackground), 0, 0, Window.GAME_WIDTH, Window.GAME_HEIGHT, null);
-        g.drawImage(getMenuSources().get(MenuAssets.menuTexture), menuX, menuY, MenuAssets.menuTextureBox, MenuAssets.menuTextureBox, null);
+        g.drawImage(getMenuSources().get(MenuAssets.menuBackground), 
+                    0, 
+                    0, 
+                    Window.GAME_WIDTH, 
+                    Window.GAME_HEIGHT, null);
+        g.drawImage(getMenuSources().get(MenuAssets.menuTexture), 
+                    menuX, 
+                    menuY, 
+                    MenuAssets.menuTextureBox, 
+                    MenuAssets.menuTextureBox, null);
     }
 
 }

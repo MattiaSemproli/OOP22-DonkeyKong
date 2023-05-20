@@ -1,5 +1,7 @@
 package it.unibo.donkeykong.game.model.impl;
 
+import static it.unibo.donkeykong.utilities.Constants.Window.SCALED_TILES_SIZE;
+
 import java.awt.Graphics;
 import java.util.ArrayList;
 
@@ -26,9 +28,12 @@ public class GameplayImpl implements Gameplay, GameEngine {
     }
 
     private void initializeGame() {
-        this.entities.add(this.entityFactoryImpl.generatePlayer(new Pair<Float,Float>((float) 36, (float) 588)));
-        this.entities.add(this.entityFactoryImpl.generateMonkey(new Pair<Float,Float>((float) 24, (float) 108)));
-        this.entities.add(this.entityFactoryImpl.generatePrincess(new Pair<Float,Float>((float) 240, (float) 42)));
+        this.entities.add(this.entityFactoryImpl.generatePlayer(new Pair<>(Constants.Entity.levelOneStartingPlayerX, 
+                                                                           Constants.Entity.levelOneStartingPlayerY)));
+        this.entities.add(this.entityFactoryImpl.generateMonkey(new Pair<>(Constants.Entity.levelOneStartingMonkeyX, 
+                                                                           Constants.Entity.levelOneStartingMonkeyY)));
+        this.entities.add(this.entityFactoryImpl.generatePrincess(new Pair<>(Constants.Entity.levelOneStartingPrincessX, 
+                                                                             Constants.Entity.levelOneStartingPrincessY)));
         this.createMapEntities();
     }
 
@@ -36,19 +41,29 @@ public class GameplayImpl implements Gameplay, GameEngine {
         this.level.getLevelData().forEach((k, v) -> {
             switch (v) {
                 case Constants.Level.platformBlock:
-                    this.entities.add(this.entityFactoryImpl.generateBlock(new Pair<>((float) k.getX() * 48, (float) k.getY() * 48)));
+                    this.entities.add(this.entityFactoryImpl
+                                          .generateBlock(new Pair<>((float) k.getX() * SCALED_TILES_SIZE, 
+                                                                    (float) k.getY() * SCALED_TILES_SIZE)));
                     break;
                 case Constants.Level.whiteLadder:
-                    this.entities.add(this.entityFactoryImpl.generateLadder(new Pair<>((float) k.getX() * 48, (float) k.getY() * 48)));
+                    this.entities.add(this.entityFactoryImpl
+                                          .generateLadder(new Pair<>((float) k.getX() * SCALED_TILES_SIZE, 
+                                                                     (float) k.getY() * SCALED_TILES_SIZE)));
                     break;
                 case Constants.Level.blockWithUpperLadder:
-                    this.entities.add(this.entityFactoryImpl.generateBlockWithUpLadder(new Pair<>((float) k.getX() * 48, (float) k.getY() * 48)));
+                    this.entities.add(this.entityFactoryImpl
+                                          .generateBlockWithUpLadder(new Pair<>((float) k.getX() * SCALED_TILES_SIZE, 
+                                                                                (float) k.getY() * SCALED_TILES_SIZE)));
                     break;
                 case Constants.Level.blockWithLowerLadder:
-                    this.entities.add(this.entityFactoryImpl.generateBlockWithDownLadder(new Pair<>((float) k.getX() * 48, (float) k.getY() * 48)));
+                    this.entities.add(this.entityFactoryImpl
+                                          .generateBlockWithDownLadder(new Pair<>((float) k.getX() * SCALED_TILES_SIZE, 
+                                                                                  (float) k.getY() * SCALED_TILES_SIZE)));
                     break;
                 case Constants.Level.blockWithDoubleLadder:
-                    this.entities.add(this.entityFactoryImpl.generateBlockWithUpDownLadder(new Pair<>((float) k.getX() * 48, (float) k.getY() * 48)));
+                    this.entities.add(this.entityFactoryImpl
+                                          .generateBlockWithUpDownLadder(new Pair<>((float) k.getX() * SCALED_TILES_SIZE, 
+                                                                                    (float) k.getY() * SCALED_TILES_SIZE)));
                     break;
                 default:
                     break;

@@ -3,6 +3,8 @@ package it.unibo.donkeykong.game.model.impl;
 import static it.unibo.donkeykong.utilities.Constants.MenuAssets.getMenuSources;
 import static it.unibo.donkeykong.utilities.Constants.MenuAssets.menuX;
 import static it.unibo.donkeykong.utilities.Constants.MenuAssets.menuY;
+import static it.unibo.donkeykong.utilities.Constants.MenuAssets.rightMenuBorder;
+import static it.unibo.donkeykong.utilities.Constants.MenuAssets.utilityButtonRightBorderDistanceX;
 
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
@@ -33,24 +35,28 @@ public class MainMenu implements ViewModel {
 
     private void createFuncButtons() {
         this.funcButtons[MenuAssets.playB] = new ButtonImpl(getMenuSources().get(MenuAssets.playButton),
-                menuX + (MenuAssets.menuTextureBox - MenuAssets.buttonWidth) / 2,
-                menuY + MenuAssets.menuTextureBox / 10,
-                MenuAssets.buttonWidth, MenuAssets.buttonHeight, Gamestate.PLAYING);
+                                                            MenuAssets.funcButtonX,
+                                                            menuY + MenuAssets.funcButtonsDistance,
+                                                            MenuAssets.buttonWidth, 
+                                                            MenuAssets.buttonHeight, Gamestate.PLAYING);
         this.funcButtons[MenuAssets.levelsB] = new ButtonImpl(getMenuSources().get(MenuAssets.levelsButton),
-                menuX + (MenuAssets.menuTextureBox - MenuAssets.buttonWidth) / 2,
-                menuY + MenuAssets.menuTextureBox / 10 + MenuAssets.buttonHeight,
-                MenuAssets.buttonWidth, MenuAssets.buttonHeight, Gamestate.CHOSING_LEVELS);
+                                                              MenuAssets.funcButtonX,
+                                                              menuY + MenuAssets.funcButtonsDistance + MenuAssets.buttonHeight,
+                                                              MenuAssets.buttonWidth, 
+                                                              MenuAssets.buttonHeight, Gamestate.CHOSING_LEVELS);
     }
 
     private void createUtilityButtons() {
         this.utilityButtons[MenuAssets.settingsB] = new ButtonImpl(getMenuSources().get(MenuAssets.settingsButton),
-                menuX + MenuAssets.menuTextureBox / 12,
-                menuY + MenuAssets.menuTextureBox - MenuAssets.buttonHeight - MenuAssets.menuTextureBox / 8,
-                MenuAssets.buttonWidth, MenuAssets.buttonHeight, Gamestate.SETTINGS);
+                                                                   menuX + MenuAssets.utilityButtonLeftBorderDistanceX,
+                                                                   MenuAssets.utilityButtonY,
+                                                                   MenuAssets.buttonWidth, 
+                                                                   MenuAssets.buttonHeight, Gamestate.SETTINGS);
         this.utilityButtons[MenuAssets.quitB] = new ButtonImpl(getMenuSources().get(MenuAssets.quitButton),
-                menuX + MenuAssets.menuTextureBox - MenuAssets.buttonWidth - MenuAssets.menuTextureBox / 12,
-                menuY + MenuAssets.menuTextureBox - MenuAssets.buttonHeight - MenuAssets.menuTextureBox / 8,
-                MenuAssets.buttonWidth, MenuAssets.buttonHeight, Gamestate.EXIT);
+                                                               rightMenuBorder - utilityButtonRightBorderDistanceX,
+                                                               MenuAssets.utilityButtonY,
+                                                               MenuAssets.buttonWidth, 
+                                                               MenuAssets.buttonHeight, Gamestate.EXIT);
     }
 
     @Override

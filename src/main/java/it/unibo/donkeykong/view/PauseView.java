@@ -12,6 +12,7 @@ import it.unibo.donkeykong.controller.api.GameEngine;
 import it.unibo.donkeykong.controller.impl.PauseController;
 import it.unibo.donkeykong.utilities.Constants.MenuAssets;
 import it.unibo.donkeykong.utilities.Constants.Window;
+import it.unibo.donkeykong.utilities.Constants.MenuAssets.SettingsAssets;
 
 /**
  * Pause view.
@@ -38,26 +39,27 @@ public final class PauseView implements GameEngine {
         final Graphics2D pause;
         if (g instanceof Graphics2D) {
             pause = (Graphics2D) g;
-            pause.setColor(new Color(0, 0, 0, 128));
+            pause.setColor(new Color(0, 0, 0, SettingsAssets.pauseBgOpacity));
             pause.fillRect(0, 0, Window.GAME_WIDTH, Window.GAME_HEIGHT);
-            pause.drawImage(getMenuSources().get(MenuAssets.menuTexture), menuX, menuY, MenuAssets.menuTextureBox, MenuAssets.menuTextureBox, 
-                            null);
+            pause.drawImage(getMenuSources().get(MenuAssets.menuTexture), 
+                            menuX, 
+                            menuY, 
+                            MenuAssets.menuTextureBox, 
+                            MenuAssets.menuTextureBox, null);
             this.pauseController.getPause()
                                 .getButtons()
                                 .forEach(b -> g.drawImage(b.getButtonImage(), 
                                                           b.getButtonPos().getX(), 
                                                           b.getButtonPos().getY(),
                                                           b.getButtonDim().getX(),
-                                                          b.getButtonDim().getY(),
-                                                          null));
+                                                          b.getButtonDim().getY(), null));
             this.pauseController.getPause()
                                 .getAlternativeButtons()
                                 .forEach((rectangle, image) -> g.drawImage(image, 
                                                                            rectangle.x, 
                                                                            rectangle.y, 
                                                                            rectangle.width,
-                                                                           rectangle.height,
-                                                                           null));
+                                                                           rectangle.height, null));
         }
     }
 }

@@ -47,12 +47,29 @@ public class MainMenuView implements GameEngine {
     }
 
     private void drawBackgroundAssets(final Graphics g) {
-        g.drawImage(getMenuSources().get(MenuAssets.menuBackground), 0, 0, Window.GAME_WIDTH, Window.GAME_HEIGHT, null);
-        g.drawImage(getMenuSources().get(MenuAssets.menuTexture), menuX, menuY, MenuAssets.menuTextureBox, MenuAssets.menuTextureBox, 
-                    null);
-        g.drawImage(getMenuSources().get(MenuAssets.title), menuX + 115, menuY - 65, 250, 125, null);
+        g.drawImage(getMenuSources().get(MenuAssets.menuBackground), 
+                    0, 
+                    0, 
+                    Window.GAME_WIDTH, 
+                    Window.GAME_HEIGHT, null);
+        g.drawImage(getMenuSources().get(MenuAssets.menuTexture), 
+                    menuX, 
+                    menuY, 
+                    MenuAssets.menuTextureBox, 
+                    MenuAssets.menuTextureBox, null);
+        g.drawImage(getMenuSources().get(MenuAssets.title), 
+                    MenuAssets.titleX, 
+                    MenuAssets.titleY, 
+                    MenuAssets.titleWidth, 
+                    MenuAssets.titleHeight, null);
     }
 
+    /**
+     * TEMPORARY JAVADOC OTHERWISE THE CHECKSTYLE WILL COMPLAIN EVEN IF IT IS ONLY A MEMO TO REMEMBER IT.
+     * TO FIX THIS ONE. 
+     * 
+     * @param g graphics to draw.
+     */
     private void drawLegend(final Graphics g) {
         g.drawImage(getMenuSources().get(MenuAssets.aKey),
                 menuX + MenuAssets.menuTextureBox / 10, menuY + MenuAssets.buttonHeight * 3,
@@ -86,25 +103,25 @@ public class MainMenuView implements GameEngine {
                 MenuAssets.legendKeyBox, MenuAssets.legendKeyBox, null);
 
         g.setColor(Color.WHITE);
-        g.setFont(new Font("Arial", Font.BOLD, 20));
+        g.setFont(new Font("Arial", Font.BOLD, 10 * 2));
         g.drawString("TO MOVE LEFT",
                 menuX + MenuAssets.menuTextureBox / 10 + MenuAssets.legendKeyBox * 2,
                 menuY + MenuAssets.menuTextureBox / 2);
 
         g.setColor(Color.WHITE);
-        g.setFont(new Font("Arial", Font.BOLD, 20));
+        g.setFont(new Font("Arial", Font.BOLD, 10 * 2));
         g.drawString("TO MOVE RIGHT",
                 menuX + MenuAssets.menuTextureBox / 10 + MenuAssets.legendKeyBox * 2,
                 menuY + MenuAssets.menuTextureBox / 2 + MenuAssets.legendKeyBox);
 
         g.setColor(Color.WHITE);
-        g.setFont(new Font("Arial", Font.BOLD, 20));
+        g.setFont(new Font("Arial", Font.BOLD, 10 * 2));
         g.drawString("TO MOVE UP",
                 menuX + MenuAssets.menuTextureBox / 10 + MenuAssets.legendKeyBox * 2,
                 menuY + MenuAssets.menuTextureBox / 2 + MenuAssets.legendKeyBox * 2);
 
         g.setColor(Color.WHITE);
-        g.setFont(new Font("Arial", Font.BOLD, 20));
+        g.setFont(new Font("Arial", Font.BOLD, 10 * 2));
         g.drawString("TO MOVE DOWN",
                 menuX + MenuAssets.menuTextureBox / 10 + MenuAssets.legendKeyBox * 2,
                 menuY + MenuAssets.menuTextureBox / 2 + MenuAssets.legendKeyBox * 3);

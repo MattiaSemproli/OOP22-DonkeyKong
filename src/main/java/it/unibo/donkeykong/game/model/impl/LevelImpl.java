@@ -1,17 +1,18 @@
 package it.unibo.donkeykong.game.model.impl;
 
-import java.util.Map;
-import java.awt.Color;
-import java.util.HashMap;
-import java.awt.image.BufferedImage;
-
-import it.unibo.donkeykong.utilities.Pair;
-import it.unibo.donkeykong.game.model.api.Level;
 import static it.unibo.donkeykong.utilities.Constants.Level.levelOne;
 import static it.unibo.donkeykong.utilities.Constants.Level.levelSprites;
 import static it.unibo.donkeykong.utilities.Constants.Level.levelSpritesLength;
 import static it.unibo.donkeykong.utilities.Constants.Window.TILES_DEFAULT_SIZE;
 import static it.unibo.donkeykong.utilities.ResourceFuncUtilities.loadSources;
+
+import java.awt.Color;
+import java.awt.image.BufferedImage;
+import java.util.HashMap;
+import java.util.Map;
+
+import it.unibo.donkeykong.game.model.api.Level;
+import it.unibo.donkeykong.utilities.Pair;
 
 /**
  * This class manages a new level.

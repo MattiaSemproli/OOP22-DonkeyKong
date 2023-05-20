@@ -4,6 +4,7 @@ import java.awt.Graphics;
 
 import it.unibo.donkeykong.controller.api.GameEngine;
 import it.unibo.donkeykong.controller.impl.GameController;
+import it.unibo.donkeykong.utilities.Constants;
 import it.unibo.donkeykong.utilities.ResourceFuncUtilities;
 
 /**
@@ -33,16 +34,14 @@ public class GameView implements GameEngine {
                                                                   tile.x, 
                                                                   tile.y, 
                                                                   tile.width, 
-                                                                  tile.height, 
-                                                                  null));
+                                                                  tile.height, null));
         this.gameController.getGame()
                            .getButtons()
                            .forEach(b -> g.drawImage(b.getButtonImage(), 
                                                      b.getButtonPos().getX(),
                                                      b.getButtonPos().getY(), 
                                                      b.getButtonDim().getX(), 
-                                                     b.getButtonDim().getY(), 
-                                                     null));
+                                                     b.getButtonDim().getY(), null));
         this.gameController.getGameplay().getEntities().forEach(entity -> {
             switch (entity.getEntityType()) {
                 case BARREL:
@@ -58,15 +57,27 @@ public class GameView implements GameEngine {
                 case LADDER:
                     break;
                 case MONKEY:
-                    g.drawImage(ResourceFuncUtilities.loadSources("dksingletry"), Math.round(entity.getPosition().getX()), Math.round(entity.getPosition().getY()), 120, 96,  null);
+                    g.drawImage(ResourceFuncUtilities.loadSources("dksingletry"), 
+                                Math.round(entity.getPosition().getX()), 
+                                Math.round(entity.getPosition().getY()), 
+                                Constants.Entity.monkeyWidth, 
+                                Constants.Entity.monkeyHeight,  null);
                     break;
                 case PLAYER:
-                    g.drawImage(ResourceFuncUtilities.loadSources("mariosingletry"), Math.round(entity.getPosition().getX()), Math.round(entity.getPosition().getY()), 48, 48, null);
+                    g.drawImage(ResourceFuncUtilities.loadSources("mariosingletry"), 
+                                Math.round(entity.getPosition().getX()), 
+                                Math.round(entity.getPosition().getY()), 
+                                Constants.Entity.playerDimension, 
+                                Constants.Entity.playerDimension, null);
                     break;
                 case POWER_UP:
                     break;
                 case PRINCESS:
-                    g.drawImage(ResourceFuncUtilities.loadSources("peachessingletry"), Math.round(entity.getPosition().getX()), Math.round(entity.getPosition().getY()), 48, 66, null);
+                    g.drawImage(ResourceFuncUtilities.loadSources("peachessingletry"), 
+                                Math.round(entity.getPosition().getX()), 
+                                Math.round(entity.getPosition().getY()), 
+                                Constants.Entity.princessWidth, 
+                                Constants.Entity.princessHeight, null);
                     break;
                 default:
                     break;

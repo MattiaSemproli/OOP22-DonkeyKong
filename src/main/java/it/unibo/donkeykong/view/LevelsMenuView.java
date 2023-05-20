@@ -39,20 +39,26 @@ public class LevelsMenuView implements GameEngine {
                                                            b.getButtonPos().getX(), 
                                                            b.getButtonPos().getY(),
                                                            b.getButtonDim().getX(),
-                                                           b.getButtonDim().getY(),
-                                                           null));
+                                                           b.getButtonDim().getY(), null));
         this.levelsMenuController.getLevelsMenu()
                                  .getAlternativeButtons()
                                  .forEach((rectangle, image) -> g.drawImage(image, 
                                                                             rectangle.x, 
                                                                             rectangle.y, 
                                                                             rectangle.width,
-                                                                            rectangle.height,
-                                                                            null));
+                                                                            rectangle.height, null));
     }
 
     private void drawBackgroundAssets(final Graphics g) {
-        g.drawImage(getMenuSources().get(MenuAssets.menuBackground), 0, 0, Window.GAME_WIDTH, Window.GAME_HEIGHT, null);
-        g.drawImage(getMenuSources().get(MenuAssets.menuTexture), menuX, menuY, MenuAssets.menuTextureBox, MenuAssets.menuTextureBox, null);
+        g.drawImage(getMenuSources().get(MenuAssets.menuBackground), 
+                    0, 
+                    0, 
+                    Window.GAME_WIDTH, 
+                    Window.GAME_HEIGHT, null);
+        g.drawImage(getMenuSources().get(MenuAssets.menuTexture), 
+                    menuX, 
+                    menuY, 
+                    MenuAssets.menuTextureBox, 
+                    MenuAssets.menuTextureBox, null);
     }
 }

@@ -1,7 +1,6 @@
 package it.unibo.donkeykong.game.model.impl;
 
 import static it.unibo.donkeykong.utilities.Constants.MenuAssets.menuX;
-import static it.unibo.donkeykong.utilities.Constants.MenuAssets.menuY;
 import static it.unibo.donkeykong.utilities.Constants.MenuAssets.SettingsAssets.getSettingsSources;
 
 import java.awt.Rectangle;
@@ -38,33 +37,36 @@ public class Pause implements ViewModel, VolumeSettings {
 
     private void createButtons() {
         this.backHome = new ButtonImpl(getSettingsSources().get(SettingsAssets.homeButton),
-                                       menuX + MenuAssets.menuTextureBox - SettingsAssets.homeButtonRightDistance, 
-                                       menuY + MenuAssets.menuTextureBox - SettingsAssets.homeButtonBottomDistance, 
+                                       MenuAssets.rightMenuBorder - SettingsAssets.homeButtonRightDistance, 
+                                       MenuAssets.bottomMenuBorder - SettingsAssets.homeButtonBottomDistance, 
                                        SettingsAssets.squareButtonSize, 
                                        SettingsAssets.squareButtonSize, Gamestate.MENU);
 
         this.backToPlay = new ButtonImpl(getSettingsSources().get(SettingsAssets.backToPlayButton),
                                          menuX + SettingsAssets.repeatButtonLeftDistance - SettingsAssets.squareButtonSize, 
-                                         menuY + MenuAssets.menuTextureBox - SettingsAssets.repeatButtonBottomDistance, 
+                                         MenuAssets.bottomMenuBorder - SettingsAssets.repeatButtonBottomDistance, 
                                          SettingsAssets.squareButtonSize, 
                                          SettingsAssets.squareButtonSize, Gamestate.PLAYING);
 
-        this.volumeButtons[SettingsAssets.volOnB] = new Rectangle(MenuAssets.menuTextureBox / 2 - SettingsAssets.squareButtonSize / 2, 
-                                                                  menuY + SettingsAssets.squareButtonSize, 
+        this.volumeButtons[SettingsAssets.volOnB] = new Rectangle(SettingsAssets.leftSettingsButtonX, 
+                                                                  SettingsAssets.muteButtonY, 
                                                                   SettingsAssets.squareButtonSize, 
                                                                   SettingsAssets.squareButtonSize);
-        this.volumeButtons[SettingsAssets.volOffB] = new Rectangle(MenuAssets.menuTextureBox / 2 + SettingsAssets.squareButtonSize * 2, 
-                                                                   menuY + SettingsAssets.squareButtonSize, 
+
+        this.volumeButtons[SettingsAssets.volOffB] = new Rectangle(SettingsAssets.rightSettingsButtonX, 
+                                                                   SettingsAssets.muteButtonY, 
                                                                    SettingsAssets.squareButtonSize, 
                                                                    SettingsAssets.squareButtonSize);
-        this.gameThemesButtons[Audio.getGameSources().get(Audio.gameMusic0)] = new Rectangle(MenuAssets.menuTextureBox / 2 - SettingsAssets.squareButtonSize / 2, 
-                                                                                     menuY + SettingsAssets.squareButtonSize * 3, 
-                                                                                     SettingsAssets.squareButtonSize, 
-                                                                                     SettingsAssets.squareButtonSize);
-        this.gameThemesButtons[Audio.getGameSources().get(Audio.gameMusic1)] = new Rectangle(MenuAssets.menuTextureBox / 2 + SettingsAssets.squareButtonSize * 2, 
-                                                                                     menuY + SettingsAssets.squareButtonSize * 3, 
-                                                                                     SettingsAssets.squareButtonSize, 
-                                                                                     SettingsAssets.squareButtonSize);
+
+        this.gameThemesButtons[Audio.getGameSources().get(Audio.gameMusic0)] = new Rectangle(SettingsAssets.leftSettingsButtonX, 
+                                                                                             SettingsAssets.musicsButtonY, 
+                                                                                             SettingsAssets.squareButtonSize, 
+                                                                                             SettingsAssets.squareButtonSize);
+
+        this.gameThemesButtons[Audio.getGameSources().get(Audio.gameMusic1)] = new Rectangle(SettingsAssets.rightSettingsButtonX, 
+                                                                                             SettingsAssets.musicsButtonY, 
+                                                                                             SettingsAssets.squareButtonSize, 
+                                                                                             SettingsAssets.squareButtonSize);
     }
 
     @Override
@@ -97,10 +99,14 @@ public class Pause implements ViewModel, VolumeSettings {
     @Override
     public final Map<Rectangle, BufferedImage> getAlternativeButtons() {
         return new HashMap<>() {{
-            put(volumeButtons[SettingsAssets.volOnB], getSettingsSources().get(SettingsAssets.roundedVolumeOn));
-            put(volumeButtons[SettingsAssets.volOffB], getSettingsSources().get(SettingsAssets.roundedVolumeOff));
-            put(gameThemesButtons[Audio.getGameSources().get(Audio.gameMusic0)], getSettingsSources().get(SettingsAssets.themesButton));
-            put(gameThemesButtons[Audio.getGameSources().get(Audio.gameMusic1)], getSettingsSources().get(SettingsAssets.themesButton));
+            put(volumeButtons[SettingsAssets.volOnB], 
+                getSettingsSources().get(SettingsAssets.roundedVolumeOn));
+            put(volumeButtons[SettingsAssets.volOffB], 
+                getSettingsSources().get(SettingsAssets.roundedVolumeOff));
+            put(gameThemesButtons[Audio.getGameSources().get(Audio.gameMusic0)], 
+                getSettingsSources().get(SettingsAssets.themesButton));
+            put(gameThemesButtons[Audio.getGameSources().get(Audio.gameMusic1)], 
+                getSettingsSources().get(SettingsAssets.themesButton));
         }};
     }
 }

@@ -20,8 +20,6 @@ public class SettingsController implements MouseListener, GameEngine {
 
     /**
      * Constructor.
-     * 
-     * @param application the application.
      */
     public SettingsController() {
         this.settingsView = new SettingsView(this);

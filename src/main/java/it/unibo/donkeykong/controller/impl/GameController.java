@@ -32,8 +32,6 @@ public class GameController implements GameEngine, MouseListener, KeyListener {
 
     /**
      * Constructor.
-     * 
-     * @param application linked to this controller.
      */
     public GameController() {
         this.gameView = new GameView(this);
@@ -46,7 +44,6 @@ public class GameController implements GameEngine, MouseListener, KeyListener {
 
     @Override
     public final void update() {
-        this.gameplay.getEntities().forEach(e -> e.getAllComponents().forEach(c -> c.update()));
         this.gameView.update();
     }
 

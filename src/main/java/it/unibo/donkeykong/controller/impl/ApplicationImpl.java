@@ -41,7 +41,7 @@ public class ApplicationImpl implements Application {
         Constants.MenuAssets.loadMenuSources();
         Constants.MenuAssets.SettingsAssets.loadSettingsSources();
         Constants.Audio.loadThemes();
-        Constants.Level.loadLevelSources();
+        Constants.MenuAssets.LevelAssets.loadLevelSources();
     }
 
     @Override

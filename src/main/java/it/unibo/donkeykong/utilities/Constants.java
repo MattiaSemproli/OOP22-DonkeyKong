@@ -58,6 +58,18 @@ public class Constants {
         public static final int levelsB = 1;
         public static final int settingsB = 0;
         public static final int quitB = 1;
+        public static final int bottomMenuBorder = menuY + menuTextureBox;
+        public static final int rightMenuBorder = menuX + menuTextureBox;
+        public static final int funcButtonX = menuX + (menuTextureBox - buttonWidth) / 2;
+        public static final int funcButtonsDistance = menuTextureBox / 10;
+        public static final int utilityButtonBorderDistanceY = menuTextureBox / 8 + buttonHeight;
+        public static final int utilityButtonLeftBorderDistanceX = menuTextureBox / 12;
+        public static final int utilityButtonRightBorderDistanceX = menuTextureBox / 12 + buttonWidth;
+        public static final int utilityButtonY = bottomMenuBorder - utilityButtonBorderDistanceY;
+        public static final int titleHeight = 125;
+        public static final int titleWidth = 250;
+        public static final int titleX = menuX + 115;
+        public static final int titleY = menuY - 65;
 
         private static final Map<String, BufferedImage> menuSources = new HashMap<>();
 
@@ -98,6 +110,11 @@ public class Constants {
             public static final int homeButtonBottomDistance = 150;
             public static final int repeatButtonLeftDistance = 125;
             public static final int repeatButtonBottomDistance = 150;
+            public static final int muteButtonY = menuY + squareButtonSize;
+            public static final int musicsButtonY = menuY + squareButtonSize * 3;
+            public static final int leftSettingsButtonX = menuTextureBox / 2 - squareButtonSize / 2;
+            public static final int rightSettingsButtonX = menuTextureBox / 2 + squareButtonSize * 2;
+            public static final int pauseBgOpacity = 128;
 
             private static final Map<String, BufferedImage> settingsSources = new HashMap<>();
 
@@ -114,6 +131,34 @@ public class Constants {
                 settingsSources.put(backToPlayButton, loadSources(backToPlayButton));
             }
         }
+
+        public static final class LevelAssets {
+            public static final int levelButtonHeight = 135;
+            public static final int levelButtonWidth = 192;
+            public static final int levelButtonDistance = 50;
+            public static final int levelButtonSpacingY = 15;
+            public static final int leftLevelButtonX = menuX + levelButtonDistance;
+            public static final int rightLevelButtonX = rightMenuBorder - levelButtonDistance - levelButtonWidth;
+            public static final int topLevelbuttonY = menuY + levelButtonDistance;
+            public static final int botLevelButtonY = topLevelbuttonY + levelButtonHeight + levelButtonSpacingY;
+            public static final String levelOneSource = "level_one";
+            public static final String levelTwoSource = "level_two";
+            public static final String levelThreeSource = "level_three";
+            public static final String levelFourSource = "level_four";
+
+            private static final Map<String, Pair<BufferedImage, Integer>> levelSources = new HashMap<>();
+
+            public static final Map<String, Pair<BufferedImage, Integer>> getLevelSources() {
+                return Collections.unmodifiableMap(levelSources);
+            }
+
+            public static final void loadLevelSources() {
+                levelSources.put(levelOneSource, new Pair<BufferedImage,Integer>(loadSources(levelOneSource), 0));
+                levelSources.put(levelTwoSource, new Pair<BufferedImage,Integer>(loadSources("empty_level"), 1));
+                levelSources.put(levelThreeSource, new Pair<BufferedImage,Integer>(loadSources("empty_level"), 2));
+                levelSources.put(levelFourSource, new Pair<BufferedImage,Integer>(loadSources("empty_level"), 3));
+            }        
+        }
     }
 
     public static final class Barrel {
@@ -128,10 +173,6 @@ public class Constants {
     public static final class Level {
         public static final String levelOne = "level_one_data";
         public static final String levelSprites = "platform_ladder";
-        public static final String levelOneSource = "level_one";
-        public static final String levelTwoSource = "level_two";
-        public static final String levelThreeSource = "level_three";
-        public static final String levelFourSource = "level_four";
         public static final int blackBlock = 0;
         public static final int platformBlock = 1;
         public static final int coloredLadder = 2;
@@ -141,19 +182,8 @@ public class Constants {
         public static final int blockWithDoubleLadder = 6;
         public static final int levelSpritesLength = 7;
         public static final int numLevelsButtons = 4;
-
-        private static final Map<String, Pair<BufferedImage, Integer>> levelSources = new HashMap<>();
-
-        public static final Map<String, Pair<BufferedImage, Integer>> getLevelSources() {
-            return Collections.unmodifiableMap(levelSources);
-        }
-
-        public static final void loadLevelSources() {
-            levelSources.put(levelOneSource, new Pair<BufferedImage,Integer>(loadSources(levelOneSource), 0));
-            levelSources.put(levelTwoSource, new Pair<BufferedImage,Integer>(loadSources("empty_level"), 1));
-            levelSources.put(levelThreeSource, new Pair<BufferedImage,Integer>(loadSources("empty_level"), 2));
-            levelSources.put(levelFourSource, new Pair<BufferedImage,Integer>(loadSources("empty_level"), 3));
-        }
+        public static final int platformBlockPadding = Math.round(4 * Window.SCALE);
+        public static final int princessPadding = 6;
     }
 
     public static final class Audio {
@@ -184,6 +214,19 @@ public class Constants {
             gameSources.put(gameMusic0, 0);
             gameSources.put(gameMusic1, 1);
         }
+    }
 
+    public static final class Entity {
+        public static final float levelOneStartingPlayerX = Window.SCALED_TILES_SIZE;
+        public static final float levelOneStartingPlayerY = Window.SCALED_TILES_SIZE * 12 - Level.platformBlockPadding;
+        public static final float levelOneStartingMonkeyX = Window.SCALED_TILES_SIZE / 2;
+        public static final float levelOneStartingMonkeyY = Window.SCALED_TILES_SIZE * 2 - Level.platformBlockPadding;
+        public static final float levelOneStartingPrincessX = Window.SCALED_TILES_SIZE * 5;
+        public static final float levelOneStartingPrincessY = Window.SCALED_TILES_SIZE - Level.princessPadding;
+        public static final int playerDimension = 48;
+        public static final int monkeyWidth = 120;
+        public static final int monkeyHeight = 96;
+        public static final int princessWidth = 48;
+        public static final int princessHeight = 66;
     }
 }

@@ -1,8 +1,10 @@
 package it.unibo.donkeykong.game.model.impl;
 
-import static it.unibo.donkeykong.utilities.Constants.Level.getLevelSources;
-import static it.unibo.donkeykong.utilities.Constants.MenuAssets.menuX;
-import static it.unibo.donkeykong.utilities.Constants.MenuAssets.menuY;
+import static it.unibo.donkeykong.utilities.Constants.MenuAssets.LevelAssets.getLevelSources;
+import static it.unibo.donkeykong.utilities.Constants.MenuAssets.LevelAssets.levelFourSource;
+import static it.unibo.donkeykong.utilities.Constants.MenuAssets.LevelAssets.levelOneSource;
+import static it.unibo.donkeykong.utilities.Constants.MenuAssets.LevelAssets.levelThreeSource;
+import static it.unibo.donkeykong.utilities.Constants.MenuAssets.LevelAssets.levelTwoSource;
 import static it.unibo.donkeykong.utilities.Constants.MenuAssets.SettingsAssets.getSettingsSources;
 
 import java.awt.Rectangle;
@@ -14,6 +16,7 @@ import java.util.Map;
 import it.unibo.donkeykong.game.model.api.ViewModel;
 import it.unibo.donkeykong.utilities.Constants.Level;
 import it.unibo.donkeykong.utilities.Constants.MenuAssets;
+import it.unibo.donkeykong.utilities.Constants.MenuAssets.LevelAssets;
 import it.unibo.donkeykong.utilities.Constants.MenuAssets.SettingsAssets;
 import it.unibo.donkeykong.utilities.Gamestate;
 
@@ -34,27 +37,27 @@ public class LevelsMenu implements ViewModel {
 
     private void createButtons() {
         this.backHome = new ButtonImpl(getSettingsSources().get(SettingsAssets.homeButton),
-                                       menuX + MenuAssets.menuTextureBox - SettingsAssets.homeButtonRightDistance, 
-                                       menuY + MenuAssets.menuTextureBox - SettingsAssets.homeButtonBottomDistance, 
+                                       MenuAssets.rightMenuBorder - SettingsAssets.homeButtonRightDistance, 
+                                       MenuAssets.bottomMenuBorder - SettingsAssets.homeButtonBottomDistance, 
                                        SettingsAssets.squareButtonSize, 
                                        SettingsAssets.squareButtonSize, Gamestate.MENU);
-        this.levelOneButton = new ButtonImpl(getLevelSources().get(Level.levelOneSource).getX(),
-                                             menuX + 50, 
-                                             menuY + 50, 
-                                             192, 
-                                             135, Gamestate.PLAYING);
-        this.levelsButtons[getLevelSources().get(Level.levelTwoSource).getY()] = new Rectangle(menuX + MenuAssets.menuTextureBox - 50 - 192, 
-                                                                                          menuY + 50, 
-                                                                                          192, 
-                                                                                          135);
-        this.levelsButtons[getLevelSources().get(Level.levelThreeSource).getY()] = new Rectangle(menuX + 50, 
-                                                                                            menuY + 50 + 135 + 15,
-                                                                                            192, 
-                                                                                            135);
-        this.levelsButtons[getLevelSources().get(Level.levelFourSource).getY()] = new Rectangle(menuX + MenuAssets.menuTextureBox - 50 - 192, 
-                                                                                           menuY + 50 + 135 + 15,
-                                                                                           192, 
-                                                                                           135);
+        this.levelOneButton = new ButtonImpl(getLevelSources().get(levelOneSource).getX(),
+                                             LevelAssets.leftLevelButtonX, 
+                                             LevelAssets.topLevelbuttonY, 
+                                             LevelAssets.levelButtonWidth, 
+                                             LevelAssets.levelButtonHeight, Gamestate.PLAYING);
+        this.levelsButtons[getLevelSources().get(levelTwoSource).getY()] = new Rectangle(LevelAssets.rightLevelButtonX, 
+                                                                                         LevelAssets.topLevelbuttonY, 
+                                                                                         LevelAssets.levelButtonWidth, 
+                                                                                         LevelAssets.levelButtonHeight);
+        this.levelsButtons[getLevelSources().get(levelThreeSource).getY()] = new Rectangle(LevelAssets.leftLevelButtonX, 
+                                                                                           LevelAssets.botLevelButtonY,
+                                                                                           LevelAssets.levelButtonWidth, 
+                                                                                           LevelAssets.levelButtonHeight);
+        this.levelsButtons[getLevelSources().get(levelFourSource).getY()] = new Rectangle(LevelAssets.rightLevelButtonX, 
+                                                                                          LevelAssets.botLevelButtonY,
+                                                                                          LevelAssets.levelButtonWidth, 
+                                                                                          LevelAssets.levelButtonHeight);
     }
 
     @Override
@@ -68,9 +71,12 @@ public class LevelsMenu implements ViewModel {
     @Override
     public final Map<Rectangle, BufferedImage> getAlternativeButtons() {
         return new HashMap<>() {{
-            put(levelsButtons[getLevelSources().get(Level.levelTwoSource).getY()], getLevelSources().get(Level.levelTwoSource).getX());
-            put(levelsButtons[getLevelSources().get(Level.levelThreeSource).getY()], getLevelSources().get(Level.levelThreeSource).getX());
-            put(levelsButtons[getLevelSources().get(Level.levelFourSource).getY()], getLevelSources().get(Level.levelFourSource).getX());
+            put(levelsButtons[getLevelSources().get(levelTwoSource).getY()], 
+                getLevelSources().get(levelTwoSource).getX());
+            put(levelsButtons[getLevelSources().get(levelThreeSource).getY()], 
+                getLevelSources().get(levelThreeSource).getX());
+            put(levelsButtons[getLevelSources().get(levelFourSource).getY()], 
+                getLevelSources().get(levelFourSource).getX());
         }};
     }
 }
