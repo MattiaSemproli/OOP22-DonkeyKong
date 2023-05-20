@@ -31,7 +31,7 @@ public final class AudioUtilities {
      */
     public static void playSoundtrack(final String fileName) {
         if (filePlaying != null) {
-            if (filePlaying.equals(fileName)) {
+            if (!filePlaying.equals(fileName)) {
                 stopSoundtrack();
                 startSong(fileName);
             }
