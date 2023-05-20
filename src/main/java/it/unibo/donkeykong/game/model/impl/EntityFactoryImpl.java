@@ -36,7 +36,7 @@ public class EntityFactoryImpl implements EntityFactory {
     @Override
     public final Entity generateBarrel(final Pair<Float, Float> position) {
         return new EntityImpl(Type.BARREL, position, this.gameplay)
-                        .addComponent(new CollisionComponent(position.getX(), position.getY(), false));
+                    .addComponent(new CollisionComponent(position.getX(), position.getY(), false));
     }
 
     @Override

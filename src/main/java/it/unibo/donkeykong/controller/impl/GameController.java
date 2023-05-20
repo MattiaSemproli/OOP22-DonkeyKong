@@ -24,7 +24,7 @@ public class GameController implements GameEngine, MouseListener, KeyListener {
     private final GameView gameView;
     private final Game game;
     private final List<KeyEvent> keyInputs;
-    private GameplayImpl gameplay;
+    private final GameplayImpl gameplay;
 
     /**
      * Constructor.
@@ -36,12 +36,6 @@ public class GameController implements GameEngine, MouseListener, KeyListener {
         this.gameView = new GameView(this);
         this.game = new Game();
         this.keyInputs = new ArrayList<>();
-    }
-
-    /**
-     * Create a new Gameplay.
-     */
-    public void startGame() {
         this.gameplay = new GameplayImpl(this);
     }
 

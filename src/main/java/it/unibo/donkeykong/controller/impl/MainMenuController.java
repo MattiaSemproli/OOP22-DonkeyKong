@@ -56,14 +56,10 @@ public class MainMenuController implements MouseListener, GameEngine {
         ButtonFuncUtilities.getButtonPressed(e, this.menu.getButtons()).ifPresent(b -> {
             if (b.getButtonGamestate().equals(Gamestate.PLAYING)) {
                 AudioUtilities.playSoundtrack(Audio.gameMusic0);
-                this.application.getGameController().startGame();
+                this.application.startGameController();
             }
             b.applyGamestate();
         });
-        if (Gamestate.getGamestate().equals(Gamestate.PLAYING)) {
-            AudioUtilities.playSoundtrack(Audio.gameMusic0);
-            this.application.getGameController().startGame();
-        }
     }
 
     @Override

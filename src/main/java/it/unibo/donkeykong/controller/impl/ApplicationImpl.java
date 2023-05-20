@@ -48,7 +48,6 @@ public class ApplicationImpl implements Application {
     @Override
     public final void startGameController() {
         this.gameController = new GameController(this);
-        this.gameController.startGame();
     }
 
     @Override
