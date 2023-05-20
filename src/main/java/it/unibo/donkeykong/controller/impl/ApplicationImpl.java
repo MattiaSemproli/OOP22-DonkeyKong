@@ -19,7 +19,6 @@ public class ApplicationImpl implements Application {
     private GameController gameController;
     private PauseController pauseController;
     private LevelsMenuController levelsMenuController;
-    private Game game;
 
     /**
      * Constructor.
@@ -47,10 +46,15 @@ public class ApplicationImpl implements Application {
     }
 
     @Override
+    public final void startGameController() {
+        this.gameController = new GameController(this);
+        this.gameController.startGame();
+    }
+
+    @Override
     public final void initialize() {
         this.mainMenuController = new MainMenuController(this);
         this.settingsController = new SettingsController(this);
-        this.gameController = new GameController(this);
         this.pauseController = new PauseController(this);
         this.levelsMenuController = new LevelsMenuController(this);
     }
@@ -80,8 +84,4 @@ public class ApplicationImpl implements Application {
         return this.levelsMenuController;
     }
 
-    @Override
-    public final Game getGame() {
-        return this.game;
-    }
 }
