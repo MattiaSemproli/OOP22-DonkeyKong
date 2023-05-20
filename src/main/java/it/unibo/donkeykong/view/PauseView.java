@@ -1,6 +1,6 @@
 package it.unibo.donkeykong.view;
 
-import static it.unibo.donkeykong.utilities.Constants.MenuAssets.menuSources;
+import static it.unibo.donkeykong.utilities.Constants.MenuAssets.getMenuSources;
 import static it.unibo.donkeykong.utilities.Constants.MenuAssets.menuX;
 import static it.unibo.donkeykong.utilities.Constants.MenuAssets.menuY;
 
@@ -40,7 +40,7 @@ public final class PauseView implements GameEngine {
             pause = (Graphics2D) g;
             pause.setColor(new Color(0, 0, 0, 128));
             pause.fillRect(0, 0, Window.GAME_WIDTH, Window.GAME_HEIGHT);
-            pause.drawImage(menuSources.get(MenuAssets.menuTexture), menuX, menuY, MenuAssets.menuTextureBox, MenuAssets.menuTextureBox, 
+            pause.drawImage(getMenuSources().get(MenuAssets.menuTexture), menuX, menuY, MenuAssets.menuTextureBox, MenuAssets.menuTextureBox, 
                             null);
             this.pauseController.getPause()
                                 .getButtons()

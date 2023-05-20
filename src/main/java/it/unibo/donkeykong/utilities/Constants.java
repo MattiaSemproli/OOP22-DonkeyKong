@@ -3,6 +3,7 @@ package it.unibo.donkeykong.utilities;
 import static it.unibo.donkeykong.utilities.ResourceFuncUtilities.loadSources;
 
 import java.awt.image.BufferedImage;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -58,7 +59,11 @@ public class Constants {
         public static final int settingsB = 0;
         public static final int quitB = 1;
 
-        public static final Map<String, BufferedImage> menuSources = new HashMap<>();
+        private static final Map<String, BufferedImage> menuSources = new HashMap<>();
+
+        public static final Map<String, BufferedImage> getMenuSources() {
+            return Collections.unmodifiableMap(menuSources);
+        }
 
         public static final void loadMenuSources() {
             menuSources.put(menuBackground, loadSources(menuBackground));
@@ -94,7 +99,11 @@ public class Constants {
             public static final int repeatButtonLeftDistance = 125;
             public static final int repeatButtonBottomDistance = 150;
 
-            public static final Map<String, BufferedImage> settingsSources = new HashMap<>();
+            private static final Map<String, BufferedImage> settingsSources = new HashMap<>();
+
+            public static final Map<String, BufferedImage> getSettingsSources() {
+                return Collections.unmodifiableMap(settingsSources);
+            }
 
             public static final void loadSettingsSources() {
                 settingsSources.put(homeButton, loadSources(homeButton));
@@ -133,7 +142,11 @@ public class Constants {
         public static final int levelSpritesLength = 7;
         public static final int numLevelsButtons = 4;
 
-        public static final Map<String, Pair<BufferedImage, Integer>> levelSources = new HashMap<>();
+        private static final Map<String, Pair<BufferedImage, Integer>> levelSources = new HashMap<>();
+
+        public static final Map<String, Pair<BufferedImage, Integer>> getLevelSources() {
+            return Collections.unmodifiableMap(levelSources);
+        }
 
         public static final void loadLevelSources() {
             levelSources.put(levelOneSource, new Pair<BufferedImage,Integer>(loadSources(levelOneSource), 0));
@@ -152,8 +165,16 @@ public class Constants {
         public final static int numGameThemesButtons = 2;
         public final static float baseVolume = 0.5f;
     
-        public static final Map<String, Integer> themeSources = new HashMap<>();
-        public static final Map<String, Integer> gameSources = new HashMap<>();
+        private static final Map<String, Integer> themeSources = new HashMap<>();
+        private static final Map<String, Integer> gameSources = new HashMap<>();
+
+        public static final Map<String, Integer> getThemeSources() {
+            return Collections.unmodifiableMap(themeSources);
+        }
+
+        public static final Map<String, Integer> getGameSources() {
+            return Collections.unmodifiableMap(gameSources);
+        }
 
         public static final void loadThemes() {
             themeSources.put(menuMusic0, 0);

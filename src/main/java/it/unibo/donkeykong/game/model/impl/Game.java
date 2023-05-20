@@ -1,7 +1,7 @@
 package it.unibo.donkeykong.game.model.impl;
 
 import static it.unibo.donkeykong.utilities.Constants.Level.levelOne;
-import static it.unibo.donkeykong.utilities.Constants.MenuAssets.SettingsAssets.settingsSources;
+import static it.unibo.donkeykong.utilities.Constants.MenuAssets.SettingsAssets.getSettingsSources;
 import static it.unibo.donkeykong.utilities.Constants.Window.SCALED_TILES_SIZE;
 
 import java.awt.Rectangle;
@@ -32,7 +32,7 @@ public class Game implements ViewModel {
     public Game() {
         this.level = new LevelImpl(levelOne);
         this.mapDataLevel();
-        this.settingsPauseButton = new ButtonImpl(settingsSources.get(SettingsAssets.roundedSettingsButton), 
+        this.settingsPauseButton = new ButtonImpl(getSettingsSources().get(SettingsAssets.roundedSettingsButton), 
                                                   Window.GAME_WIDTH - SCALED_TILES_SIZE - Window.TILES_DEFAULT_SIZE, 
                                                   Window.TILES_DEFAULT_SIZE, 
                                                   SCALED_TILES_SIZE, 
