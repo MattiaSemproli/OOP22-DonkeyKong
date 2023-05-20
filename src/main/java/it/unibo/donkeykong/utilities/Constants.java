@@ -163,8 +163,9 @@ public class Constants {
         public final static String gameMusic1 = "game1.wav";
         public final static int numThemesButtons = 2;
         public final static int numGameThemesButtons = 2;
-        public final static float baseVolume = 0.5f;
-    
+        public final static float baseVolume = 0.03f;
+        public final static int gainMultiplier = 20;
+
         private static final Map<String, Integer> themeSources = new HashMap<>();
         private static final Map<String, Integer> gameSources = new HashMap<>();
 

@@ -8,6 +8,8 @@ import javax.sound.sampled.BooleanControl;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.FloatControl;
 
+import it.unibo.donkeykong.utilities.Constants.Audio;
+
 /**
  * Static class that manages the audio.
  */
@@ -51,6 +53,9 @@ public final class AudioUtilities {
 
             clip = AudioSystem.getClip();
             clip.open(audioInputStream);
+
+            FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+            gainControl.setValue((float) (Math.log10(Audio.baseVolume) * Audio.gainMultiplier));
 
             clip.loop(Clip.LOOP_CONTINUOUSLY);
 

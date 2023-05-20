@@ -2,12 +2,9 @@ package it.unibo.donkeykong.view;
 
 import java.awt.Graphics;
 
-import javax.swing.ImageIcon;
-
 import it.unibo.donkeykong.controller.api.GameEngine;
 import it.unibo.donkeykong.controller.impl.GameController;
 import it.unibo.donkeykong.utilities.ResourceFuncUtilities;
-import it.unibo.donkeykong.utilities.Constants.Window;
 
 /**
  * Game view.
