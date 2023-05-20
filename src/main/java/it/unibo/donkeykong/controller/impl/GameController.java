@@ -1,12 +1,15 @@
 package it.unibo.donkeykong.controller.impl;
 
 import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.Timer;
 
 import it.unibo.donkeykong.controller.api.GameEngine;
 import it.unibo.donkeykong.game.model.impl.Game;
@@ -20,23 +23,25 @@ import it.unibo.donkeykong.view.GameView;
  */
 public class GameController implements GameEngine, MouseListener, KeyListener {
 
-    private final ApplicationImpl application;
     private final GameView gameView;
     private final Game game;
     private final List<KeyEvent> keyInputs;
     private final GameplayImpl gameplay;
+    private Timer timer;
+    private int seconds;
 
     /**
      * Constructor.
      * 
      * @param application linked to this controller.
      */
-    public GameController(final ApplicationImpl application) {
-        this.application = application;
+    public GameController() {
         this.gameView = new GameView(this);
         this.game = new Game();
         this.keyInputs = new ArrayList<>();
         this.gameplay = new GameplayImpl(this);
+        this.initializeTimer();
+        this.startTimer();
     }
 
     @Override
@@ -48,6 +53,37 @@ public class GameController implements GameEngine, MouseListener, KeyListener {
     @Override
     public final void draw(final Graphics g) {
         this.gameView.draw(g);
+    }
+
+    @Override
+    public final void mousePressed(final MouseEvent e) {
+        ButtonFuncUtilities.getButtonPressed(e, this.game.getButtons()).ifPresent(b -> b.applyGamestate());
+        if (Gamestate.getGamestate().equals(Gamestate.PAUSE)) {
+            this.pauseTimer();
+        }
+    }
+
+    @Override
+    public final void keyPressed(final KeyEvent e) { 
+        if (e.getKeyCode() != KeyEvent.VK_ESCAPE) {
+            if (e.getKeyCode() == KeyEvent.VK_A
+                || e.getKeyCode() == KeyEvent.VK_D
+                || e.getKeyCode() == KeyEvent.VK_SPACE) {
+                this.keyInputs.add(e);
+            }
+        }
+    }
+
+    @Override
+    public final void keyReleased(final KeyEvent e) {
+        if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+            Gamestate.setGamestate(Gamestate.PAUSE);
+            this.pauseTimer();
+        } else {
+            if (this.keyInputs.contains(e)) {
+                this.keyInputs.remove(e);
+            }
+        }
     }
 
     /**
@@ -66,33 +102,6 @@ public class GameController implements GameEngine, MouseListener, KeyListener {
         return this.gameplay;
     }
 
-    @Override
-    public final void mousePressed(final MouseEvent e) {
-        ButtonFuncUtilities.getButtonPressed(e, this.game.getButtons()).ifPresent(b -> b.applyGamestate());
-    }
-
-    @Override
-    public final void keyPressed(final KeyEvent e) { 
-        if (e.getKeyCode() != KeyEvent.VK_ESCAPE) {
-            if (e.getKeyCode() == KeyEvent.VK_A
-                || e.getKeyCode() == KeyEvent.VK_D
-                || e.getKeyCode() == KeyEvent.VK_SPACE) {
-                this.keyInputs.add(e);
-            }
-        }
-    }
-
-    @Override
-    public final void keyReleased(final KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-            Gamestate.setGamestate(Gamestate.PAUSE);
-        } else {
-            if (this.keyInputs.contains(e)) {
-                this.keyInputs.remove(e);
-            }
-        }
-    }
-
     /**
      * Get all the inputs.
      * 
@@ -100,6 +109,32 @@ public class GameController implements GameEngine, MouseListener, KeyListener {
      */
     public final ArrayList<KeyEvent> getInputs() {
         return new ArrayList<>(this.keyInputs);
+    }
+
+    private void initializeTimer() {
+        this.timer = new Timer(1000, new ActionListener() {
+            @Override
+            public void actionPerformed(final ActionEvent e) {
+                seconds++;
+            }
+        });
+    }
+
+    public void startTimer() {
+        this.timer.start();
+    }
+
+    public void stopTimer() {
+        this.timer.stop();
+        this.seconds = 0;
+    }
+
+    public void pauseTimer() {
+        this.timer.stop();
+    }
+
+    public int getSeconds() {
+        return this.seconds;
     }
 
     @Override

@@ -46,13 +46,13 @@ public class ApplicationImpl implements Application {
 
     @Override
     public final void startGameController() {
-        this.gameController = new GameController(this);
+        this.gameController = new GameController();
     }
 
     @Override
     public final void initialize() {
         this.mainMenuController = new MainMenuController(this);
-        this.settingsController = new SettingsController(this);
+        this.settingsController = new SettingsController();
         this.pauseController = new PauseController(this);
         this.levelsMenuController = new LevelsMenuController(this);
     }

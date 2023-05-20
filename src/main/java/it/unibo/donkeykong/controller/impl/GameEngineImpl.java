@@ -71,6 +71,9 @@ public class GameEngineImpl implements GameEngine, Runnable {
             if (System.currentTimeMillis() - lastCheck >= 1000) {
                 lastCheck = System.currentTimeMillis();
                 System.out.println("FPS: " + frames + " | UPS: " + updates);
+                /*if (Gamestate.getGamestate().equals(Gamestate.PLAYING) || Gamestate.getGamestate().equals(Gamestate.PAUSE)) {
+                    System.out.println("Timer: " + this.applicationImpl.getGameController().getSeconds());
+                }*/
                 frames = 0;
                 updates = 0;
             }

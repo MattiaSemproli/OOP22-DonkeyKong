@@ -58,6 +58,10 @@ public class PauseController implements MouseListener, KeyListener, GameEngine  
         ButtonFuncUtilities.getButtonPressed(e, this.pause.getButtons()).ifPresent(b -> b.applyGamestate());
         if (Gamestate.getGamestate().equals(Gamestate.MENU)) {
             AudioUtilities.playSoundtrack(Audio.menuMusic0);
+            this.application.getGameController().stopTimer();
+        }
+        if (Gamestate.getGamestate().equals(Gamestate.PLAYING)) {
+            this.application.getGameController().startTimer();
         }
         this.pause.mute(e).ifPresent(mute -> AudioUtilities.setMuted(mute));
         this.pause.setTheme(e);
@@ -67,6 +71,9 @@ public class PauseController implements MouseListener, KeyListener, GameEngine  
     public final void keyReleased(final KeyEvent e) {
         if (Gamestate.getGamestate().equals(Gamestate.PAUSE) && e.getKeyCode() == KeyEvent.VK_ESCAPE) {
             Gamestate.setGamestate(Gamestate.PLAYING);
+        }
+        if (Gamestate.getGamestate().equals(Gamestate.PLAYING)) {
+            this.application.getGameController().startTimer();
         }
     }
 
