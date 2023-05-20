@@ -219,7 +219,7 @@ public class Constants {
     public static final class Entity {
         public static final float levelOneStartingPlayerX = Window.SCALED_TILES_SIZE;
         public static final float levelOneStartingPlayerY = Window.SCALED_TILES_SIZE * 12 - Level.platformBlockPadding;
-        public static final float levelOneStartingMonkeyX = Window.SCALED_TILES_SIZE / 2;
+        public static final float levelOneStartingMonkeyX = Window.SCALED_TILES_SIZE / 2f;
         public static final float levelOneStartingMonkeyY = Window.SCALED_TILES_SIZE * 2 - Level.platformBlockPadding;
         public static final float levelOneStartingPrincessX = Window.SCALED_TILES_SIZE * 5;
         public static final float levelOneStartingPrincessY = Window.SCALED_TILES_SIZE - Level.princessPadding;

@@ -1,12 +1,15 @@
 package it.unibo.donkeykong.utilities;
 
 import java.io.File;
+import java.io.IOException;
 
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.BooleanControl;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.FloatControl;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 
 import it.unibo.donkeykong.utilities.Constants.Audio;
 
@@ -28,7 +31,7 @@ public final class AudioUtilities {
      */
     public static void playSoundtrack(final String fileName) {
         if (filePlaying != null) {
-            if (filePlaying != fileName) {
+            if (filePlaying.equals(fileName)) {
                 stopSoundtrack();
                 startSong(fileName);
             }
@@ -63,7 +66,7 @@ public final class AudioUtilities {
 
             filePlaying = fileName;
             isMuted = false;
-        } catch (Exception e) {
+        } catch (IOException | LineUnavailableException | UnsupportedAudioFileException e) {
             e.printStackTrace();
         }
     }
