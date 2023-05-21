@@ -1,4 +1,4 @@
-package it.unibo.donkeykong.game.ecs.impl;
+package it.unibo.donkeykong.game.model.impl;
 
 import it.unibo.donkeykong.game.ecs.api.Component;
 import it.unibo.donkeykong.game.model.api.Entity;
@@ -13,14 +13,14 @@ public abstract class AbstractComponent implements Component {
     /**
      * @return entity related to the component.
      */
-    public Entity getEntity() {
+    protected Entity getEntity() {
         return this.entity;
     }
 
     /**
      * @param entity entity to set to the component.
      */
-    public void setEntity(final Entity entity) {
+    protected void setEntity(final Entity entity) {
         this.entity = entity;
     }
 }

@@ -3,6 +3,7 @@ package it.unibo.donkeykong.game.ecs.impl;
 import java.awt.geom.Rectangle2D;
 
 import it.unibo.donkeykong.game.model.api.Entity;
+import it.unibo.donkeykong.game.model.impl.AbstractComponent;
 import it.unibo.donkeykong.utilities.Constants;
 import it.unibo.donkeykong.utilities.Constants.Window;
 import it.unibo.donkeykong.utilities.Pair;
@@ -44,7 +45,7 @@ public class CollisionComponent extends AbstractComponent {
     private void checkOutField() {
         final Entity entity = this.getEntity();
         Pair<Float,Float> nextPos = null;
-        float check = 0;
+        float check;
         if (entity.getEntityType() == Type.PLAYER) {
             if ((check = checkWall(hitbox.x + hitbox.width, Window.GAME_WIDTH)) > 0) {
                 nextPos = new Pair<>(entity.getPosition().getX() - check, entity.getPosition().getY());
@@ -93,7 +94,7 @@ public class CollisionComponent extends AbstractComponent {
                 hitbox = new Rectangle2D.Float(x, y, width, height);
                 break;
             case POWER_UP:
-                hitbox = new Rectangle2D.Float(x, y, width, height);
+                hitbox = new Rectangle2D.Float(x + 1, y + 1, width, height);
                 break;
             case BLOCK:
             case BLOCK_LADDER_DOWN:

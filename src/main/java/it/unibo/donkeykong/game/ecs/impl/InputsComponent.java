@@ -3,6 +3,7 @@ package it.unibo.donkeykong.game.ecs.impl;
 import java.awt.event.KeyEvent;
 import java.util.Optional;
 
+import it.unibo.donkeykong.game.model.impl.AbstractComponent;
 import it.unibo.donkeykong.utilities.Direction;
 
 /**

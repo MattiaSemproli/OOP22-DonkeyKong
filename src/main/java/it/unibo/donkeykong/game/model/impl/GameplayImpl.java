@@ -89,7 +89,7 @@ public class GameplayImpl implements Gameplay, GameEngine {
 
     @Override
     public final ArrayList<Entity> getEntities() {
-        return this.entities;
+        return new ArrayList<>(this.entities);
     }
 
     @Override

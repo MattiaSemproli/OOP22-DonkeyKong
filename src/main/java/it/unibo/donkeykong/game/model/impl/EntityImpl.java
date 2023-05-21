@@ -5,7 +5,6 @@ import java.util.Optional;
 import java.util.Set;
 
 import it.unibo.donkeykong.game.ecs.api.Component;
-import it.unibo.donkeykong.game.ecs.impl.AbstractComponent;
 import it.unibo.donkeykong.game.model.api.Entity;
 import it.unibo.donkeykong.utilities.Constants;
 import it.unibo.donkeykong.utilities.Pair;
@@ -50,7 +49,7 @@ public class EntityImpl implements Entity {
             case PLAYER:
                 this.width = Window.SCALED_TILES_SIZE;
                 this.height = Window.SCALED_TILES_SIZE;
-                this.speed = 2f;
+                this.speed = 1f;
                 break;
             case PRINCESS:
                 this.width = Constants.Entity.princessWidth;
@@ -58,8 +57,8 @@ public class EntityImpl implements Entity {
                 this.speed = 0;
                 break;
             case POWER_UP:
-                this.width = Window.SCALED_TILES_SIZE;
-                this.height = Window.SCALED_TILES_SIZE;
+                this.width = Window.SCALED_TILES_SIZE + 1;
+                this.height = Window.SCALED_TILES_SIZE + 1;
                 this.speed = 0;
                 break;
             case BLOCK:

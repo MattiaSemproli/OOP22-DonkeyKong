@@ -20,7 +20,8 @@ plugins {
      * In order to create it, launch the "shadowJar" task.
      * The runnable jar will be found in build/libs/projectname-all.jar
      */
-    id("org.danilopianini.gradle-java-qa") version "0.41.0"
+    id("com.github.johnrengelman.shadow") version "7.0.0"
+    id("org.danilopianini.gradle-java-qa") version "1.9.0"
 
 }
 
@@ -38,18 +39,11 @@ dependencies {
     // JUnit API and testing engine
     testImplementation("org.junit.jupiter:junit-jupiter-api:$jUnitVersion")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:$jUnitVersion")
-
-    // This dependency is used by the application.
-    implementation("com.google.guava:guava:30.1.1-jre")
 }
 
 application {
     // Define the main class for the application.
     mainClass.set("it.unibo.donkeykong.game.Donkeykong")
-}
-
-spotbugs {
-    omitVisitors.set(listOf("FindReturnRef"))
 }
 
 tasks.named<Test>("test") {
