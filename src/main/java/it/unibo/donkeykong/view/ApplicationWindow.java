@@ -1,5 +1,8 @@
 package it.unibo.donkeykong.view;
 
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowFocusListener;
+
 import javax.swing.JFrame;
 
 /**
@@ -24,6 +27,17 @@ public class ApplicationWindow {
     jframe.setVisible(true);
     jframe.setFocusable(true);
     jframe.requestFocus();
-    jframe.setLocationRelativeTo(null);
+    jframe.addWindowFocusListener(new WindowFocusListener() {
+
+      @Override
+      public void windowGainedFocus(WindowEvent e) {
+      }
+
+      @Override
+      public void windowLostFocus(WindowEvent e) {
+        dkPanel.getApplication().windowFocusLost();
+      }
+      
+    });
   }
 }
