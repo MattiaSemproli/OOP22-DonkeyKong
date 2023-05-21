@@ -2,14 +2,9 @@ package it.unibo.donkeykong.game.ecs.impl;
 
 import java.awt.geom.Rectangle2D;
 
-import javax.swing.text.Position;
-
-import com.google.common.base.Optional;
-
 import it.unibo.donkeykong.game.model.api.Entity;
-import it.unibo.donkeykong.utilities.Constants.Window;
 import it.unibo.donkeykong.utilities.Constants;
-import it.unibo.donkeykong.utilities.Direction;
+import it.unibo.donkeykong.utilities.Constants.Window;
 import it.unibo.donkeykong.utilities.Pair;
 import it.unibo.donkeykong.utilities.Type;
 
