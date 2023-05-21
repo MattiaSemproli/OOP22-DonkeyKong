@@ -8,6 +8,7 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import javax.swing.Timer;
 
@@ -25,7 +26,7 @@ public class GameController implements GameEngine, MouseListener, KeyListener {
 
     private final GameView gameView;
     private final Game game;
-    private final List<KeyEvent> keyInputs;
+    private final List<Integer> keyInputs;
     private final GameplayImpl gameplay;
     private Timer timer;
     private int seconds;
@@ -57,6 +58,7 @@ public class GameController implements GameEngine, MouseListener, KeyListener {
     public final void mousePressed(final MouseEvent e) {
         ButtonFuncUtilities.getButtonPressed(e, this.game.getButtons()).ifPresent(b -> b.applyGamestate());
         if (Gamestate.getGamestate().equals(Gamestate.PAUSE)) {
+            this.keyInputs.removeAll(keyInputs);
             this.pauseTimer();
         }
     }
@@ -65,9 +67,11 @@ public class GameController implements GameEngine, MouseListener, KeyListener {
     public final void keyPressed(final KeyEvent e) { 
         if (e.getKeyCode() != KeyEvent.VK_ESCAPE) {
             if (e.getKeyCode() == KeyEvent.VK_A
+                || e.getKeyCode() == KeyEvent.VK_LEFT
                 || e.getKeyCode() == KeyEvent.VK_D
+                || e.getKeyCode() == KeyEvent.VK_RIGHT
                 || e.getKeyCode() == KeyEvent.VK_SPACE) {
-                this.keyInputs.add(e);
+                this.keyInputs.add(0, e.getKeyCode());
             }
         }
     }
@@ -76,10 +80,11 @@ public class GameController implements GameEngine, MouseListener, KeyListener {
     public final void keyReleased(final KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
             Gamestate.setGamestate(Gamestate.PAUSE);
+            this.keyInputs.removeAll(keyInputs);
             this.pauseTimer();
         } else {
-            if (this.keyInputs.contains(e)) {
-                this.keyInputs.remove(e);
+            if (this.keyInputs.contains(e.getKeyCode())) {
+                this.keyInputs.removeAll(Collections.singleton(e.getKeyCode()));
             }
         }
     }
@@ -107,7 +112,7 @@ public class GameController implements GameEngine, MouseListener, KeyListener {
      * 
      * @return list of keys pressed.
      */
-    public final ArrayList<KeyEvent> getInputs() {
+    public final ArrayList<Integer> getInputs() {
         return new ArrayList<>(this.keyInputs);
     }
 
