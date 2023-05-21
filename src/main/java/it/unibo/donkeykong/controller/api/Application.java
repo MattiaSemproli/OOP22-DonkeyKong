@@ -13,6 +13,11 @@ import it.unibo.donkeykong.controller.impl.SettingsController;
 public interface Application {
 
     /**
+     * Call method in gamecontroller (if exists) when the window lose the focus.
+     */
+    void windowFocusLost();
+
+    /**
      * Get GameEngine.
      * 
      * @return linked GameEngine.

@@ -3,6 +3,7 @@ package it.unibo.donkeykong.controller.impl;
 import it.unibo.donkeykong.controller.api.Application;
 import it.unibo.donkeykong.utilities.AudioUtilities;
 import it.unibo.donkeykong.utilities.Constants;
+import it.unibo.donkeykong.utilities.Gamestate;
 import it.unibo.donkeykong.view.ApplicationPanel;
 import it.unibo.donkeykong.view.ApplicationWindow;
 
@@ -29,7 +30,14 @@ public class ApplicationImpl implements Application {
         this.dkPanel = new ApplicationPanel(this);
         this.gameEngine = new GameEngineImpl(dkPanel, this);
         new ApplicationWindow(dkPanel);
-        dkPanel.requestFocus();
+        this.dkPanel.requestFocusInWindow();
+    }
+
+    @Override
+    public final void windowFocusLost() {      
+        if (this.gameController != null) {
+            this.gameController.resetKeysOnFocusLost();
+        }
     }
 
     @Override
