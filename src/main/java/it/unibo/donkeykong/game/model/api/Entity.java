@@ -51,4 +51,19 @@ public interface Entity {
      * @return the gameplay where the entity is
      */
     GameplayImpl getGameplay();
+
+    /**
+     * @return the entity's width
+     */
+    int getWidth();
+
+    /**
+     * @return the entity's height
+     */
+    int getHeight();
+
+    /**
+     * @return the entity's speed
+     */
+    float getSpeed();
 }

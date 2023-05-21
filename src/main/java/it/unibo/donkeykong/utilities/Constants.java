@@ -183,6 +183,7 @@ public class Constants {
         public static final int levelSpritesLength = 7;
         public static final int numLevelsButtons = 4;
         public static final int platformBlockPadding = Math.round(4 * Window.SCALE);
+        public static final int ladderPadding = Math.round(3 * Window.SCALE);
         public static final int princessPadding = 6;
     }
 
