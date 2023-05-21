@@ -17,6 +17,13 @@ public interface Gameplay {
     ArrayList<Entity> getEntities();
 
     /**
+     * Remove entity from game.
+     * 
+     * @param entity linked entity to be removed.
+     */
+    void removeEntity(Entity entity);
+
+    /**
      * Get GameController.
      * 
      * @return linked GameController.

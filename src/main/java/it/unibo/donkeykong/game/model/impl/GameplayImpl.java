@@ -96,4 +96,9 @@ public class GameplayImpl implements Gameplay, GameEngine {
     public final GameController getController() {
         return this.controller;
     }
+
+    @Override
+    public void removeEntity(Entity entity) {
+        this.entities.remove(entity);
+    }
 }
