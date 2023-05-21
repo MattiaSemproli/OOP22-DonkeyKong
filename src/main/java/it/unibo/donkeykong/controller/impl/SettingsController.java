@@ -47,7 +47,7 @@ public class SettingsController implements MouseListener, GameEngine {
 
     @Override
     public final void mousePressed(final MouseEvent e) {
-        ButtonFuncUtilities.getButtonPressed(e, this.settings.getButtons()).ifPresent(b -> b.applyGamestate());
+        ButtonFuncUtilities.getButtonPressed(e, this.settings.getButtons().keySet()).ifPresent(b -> b.applyGamestate());
         this.settings.mute(e).ifPresent(mute -> AudioUtilities.setMuted(mute));
         this.settings.setTheme(e);
     }

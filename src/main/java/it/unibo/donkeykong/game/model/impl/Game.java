@@ -6,7 +6,6 @@ import static it.unibo.donkeykong.utilities.Constants.Window.SCALED_TILES_SIZE;
 
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -32,8 +31,7 @@ public class Game implements ViewModel {
     public Game() {
         this.level = new LevelImpl(levelOne);
         this.mapDataLevel();
-        this.settingsPauseButton = new ButtonImpl(getSettingsSources().get(SettingsAssets.roundedSettingsButton), 
-                                                  Window.GAME_WIDTH - SCALED_TILES_SIZE - Window.TILES_DEFAULT_SIZE, 
+        this.settingsPauseButton = new ButtonImpl(Window.GAME_WIDTH - SCALED_TILES_SIZE - Window.TILES_DEFAULT_SIZE, 
                                                   Window.TILES_DEFAULT_SIZE, 
                                                   SCALED_TILES_SIZE, 
                                                   SCALED_TILES_SIZE, Gamestate.PAUSE);
@@ -62,9 +60,9 @@ public class Game implements ViewModel {
     }
 
     @Override
-    public final ArrayList<ButtonImpl> getButtons() {
-        return new ArrayList<ButtonImpl>() {{
-            add(settingsPauseButton);
+    public final Map<ButtonImpl, BufferedImage> getButtons() {
+        return new HashMap<>() {{
+            put(settingsPauseButton, getSettingsSources().get(SettingsAssets.roundedSettingsButton));
         }};
     }
 

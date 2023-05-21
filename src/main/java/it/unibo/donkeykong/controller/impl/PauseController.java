@@ -55,7 +55,7 @@ public class PauseController implements MouseListener, KeyListener, GameEngine  
 
     @Override
     public final void mousePressed(final MouseEvent e) {
-        ButtonFuncUtilities.getButtonPressed(e, this.pause.getButtons()).ifPresent(b -> b.applyGamestate());
+        ButtonFuncUtilities.getButtonPressed(e, this.pause.getButtons().keySet()).ifPresent(b -> b.applyGamestate());
         if (Gamestate.getGamestate().equals(Gamestate.MENU)) {
             AudioUtilities.playSoundtrack(Audio.menuMusic0);
             this.application.getGameController().stopTimer();

@@ -6,7 +6,6 @@ import static it.unibo.donkeykong.utilities.Constants.MenuAssets.SettingsAssets.
 import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -36,18 +35,14 @@ public class Pause implements ViewModel, VolumeSettings {
     }
 
     private void createButtons() {
-        this.backHome = new ButtonImpl(getSettingsSources().get(SettingsAssets.homeButton),
-                                       MenuAssets.rightMenuBorder - SettingsAssets.homeButtonRightDistance, 
+        this.backHome = new ButtonImpl(MenuAssets.rightMenuBorder - SettingsAssets.homeButtonRightDistance, 
                                        MenuAssets.bottomMenuBorder - SettingsAssets.homeButtonBottomDistance, 
                                        SettingsAssets.squareButtonSize, 
                                        SettingsAssets.squareButtonSize, Gamestate.MENU);
-
-        this.backToPlay = new ButtonImpl(getSettingsSources().get(SettingsAssets.backToPlayButton),
-                                         menuX + SettingsAssets.repeatButtonLeftDistance - SettingsAssets.squareButtonSize, 
+        this.backToPlay = new ButtonImpl(menuX + SettingsAssets.repeatButtonLeftDistance - SettingsAssets.squareButtonSize, 
                                          MenuAssets.bottomMenuBorder - SettingsAssets.repeatButtonBottomDistance, 
                                          SettingsAssets.squareButtonSize, 
                                          SettingsAssets.squareButtonSize, Gamestate.PLAYING);
-
         this.volumeButtons[SettingsAssets.volOnB] = new Rectangle(SettingsAssets.leftSettingsButtonX, 
                                                                   SettingsAssets.muteButtonY, 
                                                                   SettingsAssets.squareButtonSize, 
@@ -57,7 +52,6 @@ public class Pause implements ViewModel, VolumeSettings {
                                                                    SettingsAssets.muteButtonY, 
                                                                    SettingsAssets.squareButtonSize, 
                                                                    SettingsAssets.squareButtonSize);
-
         this.gameThemesButtons[Audio.getGameSources().get(Audio.gameMusic0)] = new Rectangle(SettingsAssets.leftSettingsButtonX, 
                                                                                              SettingsAssets.musicsButtonY, 
                                                                                              SettingsAssets.squareButtonSize, 
@@ -89,10 +83,10 @@ public class Pause implements ViewModel, VolumeSettings {
     }
 
     @Override
-    public final ArrayList<ButtonImpl> getButtons() {
-        return new ArrayList<ButtonImpl>() {{
-            add(backHome);
-            add(backToPlay);
+    public final Map<ButtonImpl, BufferedImage> getButtons() {
+        return new HashMap<>() {{
+            put(backHome, getSettingsSources().get(SettingsAssets.homeButton));
+            put(backToPlay, getSettingsSources().get(SettingsAssets.backToPlayButton));
         }};
     }
 

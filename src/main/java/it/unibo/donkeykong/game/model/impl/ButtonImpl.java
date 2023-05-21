@@ -1,7 +1,6 @@
 package it.unibo.donkeykong.game.model.impl;
 
 import java.awt.Rectangle;
-import java.awt.image.BufferedImage;
 
 import it.unibo.donkeykong.game.model.api.Button;
 import it.unibo.donkeykong.utilities.Gamestate;
@@ -14,7 +13,6 @@ public class ButtonImpl implements Button {
 
     private final int x, y, width, height;
     private final Gamestate state;
-    private final BufferedImage img;
 
     /**
      * Constructor.
@@ -24,10 +22,8 @@ public class ButtonImpl implements Button {
      * @param width  width of the button.
      * @param height height of the button.
      * @param state  state of the button.
-     * @param i      image of the button.
      */
-    public ButtonImpl(final BufferedImage i, final int x, final int y, final int width, final int height, final Gamestate state) {
-        this.img = i;
+    public ButtonImpl(final int x, final int y, final int width, final int height, final Gamestate state) {
         this.x = x;
         this.y = y;
         this.width = width;
@@ -53,11 +49,6 @@ public class ButtonImpl implements Button {
     @Override
     public final Pair<Integer, Integer> getButtonDim() {
         return new Pair<Integer, Integer>(this.width, this.height);
-    }
-
-    @Override
-    public final BufferedImage getButtonImage() {
-        return this.img;
     }
 
     @Override

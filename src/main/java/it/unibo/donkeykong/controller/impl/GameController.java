@@ -56,7 +56,7 @@ public class GameController implements GameEngine, MouseListener, KeyListener {
 
     @Override
     public final void mousePressed(final MouseEvent e) {
-        ButtonFuncUtilities.getButtonPressed(e, this.game.getButtons()).ifPresent(b -> b.applyGamestate());
+        ButtonFuncUtilities.getButtonPressed(e, this.game.getButtons().keySet()).ifPresent(b -> b.applyGamestate());
         if (Gamestate.getGamestate().equals(Gamestate.PAUSE)) {
             this.keyInputs.removeAll(keyInputs);
             this.pauseTimer();

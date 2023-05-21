@@ -35,7 +35,7 @@ public class LevelsMenuView implements GameEngine {
         this.drawBackgroundAssets(g);
         this.levelsMenuController.getLevelsMenu()
                                  .getButtons()
-                                 .forEach(b -> g.drawImage(b.getButtonImage(), 
+                                 .forEach((b, i) -> g.drawImage(i, 
                                                            b.getButtonPos().getX(), 
                                                            b.getButtonPos().getY(),
                                                            b.getButtonDim().getX(),

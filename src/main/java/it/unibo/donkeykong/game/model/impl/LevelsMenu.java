@@ -9,7 +9,6 @@ import static it.unibo.donkeykong.utilities.Constants.MenuAssets.SettingsAssets.
 
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -36,13 +35,11 @@ public class LevelsMenu implements ViewModel {
     }
 
     private void createButtons() {
-        this.backHome = new ButtonImpl(getSettingsSources().get(SettingsAssets.homeButton),
-                                       MenuAssets.rightMenuBorder - SettingsAssets.homeButtonRightDistance, 
+        this.backHome = new ButtonImpl(MenuAssets.rightMenuBorder - SettingsAssets.homeButtonRightDistance, 
                                        MenuAssets.bottomMenuBorder - SettingsAssets.homeButtonBottomDistance, 
                                        SettingsAssets.squareButtonSize, 
                                        SettingsAssets.squareButtonSize, Gamestate.MENU);
-        this.levelOneButton = new ButtonImpl(getLevelSources().get(levelOneSource).getX(),
-                                             LevelAssets.leftLevelButtonX, 
+        this.levelOneButton = new ButtonImpl(LevelAssets.leftLevelButtonX, 
                                              LevelAssets.topLevelbuttonY, 
                                              LevelAssets.levelButtonWidth, 
                                              LevelAssets.levelButtonHeight, Gamestate.PLAYING);
@@ -61,10 +58,10 @@ public class LevelsMenu implements ViewModel {
     }
 
     @Override
-    public final ArrayList<ButtonImpl> getButtons() {
-        return new ArrayList<ButtonImpl>() {{
-            add(backHome);
-            add(levelOneButton);
+    public final Map<ButtonImpl, BufferedImage> getButtons() {
+        return new HashMap<>() {{
+            put(backHome, getSettingsSources().get(SettingsAssets.homeButton));
+            put(levelOneButton, getLevelSources().get(levelOneSource).getX());
         }};
     }
 

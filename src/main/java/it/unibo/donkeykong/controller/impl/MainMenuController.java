@@ -53,7 +53,7 @@ public class MainMenuController implements MouseListener, GameEngine {
 
     @Override
     public final void mousePressed(final MouseEvent e) {
-        ButtonFuncUtilities.getButtonPressed(e, this.menu.getButtons()).ifPresent(b -> {
+        ButtonFuncUtilities.getButtonPressed(e, this.menu.getButtons().keySet()).ifPresent(b -> {
             if (b.getButtonGamestate().equals(Gamestate.PLAYING)) {
                 AudioUtilities.playSoundtrack(Audio.gameMusic0);
                 this.application.startGameController();

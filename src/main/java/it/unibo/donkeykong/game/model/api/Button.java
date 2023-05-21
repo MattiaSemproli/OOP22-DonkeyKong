@@ -1,7 +1,6 @@
 package it.unibo.donkeykong.game.model.api;
 
 import java.awt.Rectangle;
-import java.awt.image.BufferedImage;
 
 import it.unibo.donkeykong.utilities.Gamestate;
 import it.unibo.donkeykong.utilities.Pair;
@@ -29,11 +28,6 @@ public interface Button {
      * @return a pair of width, height.
      */
     Pair<Integer, Integer> getButtonDim();
-
-    /**
-     * @return the button image.
-     */
-    BufferedImage getButtonImage();
 
     /**
      * @return the Gamestate of the button.

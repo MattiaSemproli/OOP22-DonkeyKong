@@ -8,8 +8,6 @@ import static it.unibo.donkeykong.utilities.Constants.MenuAssets.utilityButtonRi
 
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -34,36 +32,34 @@ public class MainMenu implements ViewModel {
     }
 
     private void createFuncButtons() {
-        this.funcButtons[MenuAssets.playB] = new ButtonImpl(getMenuSources().get(MenuAssets.playButton),
-                                                            MenuAssets.funcButtonX,
+        this.funcButtons[MenuAssets.playB] = new ButtonImpl(MenuAssets.funcButtonX,
                                                             menuY + MenuAssets.funcButtonsDistance,
                                                             MenuAssets.buttonWidth, 
                                                             MenuAssets.buttonHeight, Gamestate.PLAYING);
-        this.funcButtons[MenuAssets.levelsB] = new ButtonImpl(getMenuSources().get(MenuAssets.levelsButton),
-                                                              MenuAssets.funcButtonX,
+        this.funcButtons[MenuAssets.levelsB] = new ButtonImpl(MenuAssets.funcButtonX,
                                                               menuY + MenuAssets.funcButtonsDistance + MenuAssets.buttonHeight,
                                                               MenuAssets.buttonWidth, 
                                                               MenuAssets.buttonHeight, Gamestate.CHOSING_LEVELS);
     }
 
     private void createUtilityButtons() {
-        this.utilityButtons[MenuAssets.settingsB] = new ButtonImpl(getMenuSources().get(MenuAssets.settingsButton),
-                                                                   menuX + MenuAssets.utilityButtonLeftBorderDistanceX,
+        this.utilityButtons[MenuAssets.settingsB] = new ButtonImpl(menuX + MenuAssets.utilityButtonLeftBorderDistanceX,
                                                                    MenuAssets.utilityButtonY,
                                                                    MenuAssets.buttonWidth, 
                                                                    MenuAssets.buttonHeight, Gamestate.SETTINGS);
-        this.utilityButtons[MenuAssets.quitB] = new ButtonImpl(getMenuSources().get(MenuAssets.quitButton),
-                                                               rightMenuBorder - utilityButtonRightBorderDistanceX,
+        this.utilityButtons[MenuAssets.quitB] = new ButtonImpl(rightMenuBorder - utilityButtonRightBorderDistanceX,
                                                                MenuAssets.utilityButtonY,
                                                                MenuAssets.buttonWidth, 
                                                                MenuAssets.buttonHeight, Gamestate.EXIT);
     }
 
     @Override
-    public final ArrayList<ButtonImpl> getButtons() {
-        return new ArrayList<ButtonImpl>() {{
-                addAll(Arrays.asList(funcButtons));
-                addAll(Arrays.asList(utilityButtons));
+    public final Map<ButtonImpl, BufferedImage> getButtons() {
+        return new HashMap<>() {{
+            put(funcButtons[MenuAssets.playB], getMenuSources().get(MenuAssets.playButton));
+            put(funcButtons[MenuAssets.levelsB], getMenuSources().get(MenuAssets.levelsButton));
+            put(utilityButtons[MenuAssets.settingsB], getMenuSources().get(MenuAssets.settingsButton));
+            put(utilityButtons[MenuAssets.quitB], getMenuSources().get(MenuAssets.quitButton));
         }};
     }
 

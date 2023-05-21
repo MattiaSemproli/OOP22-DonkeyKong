@@ -37,7 +37,7 @@ public class GameView implements GameEngine {
                                                                   tile.height, null));
         this.gameController.getGame()
                            .getButtons()
-                           .forEach(b -> g.drawImage(b.getButtonImage(), 
+                           .forEach((b, i) -> g.drawImage(i, 
                                                      b.getButtonPos().getX(),
                                                      b.getButtonPos().getY(), 
                                                      b.getButtonDim().getX(), 

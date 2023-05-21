@@ -5,7 +5,6 @@ import static it.unibo.donkeykong.utilities.Constants.MenuAssets.SettingsAssets.
 import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -35,12 +34,10 @@ public class Settings implements ViewModel, VolumeSettings {
     }
 
     private void createButtons() {
-        this.backHome = new ButtonImpl(getSettingsSources().get(SettingsAssets.homeButton),
-                                       MenuAssets.rightMenuBorder - SettingsAssets.homeButtonRightDistance, 
+        this.backHome = new ButtonImpl(MenuAssets.rightMenuBorder - SettingsAssets.homeButtonRightDistance, 
                                        MenuAssets.bottomMenuBorder - SettingsAssets.homeButtonBottomDistance, 
                                        SettingsAssets.squareButtonSize, 
                                        SettingsAssets.squareButtonSize, Gamestate.MENU);
-
         this.volumeButtons[SettingsAssets.volOnB] = new Rectangle(SettingsAssets.leftSettingsButtonX, 
                                                                   SettingsAssets.muteButtonY, 
                                                                   SettingsAssets.squareButtonSize, 
@@ -79,9 +76,9 @@ public class Settings implements ViewModel, VolumeSettings {
     }
 
     @Override
-    public final ArrayList<ButtonImpl> getButtons() {
-        return new ArrayList<>() {{
-            add(backHome);
+    public final Map<ButtonImpl, BufferedImage> getButtons() {
+        return new HashMap<>() {{
+            put(backHome, getSettingsSources().get(SettingsAssets.homeButton));
         }};
     }
 
