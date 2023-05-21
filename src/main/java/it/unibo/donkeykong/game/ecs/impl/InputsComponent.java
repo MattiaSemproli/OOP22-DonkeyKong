@@ -10,16 +10,18 @@ import it.unibo.donkeykong.utilities.Direction;
  */
 public class InputsComponent extends AbstractComponent {
 
-    private Optional<KeyEvent> input;
+    private Optional<Integer> input;
 
     @Override
     public final void update() {
         this.input = this.getEntity().getGameplay().getController().getInputs().stream().findFirst();
         if (this.input.isPresent()) {
-            switch (this.input.get().getKeyCode()) {
+            switch (this.input.get()) {
+                case KeyEvent.VK_LEFT:
                 case KeyEvent.VK_A:
                     this.move(Direction.LEFT);
                     break;
+                case KeyEvent.VK_RIGHT:
                 case KeyEvent.VK_D:
                     this.move(Direction.RIGHT);
                     break;
