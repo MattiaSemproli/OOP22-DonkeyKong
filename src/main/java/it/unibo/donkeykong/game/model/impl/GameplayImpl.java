@@ -13,6 +13,9 @@ import it.unibo.donkeykong.game.model.api.Level;
 import it.unibo.donkeykong.utilities.Constants;
 import it.unibo.donkeykong.utilities.Pair;
 
+/**
+ * Gameplay class, manage and initialize entities and map.
+ */
 public class GameplayImpl implements Gameplay, GameEngine {
 
     private final EntityFactoryImpl entityFactoryImpl;
@@ -20,6 +23,11 @@ public class GameplayImpl implements Gameplay, GameEngine {
     private final Level level;
     private ArrayList<Entity> entities = new ArrayList<>();
 
+    /**
+     * Constructor.
+     * 
+     * @param controller linked GameController
+     */
     public GameplayImpl(final GameController controller) {
         this.level = new LevelImpl(Constants.Level.levelOne);
         this.controller = controller;

@@ -86,6 +86,7 @@ public class GameController implements GameEngine, MouseListener, KeyListener {
 
     /**
      * Get the game model.
+     * 
      * @return the game model.
      */
     public final Game getGame() {
@@ -94,6 +95,7 @@ public class GameController implements GameEngine, MouseListener, KeyListener {
 
     /**
      * Get the gameplay model.
+     * 
      * @return the gameplay model.
      */
     public final GameplayImpl getGameplay() {
@@ -118,20 +120,34 @@ public class GameController implements GameEngine, MouseListener, KeyListener {
         });
     }
 
-    public void startTimer() {
+    /**
+     * Start the game timer.
+     */
+    public final void startTimer() {
         this.timer.start();
     }
 
-    public void stopTimer() {
+    /**
+     * Stop and reset the game timer.
+     */
+    public final void stopTimer() {
         this.timer.stop();
         this.seconds = 0;
     }
 
-    public void pauseTimer() {
+    /**
+     * Pause temporarily the game timer.
+     */
+    public final void pauseTimer() {
         this.timer.stop();
     }
 
-    public int getSeconds() {
+    /**
+     * Get seconds passed from game start.
+     * 
+     * @return seconds passed.
+     */
+    public final int getSeconds() {
         return this.seconds;
     }
 
