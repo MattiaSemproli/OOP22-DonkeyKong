@@ -90,6 +90,17 @@ public class GameController implements GameEngine, MouseListener, KeyListener {
     }
 
     /**
+     * If we change PC's window and therefor our application loses focus, the game pauses.
+     */
+    public final void resetKeysOnFocusLost() {
+        if (Gamestate.getGamestate().equals(Gamestate.PLAYING)) {
+            Gamestate.setGamestate(Gamestate.PAUSE);
+            this.keyInputs.removeAll(keyInputs);
+            this.pauseTimer();
+        }
+    }
+
+    /**
      * Get the game model.
      * 
      * @return the game model.
