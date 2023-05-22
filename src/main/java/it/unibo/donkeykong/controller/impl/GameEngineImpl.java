@@ -26,7 +26,7 @@ public class GameEngineImpl implements GameEngine, Runnable {
     }
 
     private void startGameLoop() {
-        Thread gameThread = new Thread(this);
+        final Thread gameThread = new Thread(this);
         gameThread.start();
     }
 
