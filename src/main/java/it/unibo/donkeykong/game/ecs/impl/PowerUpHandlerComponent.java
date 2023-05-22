@@ -11,7 +11,6 @@ import java.util.List;
  */
 public class PowerUpHandlerComponent extends AbstractComponent {
     private int lifes;
-    private int slow;
     private boolean shield;
     private boolean immunity;
     private boolean freeze;
@@ -97,7 +96,7 @@ public class PowerUpHandlerComponent extends AbstractComponent {
                 this.freeze = true;
                 break;
             case SLOW:
-                this.getEntity();  //decrease speed 
+                //this.getEntity();  //decrease speed 
                 break;
             default:
                 break;
