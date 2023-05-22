@@ -43,10 +43,10 @@ public class GameController implements GameEngine, MouseListener, KeyListener, G
      * Constructor.
      */
     public GameController() {
-        this.gameView = new GameView(this);
         this.game = new Game();
-        this.keyInputs = new ArrayList<>();
         this.gameplay = new GameplayImpl(this);
+        this.gameView = new GameView(this);
+        this.keyInputs = new ArrayList<>();
         this.initializeTimer();
         this.startTimer();
     }

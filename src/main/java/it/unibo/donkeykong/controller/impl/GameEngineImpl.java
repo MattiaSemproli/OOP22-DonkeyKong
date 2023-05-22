@@ -7,25 +7,21 @@ import it.unibo.donkeykong.controller.api.GameEngine;
 import it.unibo.donkeykong.utilities.AudioUtilities;
 import it.unibo.donkeykong.utilities.Constants.GameLoop;
 import it.unibo.donkeykong.utilities.Gamestate;
-import it.unibo.donkeykong.view.ApplicationPanel;
 
 /**
  * GameEngine class, manage gameloop.
  */
 public class GameEngineImpl implements GameEngine, Runnable {
 
-    private ApplicationPanel dkPanel;
     private Application applicationImpl;
     private Thread gameThread;
 
     /**
      * Constructor.
      * 
-     * @param dkPanel linked panel.
      * @param applicationImpl linked application.
      */
-    public GameEngineImpl(final ApplicationPanel dkPanel, final Application applicationImpl) {
-        this.dkPanel = dkPanel;
+    public GameEngineImpl(final Application applicationImpl) {
         this.applicationImpl = applicationImpl;
         startGameLoop();
     }
@@ -64,7 +60,7 @@ public class GameEngineImpl implements GameEngine, Runnable {
             }
 
             if (deltaF >= 1) {
-                dkPanel.repaint();
+                this.applicationImpl.redraw();
                 frames++;
                 deltaF--;
             }
