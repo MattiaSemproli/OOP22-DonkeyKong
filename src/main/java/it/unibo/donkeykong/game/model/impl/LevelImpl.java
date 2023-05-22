@@ -64,7 +64,7 @@ public class LevelImpl implements Level {
 
     @Override
     public final Map<Pair<Integer, Integer>, Integer> getLevelData() {
-        return this.levelData;
+        return new HashMap<>(this.levelData);
     }
 
 }

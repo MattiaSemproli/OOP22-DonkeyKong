@@ -127,15 +127,6 @@ public class GameController implements GameEngine, MouseListener, KeyListener, G
     }
 
     /**
-     * Get the gameplay model.
-     * 
-     * @return the gameplay model.
-     */
-    public final Gameplay getGameplay() {
-        return this.gameplay;
-    }
-
-    /**
      * Get all the inputs.
      * 
      * @return list of keys pressed.
