@@ -5,7 +5,6 @@ import java.awt.event.MouseListener;
 
 import it.unibo.donkeykong.controller.api.Application;
 import it.unibo.donkeykong.utilities.Gamestate;
-import it.unibo.donkeykong.view.ApplicationPanel;
 
 /**
  * MouseInputsImpl class.
