@@ -49,14 +49,14 @@ public class LevelsMenuController implements MouseListener, GameEngine, GenericC
     }
 
     @Override
-    public Map<Button, BufferedImage> getButtonsFromModel() {
+    public final Map<Button, BufferedImage> getButtonsFromModel() {
         return this.levelsMenu.getButtons();
-    }    
+    }
 
     @Override
-    public Map<Rectangle, BufferedImage> getAlternativeButtonsFromModel() {
+    public final Map<Rectangle, BufferedImage> getAlternativeButtonsFromModel() {
         return this.levelsMenu.getAlternativeButtons();
-    }    
+    }
     
     @Override
     public final void mousePressed(final MouseEvent e) {

@@ -17,8 +17,8 @@ public class ApplicationWindow {
      * elements.
      * The settings below configure the appearance and behavior of the window.
      * 
-     * @param dkApp The panel containing the content to be displayed in the
-     *                window.
+     * @param dkPanel The panel containing the content to be displayed in the
+     * @param dkApp The application linked.
      */
     public ApplicationWindow(final ApplicationPanel dkPanel, final Application dkApp) {
         final JFrame jframe = new JFrame();
@@ -34,11 +34,11 @@ public class ApplicationWindow {
         jframe.addWindowFocusListener(new WindowFocusListener() {
 
             @Override
-            public void windowGainedFocus(WindowEvent e) {
+            public void windowGainedFocus(final WindowEvent e) {
             }
 
             @Override
-            public void windowLostFocus(WindowEvent e) {
+            public void windowLostFocus(final WindowEvent e) {
                 dkApp.windowFocusLost();
             }
 

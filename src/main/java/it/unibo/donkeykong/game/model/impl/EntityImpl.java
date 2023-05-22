@@ -38,7 +38,7 @@ public class EntityImpl implements Entity {
         this.components = new HashSet<>();
         this.pos = new Pair<Float, Float>(pos.getX(), pos.getY());
         this.gameplay = gameplay;
-        switch(type) {
+        switch (type) {
             case BARREL:
                 this.width = Window.SCALED_TILES_SIZE;
                 this.height = Window.SCALED_TILES_SIZE;

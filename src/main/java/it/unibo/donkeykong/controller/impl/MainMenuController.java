@@ -49,15 +49,15 @@ public class MainMenuController implements MouseListener, GameEngine, GenericCon
     }
 
     @Override
-    public Map<Button, BufferedImage> getButtonsFromModel() {
+    public final Map<Button, BufferedImage> getButtonsFromModel() {
         return this.menu.getButtons();
-    }    
+    }
 
     @Override
-    public Map<Rectangle, BufferedImage> getAlternativeButtonsFromModel() {
+    public final Map<Rectangle, BufferedImage> getAlternativeButtonsFromModel() {
         return this.menu.getAlternativeButtons();
-    }    
-    
+    }
+
     @Override
     public final void mousePressed(final MouseEvent e) {
         ButtonFuncUtilities.getButtonPressed(e, this.menu.getButtons().keySet()).ifPresent(b -> {
