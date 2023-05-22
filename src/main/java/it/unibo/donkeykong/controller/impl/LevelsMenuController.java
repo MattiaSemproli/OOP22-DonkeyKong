@@ -57,7 +57,7 @@ public class LevelsMenuController implements MouseListener, GameEngine, GenericC
     public final Map<Rectangle, BufferedImage> getAlternativeButtonsFromModel() {
         return this.levelsMenu.getAlternativeButtons();
     }
-    
+
     @Override
     public final void mousePressed(final MouseEvent e) {
         ButtonFuncUtilities.getButtonPressed(e, this.levelsMenu.getButtons().keySet()).ifPresent(b -> {

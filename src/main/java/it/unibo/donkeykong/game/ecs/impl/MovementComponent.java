@@ -24,7 +24,8 @@ public class MovementComponent extends AbstractComponent {
      * @param direction the direction in which to move the entity
      */
     public final void moveEntity(final Direction direction) {
-        this.movePos = new Pair<>(direction.getX() * 1f + this.getEntity().getPosition().getX(), direction.getY() * 1f + this.getEntity().getPosition().getY());
+        this.movePos = new Pair<>(direction.getX() * 1f + this.getEntity().getPosition().getX(), 
+                                  direction.getY() * 1f + this.getEntity().getPosition().getY());
     }
 
     /**
