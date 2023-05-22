@@ -6,6 +6,7 @@ import java.awt.geom.Rectangle2D;
 import it.unibo.donkeykong.game.model.api.Entity;
 import it.unibo.donkeykong.game.model.impl.AbstractComponent;
 import it.unibo.donkeykong.utilities.Constants;
+import it.unibo.donkeykong.utilities.Gamestate;
 import it.unibo.donkeykong.utilities.Constants.Window;
 import it.unibo.donkeykong.utilities.Pair;
 import it.unibo.donkeykong.utilities.Type;
@@ -62,6 +63,38 @@ public class CollisionComponent extends AbstractComponent {
     }
 
     private void checkCollisions() {
+        final Entity entity = this.getEntity();
+        if (entity.getEntityType().equals(Type.PLAYER)) {
+            entity.getGameplay()
+                  .getEntities()
+                  .stream()
+                  .filter(e -> !e.equals(entity))
+                  .filter(e -> hitbox.intersects(e.getComponent(CollisionComponent.class).get().getHitbox()))
+                  .forEach(e -> {
+                    Rectangle2D eHitbox = entity.getComponent(CollisionComponent.class).get().getHitbox();
+                    Rectangle2D e2Hitbox = e.getComponent(CollisionComponent.class).get().getHitbox();
+                    if (e.getEntityType().equals(Type.BARREL)) {
+                        entity.getGameplay().removeEntity(entity);
+                    }
+                    if (e.getEntityType().equals(Type.MONKEY)) {
+                        entity.getGameplay().removeEntity(entity);
+                    }
+                    if (e.getEntityType().equals(Type.PRINCESS)) {
+                        Gamestate.setGamestate(Gamestate.WIN);
+                    }
+                    if (e.getEntityType().equals(Type.BLOCK)
+                        || e.getEntityType().equals(Type.BLOCK_LADDER_DOWN)
+                        || e.getEntityType().equals(Type.BLOCK_LADDER_UP)
+                        || e.getEntityType().equals(Type.BLOCK_LADDER_UPDOWN)) {
+                        if (checkWall((float) eHitbox.getMaxY(), (float) e2Hitbox.getY()) >= 0) {
+                            entity.setPosition(new Pair<>(entity.getPosition().getX(), (float) e2Hitbox.getY()));
+                        }
+                    }
+                    if (e.getEntityType().equals(Type.LADDER)) {
+                        //TODO
+                    }
+                  });
+        }
     }
 
     private void checkOutField() {
