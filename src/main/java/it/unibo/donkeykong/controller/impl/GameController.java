@@ -109,20 +109,30 @@ public class GameController implements GameEngine, MouseListener, KeyListener, G
     }
 
     @Override
-    public Map<Button, BufferedImage> getButtonsFromModel() {
+    public final Map<Button, BufferedImage> getButtonsFromModel() {
         return this.game.getButtons();
-    }    
+    }
 
     @Override
-    public Map<Rectangle, BufferedImage> getAlternativeButtonsFromModel() {
+    public final Map<Rectangle, BufferedImage> getAlternativeButtonsFromModel() {
         return this.game.getAlternativeButtons();
-    }    
+    }
     
-    public Map<Rectangle, BufferedImage> getDataLevelFromModel() {
+    /**
+     * Get all the data level from the model.
+     * 
+     * @return map of every tiles and its images.
+     */
+    public final Map<Rectangle, BufferedImage> getDataLevelFromModel() {
         return this.game.getDataLevel();
     }
 
-    public List<Entity> getEntitiesFromGameplay() {
+    /**
+     * Get all the entities from the gameplay.
+     * 
+     * @return list of entities.
+     */
+    public final List<Entity> getEntitiesFromGameplay() {
         return this.gameplay.getEntities();
     }
 
