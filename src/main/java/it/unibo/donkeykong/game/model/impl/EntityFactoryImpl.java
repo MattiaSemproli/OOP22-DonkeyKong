@@ -4,6 +4,7 @@ import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.donkeykong.game.ecs.impl.CollisionComponent;
 import it.unibo.donkeykong.game.ecs.impl.InputsComponent;
 import it.unibo.donkeykong.game.ecs.impl.MovementComponent;
+import it.unibo.donkeykong.game.ecs.impl.ThrowComponent;
 import it.unibo.donkeykong.game.model.api.Entity;
 import it.unibo.donkeykong.game.model.api.EntityFactory;
 import it.unibo.donkeykong.game.model.api.Gameplay;
@@ -31,23 +32,27 @@ public class EntityFactoryImpl implements EntityFactory {
     public final Entity generatePlayer(final Pair<Float, Float> position) {
         return new EntityImpl(Type.PLAYER, position, this.gameplay)
                    .addComponent(new InputsComponent())
-                   .addComponent(new MovementComponent());
+                   .addComponent(new MovementComponent())
+                   .addComponent(new CollisionComponent(position.getX(), position.getY(), true, Type.PLAYER));
     }
 
     @Override
     public final Entity generateBarrel(final Pair<Float, Float> position) {
         return new EntityImpl(Type.BARREL, position, this.gameplay)
-                    .addComponent(new CollisionComponent(position.getX(), position.getY(), false, Type.BARREL));
+                   .addComponent(new CollisionComponent(position.getX(), position.getY(), false, Type.BARREL));
     }
 
     @Override
     public final Entity generateMonkey(final Pair<Float, Float> position) {
-        return new EntityImpl(Type.MONKEY, position, this.gameplay);
+        return new EntityImpl(Type.MONKEY, position, this.gameplay)
+                   .addComponent(new ThrowComponent())
+                   .addComponent(new CollisionComponent(position.getX(), position.getY(), true, Type.MONKEY));
     }
 
     @Override
     public final Entity generatePrincess(final Pair<Float, Float> position) {
-        return new EntityImpl(Type.PRINCESS, position, this.gameplay);
+        return new EntityImpl(Type.PRINCESS, position, this.gameplay)
+                   .addComponent(new CollisionComponent(position.getX(), position.getY(), true, Type.PRINCESS));
     }
 
     @Override
@@ -57,27 +62,32 @@ public class EntityFactoryImpl implements EntityFactory {
 
     @Override
     public final Entity generateBlock(final Pair<Float, Float> position) {
-        return new EntityImpl(Type.BLOCK, position, this.gameplay);
+        return new EntityImpl(Type.BLOCK, position, this.gameplay)
+                   .addComponent(new CollisionComponent(position.getX(), position.getY(), true, Type.BLOCK));
     }
 
     @Override
     public final Entity generateLadder(final Pair<Float, Float> position) {
-        return new EntityImpl(Type.LADDER, position, this.gameplay);
+        return new EntityImpl(Type.LADDER, position, this.gameplay)
+                   .addComponent(new CollisionComponent(position.getX(), position.getY(), false, Type.LADDER));
     }
 
     @Override
     public final Entity generateBlockWithUpLadder(final Pair<Float, Float> position) {
-        return new EntityImpl(Type.BLOCK_LADDER_UP, position, this.gameplay);
+        return new EntityImpl(Type.BLOCK_LADDER_UP, position, this.gameplay)
+                   .addComponent(new CollisionComponent(position.getX(), position.getY(), true, Type.BLOCK_LADDER_UP));
     }
 
     @Override
     public final Entity generateBlockWithDownLadder(final Pair<Float, Float> position) {
-        return new EntityImpl(Type.BLOCK_LADDER_DOWN, position, this.gameplay);
+        return new EntityImpl(Type.BLOCK_LADDER_DOWN, position, this.gameplay)
+                   .addComponent(new CollisionComponent(position.getX(), position.getY(), true, Type.BLOCK_LADDER_DOWN));
     }
 
     @Override
     public final Entity generateBlockWithUpDownLadder(final Pair<Float, Float> position) {
-        return new EntityImpl(Type.BLOCK_LADDER_UPDOWN, position, this.gameplay);
+        return new EntityImpl(Type.BLOCK_LADDER_UPDOWN, position, this.gameplay)
+                   .addComponent(new CollisionComponent(position.getX(), position.getY(), true, Type.BLOCK_LADDER_UPDOWN));
     }
 
 }
