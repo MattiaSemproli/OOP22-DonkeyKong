@@ -6,10 +6,11 @@ import java.util.Set;
 
 import it.unibo.donkeykong.game.ecs.api.Component;
 import it.unibo.donkeykong.game.model.api.Entity;
+import it.unibo.donkeykong.game.model.api.Gameplay;
 import it.unibo.donkeykong.utilities.Constants;
+import it.unibo.donkeykong.utilities.Constants.Window;
 import it.unibo.donkeykong.utilities.Pair;
 import it.unibo.donkeykong.utilities.Type;
-import it.unibo.donkeykong.utilities.Constants.Window;
 
 /**
  * Entity implementation.
@@ -19,7 +20,7 @@ public class EntityImpl implements Entity {
     private final Type type;
     private final Set<Component> components;
     private Pair<Float, Float> pos;
-    private final GameplayImpl gameplay;
+    private final Gameplay gameplay;
     private final int width, height;
     private final float speed;
 
@@ -30,7 +31,7 @@ public class EntityImpl implements Entity {
      * @param pos position of the entity.
      * @param gameplay gameplay where entity is placed.
      */
-    public EntityImpl(final Type type, final Pair<Float, Float> pos, final GameplayImpl gameplay) {
+    public EntityImpl(final Type type, final Pair<Float, Float> pos, final Gameplay gameplay) {
         this.type = type;
         this.components = new HashSet<>();
         this.pos = new Pair<Float, Float>(pos.getX(), pos.getY());
@@ -108,7 +109,7 @@ public class EntityImpl implements Entity {
     }
 
     @Override
-    public final GameplayImpl getGameplay() {
+    public final Gameplay getGameplay() {
         return this.gameplay;
     }
 

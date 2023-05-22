@@ -3,6 +3,7 @@ package it.unibo.donkeykong.inputs;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import it.unibo.donkeykong.controller.api.Application;
 import it.unibo.donkeykong.utilities.Gamestate;
 import it.unibo.donkeykong.view.ApplicationPanel;
 
@@ -11,25 +12,25 @@ import it.unibo.donkeykong.view.ApplicationPanel;
  */
 public final class KeyboardInputs implements KeyListener {
 
-    private final ApplicationPanel dkPanel;
+    private final Application dkApp;
 
     /**
      * KeyboardInputsImpl constructor.
      * 
-     * @param dkPanel Panel of application.
+     * @param dkApp Panel of application.
      */
-    public KeyboardInputs(final ApplicationPanel dkPanel) {
-        this.dkPanel = dkPanel;
+    public KeyboardInputs(final Application dkApp) {
+        this.dkApp = dkApp;
     }
 
     @Override
     public void keyPressed(final KeyEvent key) {
         switch (Gamestate.getGamestate()) {
             case PLAYING:
-                this.dkPanel.getApplication().getGameController().keyPressed(key);
+                this.dkApp.getGameController().keyPressed(key);
                 break;
             case PAUSE:
-                this.dkPanel.getApplication().getPauseController().keyPressed(key);
+                this.dkApp.getPauseController().keyPressed(key);
                 break;
             default:
                 break;
@@ -40,10 +41,10 @@ public final class KeyboardInputs implements KeyListener {
     public void keyReleased(final KeyEvent key) {
         switch (Gamestate.getGamestate()) {
             case PLAYING:
-                this.dkPanel.getApplication().getGameController().keyReleased(key);
+                this.dkApp.getGameController().keyReleased(key);
                 break;
             case PAUSE:
-                this.dkPanel.getApplication().getPauseController().keyReleased(key);
+                this.dkApp.getPauseController().keyReleased(key);
                 break;
             default:
                 break;

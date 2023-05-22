@@ -1,9 +1,9 @@
 package it.unibo.donkeykong.controller.impl;
 
 import it.unibo.donkeykong.controller.api.Application;
+import it.unibo.donkeykong.controller.api.GameEngine;
 import it.unibo.donkeykong.utilities.AudioUtilities;
 import it.unibo.donkeykong.utilities.Constants;
-import it.unibo.donkeykong.utilities.Gamestate;
 import it.unibo.donkeykong.view.ApplicationPanel;
 import it.unibo.donkeykong.view.ApplicationWindow;
 
@@ -13,7 +13,7 @@ import it.unibo.donkeykong.view.ApplicationWindow;
 public class ApplicationImpl implements Application {
 
     private ApplicationPanel dkPanel;
-    private GameEngineImpl gameEngine;
+    private GameEngine gameEngine;
     private MainMenuController mainMenuController;
     private SettingsController settingsController;
     private GameController gameController;
@@ -29,7 +29,7 @@ public class ApplicationImpl implements Application {
         initialize();
         this.dkPanel = new ApplicationPanel(this);
         this.gameEngine = new GameEngineImpl(dkPanel, this);
-        new ApplicationWindow(dkPanel);
+        new ApplicationWindow(dkPanel, this);
         this.dkPanel.requestFocusInWindow();
     }
 
@@ -41,7 +41,7 @@ public class ApplicationImpl implements Application {
     }
 
     @Override
-    public final GameEngineImpl getGameEngine() {
+    public final GameEngine getGameEngine() {
         return this.gameEngine;
     }
 

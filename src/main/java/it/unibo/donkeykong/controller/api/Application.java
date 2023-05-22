@@ -1,7 +1,6 @@
 package it.unibo.donkeykong.controller.api;
 
 import it.unibo.donkeykong.controller.impl.GameController;
-import it.unibo.donkeykong.controller.impl.GameEngineImpl;
 import it.unibo.donkeykong.controller.impl.LevelsMenuController;
 import it.unibo.donkeykong.controller.impl.MainMenuController;
 import it.unibo.donkeykong.controller.impl.PauseController;
@@ -22,7 +21,7 @@ public interface Application {
      * 
      * @return linked GameEngine.
      */
-    GameEngineImpl getGameEngine();
+    GameEngine getGameEngine();
 
     /**
      * Initialize controllers.

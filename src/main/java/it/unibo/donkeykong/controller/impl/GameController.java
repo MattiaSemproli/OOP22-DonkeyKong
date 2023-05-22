@@ -20,6 +20,7 @@ import it.unibo.donkeykong.controller.api.GameEngine;
 import it.unibo.donkeykong.controller.api.GenericController;
 import it.unibo.donkeykong.game.model.api.Button;
 import it.unibo.donkeykong.game.model.api.Entity;
+import it.unibo.donkeykong.game.model.api.Gameplay;
 import it.unibo.donkeykong.game.model.impl.Game;
 import it.unibo.donkeykong.game.model.impl.GameplayImpl;
 import it.unibo.donkeykong.utilities.ButtonFuncUtilities;
@@ -34,7 +35,7 @@ public class GameController implements GameEngine, MouseListener, KeyListener, G
     private final GameView gameView;
     private final Game game;
     private final List<Integer> keyInputs;
-    private final GameplayImpl gameplay;
+    private final Gameplay gameplay;
     private Timer timer;
     private int seconds;
 
@@ -65,7 +66,7 @@ public class GameController implements GameEngine, MouseListener, KeyListener, G
     public final void mousePressed(final MouseEvent e) {
         ButtonFuncUtilities.getButtonPressed(e, this.game.getButtons().keySet()).ifPresent(b -> b.applyGamestate());
         if (Gamestate.getGamestate().equals(Gamestate.PAUSE)) {
-            this.keyInputs.removeAll(keyInputs);
+            this.keyInputs.clear();
             this.pauseTimer();
         }
     }
@@ -87,11 +88,11 @@ public class GameController implements GameEngine, MouseListener, KeyListener, G
     public final void keyReleased(final KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
             Gamestate.setGamestate(Gamestate.PAUSE);
-            this.keyInputs.removeAll(keyInputs);
+            this.keyInputs.clear();
             this.pauseTimer();
         } else {
             if (this.keyInputs.contains(e.getKeyCode())) {
-                this.keyInputs.removeAll(Collections.singleton(e.getKeyCode()));
+                this.keyInputs.clear();
             }
         }
     }
@@ -102,7 +103,7 @@ public class GameController implements GameEngine, MouseListener, KeyListener, G
     public final void resetKeysOnFocusLost() {
         if (Gamestate.getGamestate().equals(Gamestate.PLAYING)) {
             Gamestate.setGamestate(Gamestate.PAUSE);
-            this.keyInputs.removeAll(keyInputs);
+            this.keyInputs.clear();
             this.pauseTimer();
         }
     }
@@ -130,7 +131,7 @@ public class GameController implements GameEngine, MouseListener, KeyListener, G
      * 
      * @return the gameplay model.
      */
-    public final GameplayImpl getGameplay() {
+    public final Gameplay getGameplay() {
         return this.gameplay;
     }
 
