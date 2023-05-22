@@ -24,6 +24,11 @@ public interface Application {
     GameEngine getGameEngine();
 
     /**
+     * Call repaint method.
+     */
+    void redraw();
+
+    /**
      * Initialize controllers.
      */
     void initialize();

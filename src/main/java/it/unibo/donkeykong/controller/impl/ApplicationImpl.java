@@ -28,7 +28,7 @@ public class ApplicationImpl implements Application {
         loadAllSources();
         initialize();
         this.dkPanel = new ApplicationPanel(this);
-        this.gameEngine = new GameEngineImpl(dkPanel, this);
+        this.gameEngine = new GameEngineImpl(this);
         new ApplicationWindow(dkPanel, this);
         this.dkPanel.requestFocusInWindow();
     }
@@ -43,6 +43,11 @@ public class ApplicationImpl implements Application {
     @Override
     public final GameEngine getGameEngine() {
         return this.gameEngine;
+    }
+
+    @Override
+    public final void redraw() {
+        this.dkPanel.repaint();
     }
 
     private void loadAllSources() {
