@@ -51,14 +51,14 @@ public class PauseController implements MouseListener, KeyListener, GameEngine, 
     }
 
     @Override
-    public Map<Button, BufferedImage> getButtonsFromModel() {
+    public final Map<Button, BufferedImage> getButtonsFromModel() {
         return this.pause.getButtons();
-    }    
+    }
 
     @Override
-    public Map<Rectangle, BufferedImage> getAlternativeButtonsFromModel() {
+    public final Map<Rectangle, BufferedImage> getAlternativeButtonsFromModel() {
         return this.pause.getAlternativeButtons();
-    }    
+    }
 
     @Override
     public final void mousePressed(final MouseEvent e) {
