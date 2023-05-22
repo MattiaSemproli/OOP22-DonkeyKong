@@ -44,7 +44,7 @@ public class CollisionComponent extends AbstractComponent {
     }
 
     /*
-     * 
+     * Get the hitbox.
      */
     public final Rectangle2D getHitbox() {
         return new Rectangle.Float(this.hitbox.x, this.hitbox.y, this.hitbox.width, this.hitbox.height);
