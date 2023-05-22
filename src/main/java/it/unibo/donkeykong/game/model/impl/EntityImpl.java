@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.donkeykong.game.ecs.api.Component;
 import it.unibo.donkeykong.game.model.api.Entity;
 import it.unibo.donkeykong.game.model.api.Gameplay;
@@ -31,6 +32,7 @@ public class EntityImpl implements Entity {
      * @param pos position of the entity.
      * @param gameplay gameplay where entity is placed.
      */
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP2", justification = "We need the original object")
     public EntityImpl(final Type type, final Pair<Float, Float> pos, final Gameplay gameplay) {
         this.type = type;
         this.components = new HashSet<>();
@@ -108,6 +110,7 @@ public class EntityImpl implements Entity {
         return this.type;
     }
 
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "We need the original object")
     @Override
     public final Gameplay getGameplay() {
         return this.gameplay;

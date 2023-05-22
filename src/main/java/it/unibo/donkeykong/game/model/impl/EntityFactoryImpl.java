@@ -1,5 +1,6 @@
 package it.unibo.donkeykong.game.model.impl;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.donkeykong.game.ecs.impl.CollisionComponent;
 import it.unibo.donkeykong.game.ecs.impl.InputsComponent;
 import it.unibo.donkeykong.game.ecs.impl.MovementComponent;
@@ -21,6 +22,7 @@ public class EntityFactoryImpl implements EntityFactory {
      * 
      * @param gameplay where the entity is
      */
+    @SuppressFBWarnings(value = "EI_EXPOSE_REP2", justification = "We need the original object")
     public EntityFactoryImpl(final Gameplay gameplay) {
         this.gameplay = gameplay;
     }

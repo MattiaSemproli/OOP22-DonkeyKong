@@ -33,8 +33,7 @@ public class LevelImpl implements Level {
     }
 
     private Map<Pair<Integer, Integer>, Integer> createLevel(final String levelSpriteName) {
-        return new HashMap<>() {
-            {
+        return new HashMap<>() {{
                 BufferedImage img = loadSources(levelOne);
                 for (int r = 0; r < img.getHeight(); r++) {
                     for (int c = 0; c < img.getWidth(); c++) {
@@ -46,8 +45,7 @@ public class LevelImpl implements Level {
                         put(new Pair<>(c, r), value);
                     }
                 }
-            }
-        };
+            }};
     }
 
     private void importLevelSprites() {
