@@ -1,9 +1,11 @@
 package it.unibo.donkeykong.view;
 
 import java.awt.Graphics;
+import java.awt.geom.Rectangle2D;
 
 import it.unibo.donkeykong.controller.api.GameEngine;
 import it.unibo.donkeykong.controller.impl.GameController;
+import it.unibo.donkeykong.game.ecs.impl.CollisionComponent;
 import it.unibo.donkeykong.utilities.Constants;
 import it.unibo.donkeykong.utilities.ResourceFuncUtilities;
 
@@ -58,15 +60,15 @@ public class GameView implements GameEngine {
                     g.drawImage(ResourceFuncUtilities.loadSources("dksingletry"), 
                                 Math.round(entity.getPosition().getX()), 
                                 Math.round(entity.getPosition().getY()), 
-                                Constants.Entity.monkeyWidth, 
-                                Constants.Entity.monkeyHeight,  null);
+                                Constants.Monkey.monkeyWidth, 
+                                Constants.Monkey.monkeyHeight,  null);
                     break;
                 case PLAYER:
                     g.drawImage(ResourceFuncUtilities.loadSources("mariosingletry"), 
                                 Math.round(entity.getPosition().getX()), 
                                 Math.round(entity.getPosition().getY()), 
-                                Constants.Entity.playerDimension, 
-                                Constants.Entity.playerDimension, null);
+                                Constants.Player.playerDimension, 
+                                Constants.Player.playerDimension, null);
                     break;
                 case POWER_UP:
                     break;
@@ -74,12 +76,21 @@ public class GameView implements GameEngine {
                     g.drawImage(ResourceFuncUtilities.loadSources("peachessingletry"), 
                                 Math.round(entity.getPosition().getX()), 
                                 Math.round(entity.getPosition().getY()), 
-                                Constants.Entity.princessWidth, 
-                                Constants.Entity.princessHeight, null);
+                                Constants.Princess.princessWidth, 
+                                Constants.Princess.princessHeight, null);
                     break;
                 default:
                     break;
             }
+        });
+
+        /**
+         * Draw hitboxes.
+         */
+        this.gameController.getEntitiesFromGameplay().forEach(e -> {
+            final Rectangle2D r = e.getComponent(CollisionComponent.class).get().getHitbox();
+            g.setColor(java.awt.Color.orange);
+            g.drawRect((int) r.getX(), (int) r.getY(), (int) r.getWidth(), (int) r.getHeight());
         });
     }
 }

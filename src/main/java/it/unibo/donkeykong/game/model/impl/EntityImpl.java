@@ -45,8 +45,8 @@ public class EntityImpl implements Entity {
                 this.speed = Constants.Barrel.barrelVelocity;
                 break;
             case MONKEY:
-                this.width = Constants.Entity.monkeyWidth;
-                this.height = Constants.Entity.monkeyHeight;
+                this.width = Constants.Monkey.monkeyWidth;
+                this.height = Constants.Monkey.monkeyHeight;
                 this.speed = 0;
                 break;
             case PLAYER:
@@ -55,8 +55,8 @@ public class EntityImpl implements Entity {
                 this.speed = 1f;
                 break;
             case PRINCESS:
-                this.width = Constants.Entity.princessWidth;
-                this.height = Constants.Entity.princessHeight;
+                this.width = Constants.Princess.princessWidth;
+                this.height = Constants.Princess.princessHeight;
                 this.speed = 0;
                 break;
             case POWER_UP:

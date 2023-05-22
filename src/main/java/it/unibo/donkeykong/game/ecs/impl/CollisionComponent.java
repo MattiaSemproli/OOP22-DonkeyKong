@@ -1,6 +1,5 @@
 package it.unibo.donkeykong.game.ecs.impl;
 
-import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 
 import it.unibo.donkeykong.game.model.api.Entity;
@@ -50,7 +49,7 @@ public class CollisionComponent extends AbstractComponent {
      * @return defensive copy of the hitbox.
      */
     public final Rectangle2D getHitbox() {
-        return new Rectangle.Float(this.hitbox.x, this.hitbox.y, this.hitbox.width, this.hitbox.height);
+        return new Rectangle2D.Float(this.hitbox.x, this.hitbox.y, this.hitbox.width, this.hitbox.height);
     }
 
     /**
@@ -71,8 +70,8 @@ public class CollisionComponent extends AbstractComponent {
                   .filter(e -> !e.equals(entity))
                   .filter(e -> hitbox.intersects(e.getComponent(CollisionComponent.class).get().getHitbox()))
                   .forEach(e -> {
-                    Rectangle2D eHitbox = entity.getComponent(CollisionComponent.class).get().getHitbox();
-                    Rectangle2D e2Hitbox = e.getComponent(CollisionComponent.class).get().getHitbox();
+                    final Rectangle2D eHitbox = entity.getComponent(CollisionComponent.class).get().getHitbox();
+                    final Rectangle2D e2Hitbox = e.getComponent(CollisionComponent.class).get().getHitbox();
                     if (e.getEntityType().equals(Type.BARREL)) {
                         entity.getGameplay().removeEntity(entity);
                     }
@@ -82,16 +81,16 @@ public class CollisionComponent extends AbstractComponent {
                     if (e.getEntityType().equals(Type.PRINCESS)) {
                         Gamestate.setGamestate(Gamestate.WIN);
                     }
-                    if (e.getEntityType().equals(Type.BLOCK)
+                    if ((e.getEntityType().equals(Type.BLOCK)
                         || e.getEntityType().equals(Type.BLOCK_LADDER_DOWN)
                         || e.getEntityType().equals(Type.BLOCK_LADDER_UP)
-                        || e.getEntityType().equals(Type.BLOCK_LADDER_UPDOWN)) {
-                        if (checkWall((float) eHitbox.getMaxY(), (float) e2Hitbox.getY()) >= 0) {
-                            entity.setPosition(new Pair<>(entity.getPosition().getX(), (float) e2Hitbox.getY()));
-                        }
+                        || e.getEntityType().equals(Type.BLOCK_LADDER_UPDOWN))
+                        && checkWall((float) eHitbox.getMaxY(), (float) e2Hitbox.getY()) >= 0) {
+                            entity.setPosition(new Pair<>(entity.getPosition().getX(), 
+                                                          (float) e2Hitbox.getY() - entity.getHeight()));
                     }
                     if (e.getEntityType().equals(Type.LADDER)) {
-                        //TODO
+                        e.getGameplay().removeEntity(e);
                     }
                   });
         }
@@ -135,17 +134,20 @@ public class CollisionComponent extends AbstractComponent {
         height = width;
         switch (type) {
             case LADDER:
-                hitbox = new Rectangle2D.Float(x + Constants.Level.ladderPadding, y, 
+                hitbox = new Rectangle2D.Float(x, y, 
                                                width - (Constants.Level.ladderPadding * 2), height);
                 break;
             case BARREL:
             case PLAYER:
+                hitbox = new Rectangle2D.Float(x, y, width, height);
+                break;
             case PRINCESS:
+                height = Constants.Princess.princessHeight;
                 hitbox = new Rectangle2D.Float(x, y, width, height);
                 break;
             case MONKEY:
-                width = Constants.Entity.monkeyWidth;
-                height = Constants.Entity.monkeyHeight;
+                width = Constants.Monkey.monkeyWidth;
+                height = Constants.Monkey.monkeyHeight;
                 hitbox = new Rectangle2D.Float(x, y, width, height);
                 break;
             case POWER_UP:
@@ -156,8 +158,8 @@ public class CollisionComponent extends AbstractComponent {
             case BLOCK_LADDER_UP:
             case BLOCK_LADDER_UPDOWN:
             default:
-                hitbox = new Rectangle2D.Float(x, y + Constants.Level.platformBlockPadding, 
-                                               width, height - (Constants.Level.platformBlockPadding * 2));
+                hitbox = new Rectangle2D.Float(x, y, 
+                                               width, height - Constants.Level.platformBlockPadding * 2);
                 break;
         }
     }

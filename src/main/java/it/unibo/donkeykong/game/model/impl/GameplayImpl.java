@@ -1,5 +1,6 @@
 package it.unibo.donkeykong.game.model.impl;
 
+import static it.unibo.donkeykong.utilities.Constants.Level.platformBlockPadding;
 import static it.unibo.donkeykong.utilities.Constants.Window.SCALED_TILES_SIZE;
 
 import java.awt.Graphics;
@@ -38,12 +39,12 @@ public class GameplayImpl implements Gameplay, GameEngine {
     }
 
     private void initializeGame() {
-        this.entities.add(this.entityFactoryImpl.generatePlayer(new Pair<>(Constants.Entity.levelOneStartingPlayerX, 
-                                                                           Constants.Entity.levelOneStartingPlayerY)));
-        this.entities.add(this.entityFactoryImpl.generateMonkey(new Pair<>(Constants.Entity.levelOneStartingMonkeyX, 
-                                                                           Constants.Entity.levelOneStartingMonkeyY)));
-        this.entities.add(this.entityFactoryImpl.generatePrincess(new Pair<>(Constants.Entity.levelOneStartingPrincessX, 
-                                                                             Constants.Entity.levelOneStartingPrincessY)));
+        this.entities.add(this.entityFactoryImpl.generatePlayer(new Pair<>(Constants.Player.levelOneStartingPlayerX, 
+                                                                           Constants.Player.levelOneStartingPlayerY)));
+        this.entities.add(this.entityFactoryImpl.generateMonkey(new Pair<>(Constants.Monkey.levelOneStartingMonkeyX, 
+                                                                           Constants.Monkey.levelOneStartingMonkeyY)));
+        this.entities.add(this.entityFactoryImpl.generatePrincess(new Pair<>(Constants.Princess.levelOneStartingPrincessX, 
+                                                                             Constants.Princess.levelOneStartingPrincessY)));
         this.createMapEntities();
     }
 
@@ -52,28 +53,33 @@ public class GameplayImpl implements Gameplay, GameEngine {
             switch (v) {
                 case Constants.Level.platformBlock:
                     this.entities.add(this.entityFactoryImpl
-                                          .generateBlock(new Pair<>((float) k.getX() * SCALED_TILES_SIZE, 
-                                                                    (float) k.getY() * SCALED_TILES_SIZE)));
+                                          .generateBlock(new Pair<>((float) k.getX() * SCALED_TILES_SIZE,
+                                                                    (float) k.getY() * SCALED_TILES_SIZE
+                                                                     + platformBlockPadding)));
                     break;
-                case Constants.Level.whiteLadder:
+                case Constants.Level.coloredLadder:
                     this.entities.add(this.entityFactoryImpl
-                                          .generateLadder(new Pair<>((float) k.getX() * SCALED_TILES_SIZE, 
+                                          .generateLadder(new Pair<>((float) k.getX() * SCALED_TILES_SIZE
+                                                                      + Constants.Level.ladderPadding, 
                                                                      (float) k.getY() * SCALED_TILES_SIZE)));
                     break;
                 case Constants.Level.blockWithUpperLadder:
                     this.entities.add(this.entityFactoryImpl
                                           .generateBlockWithUpLadder(new Pair<>((float) k.getX() * SCALED_TILES_SIZE, 
-                                                                                (float) k.getY() * SCALED_TILES_SIZE)));
+                                                                                (float) k.getY() * SCALED_TILES_SIZE
+                                                                                 + platformBlockPadding)));
                     break;
                 case Constants.Level.blockWithLowerLadder:
                     this.entities.add(this.entityFactoryImpl
                                           .generateBlockWithDownLadder(new Pair<>((float) k.getX() * SCALED_TILES_SIZE, 
-                                                                                  (float) k.getY() * SCALED_TILES_SIZE)));
+                                                                                  (float) k.getY() * SCALED_TILES_SIZE
+                                                                                   + platformBlockPadding)));
                     break;
                 case Constants.Level.blockWithDoubleLadder:
                     this.entities.add(this.entityFactoryImpl
                                           .generateBlockWithUpDownLadder(new Pair<>((float) k.getX() * SCALED_TILES_SIZE, 
-                                                                                    (float) k.getY() * SCALED_TILES_SIZE)));
+                                                                                    (float) k.getY() * SCALED_TILES_SIZE
+                                                                                     + platformBlockPadding)));
                     break;
                 default:
                     break;
