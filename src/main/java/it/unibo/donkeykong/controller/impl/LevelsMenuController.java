@@ -4,6 +4,7 @@ import java.awt.Graphics;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import it.unibo.donkeykong.controller.api.Application;
 import it.unibo.donkeykong.controller.api.GameEngine;
 import it.unibo.donkeykong.game.model.impl.LevelsMenu;
 import it.unibo.donkeykong.utilities.AudioUtilities;
@@ -17,7 +18,7 @@ import it.unibo.donkeykong.view.LevelsMenuView;
  */
 public class LevelsMenuController implements MouseListener, GameEngine {
 
-    private final ApplicationImpl application;
+    private final Application application;
     private final LevelsMenuView levelsMenuView;
     private final LevelsMenu levelsMenu;
 

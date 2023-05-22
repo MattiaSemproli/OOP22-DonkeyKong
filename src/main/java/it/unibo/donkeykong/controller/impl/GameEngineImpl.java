@@ -2,6 +2,7 @@ package it.unibo.donkeykong.controller.impl;
 
 import java.awt.Graphics;
 
+import it.unibo.donkeykong.controller.api.Application;
 import it.unibo.donkeykong.controller.api.GameEngine;
 import it.unibo.donkeykong.utilities.AudioUtilities;
 import it.unibo.donkeykong.utilities.Constants.GameLoop;
@@ -14,7 +15,7 @@ import it.unibo.donkeykong.view.ApplicationPanel;
 public class GameEngineImpl implements GameEngine, Runnable {
 
     private ApplicationPanel dkPanel;
-    private ApplicationImpl applicationImpl;
+    private Application applicationImpl;
     private Thread gameThread;
 
     /**
@@ -23,7 +24,7 @@ public class GameEngineImpl implements GameEngine, Runnable {
      * @param dkPanel linked panel.
      * @param applicationImpl linked application.
      */
-    public GameEngineImpl(final ApplicationPanel dkPanel, final ApplicationImpl applicationImpl) {
+    public GameEngineImpl(final ApplicationPanel dkPanel, final Application applicationImpl) {
         this.dkPanel = dkPanel;
         this.applicationImpl = applicationImpl;
         startGameLoop();

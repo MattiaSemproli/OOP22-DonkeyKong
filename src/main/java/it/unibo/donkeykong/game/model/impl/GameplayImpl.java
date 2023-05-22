@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import it.unibo.donkeykong.controller.api.GameEngine;
 import it.unibo.donkeykong.controller.impl.GameController;
 import it.unibo.donkeykong.game.model.api.Entity;
+import it.unibo.donkeykong.game.model.api.EntityFactory;
 import it.unibo.donkeykong.game.model.api.Gameplay;
 import it.unibo.donkeykong.game.model.api.Level;
 import it.unibo.donkeykong.utilities.Constants;
@@ -18,7 +19,7 @@ import it.unibo.donkeykong.utilities.Pair;
  */
 public class GameplayImpl implements Gameplay, GameEngine {
 
-    private final EntityFactoryImpl entityFactoryImpl;
+    private final EntityFactory entityFactoryImpl;
     private final GameController controller;
     private final Level level;
     private ArrayList<Entity> entities = new ArrayList<>();

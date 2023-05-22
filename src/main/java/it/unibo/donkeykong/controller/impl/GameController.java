@@ -13,6 +13,7 @@ import java.util.List;
 import javax.swing.Timer;
 
 import it.unibo.donkeykong.controller.api.GameEngine;
+import it.unibo.donkeykong.game.model.api.Gameplay;
 import it.unibo.donkeykong.game.model.impl.Game;
 import it.unibo.donkeykong.game.model.impl.GameplayImpl;
 import it.unibo.donkeykong.utilities.ButtonFuncUtilities;
@@ -27,7 +28,7 @@ public class GameController implements GameEngine, MouseListener, KeyListener {
     private final GameView gameView;
     private final Game game;
     private final List<Integer> keyInputs;
-    private final GameplayImpl gameplay;
+    private final Gameplay gameplay;
     private Timer timer;
     private int seconds;
 
@@ -114,7 +115,7 @@ public class GameController implements GameEngine, MouseListener, KeyListener {
      * 
      * @return the gameplay model.
      */
-    public final GameplayImpl getGameplay() {
+    public final Gameplay getGameplay() {
         return this.gameplay;
     }
 

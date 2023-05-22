@@ -5,6 +5,7 @@ import it.unibo.donkeykong.game.ecs.impl.InputsComponent;
 import it.unibo.donkeykong.game.ecs.impl.MovementComponent;
 import it.unibo.donkeykong.game.model.api.Entity;
 import it.unibo.donkeykong.game.model.api.EntityFactory;
+import it.unibo.donkeykong.game.model.api.Gameplay;
 import it.unibo.donkeykong.utilities.Pair;
 import it.unibo.donkeykong.utilities.Type;
 
@@ -13,14 +14,14 @@ import it.unibo.donkeykong.utilities.Type;
  */
 public class EntityFactoryImpl implements EntityFactory {
 
-    private final GameplayImpl gameplay;
+    private final Gameplay gameplay;
 
     /**
      * Constructor.
      * 
      * @param gameplay where the entity is
      */
-    public EntityFactoryImpl(final GameplayImpl gameplay) {
+    public EntityFactoryImpl(final Gameplay gameplay) {
         this.gameplay = gameplay;
     }
 

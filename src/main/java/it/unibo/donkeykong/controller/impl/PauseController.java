@@ -6,6 +6,7 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import it.unibo.donkeykong.controller.api.Application;
 import it.unibo.donkeykong.controller.api.GameEngine;
 import it.unibo.donkeykong.game.model.impl.Pause;
 import it.unibo.donkeykong.utilities.AudioUtilities;
@@ -19,7 +20,7 @@ import it.unibo.donkeykong.view.PauseView;
  */
 public class PauseController implements MouseListener, KeyListener, GameEngine  {
 
-    private final ApplicationImpl application;
+    private final Application application;
     private final PauseView pauseView;
     private final Pause pause;
 
