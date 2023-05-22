@@ -9,7 +9,6 @@ import java.awt.Graphics;
 import javax.swing.JPanel;
 
 import it.unibo.donkeykong.controller.api.Application;
-import it.unibo.donkeykong.controller.impl.ApplicationImpl;
 import it.unibo.donkeykong.inputs.KeyboardInputs;
 import it.unibo.donkeykong.inputs.MouseInputs;
 
@@ -28,19 +27,12 @@ public final class ApplicationPanel extends JPanel {
   public ApplicationPanel(final Application application) {
     this.application = application;
     setSize();
-    addKeyListener(new KeyboardInputs(this));
-    addMouseListener(new MouseInputs(this));
+    addKeyListener(new KeyboardInputs(this.application));
+    addMouseListener(new MouseInputs(this.application));
   }
 
   private void setSize() {
     setPreferredSize(new Dimension(GAME_WIDTH, GAME_HEIGHT));
-  }
-
-  /**
-   * @return application.
-   */
-  public Application getApplication() {
-    return this.application;
   }
 
   @Override

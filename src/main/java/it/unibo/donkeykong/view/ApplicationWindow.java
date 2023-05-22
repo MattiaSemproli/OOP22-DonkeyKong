@@ -5,6 +5,8 @@ import java.awt.event.WindowFocusListener;
 
 import javax.swing.JFrame;
 
+import it.unibo.donkeykong.controller.api.Application;
+
 /**
  * Application window.
  */
@@ -15,10 +17,10 @@ public class ApplicationWindow {
      * elements.
      * The settings below configure the appearance and behavior of the window.
      * 
-     * @param dkPanel The panel containing the content to be displayed in the
+     * @param dkApp The panel containing the content to be displayed in the
      *                window.
      */
-    public ApplicationWindow(final ApplicationPanel dkPanel) {
+    public ApplicationWindow(final ApplicationPanel dkPanel, final Application dkApp) {
         final JFrame jframe = new JFrame();
         jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jframe.add(dkPanel);
@@ -37,7 +39,7 @@ public class ApplicationWindow {
 
             @Override
             public void windowLostFocus(WindowEvent e) {
-                dkPanel.getApplication().windowFocusLost();
+                dkApp.windowFocusLost();
             }
 
         });

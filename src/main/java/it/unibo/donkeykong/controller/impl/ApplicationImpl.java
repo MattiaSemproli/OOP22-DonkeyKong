@@ -29,7 +29,7 @@ public class ApplicationImpl implements Application {
         initialize();
         this.dkPanel = new ApplicationPanel(this);
         this.gameEngine = new GameEngineImpl(dkPanel, this);
-        new ApplicationWindow(dkPanel);
+        new ApplicationWindow(dkPanel, this);
         this.dkPanel.requestFocusInWindow();
     }
 
