@@ -59,7 +59,7 @@ public class GameController implements GameEngine, MouseListener, KeyListener {
     public final void mousePressed(final MouseEvent e) {
         ButtonFuncUtilities.getButtonPressed(e, this.game.getButtons().keySet()).ifPresent(b -> b.applyGamestate());
         if (Gamestate.getGamestate().equals(Gamestate.PAUSE)) {
-            this.keyInputs.removeAll(keyInputs);
+            this.keyInputs.clear();
             this.pauseTimer();
         }
     }
@@ -81,11 +81,11 @@ public class GameController implements GameEngine, MouseListener, KeyListener {
     public final void keyReleased(final KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
             Gamestate.setGamestate(Gamestate.PAUSE);
-            this.keyInputs.removeAll(keyInputs);
+            this.keyInputs.clear();
             this.pauseTimer();
         } else {
             if (this.keyInputs.contains(e.getKeyCode())) {
-                this.keyInputs.removeAll(Collections.singleton(e.getKeyCode()));
+                this.keyInputs.clear();
             }
         }
     }
@@ -96,7 +96,7 @@ public class GameController implements GameEngine, MouseListener, KeyListener {
     public final void resetKeysOnFocusLost() {
         if (Gamestate.getGamestate().equals(Gamestate.PLAYING)) {
             Gamestate.setGamestate(Gamestate.PAUSE);
-            this.keyInputs.removeAll(keyInputs);
+            this.keyInputs.clear();
             this.pauseTimer();
         }
     }
