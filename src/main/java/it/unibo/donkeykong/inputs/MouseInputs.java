@@ -3,6 +3,7 @@ package it.unibo.donkeykong.inputs;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import it.unibo.donkeykong.controller.api.Application;
 import it.unibo.donkeykong.utilities.Gamestate;
 import it.unibo.donkeykong.view.ApplicationPanel;
 
@@ -11,34 +12,34 @@ import it.unibo.donkeykong.view.ApplicationPanel;
  */
 public final class MouseInputs implements MouseListener {
 
-    private final ApplicationPanel dkPanel;
+    private final Application dkApp;
 
     /**
      * MouseInputsImpl constructor.
      * 
-     * @param dkPanel Panel of application.
+     * @param dkApp Panel of application.
      */
-    public MouseInputs(final ApplicationPanel dkPanel) {
-        this.dkPanel = dkPanel;
+    public MouseInputs(final Application dkApp) {
+        this.dkApp = dkApp;
     }
 
     @Override
     public void mousePressed(final MouseEvent mouseKey) {
         switch (Gamestate.getGamestate()) {
             case MENU:
-                this.dkPanel.getApplication().getMainMenuController().mousePressed(mouseKey);
+                this.dkApp.getMainMenuController().mousePressed(mouseKey);
                 break;
             case CHOSING_LEVELS:
-                this.dkPanel.getApplication().getLevelsMenuController().mousePressed(mouseKey);
+                this.dkApp.getLevelsMenuController().mousePressed(mouseKey);
                 break;
             case SETTINGS:
-                this.dkPanel.getApplication().getSettingsController().mousePressed(mouseKey);
+                this.dkApp.getSettingsController().mousePressed(mouseKey);
                 break;
             case PLAYING:
-                this.dkPanel.getApplication().getGameController().mousePressed(mouseKey);
+                this.dkApp.getGameController().mousePressed(mouseKey);
                 break;
             case PAUSE:
-                this.dkPanel.getApplication().getPauseController().mousePressed(mouseKey);
+                this.dkApp.getPauseController().mousePressed(mouseKey);
                 break;
             case WIN:
             case DEATH:
@@ -52,19 +53,19 @@ public final class MouseInputs implements MouseListener {
     public void mouseReleased(final MouseEvent mouseKey) {
         switch (Gamestate.getGamestate()) {
             case MENU:
-                this.dkPanel.getApplication().getMainMenuController().mouseReleased(mouseKey);
+                this.dkApp.getMainMenuController().mouseReleased(mouseKey);
                 break;
             case CHOSING_LEVELS:
-                this.dkPanel.getApplication().getLevelsMenuController().mouseReleased(mouseKey);
+                this.dkApp.getLevelsMenuController().mouseReleased(mouseKey);
                 break;
             case SETTINGS:
-                this.dkPanel.getApplication().getSettingsController().mouseReleased(mouseKey);
+                this.dkApp.getSettingsController().mouseReleased(mouseKey);
                 break;
             case PLAYING:
-                this.dkPanel.getApplication().getGameController().mouseReleased(mouseKey);
+                this.dkApp.getGameController().mouseReleased(mouseKey);
                 break;
             case PAUSE:
-                this.dkPanel.getApplication().getPauseController().mouseReleased(mouseKey);
+                this.dkApp.getPauseController().mouseReleased(mouseKey);
                 break;
             case WIN:
             case DEATH:
