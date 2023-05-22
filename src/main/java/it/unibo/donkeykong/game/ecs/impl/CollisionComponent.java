@@ -1,5 +1,6 @@
 package it.unibo.donkeykong.game.ecs.impl;
 
+import java.awt.Rectangle;
 import java.awt.geom.Rectangle2D;
 
 import it.unibo.donkeykong.game.model.api.Entity;
@@ -32,7 +33,7 @@ public class CollisionComponent extends AbstractComponent {
     }
 
     public Rectangle2D getHitbox() {
-        return this.hitbox;
+        return new Rectangle.Float(this.hitbox.x, this.hitbox.y, this.hitbox.width, this.hitbox.height);
     }
 
     public boolean isSolid() {
@@ -53,7 +54,7 @@ public class CollisionComponent extends AbstractComponent {
                 nextPos = new Pair<>(entity.getPosition().getX() - check, entity.getPosition().getY());
             } else if ((check = checkWall(hitbox.y, 0)) < 0) {
                 nextPos = new Pair<>(entity.getPosition().getX(), entity.getPosition().getY() - check);
-            } else if ((check = checkWall(hitbox.y, Window.GAME_HEIGHT)) > 0) {
+            } else if (checkWall(hitbox.y, Window.GAME_HEIGHT) > 0) {
                 entity.getGameplay().removeEntity(entity);
             }
             if (nextPos != null) {
@@ -61,11 +62,11 @@ public class CollisionComponent extends AbstractComponent {
             }
         } else if (entity.getEntityType() == Type.BARREL) {
             final MovementComponent movementComponent = entity.getComponent(MovementComponent.class).get();
-            if ((check = checkWall(hitbox.x + hitbox.width, Window.GAME_WIDTH)) > 0) {
+            if (checkWall(hitbox.x + hitbox.width, Window.GAME_WIDTH) > 0) {
                 movementComponent.moveEntity(movementComponent.getFacing().getOppositeDirection());
-            } else if ((check = checkWall(hitbox.x, 0)) < 0) {
+            } else if (checkWall(hitbox.x, 0) < 0) {
                 movementComponent.moveEntity(movementComponent.getFacing().getOppositeDirection());
-            } else if ((check = checkWall(hitbox.y, Window.GAME_HEIGHT)) > 0) {
+            } else if (checkWall(hitbox.y, Window.GAME_HEIGHT) > 0) {
                 entity.getGameplay().removeEntity(entity);
             }
         }

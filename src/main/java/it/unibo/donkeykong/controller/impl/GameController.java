@@ -92,7 +92,7 @@ public class GameController implements GameEngine, MouseListener, KeyListener, G
             this.pauseTimer();
         } else {
             if (this.keyInputs.contains(e.getKeyCode())) {
-                this.keyInputs.clear();
+                this.keyInputs.removeAll(Collections.singleton(e.getKeyCode()));
             }
         }
     }
