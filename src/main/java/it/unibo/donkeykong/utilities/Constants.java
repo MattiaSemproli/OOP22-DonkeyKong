@@ -12,9 +12,10 @@ public class Constants {
     public static class Window {
         public final static int TILES_DEFAULT_SIZE = 16;
         public final static float SCALE = 3.0f;
+        public final static float scala = 1f;
         public final static int TILES_IN_WIDTH = 14;
         public final static int TILES_IN_HEIGHT = 14;
-        public final static int SCALED_TILES_SIZE = Math.round(TILES_DEFAULT_SIZE * SCALE);
+        public final static int SCALED_TILES_SIZE = Math.round(TILES_DEFAULT_SIZE * SCALE * scala);
         public final static int GAME_WIDTH = SCALED_TILES_SIZE * TILES_IN_WIDTH;
         public final static int GAME_HEIGHT = SCALED_TILES_SIZE * TILES_IN_HEIGHT;
     }
@@ -46,10 +47,10 @@ public class Constants {
         public static final String right = "right_arrow";
         public static final String up = "up_arrow";
         public static final String down = "down_arrow";
-        public static final int menuTextureBox = 500;
-        public static final int buttonHeight = 75;
-        public static final int buttonWidth = 200;
-        public static final int legendKeyBox = 32;
+        public static final int menuTextureBox = (int) (500 * Window.scala);
+        public static final int buttonHeight = (int)  (75 * Window.scala);
+        public static final int buttonWidth = (int)  (200 * Window.scala);
+        public static final int legendKeyBox = (int)  (32 * Window.scala);
         public static final int menuX = Window.GAME_WIDTH / 2 - menuTextureBox / 2;
         public static final int menuY = Window.GAME_HEIGHT / 2 - menuTextureBox / 2;
         public static final int numFunctionButtons = 2;
@@ -66,10 +67,10 @@ public class Constants {
         public static final int utilityButtonLeftBorderDistanceX = menuTextureBox / 12;
         public static final int utilityButtonRightBorderDistanceX = menuTextureBox / 12 + buttonWidth;
         public static final int utilityButtonY = bottomMenuBorder - utilityButtonBorderDistanceY;
-        public static final int titleHeight = 125;
-        public static final int titleWidth = 250;
-        public static final int titleX = menuX + 115;
-        public static final int titleY = menuY - 65;
+        public static final int titleHeight = (int) (125 * Window.scala);
+        public static final int titleWidth = (int) (250 * Window.scala);
+        public static final int titleX = menuX + (int) (115 * Window.scala);
+        public static final int titleY = menuY - (int) (65 * Window.scala);
 
         private static final Map<String, BufferedImage> menuSources = new HashMap<>();
 
@@ -105,11 +106,11 @@ public class Constants {
             public static final int numVolumeButtons = 2;
             public static final int volOnB = 0;
             public static final int volOffB = 1;
-            public static final int squareButtonSize = 75;
-            public static final int homeButtonRightDistance = 125;
-            public static final int homeButtonBottomDistance = 150;
-            public static final int repeatButtonLeftDistance = 125;
-            public static final int repeatButtonBottomDistance = 150;
+            public static final int squareButtonSize = (int) (75 * Window.scala);
+            public static final int homeButtonRightDistance = (int) (125 * Window.scala);
+            public static final int homeButtonBottomDistance = (int) (150 * Window.scala);
+            public static final int repeatButtonLeftDistance = (int) (125 * Window.scala);
+            public static final int repeatButtonBottomDistance = (int) (150 * Window.scala);
             public static final int muteButtonY = menuY + squareButtonSize;
             public static final int musicsButtonY = menuY + squareButtonSize * 3;
             public static final int leftSettingsButtonX = menuTextureBox / 2 - squareButtonSize / 2;
@@ -133,10 +134,10 @@ public class Constants {
         }
 
         public static final class LevelAssets {
-            public static final int levelButtonHeight = 135;
-            public static final int levelButtonWidth = 192;
-            public static final int levelButtonDistance = 50;
-            public static final int levelButtonSpacingY = 15;
+            public static final int levelButtonHeight = (int) (135 * Window.scala);
+            public static final int levelButtonWidth = (int) (192 * Window.scala);
+            public static final int levelButtonDistance = (int) (50 * Window.scala);
+            public static final int levelButtonSpacingY = (int) (15 * Window.scala);
             public static final int leftLevelButtonX = menuX + levelButtonDistance;
             public static final int rightLevelButtonX = rightMenuBorder - levelButtonDistance - levelButtonWidth;
             public static final int topLevelbuttonY = menuY + levelButtonDistance;
@@ -182,8 +183,8 @@ public class Constants {
         public static final int blockWithDoubleLadder = 6;
         public static final int levelSpritesLength = 7;
         public static final int numLevelsButtons = 4;
-        public static final int platformBlockPadding = Math.round(4 * Window.SCALE);
-        public static final int ladderPadding = Math.round(3 * Window.SCALE);
+        public static final int platformBlockPadding = Math.round(4 * Window.SCALE * Window.scala);
+        public static final int ladderPadding = Math.round(3 * Window.SCALE * Window.scala);
         public static final int princessPadding = 6;
     }
 
@@ -217,17 +218,23 @@ public class Constants {
         }
     }
 
-    public static final class Entity {
+    public static final class Player {
         public static final float levelOneStartingPlayerX = Window.SCALED_TILES_SIZE;
         public static final float levelOneStartingPlayerY = Window.SCALED_TILES_SIZE * 12 + Level.platformBlockPadding;
+        public static final int playerDimension = (int) (48 * Window.scala);
+    }
+    
+    public static final class Monkey {
         public static final float levelOneStartingMonkeyX = Window.SCALED_TILES_SIZE / 2f;
         public static final float levelOneStartingMonkeyY = Window.SCALED_TILES_SIZE * 2 + Level.platformBlockPadding;
+        public static final int monkeyWidth = (int) (120 * Window.scala);
+        public static final int monkeyHeight = (int) (96 * Window.scala);
+    }
+
+    public static final class Princess {
         public static final float levelOneStartingPrincessX = Window.SCALED_TILES_SIZE * 5;
         public static final float levelOneStartingPrincessY = Window.SCALED_TILES_SIZE - Level.princessPadding;
-        public static final int playerDimension = 48;
-        public static final int monkeyWidth = 120;
-        public static final int monkeyHeight = 96;
-        public static final int princessWidth = 48;
-        public static final int princessHeight = 66;
+        public static final int princessWidth = (int) (48 * Window.scala);
+        public static final int princessHeight = (int) (66 * Window.scala);
     }
 }
