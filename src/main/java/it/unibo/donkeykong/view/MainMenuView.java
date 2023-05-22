@@ -36,8 +36,7 @@ public class MainMenuView implements GameEngine {
     public final void draw(final Graphics g) {
         this.drawBackgroundAssets(g);
         this.drawLegend(g);
-        this.menuController.getMainMenu()
-                           .getButtons()
+        this.menuController.getButtonsFromModel()
                            .forEach((b, i) -> g.drawImage(i, 
                                                       b.getButtonPos().getX(), 
                                                       b.getButtonPos().getY(),

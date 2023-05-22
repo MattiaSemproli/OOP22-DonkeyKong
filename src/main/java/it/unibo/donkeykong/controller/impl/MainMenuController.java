@@ -1,10 +1,15 @@
 package it.unibo.donkeykong.controller.impl;
 
 import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.image.BufferedImage;
+import java.util.Map;
 
 import it.unibo.donkeykong.controller.api.GameEngine;
+import it.unibo.donkeykong.controller.api.GenericController;
+import it.unibo.donkeykong.game.model.api.Button;
 import it.unibo.donkeykong.game.model.impl.MainMenu;
 import it.unibo.donkeykong.utilities.AudioUtilities;
 import it.unibo.donkeykong.utilities.ButtonFuncUtilities;
@@ -15,7 +20,7 @@ import it.unibo.donkeykong.view.MainMenuView;
 /**
  * Main menu controller.
  */
-public class MainMenuController implements MouseListener, GameEngine {
+public class MainMenuController implements MouseListener, GameEngine, GenericController {
 
     private final ApplicationImpl application;
     private final MainMenuView menuView;
@@ -42,15 +47,16 @@ public class MainMenuController implements MouseListener, GameEngine {
         this.menuView.draw(g);
     }
 
-    /**
-     * Get the main menu model.
-     * 
-     * @return new main menu model.
-     */
-    public final MainMenu getMainMenu() {
-        return this.menu;
-    }
+    @Override
+    public Map<Button, BufferedImage> getButtonsFromModel() {
+        return this.menu.getButtons();
+    }    
 
+    @Override
+    public Map<Rectangle, BufferedImage> getAlternativeButtonsFromModel() {
+        return this.menu.getAlternativeButtons();
+    }    
+    
     @Override
     public final void mousePressed(final MouseEvent e) {
         ButtonFuncUtilities.getButtonPressed(e, this.menu.getButtons().keySet()).ifPresent(b -> {

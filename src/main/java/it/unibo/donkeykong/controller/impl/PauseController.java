@@ -1,12 +1,17 @@
 package it.unibo.donkeykong.controller.impl;
 
 import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.image.BufferedImage;
+import java.util.Map;
 
 import it.unibo.donkeykong.controller.api.GameEngine;
+import it.unibo.donkeykong.controller.api.GenericController;
+import it.unibo.donkeykong.game.model.api.Button;
 import it.unibo.donkeykong.game.model.impl.Pause;
 import it.unibo.donkeykong.utilities.AudioUtilities;
 import it.unibo.donkeykong.utilities.ButtonFuncUtilities;
@@ -17,7 +22,7 @@ import it.unibo.donkeykong.view.PauseView;
 /**
  * Pause controller.
  */
-public class PauseController implements MouseListener, KeyListener, GameEngine  {
+public class PauseController implements MouseListener, KeyListener, GameEngine, GenericController {
 
     private final ApplicationImpl application;
     private final PauseView pauseView;
@@ -44,14 +49,15 @@ public class PauseController implements MouseListener, KeyListener, GameEngine  
         this.pauseView.draw(g);
     }
 
-    /**
-     * Get the pause model.
-     * 
-     * @return pause model.
-     */
-    public final Pause getPause() {
-        return this.pause;
-    }
+    @Override
+    public Map<Button, BufferedImage> getButtonsFromModel() {
+        return this.pause.getButtons();
+    }    
+
+    @Override
+    public Map<Rectangle, BufferedImage> getAlternativeButtonsFromModel() {
+        return this.pause.getAlternativeButtons();
+    }    
 
     @Override
     public final void mousePressed(final MouseEvent e) {

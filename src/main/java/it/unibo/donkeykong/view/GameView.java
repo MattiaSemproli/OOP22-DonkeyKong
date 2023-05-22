@@ -28,21 +28,19 @@ public class GameView implements GameEngine {
 
     @Override
     public final void draw(final Graphics g) {
-        this.gameController.getGame()
-                           .getDataLevel()
+        this.gameController.getDataLevelFromModel()
                            .forEach((tile, sprite) -> g.drawImage(sprite, 
                                                                   tile.x, 
                                                                   tile.y, 
                                                                   tile.width, 
                                                                   tile.height, null));
-        this.gameController.getGame()
-                           .getButtons()
+        this.gameController.getButtonsFromModel()
                            .forEach((b, i) -> g.drawImage(i, 
                                                      b.getButtonPos().getX(),
                                                      b.getButtonPos().getY(), 
                                                      b.getButtonDim().getX(), 
                                                      b.getButtonDim().getY(), null));
-        this.gameController.getGameplay().getEntities().forEach(entity -> {
+        this.gameController.getEntitiesFromGameplay().forEach(entity -> {
             switch (entity.getEntityType()) {
                 case BARREL:
                     break;

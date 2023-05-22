@@ -46,15 +46,13 @@ public final class PauseView implements GameEngine {
                             menuY, 
                             MenuAssets.menuTextureBox, 
                             MenuAssets.menuTextureBox, null);
-            this.pauseController.getPause()
-                                .getButtons()
+            this.pauseController.getButtonsFromModel()
                                 .forEach((b, i) -> g.drawImage(i, 
                                                           b.getButtonPos().getX(), 
                                                           b.getButtonPos().getY(),
                                                           b.getButtonDim().getX(),
                                                           b.getButtonDim().getY(), null));
-            this.pauseController.getPause()
-                                .getAlternativeButtons()
+            this.pauseController.getAlternativeButtonsFromModel()
                                 .forEach((rectangle, image) -> g.drawImage(image, 
                                                                            rectangle.x, 
                                                                            rectangle.y, 

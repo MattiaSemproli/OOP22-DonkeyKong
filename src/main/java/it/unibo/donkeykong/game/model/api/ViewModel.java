@@ -4,8 +4,6 @@ import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.util.Map;
 
-import it.unibo.donkeykong.game.model.impl.ButtonImpl;
-
 /**
  * View model.
  */
@@ -14,7 +12,7 @@ public interface ViewModel {
     /**
      * @return all the buttons.
      */
-    Map<ButtonImpl, BufferedImage> getButtons();
+    Map<Button, BufferedImage> getButtons();
 
     /**
      * @return a map containing all the rectangles used as buttons (key) and their images (value).

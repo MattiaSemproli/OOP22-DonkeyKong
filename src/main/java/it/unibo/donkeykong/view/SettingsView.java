@@ -33,21 +33,18 @@ public class SettingsView implements GameEngine {
     @Override
     public final void draw(final Graphics g) {
         this.drawBackgroundAssets(g);
-        this.settingsController.getSettings()
-                               .getButtons()
+        this.settingsController.getButtonsFromModel()
                                .forEach((b, i) -> g.drawImage(i, 
                                                          b.getButtonPos().getX(), 
                                                          b.getButtonPos().getY(),
                                                          b.getButtonDim().getX(),
                                                          b.getButtonDim().getY(), null));
-        this.settingsController.getSettings()
-                               .getAlternativeButtons()
+        this.settingsController.getAlternativeButtonsFromModel()
                                .forEach((rectangle, image) -> g.drawImage(image, 
                                                                           rectangle.x, 
                                                                           rectangle.y, 
                                                                           rectangle.width,
-                                                                          rectangle.height,
-                                                                          null));
+                                                                          rectangle.height, null));
     }
 
     private void drawBackgroundAssets(final Graphics g) {

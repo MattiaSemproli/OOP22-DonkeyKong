@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
+import it.unibo.donkeykong.game.model.api.Button;
 import it.unibo.donkeykong.game.model.api.ViewModel;
 import it.unibo.donkeykong.game.model.api.VolumeSettings;
 import it.unibo.donkeykong.utilities.AudioUtilities;
@@ -23,7 +24,7 @@ import it.unibo.donkeykong.utilities.Gamestate;
  */
 public class Pause implements ViewModel, VolumeSettings {
 
-    private ButtonImpl backHome, backToPlay;
+    private Button backHome, backToPlay;
     private final Rectangle[] volumeButtons = new Rectangle[SettingsAssets.numVolumeButtons];
     private final Rectangle[] gameThemesButtons = new Rectangle[Audio.numGameThemesButtons];
 
@@ -83,7 +84,7 @@ public class Pause implements ViewModel, VolumeSettings {
     }
 
     @Override
-    public final Map<ButtonImpl, BufferedImage> getButtons() {
+    public final Map<Button, BufferedImage> getButtons() {
         return new HashMap<>() {{
             put(backHome, getSettingsSources().get(SettingsAssets.homeButton));
             put(backToPlay, getSettingsSources().get(SettingsAssets.backToPlayButton));

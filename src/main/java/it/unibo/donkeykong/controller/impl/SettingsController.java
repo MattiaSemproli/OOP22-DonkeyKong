@@ -1,10 +1,15 @@
 package it.unibo.donkeykong.controller.impl;
 
 import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.image.BufferedImage;
+import java.util.Map;
 
 import it.unibo.donkeykong.controller.api.GameEngine;
+import it.unibo.donkeykong.controller.api.GenericController;
+import it.unibo.donkeykong.game.model.api.Button;
 import it.unibo.donkeykong.game.model.impl.Settings;
 import it.unibo.donkeykong.utilities.AudioUtilities;
 import it.unibo.donkeykong.utilities.ButtonFuncUtilities;
@@ -13,7 +18,7 @@ import it.unibo.donkeykong.view.SettingsView;
 /**
  * Settings controller.
  */
-public class SettingsController implements MouseListener, GameEngine {
+public class SettingsController implements MouseListener, GameEngine, GenericController {
 
     private final SettingsView settingsView;
     private final Settings settings;
@@ -36,14 +41,15 @@ public class SettingsController implements MouseListener, GameEngine {
         this.settingsView.draw(g);
     }
 
-    /**
-     * Get the settings model.
-     * 
-     * @return the settings model.
-     */
-    public final Settings getSettings() {
-        return this.settings;
-    }
+    @Override
+    public Map<Button, BufferedImage> getButtonsFromModel() {
+        return this.settings.getButtons();
+    }    
+
+    @Override
+    public Map<Rectangle, BufferedImage> getAlternativeButtonsFromModel() {
+        return this.settings.getAlternativeButtons();
+    }    
 
     @Override
     public final void mousePressed(final MouseEvent e) {

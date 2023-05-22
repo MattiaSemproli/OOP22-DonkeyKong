@@ -12,6 +12,7 @@ import java.awt.image.BufferedImage;
 import java.util.HashMap;
 import java.util.Map;
 
+import it.unibo.donkeykong.game.model.api.Button;
 import it.unibo.donkeykong.game.model.api.ViewModel;
 import it.unibo.donkeykong.utilities.Constants.Level;
 import it.unibo.donkeykong.utilities.Constants.MenuAssets;
@@ -24,7 +25,7 @@ import it.unibo.donkeykong.utilities.Gamestate;
  */
 public class LevelsMenu implements ViewModel {
 
-    private ButtonImpl backHome, levelOneButton;
+    private Button backHome, levelOneButton;
     private Rectangle[] levelsButtons = new Rectangle[Level.numLevelsButtons];
 
     /**
@@ -58,7 +59,7 @@ public class LevelsMenu implements ViewModel {
     }
 
     @Override
-    public final Map<ButtonImpl, BufferedImage> getButtons() {
+    public final Map<Button, BufferedImage> getButtons() {
         return new HashMap<>() {{
             put(backHome, getSettingsSources().get(SettingsAssets.homeButton));
             put(levelOneButton, getLevelSources().get(levelOneSource).getX());

@@ -1,18 +1,25 @@
 package it.unibo.donkeykong.controller.impl;
 
 import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
+
 import javax.swing.Timer;
 
 import it.unibo.donkeykong.controller.api.GameEngine;
+import it.unibo.donkeykong.controller.api.GenericController;
+import it.unibo.donkeykong.game.model.api.Button;
+import it.unibo.donkeykong.game.model.api.Entity;
 import it.unibo.donkeykong.game.model.impl.Game;
 import it.unibo.donkeykong.game.model.impl.GameplayImpl;
 import it.unibo.donkeykong.utilities.ButtonFuncUtilities;
@@ -22,7 +29,7 @@ import it.unibo.donkeykong.view.GameView;
 /**
  * Game controller.
  */
-public class GameController implements GameEngine, MouseListener, KeyListener {
+public class GameController implements GameEngine, MouseListener, KeyListener, GenericController {
 
     private final GameView gameView;
     private final Game game;
@@ -100,13 +107,22 @@ public class GameController implements GameEngine, MouseListener, KeyListener {
         }
     }
 
-    /**
-     * Get the game model.
-     * 
-     * @return the game model.
-     */
-    public final Game getGame() {
-        return this.game;
+    @Override
+    public Map<Button, BufferedImage> getButtonsFromModel() {
+        return this.game.getButtons();
+    }    
+
+    @Override
+    public Map<Rectangle, BufferedImage> getAlternativeButtonsFromModel() {
+        return this.game.getAlternativeButtons();
+    }    
+    
+    public Map<Rectangle, BufferedImage> getDataLevelFromModel() {
+        return this.game.getDataLevel();
+    }
+
+    public List<Entity> getEntitiesFromGameplay() {
+        return this.gameplay.getEntities();
     }
 
     /**

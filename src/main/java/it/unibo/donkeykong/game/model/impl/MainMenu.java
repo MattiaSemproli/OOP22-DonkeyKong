@@ -11,6 +11,7 @@ import java.awt.image.BufferedImage;
 import java.util.HashMap;
 import java.util.Map;
 
+import it.unibo.donkeykong.game.model.api.Button;
 import it.unibo.donkeykong.game.model.api.ViewModel;
 import it.unibo.donkeykong.utilities.Constants.MenuAssets;
 import it.unibo.donkeykong.utilities.Gamestate;
@@ -20,8 +21,8 @@ import it.unibo.donkeykong.utilities.Gamestate;
  */
 public class MainMenu implements ViewModel {
 
-    private final ButtonImpl[] funcButtons = new ButtonImpl[MenuAssets.numFunctionButtons];
-    private final ButtonImpl[] utilityButtons = new ButtonImpl[MenuAssets.numUtilityButtons];
+    private final Button[] funcButtons = new Button[MenuAssets.numFunctionButtons];
+    private final Button[] utilityButtons = new Button[MenuAssets.numUtilityButtons];
 
     /**
      * Constructor.
@@ -54,7 +55,7 @@ public class MainMenu implements ViewModel {
     }
 
     @Override
-    public final Map<ButtonImpl, BufferedImage> getButtons() {
+    public final Map<Button, BufferedImage> getButtons() {
         return new HashMap<>() {{
             put(funcButtons[MenuAssets.playB], getMenuSources().get(MenuAssets.playButton));
             put(funcButtons[MenuAssets.levelsB], getMenuSources().get(MenuAssets.levelsButton));

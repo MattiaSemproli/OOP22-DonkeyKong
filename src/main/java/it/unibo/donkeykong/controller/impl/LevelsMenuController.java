@@ -1,10 +1,15 @@
 package it.unibo.donkeykong.controller.impl;
 
 import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.image.BufferedImage;
+import java.util.Map;
 
 import it.unibo.donkeykong.controller.api.GameEngine;
+import it.unibo.donkeykong.controller.api.GenericController;
+import it.unibo.donkeykong.game.model.api.Button;
 import it.unibo.donkeykong.game.model.impl.LevelsMenu;
 import it.unibo.donkeykong.utilities.AudioUtilities;
 import it.unibo.donkeykong.utilities.ButtonFuncUtilities;
@@ -15,7 +20,7 @@ import it.unibo.donkeykong.view.LevelsMenuView;
 /**
  * Levels menu controller.
  */
-public class LevelsMenuController implements MouseListener, GameEngine {
+public class LevelsMenuController implements MouseListener, GameEngine, GenericController {
 
     private final ApplicationImpl application;
     private final LevelsMenuView levelsMenuView;
@@ -42,15 +47,16 @@ public class LevelsMenuController implements MouseListener, GameEngine {
         this.levelsMenuView.draw(g);
     }
 
-    /**
-     * Get the levelsMenu model.
-     * 
-     * @return the levelsMenu model.
-     */
-    public final LevelsMenu getLevelsMenu() {
-        return this.levelsMenu;
-    }
+    @Override
+    public Map<Button, BufferedImage> getButtonsFromModel() {
+        return this.levelsMenu.getButtons();
+    }    
 
+    @Override
+    public Map<Rectangle, BufferedImage> getAlternativeButtonsFromModel() {
+        return this.levelsMenu.getAlternativeButtons();
+    }    
+    
     @Override
     public final void mousePressed(final MouseEvent e) {
         ButtonFuncUtilities.getButtonPressed(e, this.levelsMenu.getButtons().keySet()).ifPresent(b -> {
