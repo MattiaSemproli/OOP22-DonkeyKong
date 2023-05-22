@@ -10,6 +10,9 @@ import it.unibo.donkeykong.utilities.Constants.Window;
 import it.unibo.donkeykong.utilities.Pair;
 import it.unibo.donkeykong.utilities.Type;
 
+/**
+ * Collision Component, manage collisions between objects.
+ */
 public class CollisionComponent extends AbstractComponent {
 
     private final boolean isSolid;
@@ -18,13 +21,21 @@ public class CollisionComponent extends AbstractComponent {
     private Rectangle2D.Float hitbox;
 
     @Override
-    public void update() {
+    public final void update() {
         hitbox.x = this.getEntity().getPosition().getX();
         hitbox.y = this.getEntity().getPosition().getY();
         checkOutField();
         checkCollisions();
     }
 
+    /**
+     * Constructor.
+     * 
+     * @param x initial x-position of entity
+     * @param y initial y-position of entity
+     * @param isSolid declare if entity can go through
+     * @param type linked entity type
+     */
     public CollisionComponent(final float x, final float y, final boolean isSolid, final Type type) {
         this.x = (int) x;
         this.y = (int) y;
@@ -32,11 +43,19 @@ public class CollisionComponent extends AbstractComponent {
         initDifferentHitbox(type);
     }
 
-    public Rectangle2D getHitbox() {
+    /*
+     * 
+     */
+    public final Rectangle2D getHitbox() {
         return new Rectangle.Float(this.hitbox.x, this.hitbox.y, this.hitbox.width, this.hitbox.height);
     }
 
-    public boolean isSolid() {
+    /**
+     * Check if entity can go through things.
+     * 
+     * @return true if entity can go through things, false otherwise.
+     */
+    public final boolean isSolid() {
         return this.isSolid;
     }
 
@@ -45,7 +64,7 @@ public class CollisionComponent extends AbstractComponent {
 
     private void checkOutField() {
         final Entity entity = this.getEntity();
-        Pair<Float,Float> nextPos = null;
+        Pair<Float, Float> nextPos = null;
         float check;
         if (entity.getEntityType() == Type.PLAYER) {
             if ((check = checkWall(hitbox.x + hitbox.width, Window.GAME_WIDTH)) > 0) {

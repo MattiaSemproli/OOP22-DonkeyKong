@@ -5,9 +5,9 @@ import it.unibo.donkeykong.utilities.Direction;
 import it.unibo.donkeykong.utilities.Pair;
 import it.unibo.donkeykong.utilities.Constants.Barrel;
 
-public class BarrelThrowComponent extends AbstractComponent {
+public class ThrowComponent extends AbstractComponent {
 
-    public BarrelThrowComponent() {
+    public ThrowComponent() {
     }
 
     @Override
