@@ -21,15 +21,18 @@ public class MovementComponent extends AbstractComponent {
 
     /**
      * Moves the entity in the specified direction.
+     * 
      * @param direction the direction in which to move the entity
      */
     public final void moveEntity(final Direction direction) {
+        this.direction = direction;
         this.movePos = new Pair<>(direction.getX() * 1f + this.getEntity().getPosition().getX(), 
                                   direction.getY() * 1f + this.getEntity().getPosition().getY());
     }
 
     /**
      * This method retrieves the current facing direction of the entity.
+     * 
      * @return the direction in which the entity is currently facing
      */
     public final Direction getFacing() {
