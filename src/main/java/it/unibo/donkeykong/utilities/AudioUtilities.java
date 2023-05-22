@@ -2,6 +2,7 @@ package it.unibo.donkeykong.utilities;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.logging.Logger;
 
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -17,12 +18,13 @@ import it.unibo.donkeykong.utilities.Constants.Audio;
  * Static class that manages the audio.
  */
 public final class AudioUtilities {
-    private AudioUtilities() {
-    }
 
     private static Clip clip;
     private static String filePlaying;
     private static boolean isMuted;
+
+    private AudioUtilities() {
+    }
 
     /**
      * Start playing a soundtrack.
@@ -36,11 +38,7 @@ public final class AudioUtilities {
                 startSong(fileName);
             }
         } else {
-            try {
-                startSong(fileName);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            startSong(fileName);
         }
     }
 
@@ -51,13 +49,13 @@ public final class AudioUtilities {
      */
     private static void startSong(final String fileName) {
         try {
-            File soundtrackFile = new File("src/main/resources/" + fileName);
-            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(soundtrackFile);
+            final File soundtrackFile = new File("src/main/resources/" + fileName);
+            final AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(soundtrackFile);
 
             clip = AudioSystem.getClip();
             clip.open(audioInputStream);
 
-            FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+            final FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
             gainControl.setValue((float) (Math.log10(Audio.baseVolume) * Audio.gainMultiplier));
 
             clip.loop(Clip.LOOP_CONTINUOUSLY);
@@ -67,7 +65,8 @@ public final class AudioUtilities {
             filePlaying = fileName;
             isMuted = false;
         } catch (IOException | LineUnavailableException | UnsupportedAudioFileException e) {
-            e.printStackTrace();
+            final Logger logger = Logger.getLogger(AudioUtilities.class.getName());
+            logger.severe(e.getMessage());
         }
     }
 
@@ -75,11 +74,9 @@ public final class AudioUtilities {
      * Stop the soundtrack.
      */
     public static void stopSoundtrack() {
-        if (clip != null) {
-            clip.stop();
-            clip.close();
-            filePlaying = "";
-        }
+        clip.stop();
+        clip.close();
+        filePlaying = "";
     }
 
     /**
@@ -97,7 +94,7 @@ public final class AudioUtilities {
      * @return true if a soundtrack is playing, false otherwise.
      */
     public static boolean isPlaying() {
-        return clip != null ? clip.isRunning() : false;
+        return clip != null && clip.isRunning();
     }
 
     /**
@@ -113,9 +110,9 @@ public final class AudioUtilities {
      * Update the volume of the soundtrack.
      */
     public static void updateVolume() {
-        FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-        gainControl.setValue(((gainControl.getMaximum() - gainControl.getMinimum()) 
-                             * Constants.Audio.baseVolume) 
+        final FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+        gainControl.setValue((gainControl.getMaximum() - gainControl.getMinimum()) 
+                             * Constants.Audio.baseVolume
                              + gainControl.getMinimum());
     }
 
@@ -127,7 +124,7 @@ public final class AudioUtilities {
     public static void setMuted(final boolean mute) {
         if (mute != isMuted) {
             isMuted = mute;
-            BooleanControl booleanControl = (BooleanControl) clip.getControl(BooleanControl.Type.MUTE);
+            final BooleanControl booleanControl = (BooleanControl) clip.getControl(BooleanControl.Type.MUTE);
             booleanControl.setValue(isMuted);
         }
     }
