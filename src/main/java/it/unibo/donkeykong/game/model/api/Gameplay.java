@@ -1,6 +1,6 @@
 package it.unibo.donkeykong.game.model.api;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import it.unibo.donkeykong.controller.impl.GameController;
 
@@ -14,7 +14,7 @@ public interface Gameplay {
      * 
      * @return list of entities.
      */
-    ArrayList<Entity> getEntities();
+    List<Entity> getEntities();
 
     /**
      * Remove entity from game.

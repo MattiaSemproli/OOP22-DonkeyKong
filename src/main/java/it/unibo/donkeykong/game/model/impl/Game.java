@@ -23,7 +23,7 @@ import it.unibo.donkeykong.utilities.Pair;
 public class Game implements ViewModel {
 
     private final Level level;
-    private Map<Rectangle, BufferedImage> dataLevel = new HashMap<>();
+    private final Map<Rectangle, BufferedImage> dataLevel = new HashMap<>();
     private final Button settingsPauseButton;
 
     /**
@@ -39,7 +39,7 @@ public class Game implements ViewModel {
     }
 
     private void mapDataLevel() {
-        Map<Pair<Integer, Integer>, Integer> lvl = this.level.getLevelData();
+        final Map<Pair<Integer, Integer>, Integer> lvl = this.level.getLevelData();
         for (int r = 0; r < Window.TILES_IN_HEIGHT; r++) {
             for (int c = 0; c < Window.TILES_IN_WIDTH; c++) {
                 this.dataLevel.put(new Rectangle(SCALED_TILES_SIZE * r, 

@@ -12,8 +12,8 @@ import it.unibo.donkeykong.view.ApplicationWindow;
  */
 public class ApplicationImpl implements Application {
 
-    private ApplicationPanel dkPanel;
-    private GameEngine gameEngine;
+    private final ApplicationPanel dkPanel;
+    private final GameEngine gameEngine;
     private MainMenuController mainMenuController;
     private SettingsController settingsController;
     private GameController gameController;
