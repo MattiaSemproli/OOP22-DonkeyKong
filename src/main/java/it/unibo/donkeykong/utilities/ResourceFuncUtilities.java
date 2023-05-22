@@ -5,6 +5,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.logging.Logger;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -13,6 +14,9 @@ import javax.swing.ImageIcon;
  * Functional utilities for resources.
  */
 public final class ResourceFuncUtilities {
+
+    private static final Logger LOGGER = Logger.getLogger(AudioUtilities.class.getName());
+
     private ResourceFuncUtilities() {
     }
 
@@ -33,12 +37,12 @@ public final class ResourceFuncUtilities {
      * @return       the buffered image.
      */
     public static BufferedImage getBufferedSources(final String fileName) {
-        File file = new File("src/main/resources/" + fileName + ".png");
+        final File file = new File("src/main/resources/" + fileName + ".png");
         BufferedImage img = null;
         try {
             img = ImageIO.read(file);
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.severe(e.getMessage());
         }
         return img;
     }
@@ -51,17 +55,10 @@ public final class ResourceFuncUtilities {
      */
     public static BufferedImage loadSources(final String fileName) {
         BufferedImage img = null;
-        InputStream s = ResourceFuncUtilities.class.getResourceAsStream("/" + fileName + ".png");
-        try {
+        try (InputStream s = ResourceFuncUtilities.class.getResourceAsStream("/" + fileName + ".png")) {
             img = ImageIO.read(s);
         } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                s.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            LOGGER.severe(e.getMessage());
         }
         return img;
     }

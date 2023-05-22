@@ -17,6 +17,7 @@ import it.unibo.donkeykong.inputs.MouseInputs;
  */
 public final class ApplicationPanel extends JPanel {
 
+  private static final long serialVersionUID = 1L;
   private final transient Application application;
 
   /**

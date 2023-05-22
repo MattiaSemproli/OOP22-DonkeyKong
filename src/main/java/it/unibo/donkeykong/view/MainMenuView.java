@@ -100,26 +100,28 @@ public class MainMenuView implements GameEngine {
                 menuY + MenuAssets.buttonHeight * 3 + MenuAssets.legendKeyBox * 3,
                 MenuAssets.legendKeyBox, MenuAssets.legendKeyBox, null);
 
+        final Font font = new Font("Arial", Font.BOLD, 10 * 2);
+
         g.setColor(Color.WHITE);
-        g.setFont(new Font("Arial", Font.BOLD, 10 * 2));
+        g.setFont(font);
         g.drawString("TO MOVE LEFT",
                 menuX + MenuAssets.menuTextureBox / 10 + MenuAssets.legendKeyBox * 2,
                 menuY + MenuAssets.menuTextureBox / 2);
 
         g.setColor(Color.WHITE);
-        g.setFont(new Font("Arial", Font.BOLD, 10 * 2));
+        g.setFont(font);
         g.drawString("TO MOVE RIGHT",
                 menuX + MenuAssets.menuTextureBox / 10 + MenuAssets.legendKeyBox * 2,
                 menuY + MenuAssets.menuTextureBox / 2 + MenuAssets.legendKeyBox);
 
         g.setColor(Color.WHITE);
-        g.setFont(new Font("Arial", Font.BOLD, 10 * 2));
+        g.setFont(font);
         g.drawString("TO MOVE UP",
                 menuX + MenuAssets.menuTextureBox / 10 + MenuAssets.legendKeyBox * 2,
                 menuY + MenuAssets.menuTextureBox / 2 + MenuAssets.legendKeyBox * 2);
 
         g.setColor(Color.WHITE);
-        g.setFont(new Font("Arial", Font.BOLD, 10 * 2));
+        g.setFont(font);
         g.drawString("TO MOVE DOWN",
                 menuX + MenuAssets.menuTextureBox / 10 + MenuAssets.legendKeyBox * 2,
                 menuY + MenuAssets.menuTextureBox / 2 + MenuAssets.legendKeyBox * 3);
