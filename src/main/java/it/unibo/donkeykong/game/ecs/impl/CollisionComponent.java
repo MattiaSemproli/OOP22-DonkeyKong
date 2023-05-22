@@ -25,11 +25,11 @@ public class CollisionComponent extends AbstractComponent {
         checkCollisions();
     }
 
-    public CollisionComponent(final float x, final float y, final boolean isSolid) {
+    public CollisionComponent(final float x, final float y, final boolean isSolid, final Type type) {
         this.x = (int) x;
         this.y = (int) y;
         this.isSolid = isSolid;
-        initHitbox();
+        initDifferentHitbox(type);
     }
 
     public Rectangle2D getHitbox() {
@@ -76,22 +76,22 @@ public class CollisionComponent extends AbstractComponent {
         return val - wall;
     }
 
-    private void initHitbox() {
-        this.width = this.getEntity().getWidth();
-        this.height = this.getEntity().getHeight();
-        initDifferentHitbox(this.getEntity().getEntityType());
-    }
-
     private void initDifferentHitbox(final Type type) {
+        width = Constants.Window.SCALED_TILES_SIZE;
+        height = width;
         switch (type) {
             case LADDER:
                 hitbox = new Rectangle2D.Float(x + Constants.Level.ladderPadding, y, 
                                                width - (Constants.Level.ladderPadding * 2), height);
                 break;
             case BARREL:
-            case MONKEY:
             case PLAYER:
             case PRINCESS:
+                hitbox = new Rectangle2D.Float(x, y, width, height);
+                break;
+            case MONKEY:
+                width = Constants.Entity.monkeyWidth;
+                height = Constants.Entity.monkeyHeight;
                 hitbox = new Rectangle2D.Float(x, y, width, height);
                 break;
             case POWER_UP:
@@ -105,7 +105,6 @@ public class CollisionComponent extends AbstractComponent {
                 hitbox = new Rectangle2D.Float(x, y + Constants.Level.platformBlockPadding, 
                                                width, height - (Constants.Level.platformBlockPadding * 2));
                 break;
-
         }
     }
 }
