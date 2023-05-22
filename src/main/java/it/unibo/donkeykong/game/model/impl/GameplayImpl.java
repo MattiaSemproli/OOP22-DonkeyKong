@@ -99,7 +99,7 @@ public class GameplayImpl implements Gameplay, GameEngine {
     }
 
     @Override
-    public void removeEntity(Entity entity) {
+    public final void removeEntity(final Entity entity) {
         this.entities.remove(entity);
     }
 }

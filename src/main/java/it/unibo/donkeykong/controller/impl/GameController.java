@@ -117,7 +117,7 @@ public class GameController implements GameEngine, MouseListener, KeyListener, G
     public final Map<Rectangle, BufferedImage> getAlternativeButtonsFromModel() {
         return this.game.getAlternativeButtons();
     }
-    
+
     /**
      * Get all the data level from the model.
      * 

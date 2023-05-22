@@ -42,14 +42,14 @@ public class SettingsController implements MouseListener, GameEngine, GenericCon
     }
 
     @Override
-    public Map<Button, BufferedImage> getButtonsFromModel() {
+    public final Map<Button, BufferedImage> getButtonsFromModel() {
         return this.settings.getButtons();
-    }    
+    }
 
     @Override
-    public Map<Rectangle, BufferedImage> getAlternativeButtonsFromModel() {
+    public final Map<Rectangle, BufferedImage> getAlternativeButtonsFromModel() {
         return this.settings.getAlternativeButtons();
-    }    
+    }
 
     @Override
     public final void mousePressed(final MouseEvent e) {
