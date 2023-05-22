@@ -73,14 +73,13 @@ public class GameController implements GameEngine, MouseListener, KeyListener, G
 
     @Override
     public final void keyPressed(final KeyEvent e) { 
-        if (e.getKeyCode() != KeyEvent.VK_ESCAPE) {
-            if (e.getKeyCode() == KeyEvent.VK_A
+        if (e.getKeyCode() != KeyEvent.VK_ESCAPE
+            && (e.getKeyCode() == KeyEvent.VK_A
                 || e.getKeyCode() == KeyEvent.VK_LEFT
                 || e.getKeyCode() == KeyEvent.VK_D
                 || e.getKeyCode() == KeyEvent.VK_RIGHT
-                || e.getKeyCode() == KeyEvent.VK_SPACE) {
-                this.keyInputs.add(0, e.getKeyCode());
-            }
+                || e.getKeyCode() == KeyEvent.VK_SPACE)) {
+            this.keyInputs.add(0, e.getKeyCode());
         }
     }
 
@@ -141,7 +140,7 @@ public class GameController implements GameEngine, MouseListener, KeyListener, G
      * 
      * @return list of keys pressed.
      */
-    public final ArrayList<Integer> getInputs() {
+    public final List<Integer> getInputs() {
         return new ArrayList<>(this.keyInputs);
     }
 

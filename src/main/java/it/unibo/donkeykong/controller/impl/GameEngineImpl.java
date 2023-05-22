@@ -13,8 +13,7 @@ import it.unibo.donkeykong.utilities.Gamestate;
  */
 public class GameEngineImpl implements GameEngine, Runnable {
 
-    private Application applicationImpl;
-    private Thread gameThread;
+    private final Application applicationImpl;
 
     /**
      * Constructor.
@@ -27,15 +26,15 @@ public class GameEngineImpl implements GameEngine, Runnable {
     }
 
     private void startGameLoop() {
-        gameThread = new Thread(this);
+        Thread gameThread = new Thread(this);
         gameThread.start();
     }
 
     @Override
     public final void run() {
 
-        double timePerFrame = GameLoop.NANOSECOND / GameLoop.FPS_SET;
-        double timePerUpdate = GameLoop.NANOSECOND / GameLoop.UPS_SET;
+        final double timePerFrame = GameLoop.NANOSECOND / GameLoop.FPS_SET;
+        final double timePerUpdate = GameLoop.NANOSECOND / GameLoop.UPS_SET;
         long previousTime = System.nanoTime();
         long lastCheck = System.currentTimeMillis();
 

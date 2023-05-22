@@ -4,6 +4,7 @@ import static it.unibo.donkeykong.utilities.Constants.Window.SCALED_TILES_SIZE;
 
 import java.awt.Graphics;
 import java.util.ArrayList;
+import java.util.List;
 
 import it.unibo.donkeykong.controller.api.GameEngine;
 import it.unibo.donkeykong.controller.impl.GameController;
@@ -22,7 +23,7 @@ public class GameplayImpl implements Gameplay, GameEngine {
     private final EntityFactory entityFactoryImpl;
     private final GameController controller;
     private final Level level;
-    private ArrayList<Entity> entities = new ArrayList<>();
+    private final List<Entity> entities = new ArrayList<>();
 
     /**
      * Constructor.

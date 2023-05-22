@@ -36,7 +36,7 @@ public class EntityImpl implements Entity {
     public EntityImpl(final Type type, final Pair<Float, Float> pos, final Gameplay gameplay) {
         this.type = type;
         this.components = new HashSet<>();
-        this.pos = new Pair<Float, Float>(pos.getX(), pos.getY());
+        this.pos = new Pair<>(pos.getX(), pos.getY());
         this.gameplay = gameplay;
         switch (type) {
             case BARREL:
@@ -102,7 +102,7 @@ public class EntityImpl implements Entity {
 
     @Override
     public final void setPosition(final Pair<Float, Float> pos) {
-        this.pos = new Pair<Float, Float>(pos.getX(), pos.getY());
+        this.pos = new Pair<>(pos.getX(), pos.getY());
     }
 
     @Override
