@@ -10,14 +10,12 @@ import it.unibo.donkeykong.utilities.Direction;
  * Component that handles game inputs. 
  */
 public class InputsComponent extends AbstractComponent {
-
-    private Optional<Integer> input;
-
+    
     @Override
     public final void update() {
-        this.input = this.getEntity().getGameplay().getController().getInputs().stream().findFirst();
-        if (this.input.isPresent()) {
-            switch (this.input.get()) {
+        Optional<Integer> input = this.getEntity().getGameplay().getController().getInputs().stream().findFirst();
+        if (input.isPresent()) {
+            switch (input.get()) {
                 case KeyEvent.VK_LEFT:
                 case KeyEvent.VK_A:
                     this.move(Direction.LEFT);
