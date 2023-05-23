@@ -24,7 +24,7 @@ public class EntityImpl implements Entity {
     private Optional<Pair<Float, Float>> nextPosition = Optional.empty();
     private final Gameplay gameplay;
     private final int width, height;
-    private final float speed;
+    private float speed;
 
     /**
      * Constructor.
@@ -53,7 +53,7 @@ public class EntityImpl implements Entity {
             case PLAYER:
                 this.width = Window.SCALED_TILES_SIZE;
                 this.height = Window.SCALED_TILES_SIZE;
-                this.speed = 1f;
+                this.speed = Constants.Player.velocity;
                 break;
             case PRINCESS:
                 this.width = Constants.Princess.princessWidth;
@@ -140,5 +140,10 @@ public class EntityImpl implements Entity {
     @Override
     public final float getSpeed() {
         return this.speed;
+    }
+
+    @Override
+    public final void setSpeed(final float speedModifier) {
+        this.speed += speedModifier;
     }
 }
