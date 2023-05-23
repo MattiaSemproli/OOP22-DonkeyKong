@@ -89,7 +89,7 @@ public class GameView implements GameEngine {
          */
         this.gameController.getEntitiesFromGameplay().forEach(e -> {
             final Rectangle2D r = e.getComponent(CollisionComponent.class).get().getHitbox();
-            g.setColor(java.awt.Color.orange);
+            g.setColor(java.awt.Color.GREEN);
             g.drawRect((int) r.getX(), (int) r.getY(), (int) r.getWidth(), (int) r.getHeight());
         });
     }

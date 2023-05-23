@@ -37,6 +37,21 @@ public interface Entity {
     Pair<Float, Float> getPosition();
 
     /**
+     * Save the next pos where the entity will be.
+     * 
+     * @param position next position to be saved for collision check.
+     */
+    void saveNextPosition(Pair<Float, Float> position);
+
+    /**
+     * Return the next position of the entity.
+     * 
+     * @param position position to be checked.
+     * @return an optional with the next position, an empty if not present.
+     */
+    Optional<Pair<Float, Float>> getNextPosition();
+
+    /**
      * @param position of the entity to be set
      */
     void setPosition(Pair<Float, Float> position);

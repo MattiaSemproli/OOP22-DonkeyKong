@@ -1,6 +1,7 @@
 package it.unibo.donkeykong.game.ecs.impl;
 
 import java.awt.geom.Rectangle2D;
+import java.util.Optional;
 
 import it.unibo.donkeykong.game.model.api.Entity;
 import it.unibo.donkeykong.game.model.impl.AbstractComponent;
@@ -18,14 +19,20 @@ public class CollisionComponent extends AbstractComponent {
     private final boolean isSolid;
     private float x, y;
     private int width, height;
+    private Entity entity;
     private Rectangle2D.Float hitbox;
+    private Optional<Pair<Float, Float>> nextPosition = Optional.empty();
 
     @Override
     public final void update() {
-        hitbox.x = this.getEntity().getPosition().getX();
-        hitbox.y = this.getEntity().getPosition().getY();
-        checkOutField();
-        checkCollisions();
+        this.nextPosition = this.getEntity().getNextPosition();
+        if(this.nextPosition.isPresent()) {
+            entity = this.getEntity();
+            hitbox.x = nextPosition.get().getX();
+            hitbox.y = nextPosition.get().getY();
+            checkOutField();
+            checkCollisions();
+        }
     }
 
     /**
@@ -37,8 +44,8 @@ public class CollisionComponent extends AbstractComponent {
      * @param type linked entity type
      */
     public CollisionComponent(final float x, final float y, final boolean isSolid, final Type type) {
-        this.x = (int) x;
-        this.y = (int) y;
+        this.x = x;
+        this.y = y;
         this.isSolid = isSolid;
         initDifferentHitbox(type);
     }
@@ -49,7 +56,7 @@ public class CollisionComponent extends AbstractComponent {
      * @return defensive copy of the hitbox.
      */
     public final Rectangle2D getHitbox() {
-        return new Rectangle2D.Float(this.hitbox.x, this.hitbox.y, this.hitbox.width, this.hitbox.height);
+        return this.hitbox;
     }
 
     /**
@@ -62,7 +69,6 @@ public class CollisionComponent extends AbstractComponent {
     }
 
     private void checkCollisions() {
-        final Entity entity = this.getEntity();
         if (entity.getEntityType().equals(Type.PLAYER)) {
             entity.getGameplay()
                   .getEntities()
@@ -81,13 +87,11 @@ public class CollisionComponent extends AbstractComponent {
                     if (e.getEntityType().equals(Type.PRINCESS)) {
                         Gamestate.setGamestate(Gamestate.WIN);
                     }
-                    if ((e.getEntityType().equals(Type.BLOCK)
+                    if (e.getEntityType().equals(Type.BLOCK)
                         || e.getEntityType().equals(Type.BLOCK_LADDER_DOWN)
                         || e.getEntityType().equals(Type.BLOCK_LADDER_UP)
-                        || e.getEntityType().equals(Type.BLOCK_LADDER_UPDOWN))
-                        && checkWall((float) eHitbox.getMaxY(), (float) e2Hitbox.getY()) > 0) {
-                            entity.setPosition(new Pair<>(entity.getPosition().getX(), 
-                                                          (float) e2Hitbox.getY() - entity.getHeight()));
+                        || e.getEntityType().equals(Type.BLOCK_LADDER_UPDOWN)) {
+                            
                     }
                     if (e.getEntityType().equals(Type.LADDER)) {
                         e.getGameplay().removeEntity(e);
@@ -97,35 +101,21 @@ public class CollisionComponent extends AbstractComponent {
     }
 
     private void checkOutField() {
-        final Entity entity = this.getEntity();
-        Pair<Float, Float> nextPos = null;
         if (entity.getEntityType() == Type.PLAYER) {
-            if (checkWall(hitbox.x + hitbox.width, Window.GAME_WIDTH) > 0) {
-                nextPos = new Pair<>(Window.GAME_WIDTH - hitbox.width, entity.getPosition().getY());
-            } else if (checkWall(hitbox.x, 0) < 0) {
-                nextPos = new Pair<>(0.f, entity.getPosition().getY());
-            } else if (checkWall(hitbox.y, 0) < 0) {
-                nextPos = new Pair<>(entity.getPosition().getX(), 0.f);
-            } else if (checkWall(hitbox.y, Window.GAME_HEIGHT) > 0) {
+            if(hitbox.x > (Window.GAME_WIDTH - hitbox.width)) {
+                entity.setPosition(new Pair<>((Window.GAME_WIDTH - hitbox.width), this.nextPosition.get().getY()));
+            } else if(hitbox.y < 0) {
+                entity.setPosition(new Pair<>(this.nextPosition.get().getX(), 0f));
+            } else if(hitbox.x < 0) {
+                entity.setPosition(new Pair<>(0f, this.nextPosition.get().getY()));
+            } else if(hitbox.y > Window.GAME_HEIGHT) {
                 entity.getGameplay().removeEntity(entity);
-            }
-            if (nextPos != null) {
-                entity.setPosition(nextPos);
+            } else {
+                entity.setPosition(new Pair<>(this.nextPosition.get().getX(), this.nextPosition.get().getY()));
             }
         } else if (entity.getEntityType() == Type.BARREL) {
-            final MovementComponent movementComponent = entity.getComponent(MovementComponent.class).get();
-            if (checkWall(hitbox.x + hitbox.width, Window.GAME_WIDTH) > 0) {
-                movementComponent.moveEntity(movementComponent.getFacing().getOppositeDirection());
-            } else if (checkWall(hitbox.x, 0) < 0) {
-                movementComponent.moveEntity(movementComponent.getFacing().getOppositeDirection());
-            } else if (checkWall(hitbox.y, Window.GAME_HEIGHT) > 0) {
-                entity.getGameplay().removeEntity(entity);
-            }
-        }
-    }
 
-    private float checkWall(final float val, final float wall) {
-        return val - wall;
+        }
     }
 
     private void initDifferentHitbox(final Type type) {

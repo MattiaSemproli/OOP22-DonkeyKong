@@ -21,6 +21,7 @@ public class EntityImpl implements Entity {
     private final Type type;
     private final Set<Component> components;
     private Pair<Float, Float> pos;
+    private Optional<Pair<Float, Float>> nextPosition = Optional.empty();
     private final Gameplay gameplay;
     private final int width, height;
     private final float speed;
@@ -98,6 +99,16 @@ public class EntityImpl implements Entity {
     @Override
     public final Pair<Float, Float> getPosition() {
         return this.pos;
+    }
+
+    @Override
+    public final void saveNextPosition(final Pair<Float, Float> nextPos) {
+        this.nextPosition = Optional.of(new Pair<>(nextPos.getX() + this.pos.getX(), nextPos.getY() + this.pos.getY()));
+    }
+
+    @Override
+    public final Optional<Pair<Float, Float>> getNextPosition() {
+        return this.nextPosition;
     }
 
     @Override
