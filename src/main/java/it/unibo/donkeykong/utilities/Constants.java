@@ -162,13 +162,6 @@ public class Constants {
         }
     }
 
-    public static final class Barrel {
-        public static final float velocity = 2.5f;
-        public static final float initialPositionXLevel1 = 0.f;
-        public static final float initialPositionYLevel1 = 0.f;
-        public static final Direction firstLevelDirection = Direction.RIGHT;
-    }
-
     public static final class Level {
         public static final String levelOne = "level_one_data";
         public static final String levelSprites = "platform_ladder";
@@ -216,11 +209,23 @@ public class Constants {
         }
     }
 
+    public static final class Physics {
+        public static final float jumpSpeed = -2.2f * Window.scala;
+        public static final float gravity = 0.04f * Window.scala;
+        public static final float speedInAirMultiplier = 0.6f;
+    }
+
+    public static final class Barrel {
+        public static final int barrelDimension = (int) (48 * Window.scala);
+        public static final Direction firstLevelDirection = Direction.RIGHT;
+        public static final float velocity = 2.5f * Window.scala;
+    }
+
     public static final class Player {
         public static final float levelOneStartingPlayerX = Window.SCALED_TILES_SIZE;
         public static final float levelOneStartingPlayerY = Window.SCALED_TILES_SIZE * 12 + Level.platformBlockPadding;
         public static final int playerDimension = (int) (48 * Window.scala);
-        public static final float velocity = 2f;
+        public static final float velocity = 1.5f * Window.scala;
     }
     
     public static final class Monkey {

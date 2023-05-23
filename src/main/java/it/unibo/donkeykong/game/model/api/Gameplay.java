@@ -3,6 +3,7 @@ package it.unibo.donkeykong.game.model.api;
 import java.util.List;
 
 import it.unibo.donkeykong.controller.impl.GameController;
+import it.unibo.donkeykong.game.ecs.api.Entity;
 
 /**
  * Gameplay interface, models Gameplay management.

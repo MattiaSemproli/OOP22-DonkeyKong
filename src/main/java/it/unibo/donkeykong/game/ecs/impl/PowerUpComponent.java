@@ -1,6 +1,5 @@
 package it.unibo.donkeykong.game.ecs.impl;
 
-import it.unibo.donkeykong.game.model.impl.AbstractComponent;
 import it.unibo.donkeykong.utilities.PowerUpType;
 
 /**

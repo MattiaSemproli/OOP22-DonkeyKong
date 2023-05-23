@@ -1,4 +1,4 @@
-package it.unibo.donkeykong.game.model.impl;
+package it.unibo.donkeykong.game.ecs.impl;
 
 import java.util.HashSet;
 import java.util.Optional;
@@ -6,7 +6,7 @@ import java.util.Set;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.donkeykong.game.ecs.api.Component;
-import it.unibo.donkeykong.game.model.api.Entity;
+import it.unibo.donkeykong.game.ecs.api.Entity;
 import it.unibo.donkeykong.game.model.api.Gameplay;
 import it.unibo.donkeykong.utilities.Constants;
 import it.unibo.donkeykong.utilities.Constants.Window;

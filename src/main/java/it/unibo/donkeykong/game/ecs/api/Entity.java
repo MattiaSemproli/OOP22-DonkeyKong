@@ -1,10 +1,10 @@
-package it.unibo.donkeykong.game.model.api;
+package it.unibo.donkeykong.game.ecs.api;
 
 import java.util.Optional;
 import java.util.Set;
 
-import it.unibo.donkeykong.game.ecs.api.Component;
-import it.unibo.donkeykong.game.model.impl.AbstractComponent;
+import it.unibo.donkeykong.game.ecs.impl.AbstractComponent;
+import it.unibo.donkeykong.game.model.api.Gameplay;
 import it.unibo.donkeykong.utilities.Pair;
 import it.unibo.donkeykong.utilities.Type;
 

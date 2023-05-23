@@ -1,11 +1,12 @@
 package it.unibo.donkeykong.game.model.impl;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+import it.unibo.donkeykong.game.ecs.api.Entity;
 import it.unibo.donkeykong.game.ecs.impl.CollisionComponent;
+import it.unibo.donkeykong.game.ecs.impl.EntityImpl;
 import it.unibo.donkeykong.game.ecs.impl.InputsComponent;
 import it.unibo.donkeykong.game.ecs.impl.MovementComponent;
 import it.unibo.donkeykong.game.ecs.impl.ThrowComponent;
-import it.unibo.donkeykong.game.model.api.Entity;
 import it.unibo.donkeykong.game.model.api.EntityFactory;
 import it.unibo.donkeykong.game.model.api.Gameplay;
 import it.unibo.donkeykong.utilities.Pair;

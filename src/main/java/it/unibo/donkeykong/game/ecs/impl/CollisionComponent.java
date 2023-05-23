@@ -3,8 +3,7 @@ package it.unibo.donkeykong.game.ecs.impl;
 import java.awt.geom.Rectangle2D;
 import java.util.Optional;
 
-import it.unibo.donkeykong.game.model.api.Entity;
-import it.unibo.donkeykong.game.model.impl.AbstractComponent;
+import it.unibo.donkeykong.game.ecs.api.Entity;
 import it.unibo.donkeykong.utilities.Constants;
 import it.unibo.donkeykong.utilities.Gamestate;
 import it.unibo.donkeykong.utilities.Constants.Window;

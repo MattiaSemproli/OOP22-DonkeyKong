@@ -1,5 +1,6 @@
 package it.unibo.donkeykong.game.model.api;
 
+import it.unibo.donkeykong.game.ecs.api.Entity;
 import it.unibo.donkeykong.utilities.Pair;
 
 /**

@@ -9,7 +9,7 @@ import java.util.List;
 
 import it.unibo.donkeykong.controller.api.GameEngine;
 import it.unibo.donkeykong.controller.impl.GameController;
-import it.unibo.donkeykong.game.model.api.Entity;
+import it.unibo.donkeykong.game.ecs.api.Entity;
 import it.unibo.donkeykong.game.model.api.EntityFactory;
 import it.unibo.donkeykong.game.model.api.Gameplay;
 import it.unibo.donkeykong.game.model.api.Level;

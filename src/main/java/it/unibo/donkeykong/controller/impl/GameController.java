@@ -18,8 +18,8 @@ import javax.swing.Timer;
 
 import it.unibo.donkeykong.controller.api.GameEngine;
 import it.unibo.donkeykong.controller.api.GenericController;
+import it.unibo.donkeykong.game.ecs.api.Entity;
 import it.unibo.donkeykong.game.model.api.Button;
-import it.unibo.donkeykong.game.model.api.Entity;
 import it.unibo.donkeykong.game.model.api.Gameplay;
 import it.unibo.donkeykong.game.model.impl.Game;
 import it.unibo.donkeykong.game.model.impl.GameplayImpl;
