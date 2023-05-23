@@ -43,7 +43,7 @@ public class EntityImpl implements Entity {
             case BARREL:
                 this.width = Window.SCALED_TILES_SIZE;
                 this.height = Window.SCALED_TILES_SIZE;
-                this.speed = Constants.Barrel.barrelVelocity;
+                this.speed = Constants.Barrel.velocity;
                 break;
             case MONKEY:
                 this.width = Constants.Monkey.monkeyWidth;

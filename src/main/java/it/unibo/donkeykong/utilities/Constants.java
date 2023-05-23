@@ -163,9 +163,7 @@ public class Constants {
     }
 
     public static final class Barrel {
-        public static final int barrelVelocity = 2;
-        public static final int startingBounces = 0;
-        public static final int maxBounces = 3;
+        public static final float velocity = 2.5f;
         public static final float initialPositionXLevel1 = 0.f;
         public static final float initialPositionYLevel1 = 0.f;
         public static final Direction firstLevelDirection = Direction.RIGHT;
