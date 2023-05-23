@@ -80,4 +80,9 @@ public interface Entity {
      * @return the entity's speed
      */
     float getSpeed();
+
+    /**
+     * Modify entity speed.
+     */
+    void setSpeed(float speedModifier);
 }

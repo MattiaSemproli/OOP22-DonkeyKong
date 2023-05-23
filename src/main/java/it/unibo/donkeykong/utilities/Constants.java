@@ -222,6 +222,7 @@ public class Constants {
         public static final float levelOneStartingPlayerX = Window.SCALED_TILES_SIZE;
         public static final float levelOneStartingPlayerY = Window.SCALED_TILES_SIZE * 12 + Level.platformBlockPadding;
         public static final int playerDimension = (int) (48 * Window.scala);
+        public static final float velocity = 2f;
     }
     
     public static final class Monkey {
