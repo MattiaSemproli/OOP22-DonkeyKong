@@ -9,14 +9,13 @@ import it.unibo.donkeykong.utilities.Pair;
  */
 public class MovementComponent extends AbstractComponent {
 
-    private Pair<Float, Float> movePos;
+    private Pair<Float, Float> movePos = new Pair<>(0f, 0f);
     private Direction direction = Direction.RIGHT;
 
     @Override
     public final void update() {
-        if (this.movePos != null) {
-            this.getEntity().setPosition(movePos);
-        }
+        this.getEntity().saveNextPosition(movePos);
+        this.movePos = new Pair<>(0f, 0f);
     }
 
     /**
@@ -26,8 +25,8 @@ public class MovementComponent extends AbstractComponent {
      */
     public final void moveEntity(final Direction direction) {
         this.direction = direction;
-        this.movePos = new Pair<>(direction.getX() * 1f + this.getEntity().getPosition().getX(), 
-                                  direction.getY() * 1f + this.getEntity().getPosition().getY());
+        this.movePos = new Pair<>(direction.getX() * this.getEntity().getSpeed(), 
+                                  direction.getY() * this.getEntity().getSpeed());
     }
 
     /**
