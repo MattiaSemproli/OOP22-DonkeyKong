@@ -85,7 +85,7 @@ public class CollisionComponent extends AbstractComponent {
                         || e.getEntityType().equals(Type.BLOCK_LADDER_DOWN)
                         || e.getEntityType().equals(Type.BLOCK_LADDER_UP)
                         || e.getEntityType().equals(Type.BLOCK_LADDER_UPDOWN))
-                        && checkWall((float) eHitbox.getMaxY(), (float) e2Hitbox.getY()) >= 0) {
+                        && checkWall((float) eHitbox.getMaxY(), (float) e2Hitbox.getY()) > 0) {
                             entity.setPosition(new Pair<>(entity.getPosition().getX(), 
                                                           (float) e2Hitbox.getY() - entity.getHeight()));
                     }
@@ -99,14 +99,13 @@ public class CollisionComponent extends AbstractComponent {
     private void checkOutField() {
         final Entity entity = this.getEntity();
         Pair<Float, Float> nextPos = null;
-        float check;
         if (entity.getEntityType() == Type.PLAYER) {
-            if ((check = checkWall(hitbox.x + hitbox.width, Window.GAME_WIDTH)) > 0) {
-                nextPos = new Pair<>(entity.getPosition().getX() - check, entity.getPosition().getY());
-            } else if ((check = checkWall(hitbox.x, 0)) < 0) {
-                nextPos = new Pair<>(entity.getPosition().getX() - check, entity.getPosition().getY());
-            } else if ((check = checkWall(hitbox.y, 0)) < 0) {
-                nextPos = new Pair<>(entity.getPosition().getX(), entity.getPosition().getY() - check);
+            if (checkWall(hitbox.x + hitbox.width, Window.GAME_WIDTH) > 0) {
+                nextPos = new Pair<>(Window.GAME_WIDTH - hitbox.width, entity.getPosition().getY());
+            } else if (checkWall(hitbox.x, 0) < 0) {
+                nextPos = new Pair<>(0.f, entity.getPosition().getY());
+            } else if (checkWall(hitbox.y, 0) < 0) {
+                nextPos = new Pair<>(entity.getPosition().getX(), 0.f);
             } else if (checkWall(hitbox.y, Window.GAME_HEIGHT) > 0) {
                 entity.getGameplay().removeEntity(entity);
             }
