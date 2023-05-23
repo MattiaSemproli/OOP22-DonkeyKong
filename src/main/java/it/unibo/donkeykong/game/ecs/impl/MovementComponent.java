@@ -16,6 +16,7 @@ public class MovementComponent extends AbstractComponent {
     private float airSpeed = 0f;
     private boolean isInAir = false;
     private boolean isMoving = false;
+    private boolean isFalling = false;
 
     @Override
     public final void update() {
@@ -25,7 +26,11 @@ public class MovementComponent extends AbstractComponent {
             this.isMoving = false;
         } else {
             this.isMovingInAir();
-            this.updateInAirPosition();
+            if (!this.isFalling) {
+                this.updateInAirPosition();
+            } else {
+                this.updateFallingPosition();
+            }
             this.getEntity().saveNextPosition(movePos);
         }
     }
@@ -59,14 +64,23 @@ public class MovementComponent extends AbstractComponent {
             }
     }
 
-    private final void updateInAirPosition() {
+    private final void updateInAirPosition() { 
         if (this.isMoving) {
             this.movePos = new Pair<>(this.direction.getX() * this.getEntity().getSpeed() * Physics.speedInAirMultiplier, 
-                                      this.airSpeed);
+                                        this.airSpeed);
         } else {
             this.movePos = new Pair<>(0f, this.airSpeed);
         }
         this.airSpeed += Physics.gravity;
+    }
+
+    private final void updateFallingPosition() {
+        if (this.isMoving) {
+            this.movePos = new Pair<>(this.direction.getX() * this.getEntity().getSpeed() * Physics.speedInAirMultiplier, 
+                                        Physics.fallingSpeed);
+        } else {
+            this.movePos = new Pair<>(0f, Physics.fallingSpeed);
+        }
     }
 
     /**
@@ -84,5 +98,15 @@ public class MovementComponent extends AbstractComponent {
 
     public void setIsInAir (final boolean isInAir) {
         this.isInAir = isInAir;
+    }
+
+    public void resetIsInAir () {
+        this.isInAir = false;
+        this.airSpeed = 0f;
+    }
+
+    public void setFalling(final boolean isFalling) {
+        this.isFalling = isFalling;
+        this.isInAir = isFalling ? true : false;
     }
 }

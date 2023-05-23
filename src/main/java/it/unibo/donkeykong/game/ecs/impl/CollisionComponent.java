@@ -73,9 +73,13 @@ public class CollisionComponent extends AbstractComponent {
                   .getEntities()
                   .stream()
                   .filter(e -> !e.equals(entity))
+                  .filter(e -> hitbox.intersects(e.getComponent(CollisionComponent.class).get().getHitbox()));
+            /*entity.getGameplay()
+                  .getEntities()
+                  .stream()
+                  .filter(e -> !e.equals(entity))
                   .filter(e -> hitbox.intersects(e.getComponent(CollisionComponent.class).get().getHitbox()))
                   .forEach(e -> {
-                    final Rectangle2D eHitbox = entity.getComponent(CollisionComponent.class).get().getHitbox();
                     final Rectangle2D e2Hitbox = e.getComponent(CollisionComponent.class).get().getHitbox();
                     if (e.getEntityType().equals(Type.BARREL)) {
                         entity.getGameplay().removeEntity(entity);
@@ -90,12 +94,21 @@ public class CollisionComponent extends AbstractComponent {
                         || e.getEntityType().equals(Type.BLOCK_LADDER_DOWN)
                         || e.getEntityType().equals(Type.BLOCK_LADDER_UP)
                         || e.getEntityType().equals(Type.BLOCK_LADDER_UPDOWN)) {
-                            
+                        if ((hitbox.y + hitbox.height > e2Hitbox.getY()
+                             && hitbox.y + hitbox.height < e2Hitbox.getY() + 4)
+                            && (hitbox.x + hitbox.width > e2Hitbox.getX() 
+                                && hitbox.x < e2Hitbox.getMaxX())) {
+                            entity.getComponent(MovementComponent.class).get().resetIsInAir();
+                            entity.getComponent(MovementComponent.class).get().setFalling(false);
+                            entity.setPosition(new Pair<>(this.nextPosition.get().getX(), (float) e2Hitbox.getY() - hitbox.height));
+                        }
                     }
                     if (e.getEntityType().equals(Type.LADDER)) {
                         e.getGameplay().removeEntity(e);
                     }
-                  });
+                  });*/
+        } else if (entity.getEntityType().equals(Type.BARREL)) {
+
         }
     }
 
