@@ -1,6 +1,8 @@
 package it.unibo.donkeykong.game.ecs.impl;
 
 import java.awt.geom.Rectangle2D;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import it.unibo.donkeykong.game.ecs.api.Entity;
@@ -21,6 +23,7 @@ public class CollisionComponent extends AbstractComponent {
     private Entity entity;
     private Rectangle2D.Float hitbox;
     private Optional<Pair<Float, Float>> nextPosition = Optional.empty();
+    private List<Entity> eList = new ArrayList<>();
 
     @Override
     public final void update() {
@@ -69,17 +72,33 @@ public class CollisionComponent extends AbstractComponent {
 
     private void checkCollisions() {
         if (entity.getEntityType().equals(Type.PLAYER)) {
-            entity.getGameplay()
-                  .getEntities()
-                  .stream()
-                  .filter(e -> !e.equals(entity))
-                  .filter(e -> hitbox.intersects(e.getComponent(CollisionComponent.class).get().getHitbox()));
-            /*entity.getGameplay()
-                  .getEntities()
-                  .stream()
-                  .filter(e -> !e.equals(entity))
-                  .filter(e -> hitbox.intersects(e.getComponent(CollisionComponent.class).get().getHitbox()))
-                  .forEach(e -> {
+            List<Entity> eList = entity.getGameplay()
+                                       .getEntities()
+                                       .stream()
+                                       .filter(e -> !e.equals(entity))
+                                       .filter(e -> hitbox.intersects(e.getComponent(CollisionComponent.class)
+                                                                       .get()
+                                                                       .getHitbox()))
+                                       .toList();
+            boolean isOnfloor = entity.getGameplay()
+                                .getEntities()
+                                .stream()
+                                .filter(e -> e.getEntityType().equals(Type.BLOCK) 
+                                             || e.getEntityType().equals(Type.BLOCK_LADDER_DOWN) 
+                                             || e.getEntityType().equals(Type.BLOCK_LADDER_UP)
+                                             || e.getEntityType().equals(Type.BLOCK_LADDER_UPDOWN))
+                                .filter(e -> hitbox.intersects(e.getComponent(CollisionComponent.class)
+                                                                .get()
+                                                                .getHitbox()))
+                                .filter(e -> this.nextPosition.get().getY() + hitbox.height > e.getPosition().getY() 
+                                             && this.nextPosition.get().getY() + hitbox.height < e.getPosition().getY() + 4)
+                                .findAny().isPresent();
+            if (eList.isEmpty() && !isOnfloor) {
+                if(!entity.getComponent(MovementComponent.class).get().getIsInAir()) {
+                    entity.getComponent(MovementComponent.class).get().setFalling(true);
+                }
+            } else {
+                eList.forEach(e -> {
                     final Rectangle2D e2Hitbox = e.getComponent(CollisionComponent.class).get().getHitbox();
                     if (e.getEntityType().equals(Type.BARREL)) {
                         entity.getGameplay().removeEntity(entity);
@@ -106,7 +125,8 @@ public class CollisionComponent extends AbstractComponent {
                     if (e.getEntityType().equals(Type.LADDER)) {
                         e.getGameplay().removeEntity(e);
                     }
-                  });*/
+                  });
+            }
         } else if (entity.getEntityType().equals(Type.BARREL)) {
 
         }

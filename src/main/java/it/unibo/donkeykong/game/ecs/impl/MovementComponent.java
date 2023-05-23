@@ -71,7 +71,7 @@ public class MovementComponent extends AbstractComponent {
         } else {
             this.movePos = new Pair<>(0f, this.airSpeed);
         }
-        this.airSpeed += Physics.gravity;
+        this.airSpeed += Physics.gravity * Physics.jumpGravityMultiplier;
     }
 
     private final void updateFallingPosition() {

@@ -210,10 +210,11 @@ public class Constants {
     }
 
     public static final class Physics {
-        public static final float jumpSpeed = -2.2f * Window.scala;
+        public static final float jumpSpeed = -2.4f * Window.scala;
         public static final float gravity = 0.04f * Window.scala;
         public static final float speedInAirMultiplier = 0.6f;
-        public static final float fallingSpeed = 2f * Window.scala;
+        public static final float fallingSpeed = 1.5f * Window.scala;
+        public static final float jumpGravityMultiplier = 1.3f;
     }
 
     public static final class Barrel {
@@ -226,7 +227,7 @@ public class Constants {
         public static final float levelOneStartingPlayerX = Window.SCALED_TILES_SIZE;
         public static final float levelOneStartingPlayerY = Window.SCALED_TILES_SIZE * 12 + Level.platformBlockPadding;
         public static final int playerDimension = (int) (48 * Window.scala);
-        public static final float velocity = 1.5f * Window.scala;
+        public static final float velocity = 2f * Window.scala;
     }
     
     public static final class Monkey {
