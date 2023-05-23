@@ -24,20 +24,8 @@ public class MovementComponent extends AbstractComponent {
             this.movePos = new Pair<>(0f, 0f);
             this.isMoving = false;
         } else {
-            if (this.getEntity().getGameplay().getController().getInputs()
-                    .stream().filter(k -> k == KeyEvent.VK_D
-                                        || k == KeyEvent.VK_A
-                                        || k == KeyEvent.VK_RIGHT
-                                        || k == KeyEvent.VK_LEFT).findAny().isPresent()) {
-                this.isMoving = true;
-            }
-            if (isMoving) {
-                this.movePos = new Pair<>(this.direction.getX() * this.getEntity().getSpeed() * Physics.speedInAirMultiplier, 
-                                          this.airSpeed);
-            } else {
-                this.movePos = new Pair<>(0f, this.airSpeed);
-            }
-            this.airSpeed += Physics.gravity;
+            this.isMovingInAir();
+            this.updateInAirPosition();
             this.getEntity().saveNextPosition(movePos);
         }
     }
@@ -59,6 +47,26 @@ public class MovementComponent extends AbstractComponent {
             this.isInAir = true;
             this.airSpeed = Physics.jumpSpeed;
         }
+    }
+
+    private final void isMovingInAir() {
+        if (this.getEntity().getGameplay().getController().getInputs()
+                    .stream().filter(k -> k == KeyEvent.VK_D
+                                        || k == KeyEvent.VK_A
+                                        || k == KeyEvent.VK_RIGHT
+                                        || k == KeyEvent.VK_LEFT).findAny().isPresent()) {
+                this.isMoving = true;
+            }
+    }
+
+    private final void updateInAirPosition() {
+        if (this.isMoving) {
+            this.movePos = new Pair<>(this.direction.getX() * this.getEntity().getSpeed() * Physics.speedInAirMultiplier, 
+                                      this.airSpeed);
+        } else {
+            this.movePos = new Pair<>(0f, this.airSpeed);
+        }
+        this.airSpeed += Physics.gravity;
     }
 
     /**
