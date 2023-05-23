@@ -3,7 +3,6 @@ package it.unibo.donkeykong.game.ecs.impl;
 import java.awt.event.KeyEvent;
 import java.util.Optional;
 
-import it.unibo.donkeykong.game.model.impl.AbstractComponent;
 import it.unibo.donkeykong.utilities.Direction;
 
 /**
@@ -24,8 +23,10 @@ public class InputsComponent extends AbstractComponent {
                 case KeyEvent.VK_D:
                     this.move(Direction.RIGHT);
                     break;
+                case KeyEvent.VK_SPACE:
+                    this.jump();
+                    break;
                 default:
-                    //jump to handle 
                     break;
             }
         }
@@ -35,6 +36,13 @@ public class InputsComponent extends AbstractComponent {
         final Optional<MovementComponent> moveOptional = this.getEntity().getComponent(MovementComponent.class);
         if (moveOptional.isPresent()) {
             moveOptional.get().moveEntity(direction);
+        } 
+    }
+
+    private void jump() {
+        final Optional<MovementComponent> moveOptional = this.getEntity().getComponent(MovementComponent.class);
+        if (moveOptional.isPresent()) {
+            moveOptional.get().jump();
         } 
     }
 }
