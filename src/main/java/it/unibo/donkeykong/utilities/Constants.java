@@ -229,6 +229,23 @@ public class Constants {
         public static final int totalPUProbability = 10;
         public static final int totalCDProbability = 2;
         public static final int changeDirProbability = 1;
+        public static final int barrelAni = 0;
+        public static final int ddBarrelAni = 1;
+        public static final int barrelAniSprites = 4;
+        public static final int numBarrel = 2;
+        public static final int spriteWidth = 12;
+        public static final int spriteHeight = 10;
+
+        private static final Map<Integer, BufferedImage> barrelSources = new HashMap<>();
+
+        public static final Map<Integer, BufferedImage> getBarrelSources() {
+            return Collections.unmodifiableMap(barrelSources);
+        }
+
+        public static final void loadBarrelSources() {
+            barrelSources.put(barrelAni, loadSources("barrel"));
+            barrelSources.put(ddBarrelAni, loadSources("barrel_dd"));
+        }
     }
 
     public static final class Player {
@@ -238,7 +255,14 @@ public class Constants {
         public static final float velocity = 2f * Window.scala;
         public static final int numLifes = 3;
         public static final int movementAni = 0;
-
+        public static final int spriteDimension = 16;
+        public static final Pair<Integer, Integer> movAniRC = new Pair<>(4, 3);
+        public static final int runAni = 0;
+        public static final int jumpAni = 2;
+        public static final int leftAni = 0;
+        public static final int rightAni = 1;
+        public static final int midAirAni = 1;
+        
         private static final Map<Integer, BufferedImage> playerSources = new HashMap<>();
 
         public static final Map<Integer, BufferedImage> getPlayerSources() {
@@ -246,7 +270,7 @@ public class Constants {
         }
 
         public static final void loadPlayerSources() {
-            playerSources.put(0, loadSources("mario_movement"));
+            playerSources.put(movementAni, loadSources("mario_movement"));
         }
     }
     
@@ -255,6 +279,20 @@ public class Constants {
         public static final float levelOneStartingMonkeyY = Window.SCALED_TILES_SIZE * 2 + Level.platformBlockPadding;
         public static final int monkeyWidth = (int) (120 * Window.scala);
         public static final int monkeyHeight = (int) (96 * Window.scala);
+        public static final int monkeyAni = 0;
+        public static final int monkeyAniSprites = 4;
+        public static final int spriteWidth = 40;
+        public static final int spriteHeight = 32;
+
+        private static final Map<Integer, BufferedImage> monkeySources = new HashMap<>();
+
+        public static final Map<Integer, BufferedImage> getMonkeySources() {
+            return Collections.unmodifiableMap(monkeySources);
+        }
+
+        public static final void loadMonkeySources() {
+            monkeySources.put(monkeyAni, loadSources("donkeykong"));
+        }
     }
 
     public static final class Princess {
@@ -262,5 +300,20 @@ public class Constants {
         public static final float levelOneStartingPrincessY = Window.SCALED_TILES_SIZE - Level.princessPadding;
         public static final int princessWidth = (int) (48 * Window.scala);
         public static final int princessHeight = (int) (66 * Window.scala);
+        public static final int spriteWidth = 16;
+        public static final int spriteHeight = 22;
+        public static final int princessAni = 0;
+        public static final int princessAniSprites = 3;
+    
+        private static final Map<Integer, BufferedImage> princessSources = new HashMap<>();
+
+        public static final Map<Integer, BufferedImage> getPrincessSources() {
+            return Collections.unmodifiableMap(princessSources);
+        }
+
+        public static final void loadPrincessSources() {
+            princessSources.put(princessAni, loadSources("princess"));
+            princessSources.put(1, loadSources("peachessingletry"));
+        }
     }
 }

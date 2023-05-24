@@ -2,13 +2,24 @@ package it.unibo.donkeykong.view;
 
 import java.awt.Graphics;
 import java.awt.geom.Rectangle2D;
+import java.awt.image.BufferedImage;
+import java.util.Optional;
 
 import it.unibo.donkeykong.controller.api.GameEngine;
 import it.unibo.donkeykong.controller.impl.GameController;
+import it.unibo.donkeykong.game.ecs.api.Entity;
 import it.unibo.donkeykong.game.ecs.impl.CollisionComponent;
+import it.unibo.donkeykong.game.ecs.impl.DoubleDamageComponent;
+import it.unibo.donkeykong.game.ecs.impl.MovementComponent;
 import it.unibo.donkeykong.utilities.Constants;
+import it.unibo.donkeykong.utilities.Direction;
+import it.unibo.donkeykong.utilities.Pair;
+import it.unibo.donkeykong.utilities.PlayerIdle;
 import it.unibo.donkeykong.utilities.ResourceFuncUtilities;
 import it.unibo.donkeykong.utilities.Type;
+import it.unibo.donkeykong.utilities.Constants.Barrel;
+import it.unibo.donkeykong.utilities.Constants.Player;
+import it.unibo.donkeykong.utilities.Constants.Princess;
 
 /**
  * Game view.
@@ -16,6 +27,7 @@ import it.unibo.donkeykong.utilities.Type;
 public class GameView implements GameEngine {
 
     private final GameController gameController;
+    private int aniTick, aniIndex, aniSpeed = 15;
 
     /**
      * 
@@ -27,6 +39,7 @@ public class GameView implements GameEngine {
 
     @Override
     public final void update() {
+        this.updateAnimations();
     }
 
     @Override
@@ -49,35 +62,7 @@ public class GameView implements GameEngine {
                                                  || e.getEntityType() == Type.BARREL
                                                  || e.getEntityType() == Type.PRINCESS)
                            .forEach(entity -> {
-                            final Type type = entity.getEntityType();
-                            if(type == Type.PLAYER) {
-                                g.drawImage(ResourceFuncUtilities.loadSources("mariosingletry"), 
-                                            Math.round(entity.getPosition().getX()), 
-                                            Math.round(entity.getPosition().getY()), 
-                                            Constants.Player.playerDimension, 
-                                            Constants.Player.playerDimension, null);
-                            }
-                            if(type == Type.MONKEY) {
-                                g.drawImage(ResourceFuncUtilities.loadSources("dksingletry"), 
-                                            Math.round(entity.getPosition().getX()), 
-                                            Math.round(entity.getPosition().getY()), 
-                                            Constants.Monkey.monkeyWidth, 
-                                            Constants.Monkey.monkeyHeight,  null);
-                            }
-                            if(type == Type.BARREL) {
-                                g.drawImage(ResourceFuncUtilities.loadSources("barrelsingletry"), 
-                                            Math.round(entity.getPosition().getX()), 
-                                            Math.round(entity.getPosition().getY()), 
-                                            Constants.Barrel.barrelWidth, 
-                                            Constants.Barrel.barrelHeight,  null);
-                            }
-                            if(type == Type.PRINCESS) {
-                                g.drawImage(ResourceFuncUtilities.loadSources("peachessingletry"), 
-                                            Math.round(entity.getPosition().getX()), 
-                                            Math.round(entity.getPosition().getY()), 
-                                            Constants.Princess.princessWidth, 
-                                            Constants.Princess.princessHeight, null);
-                            }
+                                this.drawEntity(g, entity);
         });
 
         /**
@@ -88,5 +73,59 @@ public class GameView implements GameEngine {
             g.setColor(java.awt.Color.GREEN);
             g.drawRect((int) r.getX(), (int) r.getY(), (int) r.getWidth(), (int) r.getHeight());
         });
+    }
+
+    private void drawEntity(final Graphics g, final Entity entity) {
+        final BufferedImage sprite = this.getSprite(entity);
+        g.drawImage(sprite, 
+                    Math.round(entity.getPosition().getX()), 
+                    Math.round(entity.getPosition().getY()), 
+                    entity.getWidth(), 
+                    entity.getHeight(), null);
+    }
+
+    private BufferedImage getSprite(final Entity entity) {
+        Pair<Integer, Integer> anim = this.getIdle(entity);
+        return this.gameController.getAnimationFromModel(entity.getEntityType(), anim.getX(), anim.getY());
+    }
+
+    private Pair<Integer, Integer> getIdle(final Entity entity) {
+        if (entity.getEntityType() == Type.PLAYER) {
+            final MovementComponent mc = entity.getComponent(MovementComponent.class).get();
+            switch(PlayerIdle.getPlayerIdle()) {
+                case RUN:
+                    return new Pair<>(mc.getFacing() == Direction.LEFT ? Player.leftAni 
+                                                                             : Player.rightAni, 
+                                      this.aniIndex); 
+                case FALLING:
+                case JUMP:
+                    return new Pair<>(mc.getFacing() == Direction.LEFT ? Player.jumpAni + Player.leftAni 
+                                                                             : Player.jumpAni + Player.rightAni, 
+                                      mc.isInAir() ? Player.midAirAni 
+                                                         : Player.movementAni);
+                case STOP:
+                default:
+                    return new Pair<>(mc.getFacing() == Direction.LEFT ? Player.leftAni 
+                                                                             : Player.rightAni,
+                                      Player.runAni);
+            }
+        }
+        if (entity.getEntityType() == Type.BARREL) {
+            return new Pair<>(entity.getComponent(DoubleDamageComponent.class)
+                                    .get().getDoubleDamage() ? Barrel.ddBarrelAni : Barrel.barrelAni, 
+                              this.aniIndex > 2 ? 2 : this.aniIndex);    
+        }
+        return new Pair<>(0, 0);
+    }
+
+    private void updateAnimations() {
+        aniTick++;
+        if(aniTick >= aniSpeed){
+            aniTick = 0;
+            aniIndex++;
+            if(aniIndex >= 3){
+                aniIndex = 0;
+            }
+        }
     }
 }

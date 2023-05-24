@@ -25,6 +25,7 @@ import it.unibo.donkeykong.game.model.impl.Game;
 import it.unibo.donkeykong.game.model.impl.GameplayImpl;
 import it.unibo.donkeykong.utilities.ButtonFuncUtilities;
 import it.unibo.donkeykong.utilities.Gamestate;
+import it.unibo.donkeykong.utilities.Type;
 import it.unibo.donkeykong.view.GameView;
 
 /**
@@ -105,6 +106,10 @@ public class GameController implements GameEngine, MouseListener, KeyListener, G
             this.keyInputs.clear();
             this.pauseTimer();
         }
+    }
+
+    public BufferedImage getAnimationFromModel(final Type type, final int row, final int col) {
+        return this.game.getEntityAni(type, row, col);
     }
 
     @Override

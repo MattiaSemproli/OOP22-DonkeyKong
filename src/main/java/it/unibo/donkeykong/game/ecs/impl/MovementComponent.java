@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import it.unibo.donkeykong.utilities.Direction;
 import it.unibo.donkeykong.utilities.Pair;
+import it.unibo.donkeykong.utilities.PlayerIdle;
 import it.unibo.donkeykong.utilities.Type;
 import it.unibo.donkeykong.utilities.Constants.Physics;
 
@@ -36,12 +37,14 @@ public class MovementComponent extends AbstractComponent {
             if (!this.inAir) {
                 this.getEntity().saveNextPosition(this.movePos.equals(new Pair<>(0f, 0f)) ? Optional.empty() 
                                                                                             : Optional.of(this.movePos));
+                PlayerIdle.setPlayerIdle(this.movePos.equals(new Pair<>(0f, 0f)) ? PlayerIdle.STOP : PlayerIdle.RUN);
                 this.movePos = new Pair<>(0f, 0f);
                 this.movingInAir = false;
             } else {
                 this.isMovingInAir();
                 this.updateInAirPosition();
                 this.getEntity().saveNextPosition(Optional.of(this.movePos));
+                PlayerIdle.setPlayerIdle(this.airSpeed > 0 ? PlayerIdle.FALLING : PlayerIdle.JUMP);
             }
         } else if (this.getEntity().getEntityType() == Type.BARREL) {
             if (!this.inAir) {

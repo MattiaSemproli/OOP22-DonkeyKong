@@ -55,6 +55,10 @@ public class ApplicationImpl implements Application {
         Constants.MenuAssets.SettingsAssets.loadSettingsSources();
         Constants.Audio.loadThemes();
         Constants.MenuAssets.LevelAssets.loadLevelSources();
+        Constants.Player.loadPlayerSources();
+        Constants.Barrel.loadBarrelSources();
+        Constants.Monkey.loadMonkeySources();
+        Constants.Princess.loadPrincessSources();
     }
 
     @Override
