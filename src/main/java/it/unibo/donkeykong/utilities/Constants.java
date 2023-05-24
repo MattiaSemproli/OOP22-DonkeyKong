@@ -212,7 +212,8 @@ public class Constants {
     public static final class Physics {
         public static final float jumpSpeed = -2.4f * Window.scala;
         public static final float gravity = 0.04f * Window.scala;
-        public static final float speedInAirMultiplier = 0.6f;
+        public static final float speedInAirMultiplierPlayer = 0.6f;
+        public static final float speedInAirMultiplierBarrel = 0.4f;
         public static final float fallingSpeed = 1.5f * Window.scala;
         public static final float jumpGravityMultiplier = 1.3f;
     }

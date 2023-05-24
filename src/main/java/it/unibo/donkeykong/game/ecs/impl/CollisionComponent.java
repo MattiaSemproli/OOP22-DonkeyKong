@@ -3,9 +3,11 @@ package it.unibo.donkeykong.game.ecs.impl;
 import java.awt.geom.Line2D;
 import java.awt.geom.Rectangle2D;
 import java.util.Optional;
+import java.util.Random;
 
 import it.unibo.donkeykong.game.ecs.api.Entity;
 import it.unibo.donkeykong.utilities.Constants;
+import it.unibo.donkeykong.utilities.Constants.Barrel;
 import it.unibo.donkeykong.utilities.Constants.Window;
 import it.unibo.donkeykong.utilities.Pair;
 import it.unibo.donkeykong.utilities.Type;
@@ -16,26 +18,28 @@ import it.unibo.donkeykong.utilities.Type;
 public class CollisionComponent extends AbstractComponent {
 
     private final boolean isSolid;
+    private boolean barrelChangedDirection = false;
     private float x, y;
     private int width, height;
     private Entity entity;
     private Rectangle2D.Float hitbox;
     private Optional<Pair<Float, Float>> nextPosition = Optional.empty();
+    private Random random = new Random();
 
     @Override
     public final void update() {
         this.nextPosition = this.getEntity().getNextPosition();
+        this.entity = this.getEntity();
         if(!this.nextPosition.isEmpty()) {
-            this.entity = this.getEntity();
             this.hitbox.x = nextPosition.get().getX();
             this.hitbox.y = nextPosition.get().getY();
             this.checkIsEntityOnTheFloor();
             this.checkWallCollision();
-            this.checkIsCollidingWithOtherEntities();
         } else {
             this.hitbox.x = this.getEntity().getPosition().getX();
             this.hitbox.y = this.getEntity().getPosition().getY();
         }
+        this.checkIsCollidingWithOtherEntities();
     }
 
     /**
@@ -92,6 +96,23 @@ public class CollisionComponent extends AbstractComponent {
             } else {
                 entity.getComponent(MovementComponent.class).get().setIsInAir(true);
             }
+        } else if (entity.getEntityType() == Type.BARREL) {
+            if (entity.getGameplay().getEntities()
+                .stream().filter(e -> e.getEntityType() == (Type.BLOCK) 
+                                      || e.getEntityType() == (Type.BLOCK_LADDER_DOWN) 
+                                      || e.getEntityType() == (Type.BLOCK_LADDER_UP)
+                                      || e.getEntityType() == (Type.BLOCK_LADDER_UPDOWN))
+                .filter(e -> hitbox.intersectsLine(new Line2D.Float(e.getComponent(CollisionComponent.class).get().getHitbox().x,
+                                                                    e.getComponent(CollisionComponent.class).get().getHitbox().y,
+                                                                    e.getComponent(CollisionComponent.class).get().getHitbox().x + e.getComponent(CollisionComponent.class).get().getHitbox().width,
+                                                                    e.getComponent(CollisionComponent.class).get().getHitbox().y))
+                        && hitbox.y + hitbox.height < e.getComponent(CollisionComponent.class).get().getHitbox().y + 4)
+                .count() > 0) {
+                entity.getComponent(MovementComponent.class).get().resetIsInAir();
+                }  else {
+                entity.getComponent(MovementComponent.class).get().setIsInAir(true);
+                this.barrelChangedDirection = false;
+            }
         }
     }
 
@@ -142,6 +163,22 @@ public class CollisionComponent extends AbstractComponent {
                             }
                         }
                   });
+        } else if (this.entity.getEntityType() == Type.BARREL) {
+            this.entity.getGameplay().getEntities().stream()
+                        .filter(e -> e.getEntityType() == Type.BLOCK
+                                    || e.getEntityType() == Type.BLOCK_LADDER_DOWN
+                                    || e.getEntityType() == Type.BLOCK_LADDER_UP
+                                    || e.getEntityType() == Type.BLOCK_LADDER_UPDOWN)
+                        .filter(e -> hitbox.intersects(e.getComponent(CollisionComponent.class).get().getHitbox()))
+                        .forEach(e -> {
+                            if (random.nextInt(2) == 1
+                                && !this.barrelChangedDirection
+                                && !entity.getComponent(MovementComponent.class).get().getIsInAir()
+                            ) {
+                                entity.getComponent(MovementComponent.class).get().changeBarrelDirection();
+                            }
+                            this.barrelChangedDirection = true;
+                        });
         }
     }
 

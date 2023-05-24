@@ -16,6 +16,7 @@ public class MovementComponent extends AbstractComponent {
     private Pair<Float, Float> movePos = new Pair<>(0f, 0f);
     private Direction direction = Direction.RIGHT;
     private float airSpeed = 0f;
+    private int barrelChangesCounter = 0;
     private boolean isInAir = false;
     private boolean movingInAir = false;
 
@@ -33,8 +34,13 @@ public class MovementComponent extends AbstractComponent {
                 this.getEntity().saveNextPosition(Optional.of(this.movePos));
             }
         } else if (this.getEntity().getEntityType() == Type.BARREL) {
-            this.moveEntity(this.getEntity().getComponent(MovementComponent.class).get().getFacing());
-            this.getEntity().saveNextPosition(Optional.of(this.movePos));
+            if(!this.isInAir){
+                this.moveEntity(this.getEntity().getComponent(MovementComponent.class).get().getFacing());
+                this.getEntity().saveNextPosition(Optional.of(this.movePos));
+            } else {
+                this.updateInAirPosition();
+                this.getEntity().saveNextPosition(Optional.of(this.movePos));
+            }
         }
     }
 
@@ -68,12 +74,21 @@ public class MovementComponent extends AbstractComponent {
     }
 
     private final void updateInAirPosition() {
-        if (this.movingInAir) {
-            this.movePos = new Pair<>(this.direction.getX() * this.getEntity().getSpeed() * Physics.speedInAirMultiplier, this.airSpeed);
-        } else {
-            this.movePos = new Pair<>(0f, this.airSpeed);
+        if(this.getEntity().getEntityType() == Type.PLAYER) {
+            if (this.movingInAir) {
+                this.movePos = new Pair<>(this.direction.getX() * this.getEntity().getSpeed() * Physics.speedInAirMultiplierPlayer, this.airSpeed);
+            } else {
+                this.movePos = new Pair<>(0f, this.airSpeed);
+            }
+            this.airSpeed += Physics.gravity * Physics.jumpGravityMultiplier;
+        } else if (this.getEntity().getEntityType() == Type.BARREL) {
+            this.movePos = new Pair<>(this.direction.getX() * this.getEntity().getSpeed() * Physics.speedInAirMultiplierBarrel, this.airSpeed);
+            this.airSpeed += Physics.gravity;
         }
-        this.airSpeed += Physics.gravity * Physics.jumpGravityMultiplier;
+    }
+
+    public int getBarrelChangesCounter() {
+        return barrelChangesCounter;
     }
 
     /**
@@ -83,6 +98,11 @@ public class MovementComponent extends AbstractComponent {
      */
     public final Direction getFacing() {
         return this.direction;
+    }
+
+    public final void changeBarrelDirection() {
+        this.direction = direction.getOppositeDirection();
+        this.barrelChangesCounter++;
     }
 
     public boolean getIsInAir () {
