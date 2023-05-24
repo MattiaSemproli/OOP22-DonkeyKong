@@ -219,6 +219,8 @@ public class Constants {
 
     public static final class Barrel {
         public static final int barrelDimension = (int) (48 * Window.scala);
+        public static final int barrelWidth = (int) (36 * Window.scala);
+        public static final int barrelHeight = (int) (30 * Window.scala);
         public static final Direction firstLevelDirection = Direction.RIGHT;
         public static final float velocity = 2f * Window.scala;
         public static final int spawnDelay = 3;

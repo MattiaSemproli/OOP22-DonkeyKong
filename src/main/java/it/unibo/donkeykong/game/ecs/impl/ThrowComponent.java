@@ -22,7 +22,7 @@ public class ThrowComponent extends AbstractComponent {
 
     private Pair<Float,Float> getBarrelStartingPosition() {
         return new Pair<>(this.getEntity().getPosition().getX() + this.getEntity().getWidth(), 
-                          this.getEntity().getPosition().getY() + this.getEntity().getHeight() - Barrel.barrelDimension);
+                          this.getEntity().getPosition().getY() + this.getEntity().getHeight() - Barrel.barrelHeight);
     }
 
 

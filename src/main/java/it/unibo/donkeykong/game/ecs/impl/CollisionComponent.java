@@ -154,6 +154,10 @@ public class CollisionComponent extends AbstractComponent {
                                                width - (Constants.Level.ladderPadding * 2), height);
                 break;
             case BARREL:
+                width = Constants.Barrel.barrelWidth;
+                height = Constants.Barrel.barrelHeight;
+                hitbox = new Rectangle2D.Float(x, y, width, height);
+                break;
             case PLAYER:
                 hitbox = new Rectangle2D.Float(x, y, width, height);
                 break;
