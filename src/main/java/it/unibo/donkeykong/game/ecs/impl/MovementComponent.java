@@ -15,15 +15,25 @@ public class MovementComponent extends AbstractComponent {
 
     private Pair<Float, Float> movePos = new Pair<>(0f, 0f);
     private Direction direction = Direction.RIGHT;
-    private float airSpeed = 0f;
-    private int barrelChangesCounter = 0;
-    private boolean isInAir = false;
-    private boolean movingInAir = false;
+    private float airSpeed;
+    private int barrelChangesCounter;
+    private boolean inAir;
+    private boolean movingInAir;
+
+    /**
+     * Constructor.
+     */
+    public MovementComponent() {
+        this.airSpeed = 0f;
+        this.barrelChangesCounter = 0;
+        this.inAir = false;
+        this.movingInAir = false;
+    }
 
     @Override
     public final void update() {
         if (this.getEntity().getEntityType() == Type.PLAYER) {
-            if (!this.isInAir) {
+            if (!this.inAir) {
                 this.getEntity().saveNextPosition(this.movePos.equals(new Pair<>(0f, 0f)) ? Optional.empty() 
                                                                                             : Optional.of(this.movePos));
                 this.movePos = new Pair<>(0f, 0f);
@@ -34,7 +44,7 @@ public class MovementComponent extends AbstractComponent {
                 this.getEntity().saveNextPosition(Optional.of(this.movePos));
             }
         } else if (this.getEntity().getEntityType() == Type.BARREL) {
-            if (!this.isInAir) {
+            if (!this.inAir) {
                 this.moveEntity(this.getEntity().getComponent(MovementComponent.class).get().getFacing());
                 this.getEntity().saveNextPosition(Optional.of(this.movePos));
             } else {
@@ -59,8 +69,8 @@ public class MovementComponent extends AbstractComponent {
      * Set the entity to jump.
      */
     public final void jump() {
-        if (!this.isInAir) {
-            this.isInAir = true;
+        if (!this.inAir) {
+            this.inAir = true;
             this.airSpeed = Physics.jumpSpeed;
         }
     }
@@ -123,8 +133,8 @@ public class MovementComponent extends AbstractComponent {
      * 
      * @return true if is in the air.
      */
-    public final boolean getIsInAir() {
-        return this.isInAir;
+    public final boolean isInAir() {
+        return this.inAir;
     }
 
     /**
@@ -133,14 +143,14 @@ public class MovementComponent extends AbstractComponent {
      * @param isInAir set as new entity status.
      */
     public final void setIsInAir(final boolean isInAir) {
-        this.isInAir = isInAir;
+        this.inAir = isInAir;
     }
 
     /**
      * Reset entity status in air equals false.
      */
     public final void resetIsInAir() {
-        this.isInAir = false;
+        this.inAir = false;
         this.airSpeed = 0f;
     }
 }

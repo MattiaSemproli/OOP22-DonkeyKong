@@ -25,7 +25,7 @@ public class GameplayImpl implements Gameplay {
     private final GameController controller;
     private final Level level;
     private final List<Entity> entities = new ArrayList<>();
-    private Random random = new Random();
+    private final Random random = new Random();
 
     /**
      * Constructor.
