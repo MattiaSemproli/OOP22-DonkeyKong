@@ -25,7 +25,7 @@ public class Game implements ViewModel {
     private final Level level;
     private final Map<Rectangle, BufferedImage> dataLevel = new HashMap<>();
     private final Button settingsPauseButton;
-    private Map<Integer, BufferedImage[][]> animations = new HashMap<>();
+    //private Map<Integer, BufferedImage[][]> animations = new HashMap<>();
 
     /**
      * Constructor.
@@ -37,17 +37,17 @@ public class Game implements ViewModel {
                                                   Window.TILES_DEFAULT_SIZE, 
                                                   SCALED_TILES_SIZE, 
                                                   SCALED_TILES_SIZE, Gamestate.PAUSE);
-        this.bufferAnimations();
+        //this.bufferAnimations();
     }
 
-    private void bufferAnimations() {
+    /*private void bufferAnimations() {
         final BufferedImage[][] playerAnimations = new BufferedImage[4][3];
         for (int r = 0; r < playerAnimations.length; r++) {
             for (int c = 0; c < playerAnimations.length; c++) {
                 
             }
         }
-    }
+    }*/
 
     private void mapDataLevel() {
         final Map<Pair<Integer, Integer>, Integer> lvl = this.level.getLevelData();

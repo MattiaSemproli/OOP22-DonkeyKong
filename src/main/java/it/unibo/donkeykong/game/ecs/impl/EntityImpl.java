@@ -9,6 +9,7 @@ import it.unibo.donkeykong.game.ecs.api.Component;
 import it.unibo.donkeykong.game.ecs.api.Entity;
 import it.unibo.donkeykong.game.model.api.Gameplay;
 import it.unibo.donkeykong.utilities.Constants;
+import it.unibo.donkeykong.utilities.Constants.Barrel;
 import it.unibo.donkeykong.utilities.Constants.Window;
 import it.unibo.donkeykong.utilities.Pair;
 import it.unibo.donkeykong.utilities.Type;
@@ -41,8 +42,8 @@ public class EntityImpl implements Entity {
         this.gameplay = gameplay;
         switch (type) {
             case BARREL:
-                this.width = Window.SCALED_TILES_SIZE;
-                this.height = Window.SCALED_TILES_SIZE;
+                this.width = Barrel.barrelWidth;
+                this.height = Barrel.barrelHeight;
                 this.speed = Constants.Barrel.velocity;
                 break;
             case MONKEY:
