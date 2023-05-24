@@ -1,6 +1,8 @@
 package it.unibo.donkeykong.game.ecs.impl;
 
 import java.awt.event.KeyEvent;
+import java.util.Collections;
+import java.util.Optional;
 
 import it.unibo.donkeykong.utilities.Direction;
 import it.unibo.donkeykong.utilities.Pair;
@@ -15,23 +17,19 @@ public class MovementComponent extends AbstractComponent {
     private Direction direction = Direction.RIGHT;
     private float airSpeed = 0f;
     private boolean isInAir = false;
-    private boolean isMoving = false;
-    private boolean isFalling = false;
+    private boolean movingInAir = false;
 
     @Override
     public final void update() {
-        if(!this.isInAir) {
-            this.getEntity().saveNextPosition(movePos);
+        if(!this.isInAir){
+            this.getEntity().saveNextPosition(this.movePos.equals(new Pair<>(0f, 0f)) ? Optional.empty() 
+                                                                                          : Optional.of(this.movePos));
             this.movePos = new Pair<>(0f, 0f);
-            this.isMoving = false;
+            this.movingInAir = false;
         } else {
             this.isMovingInAir();
-            if (!this.isFalling) {
-                this.updateInAirPosition();
-            } else {
-                this.updateFallingPosition();
-            }
-            this.getEntity().saveNextPosition(movePos);
+            this.updateInAirPosition();
+            this.getEntity().saveNextPosition(Optional.of(this.movePos));
         }
     }
 
@@ -42,7 +40,6 @@ public class MovementComponent extends AbstractComponent {
      */
     public final void moveEntity(final Direction direction) {
         this.direction = direction;
-        this.isMoving = true;
         this.movePos = new Pair<>(direction.getX() * this.getEntity().getSpeed(), 
                                   direction.getY() * this.getEntity().getSpeed());
     }
@@ -56,31 +53,22 @@ public class MovementComponent extends AbstractComponent {
 
     private final void isMovingInAir() {
         if (this.getEntity().getGameplay().getController().getInputs()
-                    .stream().filter(k -> k == KeyEvent.VK_D
-                                        || k == KeyEvent.VK_A
-                                        || k == KeyEvent.VK_RIGHT
-                                        || k == KeyEvent.VK_LEFT).findAny().isPresent()) {
-                this.isMoving = true;
+                .stream().filter(k -> k == KeyEvent.VK_D
+                                      || k == KeyEvent.VK_A
+                                      || k == KeyEvent.VK_RIGHT
+                                      || k == KeyEvent.VK_LEFT)
+                .findAny().isPresent()) {
+                this.movingInAir = true;
             }
     }
 
-    private final void updateInAirPosition() { 
-        if (this.isMoving) {
-            this.movePos = new Pair<>(this.direction.getX() * this.getEntity().getSpeed() * Physics.speedInAirMultiplier, 
-                                        this.airSpeed);
+    private final void updateInAirPosition() {
+        if (this.movingInAir) {
+            this.movePos = new Pair<>(this.direction.getX() * this.getEntity().getSpeed() * Physics.speedInAirMultiplier, this.airSpeed);
         } else {
             this.movePos = new Pair<>(0f, this.airSpeed);
         }
         this.airSpeed += Physics.gravity * Physics.jumpGravityMultiplier;
-    }
-
-    private final void updateFallingPosition() {
-        if (this.isMoving) {
-            this.movePos = new Pair<>(this.direction.getX() * this.getEntity().getSpeed() * Physics.speedInAirMultiplier, 
-                                        Physics.fallingSpeed);
-        } else {
-            this.movePos = new Pair<>(0f, Physics.fallingSpeed);
-        }
     }
 
     /**
@@ -103,10 +91,5 @@ public class MovementComponent extends AbstractComponent {
     public void resetIsInAir () {
         this.isInAir = false;
         this.airSpeed = 0f;
-    }
-
-    public void setFalling(final boolean isFalling) {
-        this.isFalling = isFalling;
-        this.isInAir = isFalling ? true : false;
     }
 }
