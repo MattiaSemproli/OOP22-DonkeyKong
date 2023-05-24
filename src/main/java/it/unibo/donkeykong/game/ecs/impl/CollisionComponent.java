@@ -29,7 +29,7 @@ public class CollisionComponent extends AbstractComponent {
     public final void update() {
         this.nextPosition = this.getEntity().getNextPosition();
         this.entity = this.getEntity();
-        if(!this.nextPosition.isEmpty()) {
+        if (!this.nextPosition.isEmpty()) {
             this.hitbox.x = nextPosition.get().getX();
             this.hitbox.y = nextPosition.get().getY();
             this.checkIsEntityOnTheFloor();
@@ -46,7 +46,6 @@ public class CollisionComponent extends AbstractComponent {
      * 
      * @param x initial x-position of entity
      * @param y initial y-position of entity
-     * @param isSolid declare if entity can go through
      * @param type linked entity type
      */
     public CollisionComponent(final float x, final float y, final Type type) {
@@ -73,12 +72,16 @@ public class CollisionComponent extends AbstractComponent {
                                         || e.getEntityType() == (Type.BLOCK_LADDER_UPDOWN))
                   .filter(e -> hitbox.intersectsLine(new Line2D.Float(e.getComponent(CollisionComponent.class).get().getHitbox().x,
                                                                       e.getComponent(CollisionComponent.class).get().getHitbox().y,
-                                                                      e.getComponent(CollisionComponent.class).get().getHitbox().x + e.getComponent(CollisionComponent.class).get().getHitbox().width,
+                                                                      e.getComponent(CollisionComponent.class).get().getHitbox().x
+                                                                      + e.getComponent(CollisionComponent.class).get().getHitbox().width,
                                                                       e.getComponent(CollisionComponent.class).get().getHitbox().y))
                                && !hitbox.intersectsLine(new Line2D.Float(e.getComponent(CollisionComponent.class).get().getHitbox().x,
-                                                                         e.getComponent(CollisionComponent.class).get().getHitbox().y + e.getComponent(CollisionComponent.class).get().getHitbox().height,
-                                                                         e.getComponent(CollisionComponent.class).get().getHitbox().x + e.getComponent(CollisionComponent.class).get().getHitbox().width,
-                                                                         e.getComponent(CollisionComponent.class).get().getHitbox().y + e.getComponent(CollisionComponent.class).get().getHitbox().height))
+                                                                         e.getComponent(CollisionComponent.class).get().getHitbox().y
+                                                                         + e.getComponent(CollisionComponent.class).get().getHitbox().height,
+                                                                         e.getComponent(CollisionComponent.class).get().getHitbox().x
+                                                                         + e.getComponent(CollisionComponent.class).get().getHitbox().width,
+                                                                         e.getComponent(CollisionComponent.class).get().getHitbox().y
+                                                                         + e.getComponent(CollisionComponent.class).get().getHitbox().height))
                                && hitbox.y + hitbox.height < e.getComponent(CollisionComponent.class).get().getHitbox().y + 4)
                   .count() > 0) {
                 entity.getComponent(MovementComponent.class).get().resetIsInAir();
@@ -107,20 +110,20 @@ public class CollisionComponent extends AbstractComponent {
 
     private void checkWallCollision() {
         if (entity.getEntityType() == Type.PLAYER) {
-            if(hitbox.x > (Window.GAME_WIDTH - hitbox.width)) {
+            if (hitbox.x > (Window.GAME_WIDTH - hitbox.width)) {
                 entity.setPosition(new Pair<>((Window.GAME_WIDTH - hitbox.width), this.nextPosition.get().getY()));
-            } else if(hitbox.y < 0) {
+            } else if (hitbox.y < 0) {
                 entity.setPosition(new Pair<>(this.nextPosition.get().getX(), 0f));
-            } else if(hitbox.x < 0) {
+            } else if (hitbox.x < 0) {
                 entity.setPosition(new Pair<>(0f, this.nextPosition.get().getY()));
-            } else if(hitbox.y > Window.GAME_HEIGHT) {
+            } else if (hitbox.y > Window.GAME_HEIGHT) {
                 entity.getGameplay().removeEntity(entity);
             } else {
                 entity.setPosition(new Pair<>(this.nextPosition.get().getX(), this.nextPosition.get().getY()));
             }
         } else if (entity.getEntityType() == Type.BARREL) {
             final MovementComponent mc = this.entity.getComponent(MovementComponent.class).get();
-            if(hitbox.x < 0 || hitbox.x + hitbox.width > Window.GAME_WIDTH) {
+            if (hitbox.x < 0 || hitbox.x + hitbox.width > Window.GAME_WIDTH) {
                 mc.moveEntity(mc.getFacing().getOppositeDirection());
             } else if (hitbox.y > Window.GAME_HEIGHT) {
                 this.entity.getGameplay().removeEntity(entity);
@@ -130,9 +133,6 @@ public class CollisionComponent extends AbstractComponent {
         }
     }
 
-    /**
-     * TO DO
-     */
     private void checkIsCollidingWithOtherEntities() {
         if (entity.getEntityType() == Type.PLAYER) {
             entity.getGameplay().getEntities().stream()
