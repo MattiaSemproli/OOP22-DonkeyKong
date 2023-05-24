@@ -63,7 +63,7 @@ public class CollisionComponent extends AbstractComponent {
      * @return defensive copy of the hitbox.
      */
     public final Rectangle2D.Float getHitbox() {
-        return this.hitbox;
+        return new Rectangle2D.Float(this.hitbox.x, this.hitbox.y, this.hitbox.width, this.hitbox.height);
     }
 
     /**
