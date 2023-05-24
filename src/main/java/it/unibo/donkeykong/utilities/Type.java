@@ -41,7 +41,19 @@ public enum Type {
      */
     BLOCK_LADDER_UPDOWN,
     /**
-     * Powerup.
+     * Shield.
      */
-    POWER_UP,
+    SHIELD,
+    /**
+     * Extra life.
+     */
+    HEART,
+    /**
+     * Immortality for few seconds.
+     */
+    STAR,
+    /**
+     * Freeze Donkey Kong for few seconds.
+     */
+    SNOWFLAKE,
 }
