@@ -60,7 +60,10 @@ public class EntityImpl implements Entity {
                 this.height = Constants.Princess.princessHeight;
                 this.speed = 0;
                 break;
-            case POWER_UP:
+            case HEART:
+            case SHIELD:
+            case SNOWFLAKE:
+            case STAR:
                 this.width = Window.SCALED_TILES_SIZE + 1;
                 this.height = Window.SCALED_TILES_SIZE + 1;
                 this.speed = 0;

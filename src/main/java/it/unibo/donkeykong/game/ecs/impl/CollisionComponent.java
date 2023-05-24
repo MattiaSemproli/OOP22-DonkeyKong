@@ -197,7 +197,10 @@ public class CollisionComponent extends AbstractComponent {
                 height = Constants.Monkey.monkeyHeight;
                 hitbox = new Rectangle2D.Float(x, y, width, height);
                 break;
-            case POWER_UP:
+            case HEART:
+            case SNOWFLAKE:
+            case STAR:
+            case SHIELD:
                 hitbox = new Rectangle2D.Float(x + 1, y + 1, width, height);
                 break;
             case BLOCK:
