@@ -2,13 +2,10 @@ package it.unibo.donkeykong.game.ecs.impl;
 
 import java.awt.geom.Line2D;
 import java.awt.geom.Rectangle2D;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 import it.unibo.donkeykong.game.ecs.api.Entity;
 import it.unibo.donkeykong.utilities.Constants;
-import it.unibo.donkeykong.utilities.Gamestate;
 import it.unibo.donkeykong.utilities.Constants.Window;
 import it.unibo.donkeykong.utilities.Pair;
 import it.unibo.donkeykong.utilities.Type;
@@ -24,7 +21,6 @@ public class CollisionComponent extends AbstractComponent {
     private Entity entity;
     private Rectangle2D.Float hitbox;
     private Optional<Pair<Float, Float>> nextPosition = Optional.empty();
-    private List<Entity> eList = new ArrayList<>();
 
     @Override
     public final void update() {
@@ -118,6 +114,8 @@ public class CollisionComponent extends AbstractComponent {
                 mc.moveEntity(mc.getFacing().getOppositeDirection());
             } else if (hitbox.y > Window.GAME_HEIGHT) {
                 this.entity.getGameplay().removeEntity(entity);
+            } else {
+                entity.setPosition(new Pair<>(this.nextPosition.get().getX(), this.nextPosition.get().getY()));
             }
         }
     }
