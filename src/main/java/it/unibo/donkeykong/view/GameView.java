@@ -45,6 +45,11 @@ public class GameView implements GameEngine {
         this.gameController.getEntitiesFromGameplay().forEach(entity -> {
             switch (entity.getEntityType()) {
                 case BARREL:
+                    g.drawImage(ResourceFuncUtilities.loadSources("barrelsingletry"), 
+                                Math.round(entity.getPosition().getX()), 
+                                Math.round(entity.getPosition().getY()), 
+                                Constants.Barrel.barrelWidth, 
+                                Constants.Barrel.barrelHeight,  null);
                     break;
                 case BLOCK:
                     break;
