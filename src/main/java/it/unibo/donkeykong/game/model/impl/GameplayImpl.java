@@ -3,11 +3,10 @@ package it.unibo.donkeykong.game.model.impl;
 import static it.unibo.donkeykong.utilities.Constants.Level.platformBlockPadding;
 import static it.unibo.donkeykong.utilities.Constants.Window.SCALED_TILES_SIZE;
 
-import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
-import it.unibo.donkeykong.controller.api.GameEngine;
 import it.unibo.donkeykong.controller.impl.GameController;
 import it.unibo.donkeykong.game.ecs.api.Entity;
 import it.unibo.donkeykong.game.model.api.EntityFactory;
@@ -15,16 +14,18 @@ import it.unibo.donkeykong.game.model.api.Gameplay;
 import it.unibo.donkeykong.game.model.api.Level;
 import it.unibo.donkeykong.utilities.Constants;
 import it.unibo.donkeykong.utilities.Pair;
+import it.unibo.donkeykong.utilities.Constants.Barrel;
 
 /**
  * Gameplay class, manage and initialize entities and map.
  */
-public class GameplayImpl implements Gameplay, GameEngine {
+public class GameplayImpl implements Gameplay {
 
     private final EntityFactory entityFactoryImpl;
     private final GameController controller;
     private final Level level;
     private final List<Entity> entities = new ArrayList<>();
+    private Random random = new Random();
 
     /**
      * Constructor.
@@ -88,11 +89,12 @@ public class GameplayImpl implements Gameplay, GameEngine {
     }
 
     @Override
-    public void update() {
-    }
-
-    @Override
-    public void draw(final Graphics g) {
+    public final void throwBarrel(final Pair<Float,Float> position) {
+        final Entity barrel = this.entityFactoryImpl.generateBarrel(position);
+        if (random.nextInt(Barrel.totalProbability) < Barrel.doubleDamageProbability) {
+            // barrel.addComponent(new DoubleDamageComponent());
+        }
+        this.entities.add(barrel);
     }
 
     @Override

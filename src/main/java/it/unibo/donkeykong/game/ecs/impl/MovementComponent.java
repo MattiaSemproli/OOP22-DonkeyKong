@@ -1,11 +1,11 @@
 package it.unibo.donkeykong.game.ecs.impl;
 
 import java.awt.event.KeyEvent;
-import java.util.Collections;
 import java.util.Optional;
 
 import it.unibo.donkeykong.utilities.Direction;
 import it.unibo.donkeykong.utilities.Pair;
+import it.unibo.donkeykong.utilities.Type;
 import it.unibo.donkeykong.utilities.Constants.Physics;
 
 /**
@@ -21,14 +21,19 @@ public class MovementComponent extends AbstractComponent {
 
     @Override
     public final void update() {
-        if(!this.isInAir){
-            this.getEntity().saveNextPosition(this.movePos.equals(new Pair<>(0f, 0f)) ? Optional.empty() 
-                                                                                          : Optional.of(this.movePos));
-            this.movePos = new Pair<>(0f, 0f);
-            this.movingInAir = false;
-        } else {
-            this.isMovingInAir();
-            this.updateInAirPosition();
+        if(this.getEntity().getEntityType() == Type.PLAYER) {
+            if(!this.isInAir){
+                this.getEntity().saveNextPosition(this.movePos.equals(new Pair<>(0f, 0f)) ? Optional.empty() 
+                                                                                            : Optional.of(this.movePos));
+                this.movePos = new Pair<>(0f, 0f);
+                this.movingInAir = false;
+            } else {
+                this.isMovingInAir();
+                this.updateInAirPosition();
+                this.getEntity().saveNextPosition(Optional.of(this.movePos));
+            }
+        } else if (this.getEntity().getEntityType() == Type.BARREL) {
+            this.moveEntity(this.getEntity().getComponent(MovementComponent.class).get().getFacing());
             this.getEntity().saveNextPosition(Optional.of(this.movePos));
         }
     }

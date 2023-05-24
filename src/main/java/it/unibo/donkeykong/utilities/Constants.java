@@ -220,7 +220,10 @@ public class Constants {
     public static final class Barrel {
         public static final int barrelDimension = (int) (48 * Window.scala);
         public static final Direction firstLevelDirection = Direction.RIGHT;
-        public static final float velocity = 2.5f * Window.scala;
+        public static final float velocity = 2f * Window.scala;
+        public static final int spawnDelay = 3;
+        public static final int doubleDamageProbability = 3;
+        public static final int totalProbability = 10;
     }
 
     public static final class Player {

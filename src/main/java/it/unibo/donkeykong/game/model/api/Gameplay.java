@@ -4,6 +4,7 @@ import java.util.List;
 
 import it.unibo.donkeykong.controller.impl.GameController;
 import it.unibo.donkeykong.game.ecs.api.Entity;
+import it.unibo.donkeykong.utilities.Pair;
 
 /**
  * Gameplay interface, models Gameplay management.
@@ -30,4 +31,11 @@ public interface Gameplay {
      * @return linked GameController.
      */
     GameController getController();
+
+    /**
+     * Create a barrel entity.
+     *
+     * @param position new barrel starting position.
+     */
+    void throwBarrel(Pair<Float,Float> position);
 }
