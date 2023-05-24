@@ -41,7 +41,7 @@ public interface Entity {
      * 
      * @param position next position to be saved for collision check.
      */
-    void saveNextPosition(Pair<Float, Float> position);
+    void saveNextPosition(Optional<Pair<Float, Float>> position);
 
     /**
      * Return the next position of the entity.

@@ -102,8 +102,10 @@ public class EntityImpl implements Entity {
     }
 
     @Override
-    public final void saveNextPosition(final Pair<Float, Float> nextPos) {
-        this.nextPosition = Optional.of(new Pair<>(nextPos.getX() + this.pos.getX(), nextPos.getY() + this.pos.getY()));
+    public final void saveNextPosition(final Optional<Pair<Float, Float>> nextPos) {
+        this.nextPosition = nextPos.isPresent() ? Optional.of(new Pair<>(nextPos.get().getX() + this.pos.getX(), 
+                                                                         nextPos.get().getY() + this.pos.getY()))
+                                                : Optional.empty();
     }
 
     @Override
