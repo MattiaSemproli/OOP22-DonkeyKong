@@ -8,8 +8,15 @@ import it.unibo.donkeykong.utilities.Pair;
  */
 public class ThrowComponent extends AbstractComponent {
 
-    private boolean isFreezed = false;
+    private boolean isFreezed;
     private int timeElapsed = Barrel.spawnDelay;
+
+    /**
+     * Constructor.
+     */
+    public ThrowComponent() {
+        this.isFreezed = false;
+    }
 
     @Override
     public final void update() {

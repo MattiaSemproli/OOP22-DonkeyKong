@@ -17,13 +17,13 @@ import it.unibo.donkeykong.utilities.Type;
  */
 public class CollisionComponent extends AbstractComponent {
 
-    private boolean barrelChangedDirection = false;
+    private boolean barrelChangedDirection;
     private float x, y;
     private int width, height;
     private Entity entity;
     private Rectangle2D.Float hitbox;
     private Optional<Pair<Float, Float>> nextPosition = Optional.empty();
-    private Random random = new Random();
+    private final Random random = new Random();
 
     @Override
     public final void update() {
@@ -51,6 +51,7 @@ public class CollisionComponent extends AbstractComponent {
     public CollisionComponent(final float x, final float y, final Type type) {
         this.x = x;
         this.y = y;
+        this.barrelChangedDirection = false;
         initDifferentHitbox(type);
     }
 
@@ -64,7 +65,7 @@ public class CollisionComponent extends AbstractComponent {
     }
 
     private void checkIsEntityOnTheFloor() {
-        if (entity.getEntityType() == Type.PLAYER && (this.nextPosition.get().getY() >= entity.getPosition().getY())) {
+        if (entity.getEntityType() == Type.PLAYER && this.nextPosition.get().getY() >= entity.getPosition().getY()) {
             if (entity.getGameplay().getEntities()
                   .stream().filter(e -> e.getEntityType() == (Type.BLOCK) 
                                         || e.getEntityType() == (Type.BLOCK_LADDER_DOWN) 
@@ -111,7 +112,7 @@ public class CollisionComponent extends AbstractComponent {
     private void checkWallCollision() {
         if (entity.getEntityType() == Type.PLAYER) {
             if (hitbox.x > (Window.GAME_WIDTH - hitbox.width)) {
-                entity.setPosition(new Pair<>((Window.GAME_WIDTH - hitbox.width), this.nextPosition.get().getY()));
+                entity.setPosition(new Pair<>(Window.GAME_WIDTH - hitbox.width, this.nextPosition.get().getY()));
             } else if (hitbox.y < 0) {
                 entity.setPosition(new Pair<>(this.nextPosition.get().getX(), 0f));
             } else if (hitbox.x < 0) {
@@ -162,7 +163,7 @@ public class CollisionComponent extends AbstractComponent {
                         .forEach(e -> {
                             if (random.nextInt(Barrel.totalCDProbability) == Barrel.changeDirProbability
                                 && !this.barrelChangedDirection
-                                && !entity.getComponent(MovementComponent.class).get().getIsInAir()
+                                && !entity.getComponent(MovementComponent.class).get().isInAir()
                             ) {
                                 entity.getComponent(MovementComponent.class).get().changeDirection();
                             }
