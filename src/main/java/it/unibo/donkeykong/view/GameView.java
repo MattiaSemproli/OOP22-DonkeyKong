@@ -8,6 +8,7 @@ import it.unibo.donkeykong.controller.impl.GameController;
 import it.unibo.donkeykong.game.ecs.impl.CollisionComponent;
 import it.unibo.donkeykong.utilities.Constants;
 import it.unibo.donkeykong.utilities.ResourceFuncUtilities;
+import it.unibo.donkeykong.utilities.Type;
 
 /**
  * Game view.
@@ -38,58 +39,45 @@ public class GameView implements GameEngine {
                                                                   tile.height, null));
         this.gameController.getButtonsFromModel()
                            .forEach((b, i) -> g.drawImage(i, 
-                                                     b.getButtonPos().getX(),
-                                                     b.getButtonPos().getY(), 
-                                                     b.getButtonDim().getX(), 
-                                                     b.getButtonDim().getY(), null));
-        this.gameController.getEntitiesFromGameplay().forEach(entity -> {
-            switch (entity.getEntityType()) {
-                case BARREL:
-                    g.drawImage(ResourceFuncUtilities.loadSources("barrelsingletry"), 
-                                Math.round(entity.getPosition().getX()), 
-                                Math.round(entity.getPosition().getY()), 
-                                Constants.Barrel.barrelWidth, 
-                                Constants.Barrel.barrelHeight,  null);
-                    break;
-                case BLOCK:
-                    break;
-                case BLOCK_LADDER_DOWN:
-                    break;
-                case BLOCK_LADDER_UP:
-                    break;
-                case BLOCK_LADDER_UPDOWN:
-                    break;
-                case LADDER:
-                    break;
-                case MONKEY:
-                    g.drawImage(ResourceFuncUtilities.loadSources("dksingletry"), 
-                                Math.round(entity.getPosition().getX()), 
-                                Math.round(entity.getPosition().getY()), 
-                                Constants.Monkey.monkeyWidth, 
-                                Constants.Monkey.monkeyHeight,  null);
-                    break;
-                case PLAYER:
-                    g.drawImage(ResourceFuncUtilities.loadSources("mariosingletry"), 
-                                Math.round(entity.getPosition().getX()), 
-                                Math.round(entity.getPosition().getY()), 
-                                Constants.Player.playerDimension, 
-                                Constants.Player.playerDimension, null);
-                    break;
-                case HEART:
-                case SHIELD:
-                case SNOWFLAKE:
-                case STAR:
-                    break;
-                case PRINCESS:
-                    g.drawImage(ResourceFuncUtilities.loadSources("peachessingletry"), 
-                                Math.round(entity.getPosition().getX()), 
-                                Math.round(entity.getPosition().getY()), 
-                                Constants.Princess.princessWidth, 
-                                Constants.Princess.princessHeight, null);
-                    break;
-                default:
-                    break;
-            }
+                                                          b.getButtonPos().getX(),
+                                                          b.getButtonPos().getY(), 
+                                                          b.getButtonDim().getX(), 
+                                                          b.getButtonDim().getY(), null));
+        this.gameController.getEntitiesFromGameplay()
+                           .stream().filter(e -> e.getEntityType() == Type.PLAYER
+                                                 || e.getEntityType() == Type.MONKEY
+                                                 || e.getEntityType() == Type.BARREL
+                                                 || e.getEntityType() == Type.PRINCESS)
+                           .forEach(entity -> {
+                            final Type type = entity.getEntityType();
+                            if(type == Type.PLAYER) {
+                                g.drawImage(ResourceFuncUtilities.loadSources("mariosingletry"), 
+                                            Math.round(entity.getPosition().getX()), 
+                                            Math.round(entity.getPosition().getY()), 
+                                            Constants.Player.playerDimension, 
+                                            Constants.Player.playerDimension, null);
+                            }
+                            if(type == Type.MONKEY) {
+                                g.drawImage(ResourceFuncUtilities.loadSources("dksingletry"), 
+                                            Math.round(entity.getPosition().getX()), 
+                                            Math.round(entity.getPosition().getY()), 
+                                            Constants.Monkey.monkeyWidth, 
+                                            Constants.Monkey.monkeyHeight,  null);
+                            }
+                            if(type == Type.BARREL) {
+                                g.drawImage(ResourceFuncUtilities.loadSources("barrelsingletry"), 
+                                            Math.round(entity.getPosition().getX()), 
+                                            Math.round(entity.getPosition().getY()), 
+                                            Constants.Barrel.barrelWidth, 
+                                            Constants.Barrel.barrelHeight,  null);
+                            }
+                            if(type == Type.PRINCESS) {
+                                g.drawImage(ResourceFuncUtilities.loadSources("peachessingletry"), 
+                                            Math.round(entity.getPosition().getX()), 
+                                            Math.round(entity.getPosition().getY()), 
+                                            Constants.Princess.princessWidth, 
+                                            Constants.Princess.princessHeight, null);
+                            }
         });
 
         /**
