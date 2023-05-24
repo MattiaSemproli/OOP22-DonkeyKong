@@ -9,6 +9,7 @@ import java.util.Random;
 
 import it.unibo.donkeykong.controller.impl.GameController;
 import it.unibo.donkeykong.game.ecs.api.Entity;
+import it.unibo.donkeykong.game.ecs.impl.DoubleDamageComponent;
 import it.unibo.donkeykong.game.model.api.EntityFactory;
 import it.unibo.donkeykong.game.model.api.Gameplay;
 import it.unibo.donkeykong.game.model.api.Level;
@@ -92,7 +93,7 @@ public class GameplayImpl implements Gameplay {
     public final void throwBarrel(final Pair<Float, Float> position) {
         final Entity barrel = this.entityFactoryImpl.generateBarrel(position);
         if (random.nextInt(Barrel.totalPUProbability) < Barrel.doubleDamageProbability) {
-            // barrel.addComponent(new DoubleDamageComponent());
+            barrel.addComponent(new DoubleDamageComponent());
         }
         this.entities.add(barrel);
     }

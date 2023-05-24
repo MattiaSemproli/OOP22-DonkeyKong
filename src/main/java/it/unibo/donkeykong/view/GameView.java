@@ -75,7 +75,10 @@ public class GameView implements GameEngine {
                                 Constants.Player.playerDimension, 
                                 Constants.Player.playerDimension, null);
                     break;
-                case POWER_UP:
+                case HEART:
+                case SHIELD:
+                case SNOWFLAKE:
+                case STAR:
                     break;
                 case PRINCESS:
                     g.drawImage(ResourceFuncUtilities.loadSources("peachessingletry"), 
