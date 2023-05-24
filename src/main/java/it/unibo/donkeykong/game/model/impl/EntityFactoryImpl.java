@@ -4,13 +4,16 @@ import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.donkeykong.game.ecs.api.Entity;
 import it.unibo.donkeykong.game.ecs.impl.CollisionComponent;
 import it.unibo.donkeykong.game.ecs.impl.EntityImpl;
+import it.unibo.donkeykong.game.ecs.impl.HealthComponent;
 import it.unibo.donkeykong.game.ecs.impl.InputsComponent;
 import it.unibo.donkeykong.game.ecs.impl.MovementComponent;
 import it.unibo.donkeykong.game.ecs.impl.ThrowComponent;
 import it.unibo.donkeykong.game.model.api.EntityFactory;
 import it.unibo.donkeykong.game.model.api.Gameplay;
 import it.unibo.donkeykong.utilities.Pair;
+import it.unibo.donkeykong.utilities.PowerUpType;
 import it.unibo.donkeykong.utilities.Type;
+import it.unibo.donkeykong.utilities.Constants.Player;
 
 /**
  * EntityFactoryImpl class, generate entities.
@@ -34,7 +37,8 @@ public class EntityFactoryImpl implements EntityFactory {
         return new EntityImpl(Type.PLAYER, position, this.gameplay)
                    .addComponent(new InputsComponent())
                    .addComponent(new MovementComponent())
-                   .addComponent(new CollisionComponent(position.getX(), position.getY(), true, Type.PLAYER));
+                   .addComponent(new CollisionComponent(position.getX(), position.getY(), true, Type.PLAYER))
+                   .addComponent(new HealthComponent(Player.numLifes));
     }
 
     @Override
@@ -55,11 +59,6 @@ public class EntityFactoryImpl implements EntityFactory {
     public final Entity generatePrincess(final Pair<Float, Float> position) {
         return new EntityImpl(Type.PRINCESS, position, this.gameplay)
                    .addComponent(new CollisionComponent(position.getX(), position.getY(), true, Type.PRINCESS));
-    }
-
-    @Override
-    public final Entity generatePowerUp() {
-        return null;
     }
 
     @Override
@@ -90,6 +89,29 @@ public class EntityFactoryImpl implements EntityFactory {
     public final Entity generateBlockWithUpDownLadder(final Pair<Float, Float> position) {
         return new EntityImpl(Type.BLOCK_LADDER_UPDOWN, position, this.gameplay)
                    .addComponent(new CollisionComponent(position.getX(), position.getY(), true, Type.BLOCK_LADDER_UPDOWN));
+    }
+
+    @Override
+    public Entity generateHeartPowerUp(Pair<Float, Float> position) {
+        return new EntityImpl(PowerUpType.HEART, position, this.gameplay);
+    }
+
+    @Override
+    public Entity generateShieldPowerUp(Pair<Float, Float> position) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'generateShieldPowerUp'");
+    }
+
+    @Override
+    public Entity generateStarPowerUp(Pair<Float, Float> position) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'generateStarPowerUp'");
+    }
+
+    @Override
+    public Entity generateSnowflakePowerUp(Pair<Float, Float> position) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'generateSnowflakePowerUp'");
     }
 
 }

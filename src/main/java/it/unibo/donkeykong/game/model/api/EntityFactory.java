@@ -41,13 +41,6 @@ public interface EntityFactory {
     Entity generatePrincess(Pair<Float, Float> position);
 
     /**
-     * Create a power up.
-     * 
-     * @return a power up type entity.
-     */
-    Entity generatePowerUp();
-
-    /**
      * Create a block.
      * 
      * @param position starting position of the entity.
@@ -86,4 +79,36 @@ public interface EntityFactory {
      * @return a block with both ladder type entity.
      */
     Entity generateBlockWithUpDownLadder(Pair<Float, Float> position);
+
+    /**
+     * Create a heart powerup.
+     * 
+     * @param position starting position of the entity.
+     * @return a powerup heart entity.
+     */
+    Entity generateHeartPowerUp(Pair<Float, Float> position);
+
+    /**
+     * Create a shield powerup.
+     * 
+     * @param position starting position of the entity.
+     * @return a powerup shield entity.
+     */
+    Entity generateShieldPowerUp(Pair<Float, Float> position);
+
+    /**
+     * Create a star powerup.
+     * 
+     * @param position starting position of the entity.
+     * @return a powerup star entity.
+     */
+    Entity generateStarPowerUp(Pair<Float, Float> position);
+
+    /**
+     * Create a snowflake powerup.
+     * 
+     * @param position starting position of the entity.
+     * @return a powerup snowflake entity.
+     */
+    Entity generateSnowflakePowerUp(Pair<Float, Float> position);
 }

@@ -233,6 +233,7 @@ public class Constants {
         public static final float levelOneStartingPlayerY = Window.SCALED_TILES_SIZE * 12 + Level.platformBlockPadding;
         public static final int playerDimension = (int) (48 * Window.scala);
         public static final float velocity = 2f * Window.scala;
+        public static final int numLifes = 3;
         public static final int movementAni = 0;
 
         private static final Map<Integer, BufferedImage> playerSources = new HashMap<>();
