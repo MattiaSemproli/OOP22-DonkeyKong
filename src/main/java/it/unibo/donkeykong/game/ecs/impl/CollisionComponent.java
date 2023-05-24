@@ -17,7 +17,6 @@ import it.unibo.donkeykong.utilities.Type;
  */
 public class CollisionComponent extends AbstractComponent {
 
-    private final boolean isSolid;
     private boolean barrelChangedDirection = false;
     private float x, y;
     private int width, height;
@@ -50,10 +49,9 @@ public class CollisionComponent extends AbstractComponent {
      * @param isSolid declare if entity can go through
      * @param type linked entity type
      */
-    public CollisionComponent(final float x, final float y, final boolean isSolid, final Type type) {
+    public CollisionComponent(final float x, final float y, final Type type) {
         this.x = x;
         this.y = y;
-        this.isSolid = isSolid;
         initDifferentHitbox(type);
     }
 
@@ -66,15 +64,6 @@ public class CollisionComponent extends AbstractComponent {
         return new Rectangle2D.Float(this.hitbox.x, this.hitbox.y, this.hitbox.width, this.hitbox.height);
     }
 
-    /**
-     * Check if entity can go through things.
-     * 
-     * @return true if entity can go through things, false otherwise.
-     */
-    public final boolean isSolid() {
-        return this.isSolid;
-    }
-    
     private void checkIsEntityOnTheFloor() {
         if (entity.getEntityType() == Type.PLAYER && (this.nextPosition.get().getY() >= entity.getPosition().getY())) {
             if (entity.getGameplay().getEntities()
@@ -171,11 +160,11 @@ public class CollisionComponent extends AbstractComponent {
                                     || e.getEntityType() == Type.BLOCK_LADDER_UPDOWN)
                         .filter(e -> hitbox.intersects(e.getComponent(CollisionComponent.class).get().getHitbox()))
                         .forEach(e -> {
-                            if (random.nextInt(2) == 1
+                            if (random.nextInt(Barrel.totalCDProbability) == Barrel.changeDirProbability
                                 && !this.barrelChangedDirection
                                 && !entity.getComponent(MovementComponent.class).get().getIsInAir()
                             ) {
-                                entity.getComponent(MovementComponent.class).get().changeBarrelDirection();
+                                entity.getComponent(MovementComponent.class).get().changeDirection();
                             }
                             this.barrelChangedDirection = true;
                         });

@@ -46,7 +46,6 @@ public interface Entity {
     /**
      * Return the next position of the entity.
      * 
-     * @param position position to be checked.
      * @return an optional with the next position, an empty if not present.
      */
     Optional<Pair<Float, Float>> getNextPosition();
@@ -83,6 +82,8 @@ public interface Entity {
 
     /**
      * Modify entity speed.
+     * 
+     * @param speedModifier the speed modifier.
      */
     void setSpeed(float speedModifier);
 }

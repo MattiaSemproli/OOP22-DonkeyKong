@@ -22,8 +22,8 @@ public class MovementComponent extends AbstractComponent {
 
     @Override
     public final void update() {
-        if(this.getEntity().getEntityType() == Type.PLAYER) {
-            if(!this.isInAir){
+        if (this.getEntity().getEntityType() == Type.PLAYER) {
+            if (!this.isInAir) {
                 this.getEntity().saveNextPosition(this.movePos.equals(new Pair<>(0f, 0f)) ? Optional.empty() 
                                                                                             : Optional.of(this.movePos));
                 this.movePos = new Pair<>(0f, 0f);
@@ -34,7 +34,7 @@ public class MovementComponent extends AbstractComponent {
                 this.getEntity().saveNextPosition(Optional.of(this.movePos));
             }
         } else if (this.getEntity().getEntityType() == Type.BARREL) {
-            if(!this.isInAir){
+            if (!this.isInAir) {
                 this.moveEntity(this.getEntity().getComponent(MovementComponent.class).get().getFacing());
                 this.getEntity().saveNextPosition(Optional.of(this.movePos));
             } else {
@@ -55,14 +55,17 @@ public class MovementComponent extends AbstractComponent {
                                   direction.getY() * this.getEntity().getSpeed());
     }
 
-    public final void jump () {
-        if(!this.isInAir) {
+    /**
+     * Set the entity to jump.
+     */
+    public final void jump() {
+        if (!this.isInAir) {
             this.isInAir = true;
             this.airSpeed = Physics.jumpSpeed;
         }
     }
 
-    private final void isMovingInAir() {
+    private void isMovingInAir() {
         if (this.getEntity().getGameplay().getController().getInputs()
                 .stream().filter(k -> k == KeyEvent.VK_D
                                       || k == KeyEvent.VK_A
@@ -73,21 +76,28 @@ public class MovementComponent extends AbstractComponent {
             }
     }
 
-    private final void updateInAirPosition() {
-        if(this.getEntity().getEntityType() == Type.PLAYER) {
+    private void updateInAirPosition() {
+        if (this.getEntity().getEntityType() == Type.PLAYER) {
             if (this.movingInAir) {
-                this.movePos = new Pair<>(this.direction.getX() * this.getEntity().getSpeed() * Physics.speedInAirMultiplierPlayer, this.airSpeed);
+                this.movePos = new Pair<>(this.direction.getX() * this.getEntity().getSpeed()
+                                          * Physics.speedInAirMultiplierPlayer, this.airSpeed);
             } else {
                 this.movePos = new Pair<>(0f, this.airSpeed);
             }
             this.airSpeed += Physics.gravity * Physics.jumpGravityMultiplier;
         } else if (this.getEntity().getEntityType() == Type.BARREL) {
-            this.movePos = new Pair<>(this.direction.getX() * this.getEntity().getSpeed() * Physics.speedInAirMultiplierBarrel, this.airSpeed);
+            this.movePos = new Pair<>(this.direction.getX() * this.getEntity().getSpeed()
+                                      * Physics.speedInAirMultiplierBarrel, this.airSpeed);
             this.airSpeed += Physics.gravity;
         }
     }
 
-    public int getBarrelChangesCounter() {
+    /**
+     * Get the number of times the barrel has changed direction.
+     * 
+     * @return numeber of direction changes.
+     */
+    public final int getBarrelChangesCounter() {
         return barrelChangesCounter;
     }
 
@@ -100,20 +110,36 @@ public class MovementComponent extends AbstractComponent {
         return this.direction;
     }
 
-    public final void changeBarrelDirection() {
+    /**
+     * Change entity direction.
+     */
+    public final void changeDirection() {
         this.direction = direction.getOppositeDirection();
         this.barrelChangesCounter++;
     }
 
-    public boolean getIsInAir () {
+    /**
+     * Check if entity is in the air.
+     * 
+     * @return true if is in the air.
+     */
+    public final boolean getIsInAir() {
         return this.isInAir;
     }
 
-    public void setIsInAir (final boolean isInAir) {
+    /**
+     * Set if entity is in the air.
+     * 
+     * @param isInAir set as new entity status.
+     */
+    public final void setIsInAir(final boolean isInAir) {
         this.isInAir = isInAir;
     }
 
-    public void resetIsInAir () {
+    /**
+     * Reset entity status in air equals false.
+     */
+    public final void resetIsInAir() {
         this.isInAir = false;
         this.airSpeed = 0f;
     }

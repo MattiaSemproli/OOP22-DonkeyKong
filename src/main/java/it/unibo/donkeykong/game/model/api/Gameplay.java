@@ -37,5 +37,5 @@ public interface Gameplay {
      *
      * @param position new barrel starting position.
      */
-    void throwBarrel(Pair<Float,Float> position);
+    void throwBarrel(Pair<Float, Float> position);
 }

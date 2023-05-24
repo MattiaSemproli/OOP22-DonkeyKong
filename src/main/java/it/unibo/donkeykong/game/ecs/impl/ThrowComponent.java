@@ -9,28 +9,37 @@ import it.unibo.donkeykong.utilities.Pair;
 public class ThrowComponent extends AbstractComponent {
 
     private boolean isFreezed = false;
-    private int timeElapsed = 360;
+    private int timeElapsed = Barrel.spawnDelay;
 
     @Override
-    public void update() {
+    public final void update() {
         this.timeElapsed++;
-        if (!isFreezed() && this.timeElapsed > 360) {
+        if (!isFreezed() && this.timeElapsed > Barrel.spawnDelay) {
             this.getEntity().getGameplay().throwBarrel(this.getBarrelStartingPosition());
             this.timeElapsed = 0;
         }
     }
 
-    private Pair<Float,Float> getBarrelStartingPosition() {
+    private Pair<Float, Float> getBarrelStartingPosition() {
         return new Pair<>(this.getEntity().getPosition().getX() + this.getEntity().getWidth(), 
                           this.getEntity().getPosition().getY() + this.getEntity().getHeight() - Barrel.barrelHeight);
     }
 
-
-    public boolean isFreezed() {
+    /**
+     * Check if Donkey Kong is freezed.
+     * 
+     * @return true if Donkey Kong is freezed.
+     */
+    public final boolean isFreezed() {
         return isFreezed;
     }
 
-    public void setFreezed(boolean isFreezed) {
+    /**
+     * Change Donkey Kong state.
+     * 
+     * @param isFreezed set as new Donkey Kong state.
+     */
+    public final void setFreezed(final boolean isFreezed) {
         this.isFreezed = isFreezed;
     }
 }
