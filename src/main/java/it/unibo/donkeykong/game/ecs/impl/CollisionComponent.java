@@ -128,7 +128,7 @@ public class CollisionComponent extends AbstractComponent {
             } else if (hitbox.x < 0) {
                 entity.setPosition(new Pair<>(0f, this.nextPosition.get().getY()));
             } else if (hitbox.y > Window.GAME_HEIGHT) {
-                entity.getGameplay().removeEntity(entity);
+                entity.getGameplay().removePlayer();
             } else {
                 entity.setPosition(new Pair<>(this.nextPosition.get().getX(), this.nextPosition.get().getY()));
             }
