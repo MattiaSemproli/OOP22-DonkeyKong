@@ -23,6 +23,14 @@ public class InputsComponent extends AbstractComponent {
                 case KeyEvent.VK_D:
                     this.move(Direction.RIGHT);
                     break;
+                case KeyEvent.VK_UP:
+                case KeyEvent.VK_W:
+                    this.moveOnLadder(Direction.UP);
+                    break;
+                case KeyEvent.VK_DOWN:
+                case KeyEvent.VK_S:
+                    this.moveOnLadder(Direction.DOWN);
+                    break;
                 case KeyEvent.VK_SPACE:
                     this.jump();
                     break;
@@ -36,6 +44,13 @@ public class InputsComponent extends AbstractComponent {
         final Optional<MovementComponent> moveOptional = this.getEntity().getComponent(MovementComponent.class);
         if (moveOptional.isPresent()) {
             moveOptional.get().moveEntity(direction);
+        } 
+    }
+
+    private void moveOnLadder(final Direction direction) {
+        final Optional<MovementComponent> moveOptional = this.getEntity().getComponent(MovementComponent.class);
+        if (moveOptional.isPresent()) {
+            moveOptional.get().moveEntityOnLadder(direction);
         } 
     }
 
