@@ -254,6 +254,9 @@ public class Constants {
         public static final int playerDimension = (int) (48 * Window.scala);
         public static final float velocity = 2f * Window.scala;
         public static final int numLifes = 3;
+        public static final int damageTaken = -1;
+        public static final int doubleDamage = 2 * damageTaken;
+        public static final int extraLife = 1;
         public static final int movementAni = 0;
         public static final int spriteDimension = 16;
         public static final Pair<Integer, Integer> movAniRC = new Pair<>(4, 3);
