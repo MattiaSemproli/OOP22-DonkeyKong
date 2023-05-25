@@ -19,7 +19,15 @@ public enum PlayerIdle {
     /**
      * When the player is falling.
      */
-    FALLING;
+    FALLING,
+    /**
+     * When the player is stopped when climbing a ladder.
+     */
+    STOPCLIMBING,
+    /**
+     * When the player is climbing.
+     */
+    CLIMBING;
 
     private static PlayerIdle playerIdle = STOP;
 

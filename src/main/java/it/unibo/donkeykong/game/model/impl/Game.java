@@ -61,7 +61,7 @@ public class Game implements ViewModel {
      * PrincessAni contains the animation for the princess.
      */
     private void bufferAnimations() {
-        for (int r = 0; r < Player.movAniRC.getX(); r++) {
+        for (int r = 0; r < Player.movAniRC.getX() - Player.climb; r++) {
             for (int c = 0; c < Player.movAniRC.getY(); c++) {
                 playerMovementAni[r][c] = Player.getPlayerSources()
                                                 .get(Player.movementAni)
@@ -71,6 +71,18 @@ public class Game implements ViewModel {
                                                              Player.spriteDimension);
             }
         }
+        playerMovementAni[Player.climbAni][0] = Player.getPlayerSources()
+                                                   .get(Player.climb)
+                                                   .getSubimage(0, 
+                                                                0, 
+                                                                Player.spriteDimension, 
+                                                                Player.spriteDimension);
+        playerMovementAni[Player.climbAni][1] = Player.getPlayerSources()
+                                                   .get(Player.climb)
+                                                   .getSubimage(Player.spriteDimension, 
+                                                                0, 
+                                                                Player.spriteDimension, 
+                                                                Player.spriteDimension);
         for (int c = 0; c < monkeyAni.length; c++) {
             monkeyAni[c] = Monkey.getMonkeySources()
                                  .get(Monkey.monkeyAni)
