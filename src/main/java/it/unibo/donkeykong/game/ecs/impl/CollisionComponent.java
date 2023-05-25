@@ -159,6 +159,8 @@ public class CollisionComponent extends AbstractComponent {
                                     } else {
                                         entity.getComponent(HealthComponent.class).get().setLifes(-1);
                                     }
+                                    entity.setPosition(new Pair<>(Constants.Player.levelOneStartingPlayerX, 
+                                                                  Constants.Player.levelOneStartingPlayerY));
                                 } else {
                                     if (e.getComponent(DoubleDamageComponent.class).get().getDoubleDamage()) {
                                         entity.getComponent(HealthComponent.class).get().setLifes(-1);
