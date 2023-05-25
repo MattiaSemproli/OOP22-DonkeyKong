@@ -56,7 +56,7 @@ public class GameController implements GameEngine, MouseListener, KeyListener, G
     @Override
     public final void update() {
         this.gameplay.getEntities().forEach(e -> e.getAllComponents().forEach(c -> c.update()));
-        if (isPlayerAlive() || !hasPlayerLife()) {
+        if (!hasPlayerLife()) {
             Gamestate.setGamestate(Gamestate.DEATH);
             this.stopTimer();
         } else {
@@ -64,12 +64,6 @@ public class GameController implements GameEngine, MouseListener, KeyListener, G
         }
     }
 
-    private boolean isPlayerAlive() {
-        return this.gameplay.getEntities()
-                            .stream()
-                            .filter(e -> e.getEntityType() == Type.PLAYER)
-                            .findAny().isEmpty();
-    }
     private boolean hasPlayerLife() {
         return this.gameplay.getEntities()
                             .stream()
