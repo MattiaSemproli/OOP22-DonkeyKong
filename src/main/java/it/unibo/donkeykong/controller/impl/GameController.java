@@ -19,6 +19,7 @@ import javax.swing.Timer;
 import it.unibo.donkeykong.controller.api.GameEngine;
 import it.unibo.donkeykong.controller.api.GenericController;
 import it.unibo.donkeykong.game.ecs.api.Entity;
+import it.unibo.donkeykong.game.ecs.impl.HealthComponent;
 import it.unibo.donkeykong.game.model.api.Button;
 import it.unibo.donkeykong.game.model.api.Gameplay;
 import it.unibo.donkeykong.game.model.impl.Game;
@@ -55,6 +56,12 @@ public class GameController implements GameEngine, MouseListener, KeyListener, G
     @Override
     public final void update() {
         this.gameplay.getEntities().forEach(e -> e.getAllComponents().forEach(c -> c.update()));
+        if (this.gameplay.getEntities()
+                     .stream()
+                     .filter(e -> e.getEntityType() == Type.PLAYER)
+                     .findFirst().get().getComponent(HealthComponent.class).get().getLifes() == 0) {
+            this.gameplay.removePlayer();
+        }
         this.gameView.update();
     }
 
