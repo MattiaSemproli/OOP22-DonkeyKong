@@ -56,13 +56,25 @@ public class GameController implements GameEngine, MouseListener, KeyListener, G
     @Override
     public final void update() {
         this.gameplay.getEntities().forEach(e -> e.getAllComponents().forEach(c -> c.update()));
-        if (this.gameplay.getEntities()
-                     .stream()
-                     .filter(e -> e.getEntityType() == Type.PLAYER)
-                     .findFirst().get().getComponent(HealthComponent.class).get().getLifes() == 0) {
-            this.gameplay.removePlayer();
+        if (isPlayerAlive() || !hasPlayerLife()) {
+            Gamestate.setGamestate(Gamestate.DEATH);
+            this.stopTimer();
+        } else {
+            this.gameView.update();
         }
-        this.gameView.update();
+    }
+
+    private boolean isPlayerAlive() {
+        return this.gameplay.getEntities()
+                            .stream()
+                            .filter(e -> e.getEntityType() == Type.PLAYER)
+                            .findAny().isEmpty();
+    }
+    private boolean hasPlayerLife() {
+        return this.gameplay.getEntities()
+                            .stream()
+                            .filter(e -> e.getEntityType() == Type.PLAYER)
+                            .findFirst().get().getComponent(HealthComponent.class).get().getLifes() > 0;
     }
 
     @Override

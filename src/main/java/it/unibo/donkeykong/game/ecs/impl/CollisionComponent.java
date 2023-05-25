@@ -7,6 +7,7 @@ import java.util.Random;
 
 import it.unibo.donkeykong.game.ecs.api.Entity;
 import it.unibo.donkeykong.utilities.Constants;
+import it.unibo.donkeykong.utilities.Gamestate;
 import it.unibo.donkeykong.utilities.Constants.Barrel;
 import it.unibo.donkeykong.utilities.Constants.Princess;
 import it.unibo.donkeykong.utilities.Constants.Window;
@@ -177,6 +178,10 @@ public class CollisionComponent extends AbstractComponent {
                             if (hitbox.y + hitbox.height > e2Hitbox.y && hitbox.y + hitbox.height < e2Hitbox.y + 4) {
                                 entity.setPosition(new Pair<>(this.nextPosition.get().getX(), e2Hitbox.y - hitbox.height));
                             }
+                        }
+                        if (e.getEntityType() == Type.PRINCESS) {
+                            Gamestate.setGamestate(Gamestate.WIN);
+                            entity.getGameplay().getController().stopTimer();
                         }
                   });
         } else if (this.entity.getEntityType() == Type.BARREL) {
