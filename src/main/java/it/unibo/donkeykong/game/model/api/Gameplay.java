@@ -43,4 +43,9 @@ public interface Gameplay {
      * If player lose all lives or he falls out of map, remove him.
      */
     void removePlayer();
+
+    /**
+     * Remove all barrels from game.
+     */
+    void removeAllBarrels();
 }

@@ -167,6 +167,7 @@ public class CollisionComponent extends AbstractComponent {
                                     }
                                     entity.setPosition(new Pair<>(Player.levelOneStartingPlayerX, 
                                                                   Player.levelOneStartingPlayerY));
+                                    entity.getGameplay().removeAllBarrels();
                                     entity.getComponent(MovementComponent.class).get().resetIsInAir();
                                     entity.getComponent(MovementComponent.class).get().setCanUseLadder(false);
                                 } else {

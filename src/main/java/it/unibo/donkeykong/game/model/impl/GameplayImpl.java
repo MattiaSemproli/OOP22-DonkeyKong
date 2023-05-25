@@ -115,6 +115,11 @@ public class GameplayImpl implements Gameplay {
     }
 
     @Override
+    public final void removeAllBarrels() {
+        this.entities.removeAll(entities.stream().filter(e -> e.getEntityType() == Type.BARREL).toList());
+    }
+
+    @Override
     public final void removePlayer() {
         this.entities.removeIf(e -> e.getEntityType() == Type.PLAYER);
     }
