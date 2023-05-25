@@ -24,6 +24,8 @@ public class MovementComponent extends AbstractComponent {
     private int timeElapsed = 0;
     private boolean isPrincessWalking = true;
     private Random random = new Random();
+    private boolean onLadder;
+    private boolean canUseLadder;
 
     /**
      * Constructor.
@@ -33,23 +35,30 @@ public class MovementComponent extends AbstractComponent {
         this.barrelChangesCounter = 0;
         this.inAir = false;
         this.movingInAir = false;
+        this.onLadder = false;
+        this.canUseLadder = false;
     }
 
     @Override
     public final void update() {
         timeElapsed++;
         if (this.getEntity().getEntityType() == Type.PLAYER) {
-            if (!this.inAir) {
-                this.getEntity().saveNextPosition(this.movePos.equals(new Pair<>(0f, 0f)) ? Optional.empty() 
-                                                                                            : Optional.of(this.movePos));
-                PlayerIdle.setPlayerIdle(this.movePos.equals(new Pair<>(0f, 0f)) ? PlayerIdle.STOP : PlayerIdle.RUN);
-                this.movePos = new Pair<>(0f, 0f);
-                this.movingInAir = false;
+            if (!this.onLadder) {
+                if (!this.inAir) {
+                    this.getEntity().saveNextPosition(this.movePos.equals(new Pair<>(0f, 0f)) ? Optional.empty() 
+                                                                                                : Optional.of(this.movePos));
+                    PlayerIdle.setPlayerIdle(this.movePos.equals(new Pair<>(0f, 0f)) ? PlayerIdle.STOP : PlayerIdle.RUN);
+                    this.movePos = new Pair<>(0f, 0f);
+                    this.movingInAir = false;
+                } else {
+                    this.isMovingInAir();
+                    this.updateInAirPosition();
+                    this.getEntity().saveNextPosition(Optional.of(this.movePos));
+                    PlayerIdle.setPlayerIdle(this.airSpeed > 0 ? PlayerIdle.FALLING : PlayerIdle.JUMP);
+                }
             } else {
-                this.isMovingInAir();
-                this.updateInAirPosition();
-                this.getEntity().saveNextPosition(Optional.of(this.movePos));
-                PlayerIdle.setPlayerIdle(this.airSpeed > 0 ? PlayerIdle.FALLING : PlayerIdle.JUMP);
+                this.getEntity().saveNextPosition(this.movePos.equals(new Pair<>(0f, 0f)) ? Optional.empty() 
+                                                                                                : Optional.of(this.movePos));
             }
         } else if (this.getEntity().getEntityType() == Type.BARREL) {
             if (!this.inAir) {
@@ -88,16 +97,32 @@ public class MovementComponent extends AbstractComponent {
      * @param direction the direction in which to move the entity
      */
     public final void moveEntity(final Direction direction) {
-        this.direction = direction;
-        this.movePos = new Pair<>(direction.getX() * this.getEntity().getSpeed(), 
-                                  direction.getY() * this.getEntity().getSpeed());
+        if (!this.onLadder) {
+            this.direction = direction;
+            this.movePos = new Pair<>(direction.getX() * this.getEntity().getSpeed(), 
+                                      direction.getY() * this.getEntity().getSpeed());
+        }
     }
+
+    /**
+     * Moves the entity on the ladder.
+     * 
+     * @param direction the direction in which to move the entity
+     */
+    public final void moveEntityOnLadder(final Direction direction) {
+        if (this.onLadder || this.canUseLadder) {
+            this.direction = direction;
+            this.movePos = new Pair<>(direction.getX() * this.getEntity().getSpeed(), 
+                                      direction.getY() * this.getEntity().getSpeed());
+        }
+    }
+
 
     /**
      * Set the entity to jump.
      */
     public final void jump() {
-        if (!this.inAir) {
+        if (!this.inAir && !this.onLadder) {
             this.inAir = true;
             this.airSpeed = Physics.jumpSpeed;
         }
@@ -180,5 +205,33 @@ public class MovementComponent extends AbstractComponent {
     public final void resetIsInAir() {
         this.inAir = false;
         this.airSpeed = 0f;
+    }
+
+    /**
+     * Reset entity status in air equals false.
+     */
+    public final boolean isOnLadder() {
+        return this.onLadder;
+    }
+
+    /**
+     * Reset entity status in air equals false.
+     */
+    public final void setOnLadder(final boolean onLadder) {
+        this.onLadder = onLadder;
+    }
+
+    /**
+     * Reset entity status in air equals false.
+     */
+    public final boolean canOnLadder() {
+        return this.canUseLadder;
+    }
+
+    /**
+     * Reset entity status in air equals false.
+     */
+    public final void setCanUseLadder(final boolean canUseLadder) {
+        this.canUseLadder = canUseLadder;
     }
 }

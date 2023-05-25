@@ -1,5 +1,8 @@
 package it.unibo.donkeykong.game.ecs.impl;
 
+import static it.unibo.donkeykong.utilities.Constants.Level.ladderPadding;
+import static it.unibo.donkeykong.utilities.Constants.Player.canLadderError;
+
 import java.awt.geom.Line2D;
 import java.awt.geom.Rectangle2D;
 import java.util.Optional;
@@ -7,11 +10,11 @@ import java.util.Random;
 
 import it.unibo.donkeykong.game.ecs.api.Entity;
 import it.unibo.donkeykong.utilities.Constants;
-import it.unibo.donkeykong.utilities.Gamestate;
 import it.unibo.donkeykong.utilities.Constants.Barrel;
 import it.unibo.donkeykong.utilities.Constants.Player;
 import it.unibo.donkeykong.utilities.Constants.Princess;
 import it.unibo.donkeykong.utilities.Constants.Window;
+import it.unibo.donkeykong.utilities.Gamestate;
 import it.unibo.donkeykong.utilities.Pair;
 import it.unibo.donkeykong.utilities.Type;
 
@@ -36,6 +39,7 @@ public class CollisionComponent extends AbstractComponent {
             this.hitbox.x = nextPosition.get().getX();
             this.hitbox.y = nextPosition.get().getY();
             this.checkIsEntityOnTheFloor();
+            this.checkIsEntityOnLadder();
             this.checkWallCollision();
         } else {
             this.hitbox.x = this.getEntity().getPosition().getX();
@@ -89,8 +93,12 @@ public class CollisionComponent extends AbstractComponent {
                                && hitbox.y + hitbox.height < e.getComponent(CollisionComponent.class).get().getHitbox().y + 4)
                   .count() > 0) {
                 entity.getComponent(MovementComponent.class).get().resetIsInAir();
-            } else {
+                entity.getComponent(MovementComponent.class).get().setCanUseLadder(false);
+                entity.getComponent(MovementComponent.class).get().setOnLadder(false);
+            } else if (!entity.getComponent(MovementComponent.class).get().isOnLadder()) {
                 entity.getComponent(MovementComponent.class).get().setIsInAir(true);
+                entity.getComponent(MovementComponent.class).get().setCanUseLadder(false);
+                entity.getComponent(MovementComponent.class).get().setOnLadder(false);
             }
         } else if (entity.getEntityType() == Type.BARREL) {
             if (entity.getGameplay().getEntities()
@@ -119,6 +127,24 @@ public class CollisionComponent extends AbstractComponent {
             }
             entity.setPosition(new Pair<>(this.nextPosition.get().getX(), this.nextPosition.get().getY()));
         }
+    }
+
+    private void checkIsEntityOnLadder() {
+        if (entity.getEntityType() == Type.PLAYER) {
+            if (entity.getGameplay().getEntities()
+                  .stream().filter(e -> e.getEntityType() == (Type.LADDER))
+                  .filter(e -> hitbox.intersects(e.getComponent(CollisionComponent.class).get().getHitbox())
+                               && entity.getComponent(MovementComponent.class).get().canOnLadder())
+                  .findAny().isPresent()) {
+                entity.getComponent(MovementComponent.class).get().setOnLadder(true);
+            } else {
+                if (entity.getComponent(MovementComponent.class).get().isOnLadder()) {
+                    entity.getComponent(MovementComponent.class).get().setOnLadder(true);
+                } else {
+                    entity.getComponent(MovementComponent.class).get().setOnLadder(false);
+                }
+            }
+        } 
     }
 
     private void checkWallCollision() {
@@ -181,6 +207,14 @@ public class CollisionComponent extends AbstractComponent {
                             if (hitbox.y + hitbox.height > e2Hitbox.y && hitbox.y + hitbox.height < e2Hitbox.y + 4) {
                                 entity.setPosition(new Pair<>(this.nextPosition.get().getX(), e2Hitbox.y - hitbox.height));
                             }
+                            if (e.getEntityType() != Type.BLOCK
+                                && hitbox.x > e2Hitbox.x + ladderPadding - canLadderError
+                                && hitbox.x + hitbox.width > e2Hitbox.x + e2Hitbox.width - ladderPadding + canLadderError) {
+                                entity.getComponent(MovementComponent.class).get().setCanUseLadder(true);
+                            }
+                        }
+                        if (e.getEntityType() == Type.LADDER && e.getComponent(MovementComponent.class).get().isOnLadder()) {
+                            entity.setPosition(new Pair<>(this.nextPosition.get().getX(), this.nextPosition.get().getY()));
                         }
                         if (e.getEntityType() == Type.PRINCESS) {
                             Gamestate.setGamestate(Gamestate.WIN);
