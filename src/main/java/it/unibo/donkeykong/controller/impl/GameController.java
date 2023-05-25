@@ -98,7 +98,11 @@ public class GameController implements GameEngine, MouseListener, KeyListener, G
                 || e.getKeyCode() == KeyEvent.VK_LEFT
                 || e.getKeyCode() == KeyEvent.VK_D
                 || e.getKeyCode() == KeyEvent.VK_RIGHT
-                || e.getKeyCode() == KeyEvent.VK_SPACE)) {
+                || e.getKeyCode() == KeyEvent.VK_SPACE
+                || e.getKeyCode() == KeyEvent.VK_UP
+                || e.getKeyCode() == KeyEvent.VK_W
+                || e.getKeyCode() == KeyEvent.VK_DOWN
+                || e.getKeyCode() == KeyEvent.VK_S)) {
             this.keyInputs.add(0, e.getKeyCode());
         }
     }
