@@ -151,7 +151,23 @@ public class CollisionComponent extends AbstractComponent {
                   .filter(e -> hitbox.intersects(e.getComponent(CollisionComponent.class).get().getHitbox()))
                   .forEach(e -> {
                         if (e.getEntityType() == Type.BARREL) {
-                            entity.getGameplay().removeEntity(entity);
+                            if (!entity.getComponent(StarComponent.class).get().isInvincible()) {
+                                if (!entity.getComponent(ShieldComponent.class).get().isShielded()) {
+                                    if (e.getComponent(DoubleDamageComponent.class).get().getDoubleDamage()) {
+                                        entity.getComponent(HealthComponent.class).get().setLifes(-2);
+                                    } else {
+                                        entity.getComponent(HealthComponent.class).get().setLifes(-1);
+                                    }
+                                } else {
+                                    if (e.getComponent(DoubleDamageComponent.class).get().getDoubleDamage()) {
+                                        entity.getComponent(HealthComponent.class).get().setLifes(-1);
+                                    }
+                                    entity.getComponent(ShieldComponent.class).get().setShield(false);
+                                }
+                            } else {
+                                entity.getComponent(ShieldComponent.class).get().setShield(false);
+                            }
+                            entity.getGameplay().removeEntity(e);
                         }
                         if (e.getEntityType() == Type.BLOCK
                             || e.getEntityType() == Type.BLOCK_LADDER_DOWN
