@@ -35,13 +35,13 @@ public class CollisionComponent extends AbstractComponent {
     public final void update() {
         this.nextPosition = this.getEntity().getNextPosition();
         this.entity = this.getEntity();
-        if (!this.nextPosition.isEmpty()) {
+        if (this.nextPosition.isPresent()) {
             this.hitbox.x = nextPosition.get().getX();
             this.hitbox.y = nextPosition.get().getY();
             this.checkIsEntityOnTheFloor();
-            this.checkIsEntityOnLadder();
             this.checkWallCollision();
         } else {
+            this.nextPosition = Optional.of(this.getEntity().getPosition());
             this.hitbox.x = this.getEntity().getPosition().getX();
             this.hitbox.y = this.getEntity().getPosition().getY();
         }
@@ -74,10 +74,10 @@ public class CollisionComponent extends AbstractComponent {
     private void checkIsEntityOnTheFloor() {
         if (entity.getEntityType() == Type.PLAYER && this.nextPosition.get().getY() >= entity.getPosition().getY()) {
             if (entity.getGameplay().getEntities()
-                  .stream().filter(e -> e.getEntityType() == (Type.BLOCK) 
-                                        || e.getEntityType() == (Type.BLOCK_LADDER_DOWN) 
-                                        || e.getEntityType() == (Type.BLOCK_LADDER_UP)
-                                        || e.getEntityType() == (Type.BLOCK_LADDER_UPDOWN))
+                  .stream().filter(e -> e.getEntityType() == Type.BLOCK
+                                        || e.getEntityType() == Type.BLOCK_LADDER_DOWN
+                                        || e.getEntityType() == Type.BLOCK_LADDER_UP
+                                        || e.getEntityType() == Type.BLOCK_LADDER_UPDOWN)
                   .filter(e -> hitbox.intersectsLine(new Line2D.Float(e.getComponent(CollisionComponent.class).get().getHitbox().x,
                                                                       e.getComponent(CollisionComponent.class).get().getHitbox().y,
                                                                       e.getComponent(CollisionComponent.class).get().getHitbox().x
@@ -91,21 +91,17 @@ public class CollisionComponent extends AbstractComponent {
                                                                          e.getComponent(CollisionComponent.class).get().getHitbox().y
                                                                          + e.getComponent(CollisionComponent.class).get().getHitbox().height))
                                && hitbox.y + hitbox.height < e.getComponent(CollisionComponent.class).get().getHitbox().y + 4)
-                  .count() > 0) {
+                  .findAny().isPresent()) {
                 entity.getComponent(MovementComponent.class).get().resetIsInAir();
-                entity.getComponent(MovementComponent.class).get().setCanUseLadder(false);
-                entity.getComponent(MovementComponent.class).get().setOnLadder(false);
-            } else if (!entity.getComponent(MovementComponent.class).get().isOnLadder()) {
+            } else {
                 entity.getComponent(MovementComponent.class).get().setIsInAir(true);
-                entity.getComponent(MovementComponent.class).get().setCanUseLadder(false);
-                entity.getComponent(MovementComponent.class).get().setOnLadder(false);
             }
         } else if (entity.getEntityType() == Type.BARREL) {
             if (entity.getGameplay().getEntities()
-                .stream().filter(e -> e.getEntityType() == (Type.BLOCK) 
-                                      || e.getEntityType() == (Type.BLOCK_LADDER_DOWN) 
-                                      || e.getEntityType() == (Type.BLOCK_LADDER_UP)
-                                      || e.getEntityType() == (Type.BLOCK_LADDER_UPDOWN))
+                .stream().filter(e -> e.getEntityType() == Type.BLOCK 
+                                      || e.getEntityType() == Type.BLOCK_LADDER_DOWN
+                                      || e.getEntityType() == Type.BLOCK_LADDER_UP
+                                      || e.getEntityType() == Type.BLOCK_LADDER_UPDOWN)
                 .filter(e -> hitbox.intersectsLine(new Line2D.Float(e.getComponent(CollisionComponent.class).get().getHitbox().x,
                                                                     e.getComponent(CollisionComponent.class).get().getHitbox().y,
                                                                     e.getComponent(CollisionComponent.class).get().getHitbox().x + e.getComponent(CollisionComponent.class).get().getHitbox().width,
@@ -113,7 +109,7 @@ public class CollisionComponent extends AbstractComponent {
                         && hitbox.y + hitbox.height < e.getComponent(CollisionComponent.class).get().getHitbox().y + 4)
                 .count() > 0) {
                 entity.getComponent(MovementComponent.class).get().resetIsInAir();
-                }  else {
+            }  else {
                 entity.getComponent(MovementComponent.class).get().setIsInAir(true);
                 this.barrelChangedDirection = false;
             }
@@ -127,24 +123,6 @@ public class CollisionComponent extends AbstractComponent {
             }
             entity.setPosition(new Pair<>(this.nextPosition.get().getX(), this.nextPosition.get().getY()));
         }
-    }
-
-    private void checkIsEntityOnLadder() {
-        if (entity.getEntityType() == Type.PLAYER) {
-            if (entity.getGameplay().getEntities()
-                  .stream().filter(e -> e.getEntityType() == (Type.LADDER))
-                  .filter(e -> hitbox.intersects(e.getComponent(CollisionComponent.class).get().getHitbox())
-                               && entity.getComponent(MovementComponent.class).get().canOnLadder())
-                  .findAny().isPresent()) {
-                entity.getComponent(MovementComponent.class).get().setOnLadder(true);
-            } else {
-                if (entity.getComponent(MovementComponent.class).get().isOnLadder()) {
-                    entity.getComponent(MovementComponent.class).get().setOnLadder(true);
-                } else {
-                    entity.getComponent(MovementComponent.class).get().setOnLadder(false);
-                }
-            }
-        } 
     }
 
     private void checkWallCollision() {
@@ -189,6 +167,8 @@ public class CollisionComponent extends AbstractComponent {
                                     }
                                     entity.setPosition(new Pair<>(Player.levelOneStartingPlayerX, 
                                                                   Player.levelOneStartingPlayerY));
+                                    entity.getComponent(MovementComponent.class).get().resetIsInAir();
+                                    entity.getComponent(MovementComponent.class).get().setCanUseLadder(false);
                                 } else {
                                     if (e.getComponent(DoubleDamageComponent.class).get().getDoubleDamage()) {
                                         entity.getComponent(HealthComponent.class).get().setLifes(Player.damageTaken);
@@ -208,14 +188,14 @@ public class CollisionComponent extends AbstractComponent {
                             if (hitbox.y + hitbox.height > e2Hitbox.y && hitbox.y + hitbox.height < e2Hitbox.y + 4) {
                                 entity.setPosition(new Pair<>(this.nextPosition.get().getX(), e2Hitbox.y - hitbox.height));
                             }
-                            if (e.getEntityType() != Type.BLOCK
-                                && hitbox.x > e2Hitbox.x + ladderPadding - canLadderError
-                                && hitbox.x + hitbox.width > e2Hitbox.x + e2Hitbox.width - ladderPadding + canLadderError) {
-                                entity.getComponent(MovementComponent.class).get().setCanUseLadder(true);
+                            if(e.getEntityType() == Type.BLOCK_LADDER_DOWN
+                               && hitbox.y + hitbox.height > e2Hitbox.y && hitbox.y + hitbox.height < e2Hitbox.y + 4) {
+                                entity.getComponent(MovementComponent.class).get().setCanUseLadder(false);
+                                entity.setPosition(new Pair<>(this.nextPosition.get().getX(), e2Hitbox.y - hitbox.height));
                             }
                         }
-                        if (e.getEntityType() == Type.LADDER && e.getComponent(MovementComponent.class).get().isOnLadder()) {
-                            entity.setPosition(new Pair<>(this.nextPosition.get().getX(), this.nextPosition.get().getY()));
+                        if (e.getEntityType() == Type.LADDER && !entity.getComponent(MovementComponent.class).get().isInAir()) {
+                            entity.getComponent(MovementComponent.class).get().setCanUseLadder(true);
                         }
                         if (e.getEntityType() == Type.PRINCESS) {
                             Gamestate.setGamestate(Gamestate.WIN);
