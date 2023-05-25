@@ -91,25 +91,25 @@ public class EntityFactoryImpl implements EntityFactory {
     }
 
     @Override
-    public Entity generateHeartPowerUp(Pair<Float, Float> position) {
+    public Entity generateHeartPowerUp(final Pair<Float, Float> position) {
         return new EntityImpl(Type.HEART, position, this.gameplay)
                    .addComponent(new CollisionComponent(position.getX(), position.getY(), Type.HEART));
     }
 
     @Override
-    public Entity generateShieldPowerUp(Pair<Float, Float> position) {
+    public Entity generateShieldPowerUp(final Pair<Float, Float> position) {
         return new EntityImpl(Type.SHIELD, position, this.gameplay)
                    .addComponent(new CollisionComponent(position.getX(), position.getY(), Type.SHIELD));
     }
 
     @Override
-    public Entity generateStarPowerUp(Pair<Float, Float> position) {
+    public Entity generateStarPowerUp(final Pair<Float, Float> position) {
         return new EntityImpl(Type.STAR, position, this.gameplay)
                    .addComponent(new CollisionComponent(position.getX(), position.getY(), Type.STAR));
     }
 
     @Override
-    public Entity generateSnowflakePowerUp(Pair<Float, Float> position) {
+    public Entity generateSnowflakePowerUp(final Pair<Float, Float> position) {
         return new EntityImpl(Type.SNOWFLAKE, position, this.gameplay)
                    .addComponent(new CollisionComponent(position.getX(), position.getY(), Type.SNOWFLAKE));
     }

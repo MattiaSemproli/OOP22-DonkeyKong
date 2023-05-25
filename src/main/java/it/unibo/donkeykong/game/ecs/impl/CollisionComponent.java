@@ -161,7 +161,7 @@ public class CollisionComponent extends AbstractComponent {
                                     || e.getEntityType() == Type.BLOCK_LADDER_UPDOWN)
                         .filter(e -> hitbox.intersects(e.getComponent(CollisionComponent.class).get().getHitbox()))
                         .forEach(e -> {
-                            if (random.nextInt(Barrel.totalCDProbability) == Barrel.changeDirProbability
+                            if (random.nextInt(Barrel.totalDirProbability) == Barrel.changeDirProbability
                                 && !this.barrelChangedDirection
                                 && !entity.getComponent(MovementComponent.class).get().isInAir()
                             ) {
