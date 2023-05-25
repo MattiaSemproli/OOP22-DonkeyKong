@@ -108,7 +108,7 @@ public class GameController implements GameEngine, MouseListener, KeyListener, G
         }
     }
 
-    public BufferedImage getAnimationFromModel(final Type type, final int row, final int col) {
+    public final BufferedImage getAnimationFromModel(final Type type, final int row, final int col) {
         return this.game.getEntityAni(type, row, col);
     }
 
