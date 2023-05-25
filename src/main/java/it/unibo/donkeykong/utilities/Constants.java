@@ -261,14 +261,12 @@ public class Constants {
         public static final int extraLife = 1;
         public static final int movementAni = 0;
         public static final int spriteDimension = 16;
-        public static final Pair<Integer, Integer> movAniRC = new Pair<>(5, 3);
+        public static final Pair<Integer, Integer> movAniRC = new Pair<>(4, 3);
         public static final int runAni = 0;
         public static final int jumpAni = 2;
         public static final int leftAni = 0;
         public static final int rightAni = 1;
         public static final int midAirAni = 1;
-        public static final int climb = 1;
-        public static final int climbAni = 4;
 
         
         private static final Map<Integer, BufferedImage> playerSources = new HashMap<>();
@@ -279,7 +277,6 @@ public class Constants {
 
         public static final void loadPlayerSources() {
             playerSources.put(movementAni, loadSources("mario_movement"));
-            playerSources.put(climb, loadSources("climbingplayer"));
         }
     }
     

@@ -44,9 +44,7 @@ public class MovementComponent extends AbstractComponent {
                 if (!this.inAir) {
                     this.getEntity().saveNextPosition(this.movePos.equals(new Pair<>(0f, 0f)) ? Optional.empty() 
                                                                                                 : Optional.of(this.movePos));
-                    PlayerIdle.setPlayerIdle(this.movePos.equals(new Pair<>(0f, 0f)) ? this.canUseLadder ? PlayerIdle.STOPCLIMBING
-                                                                                                             : PlayerIdle.STOP : this.canUseLadder ? PlayerIdle.CLIMBING
-                                                                                                                               : PlayerIdle.RUN);
+                    PlayerIdle.setPlayerIdle(this.movePos.equals(new Pair<>(0f, 0f)) ? PlayerIdle.STOP : PlayerIdle.RUN);
                     this.movePos = new Pair<>(0f, 0f);
                     this.movingInAir = false;
                 } else {

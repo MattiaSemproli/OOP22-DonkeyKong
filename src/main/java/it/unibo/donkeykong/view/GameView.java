@@ -126,10 +126,6 @@ public class GameView implements GameEngine {
                                                                              : Player.jumpAni + Player.rightAni, 
                                       mc.isInAir() ? Player.midAirAni 
                                                          : Player.movementAni);
-                case STOPCLIMBING:
-                    return new Pair<>(Player.climbAni, Player.climb);
-                case CLIMBING:
-                    return new Pair<>(Player.climbAni, this.aniIndex > 1 ? this.aniIndex - 1 : this.aniIndex);
                 case STOP:
                 default:
                     return new Pair<>(mc.getFacing() == Direction.LEFT ? Player.leftAni 
