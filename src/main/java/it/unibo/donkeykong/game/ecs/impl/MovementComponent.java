@@ -2,6 +2,7 @@ package it.unibo.donkeykong.game.ecs.impl;
 
 import java.awt.event.KeyEvent;
 import java.util.Optional;
+import java.util.Random;
 
 import it.unibo.donkeykong.utilities.Direction;
 import it.unibo.donkeykong.utilities.Pair;
@@ -20,6 +21,9 @@ public class MovementComponent extends AbstractComponent {
     private int barrelChangesCounter;
     private boolean inAir;
     private boolean movingInAir;
+    private int timeElapsed = 0;
+    private boolean isPrincessWalking = true;
+    private Random random = new Random();
 
     /**
      * Constructor.
@@ -33,6 +37,7 @@ public class MovementComponent extends AbstractComponent {
 
     @Override
     public final void update() {
+        timeElapsed++;
         if (this.getEntity().getEntityType() == Type.PLAYER) {
             if (!this.inAir) {
                 this.getEntity().saveNextPosition(this.movePos.equals(new Pair<>(0f, 0f)) ? Optional.empty() 
@@ -54,6 +59,26 @@ public class MovementComponent extends AbstractComponent {
                 this.updateInAirPosition();
                 this.getEntity().saveNextPosition(Optional.of(this.movePos));
             }
+        } else if (this.getEntity().getEntityType() == Type.PRINCESS) {
+            if(timeElapsed > 24) {
+                isPrincessWalking = true;
+                timeElapsed = 0;
+                final int randomInt = random.nextInt(10);
+                if(randomInt < 4) {
+                    this.moveEntity(this.getEntity().getComponent(MovementComponent.class).get().getFacing());
+                } else if(randomInt < 7) {
+                    this.moveEntity(this.getEntity().getComponent(MovementComponent.class).get().getFacing().getOppositeDirection());
+                } else if(randomInt < 9) {
+                    movePos = new Pair<>(0f, 0f);
+                    isPrincessWalking = false;
+                    timeElapsed = -24;
+                }
+            } else {
+                if(isPrincessWalking)
+                    this.moveEntity(this.getEntity().getComponent(MovementComponent.class).get().getFacing());
+            }
+            this.getEntity().saveNextPosition(this.movePos.equals(new Pair<>(0f, 0f)) ? Optional.empty() 
+                                                                                          : Optional.of(this.movePos));
         }
     }
 

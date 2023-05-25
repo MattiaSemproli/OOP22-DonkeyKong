@@ -10,7 +10,9 @@ import it.unibo.donkeykong.controller.impl.GameController;
 import it.unibo.donkeykong.game.ecs.api.Entity;
 import it.unibo.donkeykong.game.ecs.impl.CollisionComponent;
 import it.unibo.donkeykong.game.ecs.impl.DoubleDamageComponent;
+import it.unibo.donkeykong.game.ecs.impl.HealthComponent;
 import it.unibo.donkeykong.game.ecs.impl.MovementComponent;
+import it.unibo.donkeykong.game.ecs.impl.ThrowComponent;
 import it.unibo.donkeykong.utilities.Constants;
 import it.unibo.donkeykong.utilities.Direction;
 import it.unibo.donkeykong.utilities.Pair;
@@ -18,6 +20,7 @@ import it.unibo.donkeykong.utilities.PlayerIdle;
 import it.unibo.donkeykong.utilities.ResourceFuncUtilities;
 import it.unibo.donkeykong.utilities.Type;
 import it.unibo.donkeykong.utilities.Constants.Barrel;
+import it.unibo.donkeykong.utilities.Constants.Monkey;
 import it.unibo.donkeykong.utilities.Constants.Player;
 import it.unibo.donkeykong.utilities.Constants.Princess;
 
@@ -51,11 +54,27 @@ public class GameView implements GameEngine {
                                                                   tile.width, 
                                                                   tile.height, null));
         this.gameController.getButtonsFromModel()
-                           .forEach((b, i) -> g.drawImage(i, 
+                           .forEach((b, i) -> {
+                                if(this.gameController.getEntitiesFromGameplay().stream().filter(e -> e.getEntityType() == Type.PLAYER).findAny().isPresent())
+                                    for (int l = 0; l < this.gameController.getEntitiesFromGameplay().stream()
+                                                   .filter(e -> e.getEntityType() == Type.PLAYER)
+                                                   .map(p -> p.getComponent(HealthComponent.class)
+                                                   .get().getLifes())
+                                                   .findFirst()
+                                                   .get(); 
+                                                   l++) {
+                                    g.drawImage(ResourceFuncUtilities.loadSources("playerlife"), 
+                                                b.getButtonPos().getX() - 50 * (l + 1),
+                                                b.getButtonPos().getY(), 
+                                                b.getButtonDim().getX() / 3, 
+                                                b.getButtonDim().getY() / 3, null);
+                                    }
+                                                   
+                                                g.drawImage(i, 
                                                           b.getButtonPos().getX(),
                                                           b.getButtonPos().getY(), 
                                                           b.getButtonDim().getX(), 
-                                                          b.getButtonDim().getY(), null));
+                                                          b.getButtonDim().getY(), null);});
         this.gameController.getEntitiesFromGameplay()
                            .stream().filter(e -> e.getEntityType() == Type.PLAYER
                                                  || e.getEntityType() == Type.MONKEY
@@ -68,6 +87,11 @@ public class GameView implements GameEngine {
         /**
          * Draw hitboxes.
          */
+        //this.drawHitboxes(g);
+        
+    }
+
+    private void drawHitboxes(final Graphics g) {
         this.gameController.getEntitiesFromGameplay().forEach(e -> {
             final Rectangle2D r = e.getComponent(CollisionComponent.class).get().getHitbox();
             g.setColor(java.awt.Color.GREEN);
@@ -76,8 +100,7 @@ public class GameView implements GameEngine {
     }
 
     private void drawEntity(final Graphics g, final Entity entity) {
-        final BufferedImage sprite = this.getSprite(entity);
-        g.drawImage(sprite, 
+        g.drawImage(this.getSprite(entity), 
                     Math.round(entity.getPosition().getX()), 
                     Math.round(entity.getPosition().getY()), 
                     entity.getWidth(), 
@@ -113,9 +136,19 @@ public class GameView implements GameEngine {
         if (entity.getEntityType() == Type.BARREL) {
             return new Pair<>(entity.getComponent(DoubleDamageComponent.class)
                                     .get().getDoubleDamage() ? Barrel.ddBarrelAni : Barrel.barrelAni, 
-                              this.aniIndex > 2 ? 2 : this.aniIndex);    
+                              this.aniIndex);    
         }
-        return new Pair<>(0, 0);
+        if (entity.getEntityType() == Type.MONKEY) {
+            if(entity.getComponent(ThrowComponent.class).get().isThrowing()) {
+                return new Pair<>(Monkey.monkeyAni, this.aniIndex + 1);
+            } else {
+                return new Pair<>(Monkey.monkeyAni, Monkey.monkeyAni);
+            }
+        }
+        return new Pair<>(entity.getComponent(MovementComponent.class)
+                                .get().getFacing() == Direction.LEFT ? Princess.leftAni 
+                                                                     : Princess.rightAni, 
+                          this.aniIndex);
     }
 
     private void updateAnimations() {

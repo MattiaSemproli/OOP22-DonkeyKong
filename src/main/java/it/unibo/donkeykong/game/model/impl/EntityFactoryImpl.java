@@ -3,6 +3,7 @@ package it.unibo.donkeykong.game.model.impl;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.donkeykong.game.ecs.api.Entity;
 import it.unibo.donkeykong.game.ecs.impl.CollisionComponent;
+import it.unibo.donkeykong.game.ecs.impl.DoubleDamageComponent;
 import it.unibo.donkeykong.game.ecs.impl.EntityImpl;
 import it.unibo.donkeykong.game.ecs.impl.HealthComponent;
 import it.unibo.donkeykong.game.ecs.impl.InputsComponent;
@@ -44,7 +45,8 @@ public class EntityFactoryImpl implements EntityFactory {
     public final Entity generateBarrel(final Pair<Float, Float> position) {
         return new EntityImpl(Type.BARREL, position, this.gameplay)
                    .addComponent(new MovementComponent())
-                   .addComponent(new CollisionComponent(position.getX(), position.getY(), Type.BARREL));
+                   .addComponent(new CollisionComponent(position.getX(), position.getY(), Type.BARREL))
+                   .addComponent(new DoubleDamageComponent());
     }
 
     @Override
@@ -57,6 +59,7 @@ public class EntityFactoryImpl implements EntityFactory {
     @Override
     public final Entity generatePrincess(final Pair<Float, Float> position) {
         return new EntityImpl(Type.PRINCESS, position, this.gameplay)
+                   .addComponent(new MovementComponent())
                    .addComponent(new CollisionComponent(position.getX(), position.getY(), Type.PRINCESS));
     }
 

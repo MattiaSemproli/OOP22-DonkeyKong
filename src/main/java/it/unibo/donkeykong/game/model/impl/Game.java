@@ -33,7 +33,7 @@ public class Game implements ViewModel {
     private BufferedImage[][] playerMovementAni = new BufferedImage[Player.movAniRC.getX()][Player.movAniRC.getY()];
     private BufferedImage[] monkeyAni = new BufferedImage[Monkey.monkeyAniSprites];
     private BufferedImage[][] barrelAni = new BufferedImage[Barrel.numBarrel][Barrel.barrelAniSprites];
-    private BufferedImage[] princessAni = new BufferedImage[Princess.princessAniSprites];
+    private BufferedImage[][] princessAni = new BufferedImage[Princess.numPrincessAni][Princess.princessAniSprites];
 
     /**
      * Constructor.
@@ -93,13 +93,15 @@ public class Game implements ViewModel {
                                                                   Barrel.spriteWidth, 
                                                                   Barrel.spriteHeight);
         }
-        for (int c = 0; c < Princess.princessAniSprites; c++) {
-            princessAni[c] = Princess.getPrincessSources()
-                                     .get(Princess.princessAni)
-                                     .getSubimage(c * Princess.spriteWidth,
-                                                  0, 
-                                                  Princess.spriteWidth, 
-                                                  Princess.spriteHeight);
+        for (int r = 0; r < Princess.numPrincessAni; r++) {
+            for (int c = 0; c < Princess.princessAniSprites; c++) {
+                princessAni[r][c] = Princess.getPrincessSources()
+                                         .get(Princess.princessAni)
+                                         .getSubimage(c * Princess.spriteWidth,
+                                                      r * Princess.spriteHeight, 
+                                                      Princess.spriteWidth, 
+                                                      Princess.spriteHeight);
+            }
         }
     }
 
@@ -147,6 +149,6 @@ public class Game implements ViewModel {
         if(type == Type.BARREL) {
             return this.barrelAni[row][col];
         }
-        return this.princessAni[col];
+        return this.princessAni[row][col];
     }
 }

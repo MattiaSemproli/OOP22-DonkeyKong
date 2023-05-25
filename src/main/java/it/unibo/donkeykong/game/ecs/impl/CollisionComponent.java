@@ -8,6 +8,7 @@ import java.util.Random;
 import it.unibo.donkeykong.game.ecs.api.Entity;
 import it.unibo.donkeykong.utilities.Constants;
 import it.unibo.donkeykong.utilities.Constants.Barrel;
+import it.unibo.donkeykong.utilities.Constants.Princess;
 import it.unibo.donkeykong.utilities.Constants.Window;
 import it.unibo.donkeykong.utilities.Pair;
 import it.unibo.donkeykong.utilities.Type;
@@ -106,6 +107,15 @@ public class CollisionComponent extends AbstractComponent {
                 entity.getComponent(MovementComponent.class).get().setIsInAir(true);
                 this.barrelChangedDirection = false;
             }
+        } else if (entity.getEntityType() == Type.PRINCESS) {
+            final int leftTile = (int) (Princess.levelOneStartingPrincessX / Window.SCALED_TILES_SIZE) - 1;
+            final int rightTile = (int) (Princess.levelOneStartingPrincessX / Window.SCALED_TILES_SIZE) + 1;
+            if (hitbox.x + hitbox.width > rightTile * Window.SCALED_TILES_SIZE + Window.SCALED_TILES_SIZE
+                || hitbox.x < leftTile * Window.SCALED_TILES_SIZE) {
+                final MovementComponent mc = this.entity.getComponent(MovementComponent.class).get();
+                mc.moveEntity(mc.getFacing().getOppositeDirection());
+            }
+            entity.setPosition(new Pair<>(this.nextPosition.get().getX(), this.nextPosition.get().getY()));
         }
     }
 

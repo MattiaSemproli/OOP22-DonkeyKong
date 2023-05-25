@@ -59,7 +59,7 @@ public class EntityImpl implements Entity {
             case PRINCESS:
                 this.width = Constants.Princess.princessWidth;
                 this.height = Constants.Princess.princessHeight;
-                this.speed = 0;
+                this.speed = Constants.Princess.velocity;
                 break;
             case HEART:
             case SHIELD:

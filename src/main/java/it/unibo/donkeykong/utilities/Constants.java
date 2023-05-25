@@ -300,10 +300,14 @@ public class Constants {
         public static final float levelOneStartingPrincessY = Window.SCALED_TILES_SIZE - Level.princessPadding;
         public static final int princessWidth = (int) (48 * Window.scala);
         public static final int princessHeight = (int) (66 * Window.scala);
+        public static final float velocity = 0.5f * Window.scala;
         public static final int spriteWidth = 16;
         public static final int spriteHeight = 22;
         public static final int princessAni = 0;
+        public static final int leftAni = 0;
+        public static final int rightAni = 1;
         public static final int princessAniSprites = 3;
+        public static final int numPrincessAni = 2; 
     
         private static final Map<Integer, BufferedImage> princessSources = new HashMap<>();
 
@@ -313,7 +317,6 @@ public class Constants {
 
         public static final void loadPrincessSources() {
             princessSources.put(princessAni, loadSources("princess"));
-            princessSources.put(1, loadSources("peachessingletry"));
         }
     }
 }
