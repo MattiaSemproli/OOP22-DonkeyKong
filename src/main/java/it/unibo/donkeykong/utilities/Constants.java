@@ -283,6 +283,7 @@ public class Constants {
         public static final int monkeyAniSprites = 4;
         public static final int spriteWidth = 40;
         public static final int spriteHeight = 32;
+        public static final int throwAnimationTime = 45;
 
         private static final Map<Integer, BufferedImage> monkeySources = new HashMap<>();
 

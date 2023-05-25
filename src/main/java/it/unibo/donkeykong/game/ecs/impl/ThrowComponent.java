@@ -1,6 +1,7 @@
 package it.unibo.donkeykong.game.ecs.impl;
 
 import it.unibo.donkeykong.utilities.Constants.Barrel;
+import it.unibo.donkeykong.utilities.Constants.Monkey;
 import it.unibo.donkeykong.utilities.Pair;
 
 /**
@@ -9,6 +10,8 @@ import it.unibo.donkeykong.utilities.Pair;
 public class ThrowComponent extends AbstractComponent {
 
     private boolean isFreezed;
+    private boolean isThrowing;
+
     private int timeElapsed = Barrel.spawnDelay;
 
     /**
@@ -16,6 +19,7 @@ public class ThrowComponent extends AbstractComponent {
      */
     public ThrowComponent() {
         this.isFreezed = false;
+        this.isThrowing = false;
     }
 
     @Override
@@ -24,12 +28,26 @@ public class ThrowComponent extends AbstractComponent {
         if (!isFreezed() && this.timeElapsed > Barrel.spawnDelay) {
             this.getEntity().getGameplay().throwBarrel(this.getBarrelStartingPosition());
             this.timeElapsed = 0;
+            this.isThrowing = false;
+        } else if (!isFreezed 
+                   && this.timeElapsed < Barrel.spawnDelay 
+                   && this.timeElapsed > Barrel.spawnDelay - Monkey.throwAnimationTime) {
+            this.isThrowing = true;
         }
     }
 
     private Pair<Float, Float> getBarrelStartingPosition() {
         return new Pair<>(this.getEntity().getPosition().getX() + this.getEntity().getWidth(), 
                           this.getEntity().getPosition().getY() + this.getEntity().getHeight() - Barrel.barrelHeight);
+    }
+
+    /**
+     * Check if Donkey Kong is throwing.
+     * 
+     * @return true if Donkey Kong is throwing.
+     */
+    public final boolean isThrowing() {
+        return isThrowing;
     }
 
     /**
