@@ -11,7 +11,15 @@ public enum Direction {
     /**
      * right direction.
      */
-    RIGHT(1, 0);
+    RIGHT(1, 0),
+    /**
+     * up direction on ladder.
+     */
+    UP(0, -1),
+    /**
+     * down direction on ladder.
+     */
+    DOWN(0, 1);
 
     private int x;
     private int y;
