@@ -183,6 +183,22 @@ public class CollisionComponent extends AbstractComponent {
                             Gamestate.setGamestate(Gamestate.WIN);
                             entity.getGameplay().getController().stopTimer();
                         }
+                        if (e.getEntityType() == Type.STAR) {
+                            entity.getComponent(StarComponent.class).get().setInvincible(true);
+                            entity.getGameplay().removeEntity(e);
+                        }
+                        if (e.getEntityType() == Type.SHIELD) {
+                            entity.getComponent(ShieldComponent.class).get().setShield(true);
+                            entity.getGameplay().removeEntity(e);
+                        }
+                        if (e.getEntityType() == Type.HEART) {
+                            entity.getComponent(HealthComponent.class).get().setLifes(1);
+                            entity.getGameplay().removeEntity(e);
+                        }
+                        if (e.getEntityType() == Type.SNOWFLAKE) {
+                            entity.getComponent(FreezeComponent.class).get().setFrozen(true);
+                            entity.getGameplay().removeEntity(e);
+                        }
                   });
         } else if (this.entity.getEntityType() == Type.BARREL) {
             this.entity.getGameplay().getEntities().stream()
