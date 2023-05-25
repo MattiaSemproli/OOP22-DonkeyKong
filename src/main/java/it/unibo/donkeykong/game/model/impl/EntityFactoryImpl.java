@@ -5,9 +5,13 @@ import it.unibo.donkeykong.game.ecs.api.Entity;
 import it.unibo.donkeykong.game.ecs.impl.CollisionComponent;
 import it.unibo.donkeykong.game.ecs.impl.DoubleDamageComponent;
 import it.unibo.donkeykong.game.ecs.impl.EntityImpl;
+import it.unibo.donkeykong.game.ecs.impl.FreezeComponent;
 import it.unibo.donkeykong.game.ecs.impl.HealthComponent;
 import it.unibo.donkeykong.game.ecs.impl.InputsComponent;
 import it.unibo.donkeykong.game.ecs.impl.MovementComponent;
+import it.unibo.donkeykong.game.ecs.impl.ShieldComponent;
+import it.unibo.donkeykong.game.ecs.impl.SlowComponent;
+import it.unibo.donkeykong.game.ecs.impl.StarComponent;
 import it.unibo.donkeykong.game.ecs.impl.ThrowComponent;
 import it.unibo.donkeykong.game.model.api.EntityFactory;
 import it.unibo.donkeykong.game.model.api.Gameplay;
@@ -38,7 +42,9 @@ public class EntityFactoryImpl implements EntityFactory {
                    .addComponent(new InputsComponent())
                    .addComponent(new MovementComponent())
                    .addComponent(new CollisionComponent(position.getX(), position.getY(), Type.PLAYER))
-                   .addComponent(new HealthComponent(Player.numLifes));
+                   .addComponent(new HealthComponent(Player.numLifes))
+                   .addComponent(new StarComponent())
+                   .addComponent(new ShieldComponent());
     }
 
     @Override
@@ -46,14 +52,16 @@ public class EntityFactoryImpl implements EntityFactory {
         return new EntityImpl(Type.BARREL, position, this.gameplay)
                    .addComponent(new MovementComponent())
                    .addComponent(new CollisionComponent(position.getX(), position.getY(), Type.BARREL))
-                   .addComponent(new DoubleDamageComponent());
+                   .addComponent(new DoubleDamageComponent())
+                   .addComponent(new SlowComponent());
     }
 
     @Override
     public final Entity generateMonkey(final Pair<Float, Float> position) {
         return new EntityImpl(Type.MONKEY, position, this.gameplay)
                    .addComponent(new ThrowComponent())
-                   .addComponent(new CollisionComponent(position.getX(), position.getY(), Type.MONKEY));
+                   .addComponent(new CollisionComponent(position.getX(), position.getY(), Type.MONKEY))
+                   .addComponent(new FreezeComponent());
     }
 
     @Override
