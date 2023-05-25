@@ -137,14 +137,14 @@ public class Game implements ViewModel {
         return new HashMap<>();
     }
 
-    public BufferedImage getEntityAni(final Type type, final int row, final int col) {
-        if(type == Type.PLAYER) {
+    public final BufferedImage getEntityAni(final Type type, final int row, final int col) {
+        if (type == Type.PLAYER) {
             return this.playerMovementAni[row][col];
         }
-        if(type == Type.MONKEY) {
+        if (type == Type.MONKEY) {
             return this.monkeyAni[col];
         }
-        if(type == Type.BARREL) {
+        if (type == Type.BARREL) {
             return this.barrelAni[row][col];
         }
         return this.princessAni[col];
