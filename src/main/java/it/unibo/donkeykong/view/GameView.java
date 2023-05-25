@@ -87,7 +87,7 @@ public class GameView implements GameEngine {
         /**
          * Draw hitboxes.
          */
-        //this.drawHitboxes(g);
+        this.drawHitboxes(g);
         
     }
 
