@@ -9,6 +9,7 @@ import it.unibo.donkeykong.game.ecs.api.Entity;
 import it.unibo.donkeykong.utilities.Constants;
 import it.unibo.donkeykong.utilities.Gamestate;
 import it.unibo.donkeykong.utilities.Constants.Barrel;
+import it.unibo.donkeykong.utilities.Constants.Player;
 import it.unibo.donkeykong.utilities.Constants.Princess;
 import it.unibo.donkeykong.utilities.Constants.Window;
 import it.unibo.donkeykong.utilities.Pair;
@@ -155,15 +156,15 @@ public class CollisionComponent extends AbstractComponent {
                             if (!entity.getComponent(StarComponent.class).get().isInvincible()) {
                                 if (!entity.getComponent(ShieldComponent.class).get().isShielded()) {
                                     if (e.getComponent(DoubleDamageComponent.class).get().getDoubleDamage()) {
-                                        entity.getComponent(HealthComponent.class).get().setLifes(-2);
+                                        entity.getComponent(HealthComponent.class).get().setLifes(Player.doubleDamage);
                                     } else {
-                                        entity.getComponent(HealthComponent.class).get().setLifes(-1);
+                                        entity.getComponent(HealthComponent.class).get().setLifes(Player.damageTaken);
                                     }
-                                    entity.setPosition(new Pair<>(Constants.Player.levelOneStartingPlayerX, 
-                                                                  Constants.Player.levelOneStartingPlayerY));
+                                    entity.setPosition(new Pair<>(Player.levelOneStartingPlayerX, 
+                                                                  Player.levelOneStartingPlayerY));
                                 } else {
                                     if (e.getComponent(DoubleDamageComponent.class).get().getDoubleDamage()) {
-                                        entity.getComponent(HealthComponent.class).get().setLifes(-1);
+                                        entity.getComponent(HealthComponent.class).get().setLifes(Player.damageTaken);
                                     }
                                     entity.getComponent(ShieldComponent.class).get().setShield(false);
                                 }
@@ -194,7 +195,7 @@ public class CollisionComponent extends AbstractComponent {
                             entity.getGameplay().removeEntity(e);
                         }
                         if (e.getEntityType() == Type.HEART) {
-                            entity.getComponent(HealthComponent.class).get().setLifes(1);
+                            entity.getComponent(HealthComponent.class).get().setLifes(Player.extraLife);
                             entity.getGameplay().removeEntity(e);
                         }
                         if (e.getEntityType() == Type.SNOWFLAKE) {
