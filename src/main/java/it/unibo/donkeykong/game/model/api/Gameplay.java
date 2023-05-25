@@ -38,4 +38,9 @@ public interface Gameplay {
      * @param position new barrel starting position.
      */
     void throwBarrel(Pair<Float, Float> position);
+
+    /**
+     * If player lose all lives or he falls out of map, remove him.
+     */
+    void removePlayer();
 }

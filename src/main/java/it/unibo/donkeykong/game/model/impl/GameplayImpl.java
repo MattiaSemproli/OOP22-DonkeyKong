@@ -15,6 +15,7 @@ import it.unibo.donkeykong.game.model.api.Gameplay;
 import it.unibo.donkeykong.game.model.api.Level;
 import it.unibo.donkeykong.utilities.Constants;
 import it.unibo.donkeykong.utilities.Pair;
+import it.unibo.donkeykong.utilities.Type;
 import it.unibo.donkeykong.utilities.Constants.Barrel;
 
 /**
@@ -111,5 +112,10 @@ public class GameplayImpl implements Gameplay {
     @Override
     public final void removeEntity(final Entity entity) {
         this.entities.remove(entity);
+    }
+
+    @Override
+    public final void removePlayer() {
+        this.entities.removeIf(e -> e.getEntityType() == Type.PLAYER);
     }
 }
