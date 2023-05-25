@@ -220,6 +220,10 @@ public class CollisionComponent extends AbstractComponent {
                             Gamestate.setGamestate(Gamestate.WIN);
                             entity.getGameplay().getController().stopTimer();
                         }
+                        if (e.getEntityType() == Type.MONKEY) {
+                            Gamestate.setGamestate(Gamestate.DEATH);
+                            entity.getGameplay().getController().stopTimer();
+                        }
                         if (e.getEntityType() == Type.STAR) {
                             entity.getComponent(StarComponent.class).get().setInvincible(true);
                             entity.getGameplay().removeEntity(e);
