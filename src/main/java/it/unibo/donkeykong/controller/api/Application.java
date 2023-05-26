@@ -59,7 +59,7 @@ public interface Application {
      * 
      * @return linked PauseController.
      */
-    EndPauseController getPauseController();
+    EndPauseController getEndPauseController();
 
     /**
      * Get LevelsMenuController.

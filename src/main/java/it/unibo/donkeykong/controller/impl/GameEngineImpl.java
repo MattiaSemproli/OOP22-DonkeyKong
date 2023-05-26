@@ -95,7 +95,7 @@ public class GameEngineImpl implements GameEngine, Runnable {
             case PAUSE:
             case WIN:
             case DEATH:
-                this.applicationImpl.getPauseController().update();
+                this.applicationImpl.getEndPauseController().update();
                 break;
             case EXIT:
             default:
@@ -124,7 +124,7 @@ public class GameEngineImpl implements GameEngine, Runnable {
             case WIN:
             case DEATH:
                 this.applicationImpl.getGameController().draw(g);
-                this.applicationImpl.getPauseController().draw(g);
+                this.applicationImpl.getEndPauseController().draw(g);
                 break;
             case EXIT:
             default:
