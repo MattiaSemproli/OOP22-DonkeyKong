@@ -29,7 +29,7 @@ public final class KeyboardInputs implements KeyListener {
                 this.dkApp.getGameController().keyPressed(key);
                 break;
             case PAUSE:
-                this.dkApp.getPauseController().keyPressed(key);
+                this.dkApp.getEndPauseController().keyPressed(key);
                 break;
             default:
                 break;
@@ -43,7 +43,7 @@ public final class KeyboardInputs implements KeyListener {
                 this.dkApp.getGameController().keyReleased(key);
                 break;
             case PAUSE:
-                this.dkApp.getPauseController().keyReleased(key);
+                this.dkApp.getEndPauseController().keyReleased(key);
                 break;
             default:
                 break;
