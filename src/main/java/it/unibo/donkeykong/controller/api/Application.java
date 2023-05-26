@@ -3,7 +3,7 @@ package it.unibo.donkeykong.controller.api;
 import it.unibo.donkeykong.controller.impl.GameController;
 import it.unibo.donkeykong.controller.impl.LevelsMenuController;
 import it.unibo.donkeykong.controller.impl.MainMenuController;
-import it.unibo.donkeykong.controller.impl.PauseController;
+import it.unibo.donkeykong.controller.impl.EndPauseController;
 import it.unibo.donkeykong.controller.impl.SettingsController;
 
 /**
@@ -59,7 +59,7 @@ public interface Application {
      * 
      * @return linked PauseController.
      */
-    PauseController getPauseController();
+    EndPauseController getPauseController();
 
     /**
      * Get LevelsMenuController.

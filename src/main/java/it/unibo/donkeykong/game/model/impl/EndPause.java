@@ -22,7 +22,7 @@ import it.unibo.donkeykong.utilities.Gamestate;
 /**
  * Pause game model.
  */
-public class Pause implements ViewModel, VolumeSettings {
+public class EndPause implements ViewModel, VolumeSettings {
 
     private Button backHome, backToPlay;
     private final Rectangle[] volumeButtons = new Rectangle[SettingsAssets.numVolumeButtons];
@@ -31,7 +31,7 @@ public class Pause implements ViewModel, VolumeSettings {
     /**
      * Constructor.
      */
-    public Pause() {
+    public EndPause() {
         this.createButtons();
     }
 

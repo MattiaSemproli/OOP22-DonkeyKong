@@ -17,7 +17,7 @@ public class ApplicationImpl implements Application {
     private MainMenuController mainMenuController;
     private SettingsController settingsController;
     private GameController gameController;
-    private PauseController pauseController;
+    private EndPauseController pauseController;
     private LevelsMenuController levelsMenuController;
 
     /**
@@ -70,7 +70,7 @@ public class ApplicationImpl implements Application {
     public final void initialize() {
         this.mainMenuController = new MainMenuController(this);
         this.settingsController = new SettingsController();
-        this.pauseController = new PauseController(this);
+        this.pauseController = new EndPauseController(this);
         this.levelsMenuController = new LevelsMenuController(this);
     }
 
@@ -90,7 +90,7 @@ public class ApplicationImpl implements Application {
     }
 
     @Override
-    public final PauseController getPauseController() {
+    public final EndPauseController getPauseController() {
         return this.pauseController;
     }
 
@@ -98,5 +98,4 @@ public class ApplicationImpl implements Application {
     public final LevelsMenuController getLevelsMenuController() {
         return this.levelsMenuController;
     }
-
 }

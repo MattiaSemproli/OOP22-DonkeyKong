@@ -93,17 +93,13 @@ public class GameEngineImpl implements GameEngine, Runnable {
                 this.applicationImpl.getSettingsController().update();
                 break;
             case PAUSE:
+            case WIN:
+            case DEATH:
                 this.applicationImpl.getPauseController().update();
                 break;
-            case DEATH:
-                break;
-            case WIN:
-                break;
             case EXIT:
-                AudioUtilities.stopSoundtrack();
-                Runtime.getRuntime().exit(0);
-                break;
             default:
+                AudioUtilities.stopSoundtrack();
                 Runtime.getRuntime().exit(0);
                 break;
         }
@@ -125,16 +121,12 @@ public class GameEngineImpl implements GameEngine, Runnable {
                 this.applicationImpl.getSettingsController().draw(g);
                 break;
             case PAUSE:
+            case WIN:
+            case DEATH:
                 this.applicationImpl.getGameController().draw(g);
                 this.applicationImpl.getPauseController().draw(g);
                 break;
-            case DEATH:
-                break;
-            case WIN:
-                break;
             case EXIT:
-                Runtime.getRuntime().exit(0);
-                break;
             default:
                 Runtime.getRuntime().exit(0);
                 break;
