@@ -14,6 +14,7 @@ import it.unibo.donkeykong.game.model.api.Button;
 import it.unibo.donkeykong.game.model.impl.MainMenu;
 import it.unibo.donkeykong.utilities.AudioUtilities;
 import it.unibo.donkeykong.utilities.ButtonFuncUtilities;
+import it.unibo.donkeykong.utilities.CurrentLevel;
 import it.unibo.donkeykong.utilities.Constants.Audio;
 import it.unibo.donkeykong.utilities.Gamestate;
 import it.unibo.donkeykong.view.MainMenuView;
@@ -63,6 +64,7 @@ public class MainMenuController implements MouseListener, GameEngine, GenericCon
         ButtonFuncUtilities.getButtonPressed(e, this.menu.getButtons().keySet()).ifPresent(b -> {
             if (b.getButtonGamestate().equals(Gamestate.PLAYING)) {
                 AudioUtilities.playSoundtrack(Audio.gameMusic0);
+                CurrentLevel.setCurrentLevel(CurrentLevel.ONE);
                 this.application.startGameController();
             }
             b.applyGamestate();

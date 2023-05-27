@@ -63,6 +63,7 @@ public class LevelsMenuController implements MouseListener, GameEngine, GenericC
         ButtonFuncUtilities.getButtonPressed(e, this.levelsMenu.getButtons().keySet()).ifPresent(b -> {
             if (b.getButtonGamestate().equals(Gamestate.PLAYING)) {
                 AudioUtilities.playSoundtrack(Audio.gameMusic0);
+                this.levelsMenu.setLevelToPlay(b);
                 this.application.startGameController();
             }
             b.applyGamestate();

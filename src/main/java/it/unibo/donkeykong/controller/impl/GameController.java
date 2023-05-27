@@ -26,6 +26,7 @@ import it.unibo.donkeykong.game.model.impl.Game;
 import it.unibo.donkeykong.game.model.impl.GameplayImpl;
 import it.unibo.donkeykong.utilities.ButtonFuncUtilities;
 import it.unibo.donkeykong.utilities.Gamestate;
+import it.unibo.donkeykong.utilities.Pair;
 import it.unibo.donkeykong.utilities.Type;
 import it.unibo.donkeykong.view.GameView;
 
@@ -155,6 +156,27 @@ public class GameController implements GameEngine, MouseListener, KeyListener, G
      */
     public final List<Entity> getEntitiesFromGameplay() {
         return this.gameplay.getEntities();
+    }
+
+    /**
+     * Get all the entities that are not blocks from the gameplay.
+     * 
+     * @return list of entities.
+     */
+    public final List<Entity> getInteractableEntitiesFromGameplay() {
+        return this.gameplay.getEntities()
+                   .stream().filter(e -> e.getEntityType() == Type.PLAYER
+                                         || e.getEntityType() == Type.MONKEY
+                                         || e.getEntityType() == Type.BARREL
+                                         || e.getEntityType() == Type.PRINCESS).toList();
+    }
+
+    public final void updateAniIndex() {
+        this.game.updateAnimations();
+    }
+
+    public final Pair<Integer, Integer> getIdleFromModel(final Entity entity) {
+        return this.game.getIdle(entity);
     }
 
     /**
