@@ -59,6 +59,7 @@ public class ApplicationImpl implements Application {
         Constants.Barrel.loadBarrelSources();
         Constants.Monkey.loadMonkeySources();
         Constants.Princess.loadPrincessSources();
+        Constants.MenuAssets.SettingsAssets.loadTextSources();
     }
 
     @Override

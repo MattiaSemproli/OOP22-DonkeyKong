@@ -30,6 +30,7 @@ public enum PlayerIdle {
     CLIMBING;
 
     private static PlayerIdle playerIdle = STOP;
+    private static PlayerIdle princessIdle = STOP;
 
     /**
      * @return the currently state of the player.
@@ -43,5 +44,19 @@ public enum PlayerIdle {
      */
     public static void setPlayerIdle(final PlayerIdle idle) {
         playerIdle = idle;
+    }
+    
+    /**
+     * @return the currently state of the princess.
+     */
+    public static PlayerIdle getPrincessIdle() {
+        return princessIdle;
+    }
+
+    /**
+     * @param idle set the current idle of the princess.
+     */
+    public static void setPrincessIdle(final PlayerIdle idle) {
+        princessIdle = idle;
     }
 }

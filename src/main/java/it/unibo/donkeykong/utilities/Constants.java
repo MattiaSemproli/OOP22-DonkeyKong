@@ -103,10 +103,24 @@ public class Constants {
             public static final String roundedSettingsButton = "square_option_button";
             public static final String themesButton = "button_layout";
             public static final String backToPlayButton = "square_playagain_button";
+            public static final String loseText = "lose";
+            public static final int textScale = 3;
+            public static final int loseTextWidth = (int) (62 * textScale  * Window.scala);
+            public static final int loseTextHeight = (int) (21 * textScale  * Window.scala);
+            public static final String winText = "win";
+            public static final int winTextWidth = (int) (61 * textScale  * Window.scala);
+            public static final int winTextHeight = (int) (21 * textScale  * Window.scala);
+            public static final String pauseText = "pause";
+            public static final int pauseTextWidth = (int) (79 * textScale  * Window.scala);
+            public static final int pauseTextHeight = (int) (21 * textScale  * Window.scala);
+            public static final String settingsText = "settings";
+            public static final int settingsTextWidth = (int) (119 * textScale  * Window.scala);
+            public static final int settingsTextHeight = (int) (21 * textScale * Window.scala);
             public static final int numVolumeButtons = 2;
             public static final int volOnB = 0;
             public static final int volOffB = 1;
             public static final int squareButtonSize = (int) (75 * Window.scala);
+            public static final int themesButtonWidth = (int) (40 * Window.scala);
             public static final int homeButtonRightDistance = (int) (125 * Window.scala);
             public static final int homeButtonBottomDistance = (int) (150 * Window.scala);
             public static final int repeatButtonLeftDistance = (int) (125 * Window.scala);
@@ -118,9 +132,13 @@ public class Constants {
             public static final int pauseBgOpacity = 128;
 
             private static final Map<String, BufferedImage> settingsSources = new HashMap<>();
+            private static final Map<Gamestate, BufferedImage> textSources = new HashMap<>();
 
             public static final Map<String, BufferedImage> getSettingsSources() {
                 return Collections.unmodifiableMap(settingsSources);
+            }
+            public static final Map<Gamestate, BufferedImage> getTextSources() {
+                return Collections.unmodifiableMap(textSources);
             }
 
             public static final void loadSettingsSources() {
@@ -130,6 +148,13 @@ public class Constants {
                 settingsSources.put(roundedSettingsButton, loadSources(roundedSettingsButton));
                 settingsSources.put(themesButton, loadSources(themesButton));
                 settingsSources.put(backToPlayButton, loadSources(backToPlayButton));
+            }
+
+            public static final void loadTextSources() {
+                textSources.put(Gamestate.WIN, loadSources(winText));
+                textSources.put(Gamestate.DEATH, loadSources(loseText));
+                textSources.put(Gamestate.SETTINGS, loadSources(settingsText));
+                textSources.put(Gamestate.PAUSE, loadSources(pauseText));
             }
         }
 
@@ -155,16 +180,17 @@ public class Constants {
 
             public static final void loadLevelSources() {
                 levelSources.put(levelOneSource, new Pair<BufferedImage,Integer>(loadSources(levelOneSource), 0));
-                levelSources.put(levelTwoSource, new Pair<BufferedImage,Integer>(loadSources("empty_level"), 1));
-                levelSources.put(levelThreeSource, new Pair<BufferedImage,Integer>(loadSources("empty_level"), 2));
+                levelSources.put(levelTwoSource, new Pair<BufferedImage,Integer>(loadSources(levelTwoSource), 1));
+                levelSources.put(levelThreeSource, new Pair<BufferedImage,Integer>(loadSources(levelThreeSource), 2));
                 levelSources.put(levelFourSource, new Pair<BufferedImage,Integer>(loadSources("empty_level"), 3));
-            }        
+            }               
         }
     }
 
     public static final class Level {
-        public static final String levelOne = "level_one_data";
-        public static final String levelSprites = "platform_ladder";
+        public static final String levelOne = "one";
+        public static final String levelTwo = "two";
+        public static final String levelThree = "three";
         public static final int blackBlock = 0;
         public static final int platformBlock = 1;
         public static final int coloredLadder = 2;
@@ -235,6 +261,7 @@ public class Constants {
         public static final int numBarrel = 2;
         public static final int spriteWidth = 12;
         public static final int spriteHeight = 10;
+        public static final int aniBarrelSpeed = 15;
 
         private static final Map<Integer, BufferedImage> barrelSources = new HashMap<>();
 
@@ -260,14 +287,19 @@ public class Constants {
         public static final int doubleDamage = 2 * damageTaken;
         public static final int extraLife = 1;
         public static final int movementAni = 0;
+        public static final int climbingAni = 1;
         public static final int spriteDimension = 16;
-        public static final Pair<Integer, Integer> movAniRC = new Pair<>(4, 3);
+        public static final int movementAniSprites = 3;
+        public static final int numMovementAni = 5;
         public static final int runAni = 0;
         public static final int jumpAni = 2;
         public static final int leftAni = 0;
         public static final int rightAni = 1;
         public static final int midAirAni = 1;
-
+        public static final int climbingAniSprites = 2;
+        public static final int climbAni = 4;
+        public static final int aniPlayerSpeed = 15;
+        public static final int aniClimbSpeed = 15;
         
         private static final Map<Integer, BufferedImage> playerSources = new HashMap<>();
 
@@ -277,6 +309,7 @@ public class Constants {
 
         public static final void loadPlayerSources() {
             playerSources.put(movementAni, loadSources("mario_movement"));
+            playerSources.put(climbingAni, loadSources("climbingplayer"));
         }
     }
     
@@ -289,7 +322,8 @@ public class Constants {
         public static final int monkeyAniSprites = 4;
         public static final int spriteWidth = 40;
         public static final int spriteHeight = 32;
-        public static final int throwAnimationTime = 45;
+        public static final int aniMonkeySpeed = 25;
+        public static final int throwAnimationTime = aniMonkeySpeed * (monkeyAniSprites - 1);
 
         private static final Map<Integer, BufferedImage> monkeySources = new HashMap<>();
 
@@ -315,6 +349,7 @@ public class Constants {
         public static final int rightAni = 1;
         public static final int princessAniSprites = 3;
         public static final int numPrincessAni = 2; 
+        public static final int aniPrincessSpeed = 15;
     
         private static final Map<Integer, BufferedImage> princessSources = new HashMap<>();
 
