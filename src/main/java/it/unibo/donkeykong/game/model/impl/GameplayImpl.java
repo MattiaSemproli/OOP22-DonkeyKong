@@ -35,7 +35,7 @@ public class GameplayImpl implements Gameplay {
      * @param controller linked GameController
      */
     public GameplayImpl(final GameController controller) {
-        this.level = new LevelImpl(Constants.Level.levelOne);
+        this.level = new LevelImpl();
         this.controller = controller;
         this.entityFactoryImpl = new EntityFactoryImpl(this);
         this.initializeGame();

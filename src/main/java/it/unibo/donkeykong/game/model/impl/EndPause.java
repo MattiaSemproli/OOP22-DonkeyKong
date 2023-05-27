@@ -18,6 +18,7 @@ import it.unibo.donkeykong.utilities.Constants.Audio;
 import it.unibo.donkeykong.utilities.Constants.MenuAssets;
 import it.unibo.donkeykong.utilities.Constants.MenuAssets.SettingsAssets;
 import it.unibo.donkeykong.utilities.Gamestate;
+import it.unibo.donkeykong.utilities.ResourceFuncUtilities;
 
 /**
  * Pause game model.
@@ -48,19 +49,17 @@ public class EndPause implements ViewModel, VolumeSettings {
                                                                   SettingsAssets.muteButtonY, 
                                                                   SettingsAssets.squareButtonSize, 
                                                                   SettingsAssets.squareButtonSize);
-
         this.volumeButtons[SettingsAssets.volOffB] = new Rectangle(SettingsAssets.rightSettingsButtonX, 
                                                                    SettingsAssets.muteButtonY, 
                                                                    SettingsAssets.squareButtonSize, 
                                                                    SettingsAssets.squareButtonSize);
         this.gameThemesButtons[Audio.getGameSources().get(Audio.gameMusic0)] = new Rectangle(SettingsAssets.leftSettingsButtonX, 
                                                                                              SettingsAssets.musicsButtonY, 
-                                                                                             SettingsAssets.squareButtonSize, 
+                                                                                             SettingsAssets.themesButtonWidth, 
                                                                                              SettingsAssets.squareButtonSize);
-
         this.gameThemesButtons[Audio.getGameSources().get(Audio.gameMusic1)] = new Rectangle(SettingsAssets.rightSettingsButtonX, 
                                                                                              SettingsAssets.musicsButtonY, 
-                                                                                             SettingsAssets.squareButtonSize, 
+                                                                                             SettingsAssets.themesButtonWidth, 
                                                                                              SettingsAssets.squareButtonSize);
     }
 
@@ -99,9 +98,11 @@ public class EndPause implements ViewModel, VolumeSettings {
             put(volumeButtons[SettingsAssets.volOffB], 
                 getSettingsSources().get(SettingsAssets.roundedVolumeOff));
             put(gameThemesButtons[Audio.getGameSources().get(Audio.gameMusic0)], 
-                getSettingsSources().get(SettingsAssets.themesButton));
+                //getSettingsSources().get(SettingsAssets.themesButton)
+                ResourceFuncUtilities.loadSources("1"));
             put(gameThemesButtons[Audio.getGameSources().get(Audio.gameMusic1)], 
-                getSettingsSources().get(SettingsAssets.themesButton));
+                //getSettingsSources().get(SettingsAssets.themesButton)
+                ResourceFuncUtilities.loadSources("2"));
         }};
     }
 }

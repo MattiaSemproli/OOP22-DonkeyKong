@@ -18,6 +18,7 @@ import it.unibo.donkeykong.utilities.Constants.Level;
 import it.unibo.donkeykong.utilities.Constants.MenuAssets;
 import it.unibo.donkeykong.utilities.Constants.MenuAssets.LevelAssets;
 import it.unibo.donkeykong.utilities.Constants.MenuAssets.SettingsAssets;
+import it.unibo.donkeykong.utilities.CurrentLevel;
 import it.unibo.donkeykong.utilities.Gamestate;
 
 /**
@@ -25,7 +26,7 @@ import it.unibo.donkeykong.utilities.Gamestate;
  */
 public class LevelsMenu implements ViewModel {
 
-    private Button backHome, levelOneButton;
+    private Button backHome, levelOneButton, levelTwoButton, levelThreeButton;
     private Rectangle[] levelsButtons = new Rectangle[Level.numLevelsButtons];
 
     /**
@@ -44,18 +45,28 @@ public class LevelsMenu implements ViewModel {
                                              LevelAssets.topLevelbuttonY, 
                                              LevelAssets.levelButtonWidth, 
                                              LevelAssets.levelButtonHeight, Gamestate.PLAYING);
-        this.levelsButtons[getLevelSources().get(levelTwoSource).getY()] = new Rectangle(LevelAssets.rightLevelButtonX, 
-                                                                                         LevelAssets.topLevelbuttonY, 
-                                                                                         LevelAssets.levelButtonWidth, 
-                                                                                         LevelAssets.levelButtonHeight);
-        this.levelsButtons[getLevelSources().get(levelThreeSource).getY()] = new Rectangle(LevelAssets.leftLevelButtonX, 
-                                                                                           LevelAssets.botLevelButtonY,
-                                                                                           LevelAssets.levelButtonWidth, 
-                                                                                           LevelAssets.levelButtonHeight);
+        this.levelTwoButton = new ButtonImpl(LevelAssets.rightLevelButtonX, 
+                                             LevelAssets.topLevelbuttonY, 
+                                             LevelAssets.levelButtonWidth, 
+                                             LevelAssets.levelButtonHeight, Gamestate.PLAYING);
+        this.levelThreeButton = new ButtonImpl(LevelAssets.leftLevelButtonX, 
+                                               LevelAssets.botLevelButtonY, 
+                                               LevelAssets.levelButtonWidth, 
+                                               LevelAssets.levelButtonHeight, Gamestate.PLAYING);
         this.levelsButtons[getLevelSources().get(levelFourSource).getY()] = new Rectangle(LevelAssets.rightLevelButtonX, 
                                                                                           LevelAssets.botLevelButtonY,
                                                                                           LevelAssets.levelButtonWidth, 
                                                                                           LevelAssets.levelButtonHeight);
+    }
+    
+    public final void setLevelToPlay(final Button b) {
+        if (b.equals(this.levelOneButton)) {
+            CurrentLevel.setCurrentLevel(CurrentLevel.ONE);
+        } else if (b.equals(this.levelTwoButton)) {
+            CurrentLevel.setCurrentLevel(CurrentLevel.TWO);
+        } else if (b.equals(this.levelThreeButton)) {
+            CurrentLevel.setCurrentLevel(CurrentLevel.THREE);
+        }
     }
 
     @Override
@@ -63,16 +74,14 @@ public class LevelsMenu implements ViewModel {
         return new HashMap<>() {{
             put(backHome, getSettingsSources().get(SettingsAssets.homeButton));
             put(levelOneButton, getLevelSources().get(levelOneSource).getX());
+            put(levelTwoButton, getLevelSources().get(levelTwoSource).getX());
+            put(levelThreeButton, getLevelSources().get(levelThreeSource).getX());
         }};
     }
 
     @Override
     public final Map<Rectangle, BufferedImage> getAlternativeButtons() {
         return new HashMap<>() {{
-            put(levelsButtons[getLevelSources().get(levelTwoSource).getY()], 
-                getLevelSources().get(levelTwoSource).getX());
-            put(levelsButtons[getLevelSources().get(levelThreeSource).getY()], 
-                getLevelSources().get(levelThreeSource).getX());
             put(levelsButtons[getLevelSources().get(levelFourSource).getY()], 
                 getLevelSources().get(levelFourSource).getX());
         }};

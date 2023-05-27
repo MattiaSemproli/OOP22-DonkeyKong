@@ -17,6 +17,7 @@ import it.unibo.donkeykong.utilities.Constants.Audio;
 import it.unibo.donkeykong.utilities.Constants.MenuAssets;
 import it.unibo.donkeykong.utilities.Constants.MenuAssets.SettingsAssets;
 import it.unibo.donkeykong.utilities.Gamestate;
+import it.unibo.donkeykong.utilities.ResourceFuncUtilities;
 
 /** 
  * Settings model. 
@@ -49,11 +50,11 @@ public class Settings implements ViewModel, VolumeSettings {
                                                                    SettingsAssets.squareButtonSize);
         this.themesButtons[Audio.getThemeSources().get(Audio.menuMusic0)] = new Rectangle(SettingsAssets.leftSettingsButtonX, 
                                                                                           SettingsAssets.musicsButtonY, 
-                                                                                          SettingsAssets.squareButtonSize, 
+                                                                                          SettingsAssets.themesButtonWidth, 
                                                                                           SettingsAssets.squareButtonSize);
         this.themesButtons[Audio.getThemeSources().get(Audio.menuMusic1)] = new Rectangle(SettingsAssets.rightSettingsButtonX, 
                                                                                           SettingsAssets.musicsButtonY, 
-                                                                                          SettingsAssets.squareButtonSize, 
+                                                                                          SettingsAssets.themesButtonWidth, 
                                                                                           SettingsAssets.squareButtonSize);
     }
 
@@ -90,10 +91,12 @@ public class Settings implements ViewModel, VolumeSettings {
                 getSettingsSources().get(SettingsAssets.roundedVolumeOn));
             put(volumeButtons[SettingsAssets.volOffB], 
                 getSettingsSources().get(SettingsAssets.roundedVolumeOff));
-            put(themesButtons[Audio.getThemeSources().get(Audio.menuMusic0)], 
-                getSettingsSources().get(SettingsAssets.themesButton));
-            put(themesButtons[Audio.getThemeSources().get(Audio.menuMusic1)], 
-                getSettingsSources().get(SettingsAssets.themesButton));
+            put(themesButtons[Audio.getThemeSources().get(Audio.menuMusic0)],
+                //getSettingsSources().get(SettingsAssets.themesButton)
+                ResourceFuncUtilities.loadSources("1"));
+            put(themesButtons[Audio.getThemeSources().get(Audio.menuMusic1)],
+                //getSettingsSources().get(SettingsAssets.themesButton)
+                ResourceFuncUtilities.loadSources("2"));
         }};
     }
 }
