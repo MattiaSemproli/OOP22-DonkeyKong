@@ -49,10 +49,11 @@ public final class EndPauseView implements GameEngine {
                             MenuAssets.menuTextureBox, null);
             this.endPauseController.getButtonsFromModel()
                                 .forEach((b, i) -> g.drawImage(i, 
-                                                          b.getButtonPos().getX(), 
-                                                          b.getButtonPos().getY(),
-                                                          b.getButtonDim().getX(),
-                                                          b.getButtonDim().getY(), null));
+                                                               b.getButtonPos().getX(), 
+                                                               b.getButtonPos().getY(),
+                                                               b.getButtonDim().getX(),
+                                                               b.getButtonDim().getY(), null));
+            this.drawText(g);
             if (Gamestate.getGamestate().equals(Gamestate.PAUSE)) {
                 this.endPauseController.getAlternativeButtonsFromModel()
                                     .forEach((rectangle, image) -> g.drawImage(image, 
@@ -61,6 +62,31 @@ public final class EndPauseView implements GameEngine {
                                                                                rectangle.width,
                                                                                rectangle.height, null));
             }
+        }
+    }
+
+    private void drawText(final Graphics g) {
+        if (Gamestate.getGamestate().equals(Gamestate.PAUSE)) {
+            g.drawImage(SettingsAssets.getTextSources().get(Gamestate.getGamestate()), 
+                    menuX + (MenuAssets.menuTextureBox - SettingsAssets.pauseTextWidth) / 2,
+                    menuY - (SettingsAssets.pauseTextHeight / 2),
+                    SettingsAssets.pauseTextWidth,
+                    SettingsAssets.pauseTextHeight,
+                    null);
+        } else if (Gamestate.getGamestate().equals(Gamestate.DEATH)) {
+            g.drawImage(SettingsAssets.getTextSources().get(Gamestate.getGamestate()), 
+                    menuX + (MenuAssets.menuTextureBox - SettingsAssets.loseTextWidth) / 2,
+                    menuY - (SettingsAssets.loseTextHeight / 2),
+                    SettingsAssets.loseTextWidth,
+                    SettingsAssets.loseTextHeight,
+                    null);
+        } else if (Gamestate.getGamestate().equals(Gamestate.WIN)) {
+            g.drawImage(SettingsAssets.getTextSources().get(Gamestate.getGamestate()), 
+                    menuX + (MenuAssets.menuTextureBox - SettingsAssets.winTextWidth) / 2,
+                    menuY - (SettingsAssets.winTextHeight / 2),
+                    SettingsAssets.winTextWidth,
+                    SettingsAssets.winTextHeight,
+                    null);
         }
     }
 }

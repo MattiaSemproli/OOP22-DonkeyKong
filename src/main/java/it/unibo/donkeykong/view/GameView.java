@@ -42,7 +42,7 @@ public class GameView implements GameEngine {
 
     @Override
     public final void update() {
-        this.updateAnimations();
+        this.gameController.updateAniIndex();
     }
 
     @Override
@@ -54,49 +54,23 @@ public class GameView implements GameEngine {
                                                                   tile.width, 
                                                                   tile.height, null));
         this.gameController.getButtonsFromModel()
-                           .forEach((b, i) -> {
-                                if(this.gameController.getEntitiesFromGameplay().stream().filter(e -> e.getEntityType() == Type.PLAYER).findAny().isPresent())
-                                    for (int l = 0; l < this.gameController.getEntitiesFromGameplay().stream()
-                                                   .filter(e -> e.getEntityType() == Type.PLAYER)
-                                                   .map(p -> p.getComponent(HealthComponent.class)
-                                                   .get().getLifes())
-                                                   .findFirst()
-                                                   .get(); 
-                                                   l++) {
-                                    g.drawImage(ResourceFuncUtilities.loadSources("playerlife"), 
-                                                b.getButtonPos().getX() - 50 * (l + 1),
-                                                b.getButtonPos().getY(), 
-                                                b.getButtonDim().getX() / 3, 
-                                                b.getButtonDim().getY() / 3, null);
-                                    }
-                                                   
-                                                g.drawImage(i, 
+                           .forEach((b, i) -> g.drawImage(i, 
                                                           b.getButtonPos().getX(),
                                                           b.getButtonPos().getY(), 
                                                           b.getButtonDim().getX(), 
-                                                          b.getButtonDim().getY(), null);});
-        this.gameController.getEntitiesFromGameplay()
-                           .stream().filter(e -> e.getEntityType() == Type.PLAYER
-                                                 || e.getEntityType() == Type.MONKEY
-                                                 || e.getEntityType() == Type.BARREL
-                                                 || e.getEntityType() == Type.PRINCESS)
-                           .forEach(entity -> {
-                                this.drawEntity(g, entity);
-        });
+                                                          b.getButtonDim().getY(), null));
+        this.gameController.getInteractableEntitiesFromGameplay()
+                           .forEach(entity -> this.drawEntity(g, entity));
 
         /**
          * Draw hitboxes.
          */
         //this.drawHitboxes(g);
-        
-    }
-
-    private void drawHitboxes(final Graphics g) {
-        this.gameController.getEntitiesFromGameplay().forEach(e -> {
-            final Rectangle2D r = e.getComponent(CollisionComponent.class).get().getHitbox();
-            g.setColor(java.awt.Color.GREEN);
-            g.drawRect((int) r.getX(), (int) r.getY(), (int) r.getWidth(), (int) r.getHeight());
-        });
+        // this.gameController.getEntitiesFromGameplay().forEach(e -> {
+        //     final Rectangle2D r = e.getComponent(CollisionComponent.class).get().getHitbox();
+        //     g.setColor(java.awt.Color.GREEN);
+        //     g.drawRect((int) r.getX(), (int) r.getY(), (int) r.getWidth(), (int) r.getHeight());
+        // });
     }
 
     private void drawEntity(final Graphics g, final Entity entity) {
@@ -108,57 +82,7 @@ public class GameView implements GameEngine {
     }
 
     private BufferedImage getSprite(final Entity entity) {
-        Pair<Integer, Integer> anim = this.getIdle(entity);
+        Pair<Integer, Integer> anim = this.gameController.getIdleFromModel(entity);
         return this.gameController.getAnimationFromModel(entity.getEntityType(), anim.getX(), anim.getY());
-    }
-
-    private Pair<Integer, Integer> getIdle(final Entity entity) {
-        if (entity.getEntityType() == Type.PLAYER) {
-            final MovementComponent mc = entity.getComponent(MovementComponent.class).get();
-            switch(PlayerIdle.getPlayerIdle()) {
-                case RUN:
-                    return new Pair<>(mc.getFacing() == Direction.LEFT ? Player.leftAni 
-                                                                             : Player.rightAni, 
-                                      this.aniIndex); 
-                case FALLING:
-                case JUMP:
-                    return new Pair<>(mc.getFacing() == Direction.LEFT ? Player.jumpAni + Player.leftAni 
-                                                                             : Player.jumpAni + Player.rightAni, 
-                                      mc.isInAir() ? Player.midAirAni 
-                                                         : Player.movementAni);
-                case STOP:
-                default:
-                    return new Pair<>(mc.getFacing() == Direction.LEFT ? Player.leftAni 
-                                                                             : Player.rightAni,
-                                      Player.runAni);
-            }
-        }
-        if (entity.getEntityType() == Type.BARREL) {
-            return new Pair<>(entity.getComponent(DoubleDamageComponent.class)
-                                    .get().getDoubleDamage() ? Barrel.ddBarrelAni : Barrel.barrelAni, 
-                              this.aniIndex);    
-        }
-        if (entity.getEntityType() == Type.MONKEY) {
-            if(entity.getComponent(ThrowComponent.class).get().isThrowing()) {
-                return new Pair<>(Monkey.monkeyAni, this.aniIndex + 1);
-            } else {
-                return new Pair<>(Monkey.monkeyAni, Monkey.monkeyAni);
-            }
-        }
-        return new Pair<>(entity.getComponent(MovementComponent.class)
-                                .get().getFacing() == Direction.LEFT ? Princess.leftAni 
-                                                                     : Princess.rightAni, 
-                          this.aniIndex);
-    }
-
-    private void updateAnimations() {
-        aniTick++;
-        if(aniTick >= aniSpeed){
-            aniTick = 0;
-            aniIndex++;
-            if(aniIndex >= 3){
-                aniIndex = 0;
-            }
-        }
     }
 }

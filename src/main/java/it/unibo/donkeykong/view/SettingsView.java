@@ -9,7 +9,9 @@ import java.awt.Graphics;
 import it.unibo.donkeykong.controller.api.GameEngine;
 import it.unibo.donkeykong.controller.impl.SettingsController;
 import it.unibo.donkeykong.utilities.Constants.MenuAssets;
+import it.unibo.donkeykong.utilities.Constants.MenuAssets.SettingsAssets;
 import it.unibo.donkeykong.utilities.Constants.Window;
+import it.unibo.donkeykong.utilities.Gamestate;
 
 /**
  * Settings view.
@@ -58,6 +60,10 @@ public class SettingsView implements GameEngine {
                     menuY, 
                     MenuAssets.menuTextureBox, 
                     MenuAssets.menuTextureBox, null);
+        g.drawImage(SettingsAssets.getTextSources().get(Gamestate.getGamestate()), 
+                    menuX + (MenuAssets.menuTextureBox - SettingsAssets.settingsTextWidth) / 2,
+                    menuY - (SettingsAssets.settingsTextHeight / 2),
+                    SettingsAssets.settingsTextWidth,
+                    SettingsAssets.settingsTextHeight, null);
     }
-
 }
