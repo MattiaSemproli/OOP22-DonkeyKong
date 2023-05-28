@@ -183,7 +183,7 @@ public class Constants {
                 levelSources.put(levelTwoSource, new Pair<BufferedImage,Integer>(loadSources(levelTwoSource), 1));
                 levelSources.put(levelThreeSource, new Pair<BufferedImage,Integer>(loadSources(levelThreeSource), 2));
                 levelSources.put(levelFourSource, new Pair<BufferedImage,Integer>(loadSources("empty_level"), 3));
-            }               
+            }
         }
     }
 
@@ -350,7 +350,7 @@ public class Constants {
         public static final int princessAniSprites = 3;
         public static final int numPrincessAni = 2; 
         public static final int aniPrincessSpeed = 15;
-    
+
         private static final Map<Integer, BufferedImage> princessSources = new HashMap<>();
 
         public static final Map<Integer, BufferedImage> getPrincessSources() {
