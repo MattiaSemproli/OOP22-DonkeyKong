@@ -24,6 +24,8 @@ public class MovementComponent extends AbstractComponent {
     private int timeElapsed = 0;
     private boolean isPrincessWalking = true;
     private Random random = new Random();
+    private boolean onLadder;
+    private boolean onFloor;
     private boolean canUseLadder;
 
     /**
@@ -34,12 +36,23 @@ public class MovementComponent extends AbstractComponent {
         this.barrelChangesCounter = 0;
         this.inAir = false;
         this.movingInAir = false;
+        this.onFloor = true;
+        this.onLadder = false;
         this.canUseLadder = false;
     }
 
     @Override
     public final void update() {
-        
+        timeElapsed++;
+        if (this.getEntity().getEntityType() == Type.BARREL) {
+            if (!this.inAir) {
+                this.moveEntity(this.getEntity().getComponent(MovementComponent.class).get().getFacing());
+                this.getEntity().saveNextPosition(Optional.of(this.movePos));
+            } else {
+                this.updateInAirPosition();
+                this.getEntity().saveNextPosition(Optional.of(this.movePos));
+            }
+        }
     }
 
     /**
@@ -48,9 +61,11 @@ public class MovementComponent extends AbstractComponent {
      * @param direction the direction in which to move the entity
      */
     public final void moveEntity(final Direction direction) {
+        if(!this.onLadder) {
             this.direction = direction;
             this.movePos = new Pair<>(direction.getX() * this.getEntity().getSpeed(), 
                                       direction.getY() * this.getEntity().getSpeed());
+        }
     }
 
     /**
@@ -60,19 +75,19 @@ public class MovementComponent extends AbstractComponent {
      */
     public final void moveEntityOnLadder(final Direction direction) {
         if(this.canUseLadder) {
+            this.onLadder = true;
             this.direction = direction;
             this.movePos = new Pair<>(direction.getX() * this.getEntity().getSpeed(), 
                                       direction.getY() * this.getEntity().getSpeed());
         }
     }
 
-
     /**
      * Set the entity to jump.
      */
     public final void jump() {
-        if (!this.inAir) {
-            this.inAir = true;
+        if (!this.inAir && !this.onLadder) {
+            this.setIsInAir(true);
             this.airSpeed = Physics.jumpSpeed;
         }
     }
@@ -148,6 +163,8 @@ public class MovementComponent extends AbstractComponent {
         this.inAir = isInAir;
         if(isInAir) {
             this.canUseLadder = false;
+            this.onLadder = false;
+            this.onFloor = false;
         }
     }
 
@@ -157,6 +174,11 @@ public class MovementComponent extends AbstractComponent {
     public final void resetIsInAir() {
         this.inAir = false;
         this.airSpeed = 0f;
+        this.onFloor = true;
+    }
+
+    public final boolean isOnFloor() {
+        return this.onFloor;
     }
 
     /**
@@ -171,5 +193,20 @@ public class MovementComponent extends AbstractComponent {
      */
     public final void setCanUseLadder(final boolean canUseLadder) {
         this.canUseLadder = canUseLadder;
+    }
+
+    public final boolean isOnLadder() {
+        return this.onLadder;
+    }
+
+    public final void setIsOnFloor (final boolean onFloor) {
+        this.onFloor = onFloor;
+    }
+
+    public final void setIsOnLadder(final boolean onLadder) {
+        this.onLadder = onLadder;
+        if (onLadder) {
+            this.onFloor = false;
+        }
     }
 }
