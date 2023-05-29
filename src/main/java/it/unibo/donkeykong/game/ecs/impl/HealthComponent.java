@@ -1,5 +1,7 @@
 package it.unibo.donkeykong.game.ecs.impl;
 
+import it.unibo.donkeykong.utilities.Constants.Player;
+
 public class HealthComponent extends AbstractComponent {
 
     private int lifes;
@@ -17,6 +19,6 @@ public class HealthComponent extends AbstractComponent {
     }
 
     public final void setLifes (final int lifes) {
-        this.lifes = this.lifes + lifes > 3 ? this.lifes : this.lifes + lifes;
+        this.lifes = this.lifes + lifes > Player.numLifes ? this.lifes : this.lifes + lifes;
     }
 }

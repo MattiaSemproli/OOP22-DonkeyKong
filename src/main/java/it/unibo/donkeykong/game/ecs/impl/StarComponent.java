@@ -1,5 +1,7 @@
 package it.unibo.donkeykong.game.ecs.impl;
 
+import it.unibo.donkeykong.utilities.Constants.Player;
+
 public class StarComponent extends AbstractComponent{
     
     private boolean isInvincible;
@@ -13,7 +15,7 @@ public class StarComponent extends AbstractComponent{
     @Override
     public void update() {
         this.timeElapsed++;
-        if (this.isInvincible && this.timeElapsed > 480) {
+        if (this.isInvincible && this.timeElapsed > Player.starDuration) {
             this.isInvincible = false;
         }
     }

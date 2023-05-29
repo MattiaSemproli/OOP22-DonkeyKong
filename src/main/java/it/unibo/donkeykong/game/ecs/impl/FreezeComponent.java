@@ -1,5 +1,7 @@
 package it.unibo.donkeykong.game.ecs.impl;
 
+import it.unibo.donkeykong.utilities.Type;
+
 public class FreezeComponent extends AbstractComponent{
     
     private boolean freezer;
@@ -15,6 +17,7 @@ public class FreezeComponent extends AbstractComponent{
         this.timeElapsed++;
         if (this.freezer && this.timeElapsed > 600) {
             this.freezer = false;
+            this.setMonkeyFreezer(freezer);
         }
     }
 
@@ -26,6 +29,17 @@ public class FreezeComponent extends AbstractComponent{
         this.freezer = freezer;
         if (freezer) {
             this.timeElapsed = 0;
+            this.setMonkeyFreezer(freezer);
         }
+    }
+
+    private void setMonkeyFreezer(final boolean freezer) {
+        this.getEntity()
+            .getGameplay()
+            .getEntities()
+            .stream()
+            .filter(e -> e.getEntityType() == Type.MONKEY)
+            .findFirst()
+            .ifPresent(e -> e.getComponent(ThrowComponent.class).get().setFreezed(freezer));
     }
 }
