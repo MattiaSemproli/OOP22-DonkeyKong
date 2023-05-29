@@ -53,4 +53,21 @@ public interface Gameplay {
      * Initialize entitities of game.
      */
     void initializeGame();
+
+    /**
+     * Every three seconds move randomly most powerful powerups.
+     */
+    void moveOpPowerUpRandom();
+
+    /**
+     * After ten seconds from the start of the game, spawn op powerups.
+     */
+    void spawnOpPowerUp();
+
+    /**
+     * Check if op powerups are spawned.
+     * 
+     * @return true if op powerups are spawned.
+     */
+    boolean isSpawnedOpPowerUp();
 }

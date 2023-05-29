@@ -28,6 +28,7 @@ import it.unibo.donkeykong.utilities.ButtonFuncUtilities;
 import it.unibo.donkeykong.utilities.Gamestate;
 import it.unibo.donkeykong.utilities.Pair;
 import it.unibo.donkeykong.utilities.Type;
+import it.unibo.donkeykong.utilities.Constants.PowerupAssets;
 import it.unibo.donkeykong.view.GameView;
 
 /**
@@ -41,6 +42,7 @@ public class GameController implements GameEngine, MouseListener, KeyListener, G
     private final Gameplay gameplay;
     private Timer timer;
     private int seconds;
+    private int timeElapsed;
 
     /**
      * Constructor.
@@ -57,7 +59,15 @@ public class GameController implements GameEngine, MouseListener, KeyListener, G
 
     @Override
     public final void update() {
+        this.timeElapsed++;
         this.gameplay.getEntities().forEach(e -> e.getAllComponents().forEach(c -> c.update()));
+        if (!this.gameplay.isSpawnedOpPowerUp() && this.timeElapsed > PowerupAssets.spawnOpPowerUpDelay) {
+            this.gameplay.spawnOpPowerUp();
+            this.timeElapsed = 0;
+        } else if (this.gameplay.isSpawnedOpPowerUp() && this.timeElapsed > PowerupAssets.moveOpPowerUpDelay) {
+            this.gameplay.moveOpPowerUpRandom();
+            this.timeElapsed = 0;
+        }
         if (!hasPlayerLife()) {
             Gamestate.setGamestate(Gamestate.DEATH);
             this.stopTimer();

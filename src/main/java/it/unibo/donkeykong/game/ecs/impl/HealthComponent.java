@@ -20,5 +20,6 @@ public class HealthComponent extends AbstractComponent {
 
     public final void setLifes (final int lifes) {
         this.lifes = this.lifes + lifes > Player.numLifes ? this.lifes : this.lifes + lifes;
+        this.lifes = this.lifes < 0 ? 0 : this.lifes;
     }
 }

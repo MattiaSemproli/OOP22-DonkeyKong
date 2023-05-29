@@ -8,14 +8,14 @@ import it.unibo.donkeykong.controller.api.GameEngine;
 import it.unibo.donkeykong.controller.impl.GameController;
 import it.unibo.donkeykong.game.ecs.api.Entity;
 import it.unibo.donkeykong.game.ecs.impl.HealthComponent;
-import it.unibo.donkeykong.utilities.Pair;
-import it.unibo.donkeykong.utilities.Type;
 import it.unibo.donkeykong.utilities.Constants.Barrel;
+import it.unibo.donkeykong.utilities.Constants.MenuAssets.LevelAssets;
 import it.unibo.donkeykong.utilities.Constants.Monkey;
 import it.unibo.donkeykong.utilities.Constants.Player;
 import it.unibo.donkeykong.utilities.Constants.PowerupAssets;
 import it.unibo.donkeykong.utilities.Constants.Window;
-import it.unibo.donkeykong.utilities.Constants.MenuAssets.LevelAssets;
+import it.unibo.donkeykong.utilities.Pair;
+import it.unibo.donkeykong.utilities.Type;
 
 /**
  * Game view.

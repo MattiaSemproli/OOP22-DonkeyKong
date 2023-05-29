@@ -33,6 +33,7 @@ public class GameplayImpl implements Gameplay {
     private final Level level;
     private final List<Entity> entities = new ArrayList<>();
     private final Random random = new Random();
+    private boolean opPowerUpSpawned;
 
     /**
      * Constructor.
@@ -43,6 +44,7 @@ public class GameplayImpl implements Gameplay {
         this.level = new LevelImpl();
         this.controller = controller;
         this.entityFactoryImpl = new EntityFactoryImpl(this);
+        this.opPowerUpSpawned = false;
     }
 
     @Override
@@ -144,7 +146,7 @@ public class GameplayImpl implements Gameplay {
                               .anyMatch(e -> {
                                 int eX = (int) (e.getPosition().getX() / SCALED_TILES_SIZE);
                                 int eY = (int) (e.getPosition().getY() / SCALED_TILES_SIZE);
-                                return eX == x && eY == y;
+                                return eY == y && (eX == x || eX + 1 == x || eX - 1 == x);
                               });
             passX = x;
             passY = y;
@@ -153,6 +155,7 @@ public class GameplayImpl implements Gameplay {
         passY *= SCALED_TILES_SIZE;
         if (t == Type.HEART) {
             passY += PowerupAssets.heartYpadding;
+            passX += PowerupAssets.heartXpadding;
         } else if (t == Type.SHIELD) {
             passY += PowerupAssets.shieldYpadding;
             passX += PowerupAssets.shieldXpadding;
@@ -163,7 +166,7 @@ public class GameplayImpl implements Gameplay {
             passY += PowerupAssets.starPadding;
             passX += PowerupAssets.starPadding;
         }
-        return new Pair<>((float) passX * SCALED_TILES_SIZE, (float) passY * SCALED_TILES_SIZE);
+        return new Pair<>((float) passX, (float) passY + platformBlockPadding);
     }
 
     @Override
@@ -173,6 +176,27 @@ public class GameplayImpl implements Gameplay {
             barrel.getComponent(DoubleDamageComponent.class).get().setDoubleDamage(true);
         }
         this.entities.add(barrel);
+    }
+
+    @Override
+    public final void spawnOpPowerUp() {
+        if (!this.opPowerUpSpawned) {
+            this.entities.add(this.entityFactoryImpl.generateSnowflakePowerUp(this.generateRandomPosition(Type.SNOWFLAKE)));
+            this.entities.add(this.entityFactoryImpl.generateStarPowerUp(this.generateRandomPosition(Type.STAR)));
+            this.opPowerUpSpawned = true;
+        }
+    }
+
+    @Override
+    public final void moveOpPowerUpRandom() {
+        if(this.opPowerUpSpawned) {
+            this.entities.stream()
+                         .filter(e -> e.getEntityType() == Type.STAR
+                                      || e.getEntityType() == Type.SNOWFLAKE)
+                         .forEach(e -> {
+                            e.setPosition(this.generateRandomPosition(e.getEntityType()));
+                         });
+        }
     }
 
     @Override
@@ -198,5 +222,10 @@ public class GameplayImpl implements Gameplay {
     @Override
     public final void removePlayer() {
         this.entities.removeIf(e -> e.getEntityType() == Type.PLAYER);
+    }
+
+    @Override
+    public final boolean isSpawnedOpPowerUp() {
+        return this.opPowerUpSpawned;
     }
 }
