@@ -8,10 +8,14 @@ import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 import it.unibo.donkeykong.game.model.api.Level;
+import it.unibo.donkeykong.utilities.Constants;
 import it.unibo.donkeykong.utilities.CurrentLevel;
 import it.unibo.donkeykong.utilities.Pair;
+import it.unibo.donkeykong.utilities.Type;
+
 import static it.unibo.donkeykong.utilities.Constants.Level.levelOne;
 import static it.unibo.donkeykong.utilities.Constants.Level.levelTwo;
 import static it.unibo.donkeykong.utilities.Constants.Level.levelThree;
@@ -80,4 +84,18 @@ public class LevelImpl implements Level {
         return new HashMap<>(this.levelData);
     }
 
+    @Override
+    public final Optional<Type> getLevelMatrixType (final int x, final int y) {
+        switch (this.levelData.get(new Pair<>(x, y))) {
+            case Constants.Level.platformBlock:
+            case Constants.Level.coloredLadder:
+            case Constants.Level.whiteLadder:
+            case Constants.Level.blockWithUpperLadder:
+            case Constants.Level.blockWithLowerLadder:
+            case Constants.Level.blockWithDoubleLadder:
+                return Optional.of(Type.BLOCK);
+            default:
+                return Optional.empty();
+        }
+    }
 }

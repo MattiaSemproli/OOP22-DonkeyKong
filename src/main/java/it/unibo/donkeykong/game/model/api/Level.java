@@ -2,8 +2,10 @@ package it.unibo.donkeykong.game.model.api;
 
 import java.awt.image.BufferedImage;
 import java.util.Map;
+import java.util.Optional;
 
 import it.unibo.donkeykong.utilities.Pair;
+import it.unibo.donkeykong.utilities.Type;
 
 /**
  * This interface manages levels.
@@ -24,4 +26,6 @@ public interface Level {
      * @return the sprite.
      */
     BufferedImage getLevelSprite(int val);
+
+    Optional<Type> getLevelMatrixType (final int x, final int y);
 }
