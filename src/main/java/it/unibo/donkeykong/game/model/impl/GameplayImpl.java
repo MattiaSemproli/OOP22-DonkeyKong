@@ -20,6 +20,7 @@ import it.unibo.donkeykong.utilities.Type;
 import it.unibo.donkeykong.utilities.Constants.Barrel;
 import it.unibo.donkeykong.utilities.Constants.Monkey;
 import it.unibo.donkeykong.utilities.Constants.Player;
+import it.unibo.donkeykong.utilities.Constants.PowerupAssets;
 import it.unibo.donkeykong.utilities.Constants.Window;
 
 /**
@@ -123,17 +124,16 @@ public class GameplayImpl implements Gameplay {
     }
 
     private void generatePowerUps() {
-        this.entities.add(this.entityFactoryImpl.generateHeartPowerUp(this.generateRandomPosition()));
-        this.entities.add(this.entityFactoryImpl.generateShieldPowerUp(this.generateRandomPosition()));
+        this.entities.add(this.entityFactoryImpl.generateHeartPowerUp(this.generateRandomPosition(Type.HEART)));
+        this.entities.add(this.entityFactoryImpl.generateShieldPowerUp(this.generateRandomPosition(Type.SHIELD)));
     }
 
-    private Pair<Float, Float> generateRandomPosition() {
+    private Pair<Float, Float> generateRandomPosition(final Type t) {
         int passX, passY;
         boolean isOnBlock = false, isBlock = false, isOccupied = true;
         do {
             int x = random.nextInt(Window.TILES_IN_WIDTH);
-            int y = random.nextInt((int) (Monkey.levelOneStartingMonkeyY / SCALED_TILES_SIZE) + 2,
-                                   (int) (Player.levelOneStartingPlayerY / SCALED_TILES_SIZE) - 1);
+            int y = random.nextInt(PowerupAssets.minSpawn, PowerupAssets.maxSpawn);
             isBlock = this.level.getLevelMatrixType(x, y).isPresent();
             isOnBlock = this.level.getLevelMatrixType(x, y + 1).isPresent();
             isOccupied = this.getEntities().stream()
@@ -149,7 +149,21 @@ public class GameplayImpl implements Gameplay {
             passX = x;
             passY = y;
         } while (!isOnBlock || isBlock || isOccupied);
-        return new Pair<>((float) passX * SCALED_TILES_SIZE, (float) passY * SCALED_TILES_SIZE + platformBlockPadding);
+        passX *= SCALED_TILES_SIZE;
+        passY *= SCALED_TILES_SIZE;
+        if (t == Type.HEART) {
+            passY += PowerupAssets.heartYpadding;
+        } else if (t == Type.SHIELD) {
+            passY += PowerupAssets.shieldYpadding;
+            passX += PowerupAssets.shieldXpadding;
+        } else if (t == Type.SNOWFLAKE) {
+            passY += PowerupAssets.freezePadding;
+            passX += PowerupAssets.freezePadding;
+        } else if (t == Type.STAR) {
+            passY += PowerupAssets.starPadding;
+            passX += PowerupAssets.starPadding;
+        }
+        return new Pair<>((float) passX * SCALED_TILES_SIZE, (float) passY * SCALED_TILES_SIZE);
     }
 
     @Override

@@ -188,6 +188,8 @@ public class Constants {
     }
 
     public static final class PowerupAssets {
+        public static final int minSpawn = (int) (Monkey.levelOneStartingMonkeyY / Window.SCALED_TILES_SIZE) + 2;
+        public static final int maxSpawn = (int) (Player.levelOneStartingPlayerY / Window.SCALED_TILES_SIZE) - 1;
         public static final int heartWidth = (int) (48 * Window.scala);
         public static final int heartHeight = (int) (44 * Window.scala);
         public static final int heartYpadding = (int) (2 * Window.scala);

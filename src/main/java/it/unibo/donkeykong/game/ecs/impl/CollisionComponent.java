@@ -9,7 +9,9 @@ import it.unibo.donkeykong.game.ecs.api.Entity;
 import it.unibo.donkeykong.utilities.Constants;
 import it.unibo.donkeykong.utilities.Constants.Barrel;
 import it.unibo.donkeykong.utilities.Constants.Level;
+import it.unibo.donkeykong.utilities.Constants.Monkey;
 import it.unibo.donkeykong.utilities.Constants.Player;
+import it.unibo.donkeykong.utilities.Constants.PowerupAssets;
 import it.unibo.donkeykong.utilities.Constants.Princess;
 import it.unibo.donkeykong.utilities.Constants.Window;
 import it.unibo.donkeykong.utilities.CurrentLevel;
@@ -331,43 +333,56 @@ public class CollisionComponent extends AbstractComponent {
     }
 
     private void initDifferentHitbox(final Type type) {
-        width = Constants.Window.SCALED_TILES_SIZE;
+        width = Window.SCALED_TILES_SIZE;
         height = width;
         switch (type) {
-            case LADDER:
-                hitbox = new Rectangle2D.Float(x, y, 
-                                               width - (Constants.Level.ladderPadding * 2), height);
-                break;
             case BARREL:
-                width = Constants.Barrel.barrelWidth;
-                height = Constants.Barrel.barrelHeight;
+                width = Barrel.barrelWidth;
+                height = Barrel.barrelHeight;
                 hitbox = new Rectangle2D.Float(x, y, width, height);
                 break;
             case PLAYER:
                 hitbox = new Rectangle2D.Float(x, y, width, height);
                 break;
             case PRINCESS:
-                height = Constants.Princess.princessHeight;
+                width = Princess.princessWidth;
+                height = Princess.princessHeight;
                 hitbox = new Rectangle2D.Float(x, y, width, height);
                 break;
             case MONKEY:
-                width = Constants.Monkey.monkeyWidth;
-                height = Constants.Monkey.monkeyHeight;
+                width = Monkey.monkeyWidth;
+                height = Monkey.monkeyHeight;
                 hitbox = new Rectangle2D.Float(x, y, width, height);
                 break;
             case HEART:
-            case SNOWFLAKE:
-            case STAR:
-            case SHIELD:
+                width = PowerupAssets.heartWidth;
+                height = PowerupAssets.heartHeight;
                 hitbox = new Rectangle2D.Float(x, y, width, height);
+                break;
+            case SNOWFLAKE:
+                width = PowerupAssets.freezeDimension;
+                height = PowerupAssets.freezeDimension;
+                hitbox = new Rectangle2D.Float(x, y, width, height);
+                break;
+            case STAR:
+                width = PowerupAssets.starDimension;
+                height = PowerupAssets.starDimension;
+                hitbox = new Rectangle2D.Float(x, y, width, height);
+                break;
+            case SHIELD:
+                width = PowerupAssets.shieldWidth;
+                height = PowerupAssets.shieldHeight;
+                hitbox = new Rectangle2D.Float(x, y, width, height);
+                break;
+            case LADDER:
+                hitbox = new Rectangle2D.Float(x, y, width - (Level.ladderPadding * 2), height);
                 break;
             case BLOCK:
             case BLOCK_LADDER_DOWN:
             case BLOCK_LADDER_UP:
             case BLOCK_LADDER_UPDOWN:
             default:
-                hitbox = new Rectangle2D.Float(x, y, 
-                                               width, height - Constants.Level.platformBlockPadding * 2);
+                hitbox = new Rectangle2D.Float(x, y, width, height - Level.platformBlockPadding * 2);
                 break;
         }
     }

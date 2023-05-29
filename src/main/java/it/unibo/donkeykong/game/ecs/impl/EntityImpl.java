@@ -10,6 +10,7 @@ import it.unibo.donkeykong.game.ecs.api.Entity;
 import it.unibo.donkeykong.game.model.api.Gameplay;
 import it.unibo.donkeykong.utilities.Constants;
 import it.unibo.donkeykong.utilities.Constants.Barrel;
+import it.unibo.donkeykong.utilities.Constants.PowerupAssets;
 import it.unibo.donkeykong.utilities.Constants.Window;
 import it.unibo.donkeykong.utilities.Pair;
 import it.unibo.donkeykong.utilities.Type;
@@ -40,6 +41,7 @@ public class EntityImpl implements Entity {
         this.components = new HashSet<>();
         this.pos = new Pair<>(pos.getX(), pos.getY());
         this.gameplay = gameplay;
+        this.speed = 0;
         switch (type) {
             case BARREL:
                 this.width = Barrel.barrelWidth;
@@ -49,7 +51,6 @@ public class EntityImpl implements Entity {
             case MONKEY:
                 this.width = Constants.Monkey.monkeyWidth;
                 this.height = Constants.Monkey.monkeyHeight;
-                this.speed = 0;
                 break;
             case PLAYER:
                 this.width = Window.SCALED_TILES_SIZE;
@@ -62,12 +63,20 @@ public class EntityImpl implements Entity {
                 this.speed = Constants.Princess.velocity;
                 break;
             case HEART:
+                this.width = PowerupAssets.heartWidth;
+                this.height = PowerupAssets.heartHeight;
+                break;
             case SHIELD:
+                this.width = PowerupAssets.shieldWidth;
+                this.height = PowerupAssets.shieldHeight;
+                break;
             case SNOWFLAKE:
+                this.width = PowerupAssets.freezeDimension;
+                this.height = PowerupAssets.freezeDimension;
+                break;
             case STAR:
-                this.width = Window.SCALED_TILES_SIZE;
-                this.height = Window.SCALED_TILES_SIZE;
-                this.speed = 0;
+                this.width = PowerupAssets.starDimension;
+                this.height = PowerupAssets.starDimension;
                 break;
             case BLOCK:
             case BLOCK_LADDER_DOWN:
@@ -77,7 +86,6 @@ public class EntityImpl implements Entity {
             default:
                 this.width = Window.SCALED_TILES_SIZE;
                 this.height = Window.SCALED_TILES_SIZE;
-                this.speed = 0;
                 break;
 
         }
