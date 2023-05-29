@@ -45,6 +45,8 @@ public class CollisionComponent extends AbstractComponent {
             } else if (eType == Type.BARREL) {
                 this.checkBarrelInAir();
                 this.checkBarrelCollision();
+            } else if (eType == Type.PRINCESS) {
+                this.checkPrincessCollision();
             }
         } else {
             this.nextPosition = Optional.of(this.getEntity().getPosition());
@@ -291,8 +293,19 @@ public class CollisionComponent extends AbstractComponent {
             this.entity.getGameplay().removeEntity(entity);
         } else {
             entity.setPosition(new Pair<>(this.nextPosition.get().getX(), this.nextPosition.get().getY()));
-        }                     
+        }                
    }
+
+    private void checkPrincessCollision() {
+        final int leftTile = (int) (Princess.levelOneStartingPrincessX / Window.SCALED_TILES_SIZE) - 1;
+        final int rightTile = (int) (Princess.levelOneStartingPrincessX / Window.SCALED_TILES_SIZE) + 1;
+        if (hitbox.x + hitbox.width > rightTile * Window.SCALED_TILES_SIZE + Window.SCALED_TILES_SIZE
+            || hitbox.x < leftTile * Window.SCALED_TILES_SIZE) {
+            final MovementComponent mc = this.entity.getComponent(MovementComponent.class).get();
+            mc.moveEntity(mc.getFacing().getOppositeDirection());
+        }
+        entity.setPosition(new Pair<>(this.nextPosition.get().getX(), this.nextPosition.get().getY()));
+    }
 
     private void initDifferentHitbox(final Type type) {
         width = Constants.Window.SCALED_TILES_SIZE;

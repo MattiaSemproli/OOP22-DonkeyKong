@@ -189,7 +189,7 @@ public class Game implements ViewModel {
                 case STOPCLIMBING:
                 case STOP:
                 default:
-                    return new Pair<>(/*mc.isOnLadder()*/true ? Player.climbAni 
+                    return new Pair<>(mc.isOnLadder() ? Player.climbAni
                                                       : mc.getFacing() == Direction.LEFT ? Player.leftAni : Player.rightAni,
                                       Player.runAni);
             }

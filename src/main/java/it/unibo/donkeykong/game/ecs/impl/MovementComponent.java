@@ -69,6 +69,28 @@ public class MovementComponent extends AbstractComponent {
                 this.updateInAirPosition();
                 this.getEntity().saveNextPosition(Optional.of(this.movePos));
             }
+        } else if (this.getEntity().getEntityType() == Type.PRINCESS) {
+            if(timeElapsed > 24) {
+                isPrincessWalking = true;
+                PlayerIdle.setPrincessIdle(PlayerIdle.RUN);
+                timeElapsed = 0;
+                final int randomInt = random.nextInt(10);
+                if(randomInt < 4) {
+                    this.moveEntity(this.getEntity().getComponent(MovementComponent.class).get().getFacing());
+                } else if(randomInt < 7) {
+                    this.moveEntity(this.getEntity().getComponent(MovementComponent.class).get().getFacing().getOppositeDirection());
+                } else if(randomInt < 9) {
+                    movePos = new Pair<>(0f, 0f);
+                    isPrincessWalking = false;
+                    timeElapsed = -24;
+                    PlayerIdle.setPrincessIdle(PlayerIdle.STOP);
+                }
+            } else {
+                if(isPrincessWalking)
+                    this.moveEntity(this.getEntity().getComponent(MovementComponent.class).get().getFacing());
+            }
+            this.getEntity().saveNextPosition(this.movePos.equals(new Pair<>(0f, 0f)) ? Optional.empty() 
+                                                                                          : Optional.of(this.movePos));
         }
     }
 
