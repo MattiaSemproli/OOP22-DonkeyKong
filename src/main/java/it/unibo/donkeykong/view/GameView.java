@@ -3,26 +3,16 @@ package it.unibo.donkeykong.view;
 import java.awt.Graphics;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
-import java.util.Optional;
 
 import it.unibo.donkeykong.controller.api.GameEngine;
 import it.unibo.donkeykong.controller.impl.GameController;
 import it.unibo.donkeykong.game.ecs.api.Entity;
 import it.unibo.donkeykong.game.ecs.impl.CollisionComponent;
-import it.unibo.donkeykong.game.ecs.impl.DoubleDamageComponent;
-import it.unibo.donkeykong.game.ecs.impl.HealthComponent;
-import it.unibo.donkeykong.game.ecs.impl.MovementComponent;
-import it.unibo.donkeykong.game.ecs.impl.ThrowComponent;
-import it.unibo.donkeykong.utilities.Constants;
-import it.unibo.donkeykong.utilities.Direction;
 import it.unibo.donkeykong.utilities.Pair;
-import it.unibo.donkeykong.utilities.PlayerIdle;
 import it.unibo.donkeykong.utilities.ResourceFuncUtilities;
 import it.unibo.donkeykong.utilities.Type;
-import it.unibo.donkeykong.utilities.Constants.Barrel;
-import it.unibo.donkeykong.utilities.Constants.Monkey;
-import it.unibo.donkeykong.utilities.Constants.Player;
-import it.unibo.donkeykong.utilities.Constants.Princess;
+import it.unibo.donkeykong.utilities.Constants.Level;
+import it.unibo.donkeykong.utilities.Constants.MenuAssets.LevelAssets;
 
 /**
  * Game view.
@@ -30,7 +20,6 @@ import it.unibo.donkeykong.utilities.Constants.Princess;
 public class GameView implements GameEngine {
 
     private final GameController gameController;
-    private int aniTick, aniIndex, aniSpeed = 15;
 
     /**
      * 
@@ -53,19 +42,30 @@ public class GameView implements GameEngine {
                                                                   tile.y, 
                                                                   tile.width, 
                                                                   tile.height, null));
+        g.drawImage(LevelAssets.barrelBox, 0, 108, 56, 96, null);
         this.gameController.getButtonsFromModel()
                            .forEach((b, i) -> g.drawImage(i, 
                                                           b.getButtonPos().getX(),
                                                           b.getButtonPos().getY(), 
                                                           b.getButtonDim().getX(), 
                                                           b.getButtonDim().getY(), null));
+        this.gameController.getEntitiesFromGameplay()
+                           .stream()
+                           .filter(e -> e.getEntityType() == Type.STAR
+                                        || e.getEntityType() == Type.HEART
+                                        || e.getEntityType() == Type.SNOWFLAKE
+                                        || e.getEntityType() == Type.SHIELD)
+                           .forEach(e -> g.drawImage(ResourceFuncUtilities.loadSources("playerlife"),
+                                                     Math.round(e.getPosition().getX()), 
+                                                     Math.round(e.getPosition().getY()),
+                                                     e.getWidth(),
+                                                     e.getHeight(), null));
         this.gameController.getInteractableEntitiesFromGameplay()
                            .forEach(entity -> this.drawEntity(g, entity));
 
         /**
          * Draw hitboxes.
          */
-        //this.drawHitboxes(g);
         // this.gameController.getEntitiesFromGameplay().forEach(e -> {
         //     final Rectangle2D r = e.getComponent(CollisionComponent.class).get().getHitbox();
         //     g.setColor(java.awt.Color.GREEN);

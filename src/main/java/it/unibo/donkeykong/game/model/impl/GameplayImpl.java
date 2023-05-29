@@ -14,6 +14,7 @@ import it.unibo.donkeykong.game.model.api.EntityFactory;
 import it.unibo.donkeykong.game.model.api.Gameplay;
 import it.unibo.donkeykong.game.model.api.Level;
 import it.unibo.donkeykong.utilities.Constants;
+import it.unibo.donkeykong.utilities.CurrentLevel;
 import it.unibo.donkeykong.utilities.Pair;
 import it.unibo.donkeykong.utilities.Type;
 import it.unibo.donkeykong.utilities.Constants.Barrel;
@@ -45,14 +46,41 @@ public class GameplayImpl implements Gameplay {
     }
 
     private void initializeGame() {
-        this.entities.add(this.entityFactoryImpl.generatePlayer(new Pair<>(Constants.Player.levelOneStartingPlayerX, 
-                                                                           Constants.Player.levelOneStartingPlayerY)));
+        this.generateInteractableEntities();
+        this.createMapEntities();
+        this.generatePowerUps();
+    }
+
+    private void generateInteractableEntities() {
+        this.generatePlayer();
         this.entities.add(this.entityFactoryImpl.generateMonkey(new Pair<>(Constants.Monkey.levelOneStartingMonkeyX, 
                                                                            Constants.Monkey.levelOneStartingMonkeyY)));
         this.entities.add(this.entityFactoryImpl.generatePrincess(new Pair<>(Constants.Princess.levelOneStartingPrincessX, 
                                                                              Constants.Princess.levelOneStartingPrincessY)));
-        this.createMapEntities();
-        this.generatePowerUps();
+    }
+
+    private void generatePlayer() {
+        float x, y;
+        switch (CurrentLevel.getCurrentLevel()) {
+            case ONE:
+                x = Player.levelOneStartingPlayerX;
+                y = Player.levelOneStartingPlayerY;
+                break;
+            case TWO:
+                x = Player.levelTwoStartingPlayerX;
+                y = Player.levelTwoStartingPlayerY;
+                break;
+            case THREE:
+                x = Player.levelThreeStartingPlayerX;
+                y = Player.levelThreeStartingPlayerY;
+                break;
+            case FOUR:
+                default:
+                x = Player.levelFourStartingPlayerX;
+                y = Player.levelFourStartingPlayerY;
+                break;
+        }
+        this.entities.add(this.entityFactoryImpl.generatePlayer(new Pair<>(x, y)));
     }
 
     private void createMapEntities() {
@@ -104,7 +132,7 @@ public class GameplayImpl implements Gameplay {
         boolean isOnBlock = false, isBlock = false, isOccupied = true;
         do {
             int x = random.nextInt(Window.TILES_IN_WIDTH);
-            int y = random.nextInt((int) (Monkey.levelOneStartingMonkeyY / SCALED_TILES_SIZE),
+            int y = random.nextInt((int) (Monkey.levelOneStartingMonkeyY / SCALED_TILES_SIZE) + 2,
                                    (int) (Player.levelOneStartingPlayerY / SCALED_TILES_SIZE) - 1);
             isBlock = this.level.getLevelMatrixType(x, y).isPresent();
             isOnBlock = this.level.getLevelMatrixType(x, y + 1).isPresent();

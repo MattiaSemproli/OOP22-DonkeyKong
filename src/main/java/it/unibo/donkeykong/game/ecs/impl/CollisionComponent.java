@@ -8,6 +8,7 @@ import java.util.Random;
 import it.unibo.donkeykong.game.ecs.api.Entity;
 import it.unibo.donkeykong.utilities.Constants;
 import it.unibo.donkeykong.utilities.Constants.Barrel;
+import it.unibo.donkeykong.utilities.Constants.Level;
 import it.unibo.donkeykong.utilities.Constants.Player;
 import it.unibo.donkeykong.utilities.Constants.Princess;
 import it.unibo.donkeykong.utilities.Constants.Window;
@@ -122,16 +123,21 @@ public class CollisionComponent extends AbstractComponent {
                 entity.getGameplay().getEntities().stream()
                       .filter(e -> e.getEntityType() == Type.LADDER
                                    && hitbox.intersects(e.getComponent(CollisionComponent.class).get().getHitbox()))
-                      .findAny().ifPresentOrElse(e -> mc.setIsOnLadder(true),
-                                                 () -> {
-                                                    if (entity.getGameplay().getEntities().stream()
-                                                              .filter(e -> (e.getEntityType() == Type.BLOCK_LADDER_DOWN
-                                                                           || e.getEntityType() == Type.BLOCK_LADDER_UPDOWN)
-                                                                           && hitbox.intersects(e.getComponent(CollisionComponent.class).get().getHitbox()))
-                                                              .findAny().isEmpty()) {
-                                                        mc.setIsInAir(true);
-                                                    }
-                                                 });
+                      .findAny().ifPresentOrElse(e -> {
+                            mc.setIsOnLadder(true);
+                            this.nextPosition = Optional.of(new Pair<>(e.getPosition().getX() - Level.ladderPadding,
+                                                                       this.nextPosition.get().getY()));
+                            },
+                            () -> {
+                               if (entity.getGameplay().getEntities().stream()
+                                         .filter(e -> (e.getEntityType() == Type.BLOCK_LADDER_DOWN
+                                                      || e.getEntityType() == Type.BLOCK_LADDER_UPDOWN)
+                                                      && hitbox.intersects(e.getComponent(CollisionComponent.class)
+                                                                            .get().getHitbox()))
+                                         .findAny().isEmpty()) {
+                                   mc.setIsInAir(true);
+                               }
+                            });
             }
         }
     }
@@ -210,7 +216,7 @@ public class CollisionComponent extends AbstractComponent {
                         }
                         entity.getGameplay().removeEntity(e);
                     }
-                    if (e.getEntityType() == Type.PRINCESS) {
+                    if (e.getEntityType() == Type.PRINCESS && movementC.isOnFloor()) {
                         Gamestate.setGamestate(Gamestate.WIN);
                         entity.getGameplay().getController().stopTimer();
                     }
@@ -261,7 +267,9 @@ public class CollisionComponent extends AbstractComponent {
                                                                                e2hitbox.y,
                                                                                e2hitbox.x + e2hitbox.width,
                                                                                e2hitbox.y))
-                                        && hitbox.y + hitbox.height < e2hitbox.y + 4) {
+                                        && hitbox.y + hitbox.height < e2hitbox.y + 12) {
+                                            this.nextPosition = Optional.of(new Pair<>(this.nextPosition.get().getX(),
+                                                                                       e2hitbox.y - hitbox.height));
                                             return true;
                                         }
                                         return false;
