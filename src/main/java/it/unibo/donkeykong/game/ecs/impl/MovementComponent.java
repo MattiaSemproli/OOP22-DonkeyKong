@@ -44,7 +44,24 @@ public class MovementComponent extends AbstractComponent {
     @Override
     public final void update() {
         timeElapsed++;
-        if (this.getEntity().getEntityType() == Type.BARREL) {
+        if (this.getEntity().getEntityType() == Type.PLAYER) {
+            if (!this.inAir) {
+                this.getEntity().saveNextPosition(this.movePos.equals(new Pair<>(0f, 0f)) ? Optional.empty() 
+                                                                                            : Optional.of(this.movePos));
+                if (this.onLadder) {
+                    PlayerIdle.setPlayerIdle(this.movePos.equals(new Pair<>(0f, 0f)) ? PlayerIdle.STOPCLIMBING : PlayerIdle.CLIMBING);
+                } else {
+                    PlayerIdle.setPlayerIdle(this.movePos.equals(new Pair<>(0f, 0f)) ? PlayerIdle.STOP : PlayerIdle.RUN);
+                }
+                this.movePos = new Pair<>(0f, 0f);
+                this.movingInAir = false;
+            } else {
+                this.isMovingInAir();
+                this.updateInAirPosition();
+                this.getEntity().saveNextPosition(Optional.of(this.movePos));
+                PlayerIdle.setPlayerIdle(this.airSpeed > 0 ? PlayerIdle.FALLING : PlayerIdle.JUMP);
+            }
+        } else if (this.getEntity().getEntityType() == Type.BARREL) {
             if (!this.inAir) {
                 this.moveEntity(this.getEntity().getComponent(MovementComponent.class).get().getFacing());
                 this.getEntity().saveNextPosition(Optional.of(this.movePos));

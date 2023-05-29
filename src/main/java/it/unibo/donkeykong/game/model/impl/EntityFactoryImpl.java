@@ -44,7 +44,8 @@ public class EntityFactoryImpl implements EntityFactory {
                    .addComponent(new CollisionComponent(position.getX(), position.getY(), Type.PLAYER))
                    .addComponent(new HealthComponent(Player.numLifes))
                    .addComponent(new StarComponent())
-                   .addComponent(new ShieldComponent());
+                   .addComponent(new ShieldComponent())
+                   .addComponent(new FreezeComponent());
     }
 
     @Override
@@ -60,8 +61,7 @@ public class EntityFactoryImpl implements EntityFactory {
     public final Entity generateMonkey(final Pair<Float, Float> position) {
         return new EntityImpl(Type.MONKEY, position, this.gameplay)
                    .addComponent(new ThrowComponent())
-                   .addComponent(new CollisionComponent(position.getX(), position.getY(), Type.MONKEY))
-                   .addComponent(new FreezeComponent());
+                   .addComponent(new CollisionComponent(position.getX(), position.getY(), Type.MONKEY));
     }
 
     @Override

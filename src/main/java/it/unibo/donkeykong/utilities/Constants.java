@@ -286,6 +286,7 @@ public class Constants {
         public static final int damageTaken = -1;
         public static final int doubleDamage = 2 * damageTaken;
         public static final int extraLife = 1;
+        public static final int starDuration = 480;
         public static final int movementAni = 0;
         public static final int climbingAni = 1;
         public static final int spriteDimension = 16;
