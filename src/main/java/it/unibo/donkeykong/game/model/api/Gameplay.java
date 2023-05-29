@@ -5,6 +5,7 @@ import java.util.List;
 import it.unibo.donkeykong.controller.impl.GameController;
 import it.unibo.donkeykong.game.ecs.api.Entity;
 import it.unibo.donkeykong.utilities.Pair;
+import it.unibo.donkeykong.utilities.Type;
 
 /**
  * Gameplay interface, models Gameplay management.
@@ -70,4 +71,11 @@ public interface Gameplay {
      * @return true if op powerups are spawned.
      */
     boolean isSpawnedOpPowerUp();
+
+    /**
+     * Get active powerups.
+     * 
+     * @return list of active powerups.
+     */
+    List<Type> getActivePowerUps();
 }

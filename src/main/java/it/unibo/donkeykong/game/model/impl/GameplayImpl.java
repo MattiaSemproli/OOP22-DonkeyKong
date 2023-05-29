@@ -10,6 +10,9 @@ import java.util.Random;
 import it.unibo.donkeykong.controller.impl.GameController;
 import it.unibo.donkeykong.game.ecs.api.Entity;
 import it.unibo.donkeykong.game.ecs.impl.DoubleDamageComponent;
+import it.unibo.donkeykong.game.ecs.impl.FreezeComponent;
+import it.unibo.donkeykong.game.ecs.impl.ShieldComponent;
+import it.unibo.donkeykong.game.ecs.impl.StarComponent;
 import it.unibo.donkeykong.game.model.api.EntityFactory;
 import it.unibo.donkeykong.game.model.api.Gameplay;
 import it.unibo.donkeykong.game.model.api.Level;
@@ -197,6 +200,31 @@ public class GameplayImpl implements Gameplay {
                             e.setPosition(this.generateRandomPosition(e.getEntityType()));
                          });
         }
+    }
+
+    @Override
+    public final List<Type> getActivePowerUps() {
+        return new ArrayList<>(){{
+            getEntities()
+                .stream()
+                .filter(e -> e.getEntityType() == Type.PLAYER)
+                .findFirst()
+                .ifPresent(e -> {
+                    final StarComponent star = e.getComponent(StarComponent.class).get();
+                    final ShieldComponent shield = e.getComponent(ShieldComponent.class).get();
+                    final FreezeComponent freeze = e.getComponent(FreezeComponent.class).get();
+                    if (star.isInvincible()) {
+                        add(Type.STAR);
+                    }
+                    if (shield.isShielded()) {
+                        add(Type.SHIELD);
+                    }
+                    if (freeze.isFrozen()) {
+                        add(Type.SNOWFLAKE);
+                    }
+
+                });
+        }}; 
     }
 
     @Override

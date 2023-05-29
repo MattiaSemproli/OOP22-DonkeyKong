@@ -2,6 +2,7 @@ package it.unibo.donkeykong.view;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
+import java.util.List;
 import java.util.stream.IntStream;
 
 import it.unibo.donkeykong.controller.api.GameEngine;
@@ -51,6 +52,7 @@ public class GameView implements GameEngine {
                     Barrel.barrelBoxWidth, 
                     Barrel.barrelBoxHeight, null);
         this.drawLives(g);
+        this.drawActivePowerUps(g);
         this.gameController.getButtonsFromModel()
                            .forEach((b, i) -> g.drawImage(i, 
                                                           b.getButtonPos().getX(),
@@ -128,5 +130,22 @@ public class GameView implements GameEngine {
             return PowerupAssets.getPowerupSources().get(PowerupAssets.freeze);
         }
         return PowerupAssets.getPowerupSources().get(PowerupAssets.star);
+    }
+
+    private void drawActivePowerUps(final Graphics g) {
+        List<Type> activePowerUps = this.gameController.getListOfActivePowerUps();
+                IntStream.range(0, activePowerUps.size()).forEach(i -> {
+                    g.drawImage(PowerupAssets.getPowerupSources().get(PowerupAssets.emptyBorder), 
+                                (i * Window.SCALED_TILES_SIZE) + PowerupAssets.powerupBorderPadding,
+                                PowerupAssets.powerupBorderPadding, 
+                                PowerupAssets.powerupBorderDimension, 
+                                PowerupAssets.powerupBorderDimension, null);
+                    g.drawImage(getPowerUpSprite(activePowerUps.get(i)),
+                                (i * Window.SCALED_TILES_SIZE) + PowerupAssets.powerupBorderPadding 
+                                                               + PowerupAssets.powerupActivePadding,
+                                PowerupAssets.powerupBorderPadding + PowerupAssets.powerupActivePadding, 
+                                PowerupAssets.powerupActiveDimension, 
+                                PowerupAssets.powerupActiveDimension, null);
+                });
     }
 }

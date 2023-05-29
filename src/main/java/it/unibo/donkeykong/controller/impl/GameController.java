@@ -13,13 +13,17 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.IntStream;
 
 import javax.swing.Timer;
 
 import it.unibo.donkeykong.controller.api.GameEngine;
 import it.unibo.donkeykong.controller.api.GenericController;
 import it.unibo.donkeykong.game.ecs.api.Entity;
+import it.unibo.donkeykong.game.ecs.impl.FreezeComponent;
 import it.unibo.donkeykong.game.ecs.impl.HealthComponent;
+import it.unibo.donkeykong.game.ecs.impl.ShieldComponent;
+import it.unibo.donkeykong.game.ecs.impl.StarComponent;
 import it.unibo.donkeykong.game.model.api.Button;
 import it.unibo.donkeykong.game.model.api.Gameplay;
 import it.unibo.donkeykong.game.model.impl.Game;
@@ -180,6 +184,10 @@ public class GameController implements GameEngine, MouseListener, KeyListener, G
                                          || e.getEntityType() == Type.MONKEY
                                          || e.getEntityType() == Type.BARREL
                                          || e.getEntityType() == Type.PRINCESS).toList();
+    }
+
+    public final List<Type> getListOfActivePowerUps() {
+        return new ArrayList<>(this.gameplay.getActivePowerUps());
     }
 
     public final void updateAniIndex() {
