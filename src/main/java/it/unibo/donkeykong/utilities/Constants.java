@@ -206,10 +206,10 @@ public class Constants {
         public static final int starPadding = (int) (4 * Window.scala);
         public static final int lifeDimension = (int) (28 * Window.scala);
         public static final int lifePadding = (int) (10 * Window.scala);
-        public static final int powerupBorderDimension = (int) ((Window.SCALED_TILES_SIZE - 8)   * Window.scala);
+        public static final int powerupBorderDimension = (int) ((Window.SCALED_TILES_SIZE - 8) * Window.scala);
         public static final int powerupBorderPadding = (int) (4 * Window.scala);
         public static final int powerupActiveDimension = (int) ((Window.SCALED_TILES_SIZE - 20) * Window.scala);
-        public static final int powerupActivePadding = (int) (((powerupBorderDimension - powerupActiveDimension) / 2) * Window.scala);
+        public static final int powerupActivePadding = (int) (((float) (powerupBorderDimension - powerupActiveDimension) / 2) * Window.scala);
         public static final String heart = "heart";
         public static final String shield = "shield";
         public static final String freeze = "snowflake";
