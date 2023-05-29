@@ -37,7 +37,12 @@ public class CollisionComponent extends AbstractComponent {
         if (this.nextPosition.isPresent()) {
             this.hitbox.x = nextPosition.get().getX();
             this.hitbox.y = nextPosition.get().getY();
-            if (eType == Type.BARREL) {
+            if (eType == Type.PLAYER) {
+                this.checkPlayerPlatformCollision();
+                this.checkPlayerLadderCollision();
+                this.checkPlayerWallCollision();
+                this.checkPlayerState();
+            } else if (eType == Type.BARREL) {
                 this.checkBarrelInAir();
                 this.checkBarrelCollision();
             }
@@ -45,6 +50,9 @@ public class CollisionComponent extends AbstractComponent {
             this.nextPosition = Optional.of(this.getEntity().getPosition());
             this.hitbox.x = this.getEntity().getPosition().getX();
             this.hitbox.y = this.getEntity().getPosition().getY();
+        }
+        if (eType == Type.PLAYER) {
+            this.checkIsCollidingWithOtherEntities();
         }
     }
 
@@ -71,11 +79,175 @@ public class CollisionComponent extends AbstractComponent {
         return new Rectangle2D.Float(this.hitbox.x, this.hitbox.y, this.hitbox.width, this.hitbox.height);
     }
 
+    private void checkPlayerPlatformCollision() {
+        final MovementComponent mc = entity.getComponent(MovementComponent.class).get();
+        if(this.nextPosition.get().getY() > entity.getPosition().getY()) {
+            entity.getGameplay().getEntities()
+            .stream().filter(e -> !this.checkIsNotBlock(e.getEntityType()))
+            .filter(e -> {
+                  final Rectangle2D.Float e2Hitbox = e.getComponent(CollisionComponent.class).get().getHitbox();
+                  if(hitbox.intersectsLine(new Line2D.Float(e2Hitbox.x,
+                                                            e2Hitbox.y,
+                                                            e2Hitbox.x + e2Hitbox.width,
+                                                            e2Hitbox.y))
+                     && !hitbox.intersectsLine(new Line2D.Float(e2Hitbox.x,
+                                                                e2Hitbox.y + e2Hitbox.height,
+                                                                e2Hitbox.x + e2Hitbox.width,
+                                                                e2Hitbox.y + e2Hitbox.height))
+                     && hitbox.y + hitbox.height < e2Hitbox.y + 8) {
+                      return true;
+                  }
+                  return false;
+            }).forEach(eBlock -> {
+                this.nextPosition = Optional.of(new Pair<>(this.nextPosition.get().getX(),
+                                                           eBlock.getPosition().getY() - hitbox.height));
+                mc.resetIsInAir();
+                mc.setIsOnLadder(false);
+            });
+        }
+    }
+
+    private void checkPlayerLadderCollision() {
+        final MovementComponent mc = entity.getComponent(MovementComponent.class).get();
+        if (!mc.isInAir()) {
+            if (mc.isOnFloor()) {
+                entity.getGameplay().getEntities().stream()
+                      .filter(e -> e.getEntityType() == Type.LADDER
+                                   && hitbox.intersects(e.getComponent(CollisionComponent.class).get().getHitbox()))
+                      .findAny().ifPresentOrElse(e -> mc.setCanUseLadder(true),
+                                                 () -> mc.setCanUseLadder(false));
+            } else {
+                entity.getGameplay().getEntities().stream()
+                      .filter(e -> e.getEntityType() == Type.LADDER
+                                   && hitbox.intersects(e.getComponent(CollisionComponent.class).get().getHitbox()))
+                      .findAny().ifPresentOrElse(e -> mc.setIsOnLadder(true),
+                                                 () -> {
+                                                    if (entity.getGameplay().getEntities().stream()
+                                                              .filter(e -> (e.getEntityType() == Type.BLOCK_LADDER_DOWN
+                                                                           || e.getEntityType() == Type.BLOCK_LADDER_UPDOWN)
+                                                                           && hitbox.intersects(e.getComponent(CollisionComponent.class).get().getHitbox()))
+                                                              .findAny().isEmpty()) {
+                                                        mc.setIsInAir(true);
+                                                    }
+                                                 });
+            }
+        }
+    }
+
+    private void checkPlayerWallCollision() {
+        if (hitbox.x > (Window.GAME_WIDTH - hitbox.width)) {
+            entity.setPosition(new Pair<>(Window.GAME_WIDTH - hitbox.width, this.nextPosition.get().getY()));
+        } else if (hitbox.y < 0) {
+            entity.setPosition(new Pair<>(this.nextPosition.get().getX(), 0f));
+        } else if (hitbox.x < 0) {
+            entity.setPosition(new Pair<>(0f, this.nextPosition.get().getY()));
+        } else if (hitbox.y > Window.GAME_HEIGHT) {
+            Gamestate.setGamestate(Gamestate.DEATH);
+            entity.getGameplay().getController().stopTimer();
+        } else {
+            entity.setPosition(new Pair<>(this.nextPosition.get().getX(), this.nextPosition.get().getY()));
+        }
+    }
+
+    private void checkPlayerState() {
+        final MovementComponent mc = entity.getComponent(MovementComponent.class).get();
+            if (entity.getGameplay().getEntities()
+                  .stream().filter(e -> !this.checkIsNotBlock(e.getEntityType()))
+                  .anyMatch(e -> {
+                        final Rectangle2D.Float e2Hitbox = e.getComponent(CollisionComponent.class).get().getHitbox();
+                        if(hitbox.intersectsLine(new Line2D.Float(e2Hitbox.x,
+                                                                  e2Hitbox.y,
+                                                                  e2Hitbox.x + e2Hitbox.width,
+                                                                  e2Hitbox.y))
+                           && !hitbox.intersectsLine(new Line2D.Float(e2Hitbox.x,
+                                                                      e2Hitbox.y + e2Hitbox.height,
+                                                                      e2Hitbox.x + e2Hitbox.width,
+                                                                      e2Hitbox.y + e2Hitbox.height))) {
+                            return true;
+                        }
+                        return false;
+                  })) {
+                if(mc.isOnFloor()) {
+                    mc.resetIsInAir();
+                }
+            } else {
+                if(!mc.isOnLadder()) {
+                    mc.setIsInAir(true);
+                }
+                mc.setIsOnFloor(false);
+            }
+    }
+
+    private void checkIsCollidingWithOtherEntities() {
+        entity.getGameplay().getEntities().stream()
+              .filter(e -> !e.equals(entity) && this.checkIsNotBlock(e.getEntityType()))
+              .filter(e -> hitbox.intersects(e.getComponent(CollisionComponent.class).get().getHitbox()))
+              .forEach(e -> {
+                    final StarComponent starC = entity.getComponent(StarComponent.class).get();
+                    final ShieldComponent shieldC = entity.getComponent(ShieldComponent.class).get();
+                    final HealthComponent healthC = entity.getComponent(HealthComponent.class).get();
+                    final MovementComponent movementC = entity.getComponent(MovementComponent.class).get();
+                    final FreezeComponent freezeC = entity.getComponent(FreezeComponent.class).get();
+                    if (e.getEntityType() == Type.BARREL) {
+                        if (!starC.isInvincible()) {
+                            if (!shieldC.isShielded()) {
+                                if (e.getComponent(DoubleDamageComponent.class).get().getDoubleDamage()) {
+                                    healthC.setLifes(Player.doubleDamage);
+                                } else {
+                                    healthC.setLifes(Player.damageTaken);
+                                }
+                                this.resetPlayer(movementC);
+                            } else {
+                                if (e.getComponent(DoubleDamageComponent.class).get().getDoubleDamage()) {
+                                    healthC.setLifes(Player.damageTaken);
+                                }
+                                shieldC.setShield(false);
+                            }
+                        } else {
+                            shieldC.setShield(false);
+                        }
+                        entity.getGameplay().removeEntity(e);
+                    }
+                    if (e.getEntityType() == Type.PRINCESS) {
+                        Gamestate.setGamestate(Gamestate.WIN);
+                        entity.getGameplay().getController().stopTimer();
+                    }
+                    if (e.getEntityType() == Type.MONKEY) {
+                        Gamestate.setGamestate(Gamestate.DEATH);
+                        entity.getGameplay().getController().stopTimer();
+                    }
+                    if (e.getEntityType() == Type.STAR) {
+                        starC.setInvincible(true);
+                        entity.getGameplay().removeEntity(e);
+                    }
+                    if (e.getEntityType() == Type.SHIELD) {
+                        shieldC.setShield(true);
+                        entity.getGameplay().removeEntity(e);
+                    }
+                    if (e.getEntityType() == Type.HEART) {
+                        healthC.setLifes(Player.extraLife);
+                        entity.getGameplay().removeEntity(e);
+                    }
+                    if (e.getEntityType() == Type.SNOWFLAKE) {
+                        freezeC.setFrozen(true);
+                        entity.getGameplay().removeEntity(e);
+                    }
+              });
+    }
+
     private boolean checkIsNotBlock(final Type type) {
         return type != Type.BLOCK
             && type != Type.BLOCK_LADDER_DOWN
             && type != Type.BLOCK_LADDER_UP
             && type != Type.BLOCK_LADDER_UPDOWN;
+    }
+
+    private void resetPlayer(final MovementComponent mc) {
+        entity.setPosition(new Pair<>(Player.levelOneStartingPlayerX, Player.levelOneStartingPlayerY));
+        mc.resetIsInAir();
+        mc.setCanUseLadder(false);
+        mc.setIsOnLadder(false);
+        entity.getGameplay().removeAllBarrels();
     }
 
     private void checkBarrelInAir() {
@@ -119,7 +291,7 @@ public class CollisionComponent extends AbstractComponent {
             this.entity.getGameplay().removeEntity(entity);
         } else {
             entity.setPosition(new Pair<>(this.nextPosition.get().getX(), this.nextPosition.get().getY()));
-        }
+        }                     
    }
 
     private void initDifferentHitbox(final Type type) {
