@@ -344,7 +344,7 @@ public class CollisionComponent extends AbstractComponent {
             case SNOWFLAKE:
             case STAR:
             case SHIELD:
-                hitbox = new Rectangle2D.Float(x + 1, y + 1, width, height);
+                hitbox = new Rectangle2D.Float(x, y, width, height);
                 break;
             case BLOCK:
             case BLOCK_LADDER_DOWN:

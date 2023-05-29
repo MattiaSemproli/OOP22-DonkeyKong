@@ -65,8 +65,8 @@ public class EntityImpl implements Entity {
             case SHIELD:
             case SNOWFLAKE:
             case STAR:
-                this.width = Window.SCALED_TILES_SIZE + 1;
-                this.height = Window.SCALED_TILES_SIZE + 1;
+                this.width = Window.SCALED_TILES_SIZE;
+                this.height = Window.SCALED_TILES_SIZE;
                 this.speed = 0;
                 break;
             case BLOCK:

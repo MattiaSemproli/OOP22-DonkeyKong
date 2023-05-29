@@ -11,11 +11,10 @@ public class Constants {
 
     public static class Window {
         public final static int TILES_DEFAULT_SIZE = 16;
-        public final static float SCALE = 3.0f;
         public final static float scala = 1f;
         public final static int TILES_IN_WIDTH = 14;
         public final static int TILES_IN_HEIGHT = 14;
-        public final static int SCALED_TILES_SIZE = Math.round(TILES_DEFAULT_SIZE * SCALE * scala);
+        public final static int SCALED_TILES_SIZE = Math.round(48 * scala);
         public final static int GAME_WIDTH = SCALED_TILES_SIZE * TILES_IN_WIDTH;
         public final static int GAME_HEIGHT = SCALED_TILES_SIZE * TILES_IN_HEIGHT;
     }
@@ -174,7 +173,7 @@ public class Constants {
             public static final BufferedImage barrelBox = loadSources("barrelbox");
 
             private static final Map<String, Pair<BufferedImage, Integer>> levelSources = new HashMap<>();
-
+            
             public static final Map<String, Pair<BufferedImage, Integer>> getLevelSources() {
                 return Collections.unmodifiableMap(levelSources);
             }
@@ -188,11 +187,49 @@ public class Constants {
         }
     }
 
+    public static final class PowerupAssets {
+        public static final int heartWidth = (int) (48 * Window.scala);
+        public static final int heartHeight = (int) (44 * Window.scala);
+        public static final int heartYpadding = (int) (2 * Window.scala);
+        public static final int shieldWidth = (int) (36 * Window.scala);
+        public static final int shieldHeight = (int) (40 * Window.scala);
+        public static final int shieldXpadding = (int) (6 * Window.scala);
+        public static final int shieldYpadding = (int) (4 * Window.scala);
+        public static final int freezeDimension = (int) (46 * Window.scala);
+        public static final int freezePadding = (int) (1 * Window.scala);
+        public static final int starDimension = (int) (40 * Window.scala);
+        public static final int starPadding = (int) (4 * Window.scala);
+        public static final int lifeDimension = (int) (28 * Window.scala);
+        public static final int lifePadding = (int) (10 * Window.scala);
+        public static final String heart = "heart";
+        public static final String shield = "shield";
+        public static final String freeze = "snowflake";
+        public static final String star = "star";
+        public static final String life = "playerlife";
+        public static final String noLife = "nolife";
+
+        private static final Map<String, BufferedImage> powerupsources = new HashMap<>();
+
+        public static final Map<String, BufferedImage> getPowerupSources() {
+            return Collections.unmodifiableMap(powerupsources);
+        }
+
+        public static final void loadPowerupSources() {
+            powerupsources.put(heart, loadSources(heart));
+            powerupsources.put(shield, loadSources(shield));
+            powerupsources.put(freeze, loadSources(freeze));
+            powerupsources.put(star, loadSources(star));
+            powerupsources.put(life, loadSources(life));
+            powerupsources.put(noLife, loadSources(noLife));
+        }
+    }
+
     public static final class Level {
         public static final String levelOne = "one";
         public static final String levelTwo = "two";
         public static final String levelThree = "three";
         public static final String levelFour = "four";
+        public static final int defaultSpriteSize = 16;
         public static final int blackBlock = 0;
         public static final int platformBlock = 1;
         public static final int coloredLadder = 2;
@@ -202,8 +239,8 @@ public class Constants {
         public static final int blockWithDoubleLadder = 6;
         public static final int levelSpritesLength = 7;
         public static final int numLevelsButtons = 4;
-        public static final int platformBlockPadding = Math.round(4 * Window.SCALE * Window.scala);
-        public static final int ladderPadding = Math.round(3 * Window.SCALE * Window.scala);
+        public static final int platformBlockPadding = Math.round(12 * Window.scala);
+        public static final int ladderPadding = Math.round(9 * Window.scala);
         public static final int princessPadding = 6;
     }
 
@@ -264,6 +301,8 @@ public class Constants {
         public static final int spriteWidth = 12;
         public static final int spriteHeight = 10;
         public static final int aniBarrelSpeed = 15;
+        public static final int barrelBoxWidth = 56;
+        public static final int barrelBoxHeight = 96;
 
         private static final Map<Integer, BufferedImage> barrelSources = new HashMap<>();
 

@@ -60,6 +60,7 @@ public class ApplicationImpl implements Application {
         Constants.Monkey.loadMonkeySources();
         Constants.Princess.loadPrincessSources();
         Constants.MenuAssets.SettingsAssets.loadTextSources();
+        Constants.PowerupAssets.loadPowerupSources();
     }
 
     @Override
