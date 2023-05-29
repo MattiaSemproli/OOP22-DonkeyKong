@@ -12,6 +12,7 @@ import it.unibo.donkeykong.utilities.Constants.Level;
 import it.unibo.donkeykong.utilities.Constants.Player;
 import it.unibo.donkeykong.utilities.Constants.Princess;
 import it.unibo.donkeykong.utilities.Constants.Window;
+import it.unibo.donkeykong.utilities.CurrentLevel;
 import it.unibo.donkeykong.utilities.Gamestate;
 import it.unibo.donkeykong.utilities.Pair;
 import it.unibo.donkeykong.utilities.Type;
@@ -143,15 +144,15 @@ public class CollisionComponent extends AbstractComponent {
     }
 
     private void checkPlayerWallCollision() {
-        if (hitbox.x > (Window.GAME_WIDTH - hitbox.width)) {
+        if (hitbox.y > Window.GAME_HEIGHT) {
+            Gamestate.setGamestate(Gamestate.DEATH);
+            entity.getGameplay().getController().stopTimer();
+        } else if (hitbox.x > (Window.GAME_WIDTH - hitbox.width)) {
             entity.setPosition(new Pair<>(Window.GAME_WIDTH - hitbox.width, this.nextPosition.get().getY()));
         } else if (hitbox.y < 0) {
             entity.setPosition(new Pair<>(this.nextPosition.get().getX(), 0f));
         } else if (hitbox.x < 0) {
             entity.setPosition(new Pair<>(0f, this.nextPosition.get().getY()));
-        } else if (hitbox.y > Window.GAME_HEIGHT) {
-            Gamestate.setGamestate(Gamestate.DEATH);
-            entity.getGameplay().getController().stopTimer();
         } else {
             entity.setPosition(new Pair<>(this.nextPosition.get().getX(), this.nextPosition.get().getY()));
         }
@@ -251,7 +252,21 @@ public class CollisionComponent extends AbstractComponent {
     }
 
     private void resetPlayer(final MovementComponent mc) {
-        entity.setPosition(new Pair<>(Player.levelOneStartingPlayerX, Player.levelOneStartingPlayerY));
+        switch (CurrentLevel.getCurrentLevel()) {
+            case ONE:
+                entity.setPosition(new Pair<>(Player.levelOneStartingPlayerX, Player.levelOneStartingPlayerY));
+                break;
+            case TWO:
+                entity.setPosition(new Pair<>(Player.levelTwoStartingPlayerX, Player.levelTwoStartingPlayerY));
+                break;
+            case THREE:
+                entity.setPosition(new Pair<>(Player.levelThreeStartingPlayerX, Player.levelThreeStartingPlayerY));
+                break;
+            case FOUR:
+            default:
+                entity.setPosition(new Pair<>(Player.levelFourStartingPlayerX, Player.levelFourStartingPlayerY));
+                break;
+        }
         mc.resetIsInAir();
         mc.setCanUseLadder(false);
         mc.setIsOnLadder(false);
