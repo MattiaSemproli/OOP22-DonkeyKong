@@ -48,4 +48,9 @@ public interface Gameplay {
      * Remove all barrels from game.
      */
     void removeAllBarrels();
+
+    /**
+     * Initialize entitities of game.
+     */
+    void initializeGame();
 }

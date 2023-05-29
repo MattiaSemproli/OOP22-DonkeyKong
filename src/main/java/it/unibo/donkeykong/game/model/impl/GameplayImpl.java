@@ -42,10 +42,10 @@ public class GameplayImpl implements Gameplay {
         this.level = new LevelImpl();
         this.controller = controller;
         this.entityFactoryImpl = new EntityFactoryImpl(this);
-        this.initializeGame();
     }
 
-    private void initializeGame() {
+    @Override
+    public void initializeGame() {
         this.generateInteractableEntities();
         this.createMapEntities();
         this.generatePowerUps();
