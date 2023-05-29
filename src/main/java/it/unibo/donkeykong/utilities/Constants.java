@@ -171,6 +171,7 @@ public class Constants {
             public static final String levelTwoSource = "level_two";
             public static final String levelThreeSource = "level_three";
             public static final String levelFourSource = "level_four";
+            public static final BufferedImage barrelBox = loadSources("barrelbox");
 
             private static final Map<String, Pair<BufferedImage, Integer>> levelSources = new HashMap<>();
 
@@ -182,7 +183,7 @@ public class Constants {
                 levelSources.put(levelOneSource, new Pair<BufferedImage,Integer>(loadSources(levelOneSource), 0));
                 levelSources.put(levelTwoSource, new Pair<BufferedImage,Integer>(loadSources(levelTwoSource), 1));
                 levelSources.put(levelThreeSource, new Pair<BufferedImage,Integer>(loadSources(levelThreeSource), 2));
-                levelSources.put(levelFourSource, new Pair<BufferedImage,Integer>(loadSources("empty_level"), 3));
+                levelSources.put(levelFourSource, new Pair<BufferedImage,Integer>(loadSources(levelFourSource), 3));
             }
         }
     }
@@ -191,6 +192,7 @@ public class Constants {
         public static final String levelOne = "one";
         public static final String levelTwo = "two";
         public static final String levelThree = "three";
+        public static final String levelFour = "four";
         public static final int blackBlock = 0;
         public static final int platformBlock = 1;
         public static final int coloredLadder = 2;
@@ -278,6 +280,12 @@ public class Constants {
     public static final class Player {
         public static final float levelOneStartingPlayerX = Window.SCALED_TILES_SIZE;
         public static final float levelOneStartingPlayerY = Window.SCALED_TILES_SIZE * 12 + Level.platformBlockPadding;
+        public static final float levelTwoStartingPlayerX = Window.SCALED_TILES_SIZE;
+        public static final float levelTwoStartingPlayerY = Window.SCALED_TILES_SIZE * 12 + Level.platformBlockPadding;
+        public static final float levelThreeStartingPlayerX = Window.SCALED_TILES_SIZE * 2;
+        public static final float levelThreeStartingPlayerY = Window.SCALED_TILES_SIZE * 12 + Level.platformBlockPadding;
+        public static final float levelFourStartingPlayerX = Window.SCALED_TILES_SIZE * (Window.TILES_IN_WIDTH / 2);
+        public static final float levelFourStartingPlayerY = Window.SCALED_TILES_SIZE * 12 + Level.platformBlockPadding;
         public static final int playerDimension = (int) (48 * Window.scala);
         public static final int ladderErrorPercentage = 40;
         public static final float canLadderError = playerDimension * ladderErrorPercentage / 100;

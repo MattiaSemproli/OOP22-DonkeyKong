@@ -19,6 +19,7 @@ import it.unibo.donkeykong.utilities.Type;
 import static it.unibo.donkeykong.utilities.Constants.Level.levelOne;
 import static it.unibo.donkeykong.utilities.Constants.Level.levelTwo;
 import static it.unibo.donkeykong.utilities.Constants.Level.levelThree;
+import static it.unibo.donkeykong.utilities.Constants.Level.levelFour;
 
 /**
  * This class manages a new level.
@@ -43,8 +44,11 @@ public class LevelImpl implements Level {
                 this.levelSpriteName = levelTwo;
                 break;
             case THREE:
-            default:
                 this.levelSpriteName = levelThree;
+                break;
+            case FOUR:
+            default:
+                this.levelSpriteName = levelFour;
                 break;
         }
         this.levelData = createLevel();

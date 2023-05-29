@@ -3,7 +3,8 @@ package it.unibo.donkeykong.utilities;
 public enum CurrentLevel {
     ONE,
     TWO,
-    THREE;
+    THREE,
+    FOUR;
 
     private static CurrentLevel level = ONE;
 
