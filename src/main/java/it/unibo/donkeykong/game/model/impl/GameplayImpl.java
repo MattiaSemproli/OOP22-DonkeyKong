@@ -17,6 +17,9 @@ import it.unibo.donkeykong.utilities.Constants;
 import it.unibo.donkeykong.utilities.Pair;
 import it.unibo.donkeykong.utilities.Type;
 import it.unibo.donkeykong.utilities.Constants.Barrel;
+import it.unibo.donkeykong.utilities.Constants.Monkey;
+import it.unibo.donkeykong.utilities.Constants.Player;
+import it.unibo.donkeykong.utilities.Constants.Window;
 
 /**
  * Gameplay class, manage and initialize entities and map.
@@ -49,6 +52,7 @@ public class GameplayImpl implements Gameplay {
         this.entities.add(this.entityFactoryImpl.generatePrincess(new Pair<>(Constants.Princess.levelOneStartingPrincessX, 
                                                                              Constants.Princess.levelOneStartingPrincessY)));
         this.createMapEntities();
+        this.generatePowerUps();
     }
 
     private void createMapEntities() {
@@ -88,6 +92,36 @@ public class GameplayImpl implements Gameplay {
                     break;
             }
         });
+    }
+
+    private void generatePowerUps() {
+        this.entities.add(this.entityFactoryImpl.generateHeartPowerUp(this.generateRandomPosition()));
+        this.entities.add(this.entityFactoryImpl.generateShieldPowerUp(this.generateRandomPosition()));
+    }
+
+    private Pair<Float, Float> generateRandomPosition() {
+        int passX, passY;
+        boolean isOnBlock = false, isBlock = false, isOccupied = true;
+        do {
+            int x = random.nextInt(Window.TILES_IN_WIDTH);
+            int y = random.nextInt((int) (Monkey.levelOneStartingMonkeyY / SCALED_TILES_SIZE),
+                                   (int) (Player.levelOneStartingPlayerY / SCALED_TILES_SIZE) - 1);
+            isBlock = this.level.getLevelMatrixType(x, y).isPresent();
+            isOnBlock = this.level.getLevelMatrixType(x, y + 1).isPresent();
+            isOccupied = this.getEntities().stream()
+                              .filter(e -> e.getEntityType() == Type.STAR
+                                           || e.getEntityType() == Type.HEART
+                                           || e.getEntityType() == Type.SHIELD
+                                           || e.getEntityType() == Type.SNOWFLAKE)
+                              .anyMatch(e -> {
+                                int eX = (int) (e.getPosition().getX() / SCALED_TILES_SIZE);
+                                int eY = (int) (e.getPosition().getY() / SCALED_TILES_SIZE);
+                                return eX == x && eY == y;
+                              });
+            passX = x;
+            passY = y;
+        } while (!isOnBlock || isBlock || isOccupied);
+        return new Pair<>((float) passX * SCALED_TILES_SIZE, (float) passY * SCALED_TILES_SIZE + platformBlockPadding);
     }
 
     @Override
