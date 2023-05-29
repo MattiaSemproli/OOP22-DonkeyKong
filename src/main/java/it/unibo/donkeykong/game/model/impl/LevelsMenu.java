@@ -14,7 +14,6 @@ import java.util.Map;
 
 import it.unibo.donkeykong.game.model.api.Button;
 import it.unibo.donkeykong.game.model.api.ViewModel;
-import it.unibo.donkeykong.utilities.Constants.Level;
 import it.unibo.donkeykong.utilities.Constants.MenuAssets;
 import it.unibo.donkeykong.utilities.Constants.MenuAssets.LevelAssets;
 import it.unibo.donkeykong.utilities.Constants.MenuAssets.SettingsAssets;

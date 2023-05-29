@@ -9,7 +9,6 @@ import it.unibo.donkeykong.controller.impl.GameController;
 import it.unibo.donkeykong.game.ecs.api.Entity;
 import it.unibo.donkeykong.game.ecs.impl.HealthComponent;
 import it.unibo.donkeykong.utilities.Pair;
-import it.unibo.donkeykong.utilities.ResourceFuncUtilities;
 import it.unibo.donkeykong.utilities.Type;
 import it.unibo.donkeykong.utilities.Constants.Barrel;
 import it.unibo.donkeykong.utilities.Constants.Monkey;
