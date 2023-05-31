@@ -20,7 +20,7 @@ import it.unibo.donkeykong.utilities.Type;
 import it.unibo.donkeykong.utilities.Constants.Player;
 
 /**
- * EntityFactoryImpl class, generate entities.
+ * EntityFactory class, generates entities.
  */
 public class EntityFactoryImpl implements EntityFactory {
 

@@ -8,35 +8,35 @@ import it.unibo.donkeykong.utilities.Pair;
 import it.unibo.donkeykong.utilities.Type;
 
 /**
- * Gameplay interface, models Gameplay management.
+ * Gameplay interface, models a gameplay.
  */
 public interface Gameplay {
 
     /**
-     * Get entities of Gameplay.
+     * Get entities of gameplay.
      * 
-     * @return list of entities.
+     * @return a list of entities.
      */
     List<Entity> getEntities();
 
     /**
      * Remove entity from game.
      * 
-     * @param entity linked entity to be removed.
+     * @param entity the entity to be removed.
      */
     void removeEntity(Entity entity);
 
     /**
-     * Get GameController.
+     * Get game controller.
      * 
-     * @return linked GameController.
+     * @return linked game controller.
      */
     GameController getController();
 
     /**
      * Create a barrel entity.
      *
-     * @param position new barrel starting position.
+     * @param position the new barrel's starting position.
      */
     void throwBarrel(Pair<Float, Float> position);
 
@@ -51,7 +51,7 @@ public interface Gameplay {
     void removeAllBarrels();
 
     /**
-     * Initialize entitities of game.
+     * Initialize game's entitities.
      */
     void initializeGame();
 
@@ -61,7 +61,7 @@ public interface Gameplay {
     void moveOpPowerUpRandom();
 
     /**
-     * After ten seconds from the start of the game, spawn op powerups.
+     * After ten seconds from game's start, spawn op powerups.
      */
     void spawnOpPowerUp();
 
@@ -75,7 +75,7 @@ public interface Gameplay {
     /**
      * Get active powerups.
      * 
-     * @return list of active powerups.
+     * @return a list of active powerups.
      */
     List<Type> getActivePowerUps();
 }
