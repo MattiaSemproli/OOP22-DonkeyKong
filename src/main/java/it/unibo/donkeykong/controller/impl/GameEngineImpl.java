@@ -38,9 +38,6 @@ public class GameEngineImpl implements GameEngine, Runnable {
         long previousTime = System.nanoTime();
         long lastCheck = System.currentTimeMillis();
 
-        int frames = GameLoop.FRAME_DEFAULT;
-        int updates = GameLoop.UPDATES_DEFAULT;
-
         double deltaU = GameLoop.DELTAU_DEFAULT;
         double deltaF = GameLoop.DELTAF_DEFAULT;
 
@@ -54,20 +51,16 @@ public class GameEngineImpl implements GameEngine, Runnable {
 
             if (deltaU >= 1) {
                 update();
-                updates++;
                 deltaU--;
             }
 
             if (deltaF >= 1) {
                 this.applicationImpl.redraw();
-                frames++;
                 deltaF--;
             }
 
             if (System.currentTimeMillis() - lastCheck >= 1000) {
                 lastCheck = System.currentTimeMillis();
-                frames = 0;
-                updates = 0;
             }
         }
     }
