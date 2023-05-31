@@ -52,7 +52,7 @@ public class GameplayImpl implements Gameplay {
     }
 
     @Override
-    public void initializeGame() {
+    public final void initializeGame() {
         this.generateInteractableEntities();
         this.createMapEntities();
         this.generatePowerUps();
@@ -193,7 +193,7 @@ public class GameplayImpl implements Gameplay {
 
     @Override
     public final void moveOpPowerUpRandom() {
-        if(this.opPowerUpSpawned) {
+        if (this.opPowerUpSpawned) {
             this.entities.stream()
                          .filter(e -> e.getEntityType() == Type.STAR
                                       || e.getEntityType() == Type.SNOWFLAKE)
@@ -205,7 +205,7 @@ public class GameplayImpl implements Gameplay {
 
     @Override
     public final List<Type> getActivePowerUps() {
-        return new ArrayList<>(){{
+        return new ArrayList<>() {{
             getEntities()
                 .stream()
                 .filter(e -> e.getEntityType() == Type.PLAYER)
