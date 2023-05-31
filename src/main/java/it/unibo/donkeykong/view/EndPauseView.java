@@ -17,7 +17,7 @@ import it.unibo.donkeykong.utilities.Constants.Window;
 import it.unibo.donkeykong.utilities.Constants.MenuAssets.SettingsAssets;
 
 /**
- * Pause view.
+ * Endgame or pause view, manages endgame or pause graphics.
  */
 public final class EndPauseView implements GameEngine {
 
@@ -26,7 +26,7 @@ public final class EndPauseView implements GameEngine {
     /**
      * Constructor.
      * 
-     * @param endPauseController set the controller to this view.
+     * @param endPauseController the linked controller.
      */
     public EndPauseView(final EndPauseController endPauseController) {
         this.endPauseController = endPauseController;

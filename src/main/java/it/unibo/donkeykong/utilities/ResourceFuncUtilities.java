@@ -11,7 +11,7 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
 /**
- * Functional utilities for resources.
+ * Static class ResourceFuncUtilities, manages utilities function for resources.
  */
 public final class ResourceFuncUtilities {
 
@@ -24,7 +24,7 @@ public final class ResourceFuncUtilities {
      * Get the image from the file name.
      * 
      * @param fileName name of the file.
-     * @return         the image.
+     * @return the image.
      */
     public static Image getSources(final String fileName) {
         return new ImageIcon("src/main/resources/" + fileName + ".png").getImage();
@@ -34,7 +34,7 @@ public final class ResourceFuncUtilities {
      * Get the buffered image from the file name.
      * 
      * @param fileName name of the file.
-     * @return       the buffered image.
+     * @return the buffered image.
      */
     public static BufferedImage getBufferedSources(final String fileName) {
         final File file = new File("src/main/resources/" + fileName + ".png");
@@ -51,7 +51,7 @@ public final class ResourceFuncUtilities {
      * Get the sources in alternative way.
      * 
      * @param fileName name of the file.
-     * @return         the buffered image.
+     * @return the buffered image.
      */
     public static BufferedImage loadSources(final String fileName) {
         BufferedImage img = null;

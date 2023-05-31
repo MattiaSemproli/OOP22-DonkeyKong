@@ -14,15 +14,16 @@ import it.unibo.donkeykong.utilities.Constants.Window;
 import it.unibo.donkeykong.utilities.Gamestate;
 
 /**
- * Settings view.
+ * Settings view, manages settings graphics.
  */
 public class SettingsView implements GameEngine {
 
     private final SettingsController settingsController;
 
     /**
+     * Constructor.
      * 
-     * @param settingsController set the controller to this view.
+     * @param settingsController the linked controller.
      */
     public SettingsView(final SettingsController settingsController) {
         this.settingsController = settingsController;

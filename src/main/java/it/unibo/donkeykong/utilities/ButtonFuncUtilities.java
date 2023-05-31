@@ -7,7 +7,7 @@ import java.util.Set;
 import it.unibo.donkeykong.game.model.api.Button;
 
 /**
- * Functional utilities for buttons.
+ * Static class ButtonFuncUtilities, manages utilities function for buttons.
  */
 public final class ButtonFuncUtilities {
     private ButtonFuncUtilities() {
@@ -16,9 +16,9 @@ public final class ButtonFuncUtilities {
     /**
      * Get the button pressed.
      * 
-     * @param e       mouse event.
-     * @param buttons list of buttons to check.
-     * @return        if the mouse event is in a button return it otherwise an optional empty.
+     * @param e the mouse event.
+     * @param buttons the list of buttons to check.
+     * @return a button if the mouse event is in it.
      */
     public static Optional<Button> getButtonPressed(final MouseEvent e, final Set<Button> buttons) {
         for (final Button b : buttons) {

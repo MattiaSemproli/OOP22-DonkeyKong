@@ -21,9 +21,9 @@ public final class ApplicationPanel extends JPanel {
   private final transient Application application;
 
   /**
-   * Application constructor.
+   * Constructor.
    * 
-   * @param application application.
+   * @param application the linked application.
    */
   public ApplicationPanel(final Application application) {
     this.application = application;

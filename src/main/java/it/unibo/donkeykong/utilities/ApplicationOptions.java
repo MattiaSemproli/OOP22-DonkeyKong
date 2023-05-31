@@ -1,10 +1,9 @@
 package it.unibo.donkeykong.utilities;
 
 /**
- * Enum representing the state of the game.
+ * Enum representing states of volume.
  */
 public enum ApplicationOptions {
-
     /**
      * Currently volume on.
      */
@@ -17,14 +16,14 @@ public enum ApplicationOptions {
     private static ApplicationOptions volume = VOLUME_ON;
 
     /**
-     * @return the currently status of volume.
+     * @return the current volume status.
      */
     public static ApplicationOptions getVolumeStatus() {
         return volume;
     }
 
     /**
-     * @param volumeStatus set the status of volume.
+     * @param volumeStatus the volume status.
      */
     public static void setVolumeStatus(final ApplicationOptions volumeStatus) {
         volume = volumeStatus;

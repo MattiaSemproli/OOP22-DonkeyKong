@@ -14,15 +14,16 @@ import it.unibo.donkeykong.utilities.Constants.MenuAssets;
 import it.unibo.donkeykong.utilities.Constants.Window;
 
 /**
- * Main menu view.
+ * Main menu view, manages main menu graphics.
  */
 public class MainMenuView implements GameEngine {
 
     private final MainMenuController menuController;
 
     /**
+     * Constructor.
      * 
-     * @param menuController set the controller to this view.
+     * @param menuController the linked controller.
      */
     public MainMenuView(final MainMenuController menuController) {
         this.menuController = menuController;

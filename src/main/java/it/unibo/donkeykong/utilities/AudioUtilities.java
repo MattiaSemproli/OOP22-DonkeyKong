@@ -15,7 +15,7 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 import it.unibo.donkeykong.utilities.Constants.Audio;
 
 /**
- * Static class that manages the audio.
+ * Static class Audioutilities, manages the audio.
  */
 public final class AudioUtilities {
 
@@ -29,7 +29,7 @@ public final class AudioUtilities {
     /**
      * Start playing a soundtrack.
      * 
-     * @param fileName the name of the file to play.
+     * @param fileName the file to be played.
      */
     public static void playSoundtrack(final String fileName) {
         if (filePlaying != null) {
@@ -43,9 +43,9 @@ public final class AudioUtilities {
     }
 
     /**
-     * Start a song.
+     * Start playing a song.
      * 
-     * @param fileName song to be played.
+     * @param fileName the song to be played.
      */
     private static void startSong(final String fileName) {
         try {
@@ -71,7 +71,7 @@ public final class AudioUtilities {
     }
 
     /**
-     * Stop the soundtrack.
+     * Stop playing the soundtrack.
      */
     public static void stopSoundtrack() {
         clip.stop();
@@ -80,9 +80,9 @@ public final class AudioUtilities {
     }
 
     /**
-     * Get the name of the soundtrack playing.
+     * Get the name of playing soundtrack.
      * 
-     * @return the name of the soundtrack playing.
+     * @return the name of playing soundtrack.
      */
     public static String getMusicPlaying() {
         return filePlaying;
@@ -91,23 +91,14 @@ public final class AudioUtilities {
     /**
      * Check if a soundtrack is playing.
      * 
-     * @return true if a soundtrack is playing, false otherwise.
+     * @return true if a soundtrack is playing.
      */
     public static boolean isPlaying() {
         return clip != null && clip.isRunning();
     }
 
     /**
-     * Check if the soundtrack is muted.
-     * 
-     * @return true if the soundtrack is muted, false otherwise.
-     */
-    public static boolean isMuted() {
-        return isMuted;
-    }
-
-    /**
-     * Update the volume of the soundtrack.
+     * Update soundtrack's volume.
      */
     public static void updateVolume() {
         final FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
@@ -117,9 +108,18 @@ public final class AudioUtilities {
     }
 
     /**
+     * Check if the soundtrack is muted.
+     * 
+     * @return true if the soundtrack is muted.
+     */
+    public static boolean isMuted() {
+        return isMuted;
+    }
+
+    /**
      * Mute or unmute the soundtrack.
      * 
-     * @param mute true to mute the soundtrack, false to unmute it.
+     * @param mute the new mute state.
      */
     public static void setMuted(final boolean mute) {
         if (mute != isMuted) {
