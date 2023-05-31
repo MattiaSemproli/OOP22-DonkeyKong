@@ -188,8 +188,8 @@ public class Constants {
     }
 
     public static final class PowerupAssets {
-        public static final int spawnOpPowerUpDelay = 1200;
-        public static final int moveOpPowerUpDelay = 240;
+        public static final int spawnOpPowerUpDelay = 120 * 15;
+        public static final int moveOpPowerUpDelay = 180;
         public static final int minSpawn = (int) (Monkey.levelOneStartingMonkeyY / Window.SCALED_TILES_SIZE) + 2;
         public static final int maxSpawn = (int) (Player.levelOneStartingPlayerY / Window.SCALED_TILES_SIZE) - 1;
         public static final int heartWidth = (int) (36 * Window.scala);
@@ -344,7 +344,8 @@ public class Constants {
         public static final int damageTaken = -1;
         public static final int doubleDamage = 2 * damageTaken;
         public static final int extraLife = 1;
-        public static final int starDuration = 480;
+        public static final int starDuration = 120 * 3;
+        public static final int freezeDuration = 120 * 3;
         public static final int movementAni = 0;
         public static final int climbingAni = 1;
         public static final int spriteDimension = 16;
