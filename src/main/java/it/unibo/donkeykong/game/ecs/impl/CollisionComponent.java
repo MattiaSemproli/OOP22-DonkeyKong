@@ -86,12 +86,12 @@ public class CollisionComponent extends AbstractComponent {
 
     private void checkPlayerPlatformCollision() {
         final MovementComponent mc = entity.getComponent(MovementComponent.class).get();
-        if(this.nextPosition.get().getY() > entity.getPosition().getY()) {
+        if (this.nextPosition.get().getY() > entity.getPosition().getY()) {
             entity.getGameplay().getEntities()
             .stream().filter(e -> !this.checkIsNotBlock(e.getEntityType()))
             .filter(e -> {
                   final Rectangle2D.Float e2Hitbox = e.getComponent(CollisionComponent.class).get().getHitbox();
-                  if(hitbox.intersectsLine(new Line2D.Float(e2Hitbox.x,
+                  if (hitbox.intersectsLine(new Line2D.Float(e2Hitbox.x,
                                                             e2Hitbox.y,
                                                             e2Hitbox.x + e2Hitbox.width,
                                                             e2Hitbox.y))
@@ -165,7 +165,7 @@ public class CollisionComponent extends AbstractComponent {
                   .stream().filter(e -> !this.checkIsNotBlock(e.getEntityType()))
                   .anyMatch(e -> {
                         final Rectangle2D.Float e2Hitbox = e.getComponent(CollisionComponent.class).get().getHitbox();
-                        if(hitbox.intersectsLine(new Line2D.Float(e2Hitbox.x,
+                        if (hitbox.intersectsLine(new Line2D.Float(e2Hitbox.x,
                                                                   e2Hitbox.y,
                                                                   e2Hitbox.x + e2Hitbox.width,
                                                                   e2Hitbox.y))
@@ -177,11 +177,11 @@ public class CollisionComponent extends AbstractComponent {
                         }
                         return false;
                   })) {
-                if(mc.isOnFloor()) {
+                if (mc.isOnFloor()) {
                     mc.resetIsInAir();
                 }
             } else {
-                if(!mc.isOnLadder()) {
+                if (!mc.isOnLadder()) {
                     mc.setIsInAir(true);
                 }
                 mc.setIsOnFloor(false);
@@ -283,7 +283,7 @@ public class CollisionComponent extends AbstractComponent {
                                                                                e2hitbox.y,
                                                                                e2hitbox.x + e2hitbox.width,
                                                                                e2hitbox.y))
-                                        && hitbox.y + hitbox.height < e2hitbox.y + 12) {
+                                        && hitbox.y + hitbox.height < e2hitbox.y + Barrel.barrelFloorError) {
                                             this.nextPosition = Optional.of(new Pair<>(this.nextPosition.get().getX(),
                                                                                        e2hitbox.y - hitbox.height));
                                             return true;
@@ -317,7 +317,7 @@ public class CollisionComponent extends AbstractComponent {
             this.entity.getGameplay().removeEntity(entity);
         } else {
             entity.setPosition(new Pair<>(this.nextPosition.get().getX(), this.nextPosition.get().getY()));
-        }                
+        }
    }
 
     private void checkPrincessCollision() {
