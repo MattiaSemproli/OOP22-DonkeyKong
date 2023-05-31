@@ -21,9 +21,9 @@ public class MovementComponent extends AbstractComponent {
     private int barrelChangesCounter;
     private boolean inAir;
     private boolean movingInAir;
-    private int timeElapsed = 0;
+    private int timeElapsed;
     private boolean isPrincessWalking = true;
-    private Random random = new Random();
+    private final Random random = new Random();
     private boolean onLadder;
     private boolean onFloor;
     private boolean canUseLadder;
@@ -32,6 +32,7 @@ public class MovementComponent extends AbstractComponent {
      * Constructor.
      */
     public MovementComponent() {
+        this.timeElapsed = 0;
         this.airSpeed = 0f;
         this.barrelChangesCounter = 0;
         this.inAir = false;

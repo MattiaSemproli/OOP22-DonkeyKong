@@ -278,7 +278,7 @@ public class CollisionComponent extends AbstractComponent {
         if (entity.getGameplay().getEntities()
                                 .stream().filter(e -> !this.checkIsNotBlock(e.getEntityType()))
                                 .anyMatch(e -> {
-                                    Rectangle2D.Float e2hitbox = e.getComponent(CollisionComponent.class).get().getHitbox();
+                                    final Rectangle2D.Float e2hitbox = e.getComponent(CollisionComponent.class).get().getHitbox();
                                     if (hitbox.intersectsLine(new Line2D.Float(e2hitbox.x,
                                                                                e2hitbox.y,
                                                                                e2hitbox.x + e2hitbox.width,
