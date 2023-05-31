@@ -5,7 +5,7 @@ import it.unibo.donkeykong.utilities.Constants.Monkey;
 import it.unibo.donkeykong.utilities.Pair;
 
 /**
- * Throw Component, manage barrel's throw from entity monkey.
+ * Throw Component, manages barrel's throw.
  */
 public class ThrowComponent extends AbstractComponent {
 
@@ -60,9 +60,9 @@ public class ThrowComponent extends AbstractComponent {
     }
 
     /**
-     * Change Donkey Kong state.
+     * Set new Donkey Kong's state.
      * 
-     * @param isFreezed set as new Donkey Kong state.
+     * @param isFreezed the new Donkey Kong's state.
      */
     public final void setFreezed(final boolean isFreezed) {
         this.isFreezed = isFreezed;
