@@ -136,10 +136,10 @@ public class GameplayImpl implements Gameplay {
 
     private Pair<Float, Float> generateRandomPosition(final Type t) {
         int passX, passY;
-        boolean isOnBlock = false, isBlock = false, isOccupied = true;
+        boolean isOnBlock, isBlock, isOccupied;
         do {
-            int x = random.nextInt(Window.TILES_IN_WIDTH);
-            int y = random.nextInt(PowerupAssets.minSpawn, PowerupAssets.maxSpawn);
+            final int x = random.nextInt(Window.TILES_IN_WIDTH);
+            final int y = random.nextInt(PowerupAssets.minSpawn, PowerupAssets.maxSpawn);
             isBlock = this.level.getLevelMatrixType(x, y).isPresent();
             isOnBlock = this.level.getLevelMatrixType(x, y + 1).isPresent();
             isOccupied = this.getEntities().stream()
@@ -148,8 +148,8 @@ public class GameplayImpl implements Gameplay {
                                            || e.getEntityType() == Type.SHIELD
                                            || e.getEntityType() == Type.SNOWFLAKE)
                               .anyMatch(e -> {
-                                int eX = (int) (e.getPosition().getX() / SCALED_TILES_SIZE);
-                                int eY = (int) (e.getPosition().getY() / SCALED_TILES_SIZE);
+                                final int eX = (int) (e.getPosition().getX() / SCALED_TILES_SIZE);
+                                final int eY = (int) (e.getPosition().getY() / SCALED_TILES_SIZE);
                                 return eY == y && (eX == x || eX + 1 == x || eX - 1 == x);
                               });
             passX = x;
