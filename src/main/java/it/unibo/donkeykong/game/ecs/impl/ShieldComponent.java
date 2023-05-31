@@ -1,9 +1,15 @@
 package it.unibo.donkeykong.game.ecs.impl;
 
-public class ShieldComponent extends AbstractComponent{
+/**
+ * Component that represents the shield powerup in the game.
+ */
+public class ShieldComponent extends AbstractComponent {
 
     private boolean isShielded;
 
+    /**
+     * Constructs a ShieldComponent object.
+     */
     public ShieldComponent() {
         this.isShielded = false;
     }
@@ -12,10 +18,20 @@ public class ShieldComponent extends AbstractComponent{
     public void update() {
     }
 
+    /**
+     * Checks if the shield is currently active.
+     * 
+     * @return true if the shield is active, false otherwise.
+     */
     public final boolean isShielded() {
         return this.isShielded;
     }
 
+    /**
+     * Sets the state of the shield.
+     * 
+     * @param isShielded true to activate the shield, false to deactivate it.
+     */
     public final void setShield(final boolean isShielded) {
         this.isShielded = isShielded;
     }

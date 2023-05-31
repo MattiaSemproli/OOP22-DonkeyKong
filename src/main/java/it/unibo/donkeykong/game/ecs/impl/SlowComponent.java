@@ -1,9 +1,15 @@
 package it.unibo.donkeykong.game.ecs.impl;
 
+/**
+ * 
+ */
 public class SlowComponent extends AbstractComponent {
 
     private boolean giveSlow;
 
+    /**
+     * 
+     */
     public SlowComponent() {
         this.giveSlow = false;
     }
@@ -12,10 +18,18 @@ public class SlowComponent extends AbstractComponent {
     public void update() {
     }
 
+    /**
+     * 
+     * @return giveSlow 
+     */
     public final boolean getIfSlow() {
         return this.giveSlow;
     }
 
+    /**
+     * 
+     * @param giveSlow 
+     */
     public final void setIfSlow(final boolean giveSlow) {
         this.giveSlow = giveSlow;
     }
