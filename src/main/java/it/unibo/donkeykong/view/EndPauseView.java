@@ -5,6 +5,7 @@ import static it.unibo.donkeykong.utilities.Constants.MenuAssets.menuX;
 import static it.unibo.donkeykong.utilities.Constants.MenuAssets.menuY;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
@@ -61,6 +62,15 @@ public final class EndPauseView implements GameEngine {
                                                                                rectangle.y, 
                                                                                rectangle.width,
                                                                                rectangle.height, null));
+            } else {
+                final Font font = new Font("Arial", Font.BOLD, MenuAssets.fontSize);
+                g.setColor(Color.WHITE);
+                g.setFont(font);
+                String txt = "Time: " + String.valueOf(this.endPauseController.getSecondsFromGameController());
+                int textWidth = g.getFontMetrics(font).stringWidth(txt);
+                g.drawString(txt,
+                             menuX + (MenuAssets.menuTextureBox - textWidth) / 2,
+                             menuY + MenuAssets.menuTextureBox / 2);
             }
         }
     }

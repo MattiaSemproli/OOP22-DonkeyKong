@@ -82,6 +82,10 @@ public class EndPauseController implements MouseListener, KeyListener, GameEngin
         this.endPause.setTheme(e);
     }
 
+    public final float getSecondsFromGameController() {
+        return this.application.getGameController().getSeconds();
+    }
+
     @Override
     public final void keyReleased(final KeyEvent e) {
         if (Gamestate.getGamestate().equals(Gamestate.PAUSE) && e.getKeyCode() == KeyEvent.VK_ESCAPE) {

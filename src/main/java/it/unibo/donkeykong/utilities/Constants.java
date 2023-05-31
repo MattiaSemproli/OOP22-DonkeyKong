@@ -58,6 +58,7 @@ public class Constants {
         public static final int levelsB = 1;
         public static final int settingsB = 0;
         public static final int quitB = 1;
+        public static final int fontSize = (int) (60 * Window.scala);
         public static final int bottomMenuBorder = menuY + menuTextureBox;
         public static final int rightMenuBorder = menuX + menuTextureBox;
         public static final int funcButtonX = menuX + (menuTextureBox - buttonWidth) / 2;

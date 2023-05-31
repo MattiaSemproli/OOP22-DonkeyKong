@@ -24,6 +24,7 @@ import it.unibo.donkeykong.utilities.Constants.Barrel;
 import it.unibo.donkeykong.utilities.Constants.Monkey;
 import it.unibo.donkeykong.utilities.Constants.Player;
 import it.unibo.donkeykong.utilities.Constants.PowerupAssets;
+import it.unibo.donkeykong.utilities.Constants.Princess;
 import it.unibo.donkeykong.utilities.Constants.Window;
 
 /**
@@ -59,10 +60,10 @@ public class GameplayImpl implements Gameplay {
 
     private void generateInteractableEntities() {
         this.generatePlayer();
-        this.entities.add(this.entityFactoryImpl.generateMonkey(new Pair<>(Constants.Monkey.levelOneStartingMonkeyX, 
-                                                                           Constants.Monkey.levelOneStartingMonkeyY)));
-        this.entities.add(this.entityFactoryImpl.generatePrincess(new Pair<>(Constants.Princess.levelOneStartingPrincessX, 
-                                                                             Constants.Princess.levelOneStartingPrincessY)));
+        this.entities.add(this.entityFactoryImpl.generateMonkey(new Pair<>(Monkey.levelOneStartingMonkeyX, 
+                                                                           Monkey.levelOneStartingMonkeyY)));
+        this.entities.add(this.entityFactoryImpl.generatePrincess(new Pair<>(Princess.levelOneStartingPrincessX, 
+                                                                             Princess.levelOneStartingPrincessY)));
     }
 
     private void generatePlayer() {
