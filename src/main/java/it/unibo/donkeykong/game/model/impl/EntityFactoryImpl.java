@@ -29,7 +29,7 @@ public class EntityFactoryImpl implements EntityFactory {
     /**
      * Constructor.
      * 
-     * @param gameplay where the entity is
+     * @param gameplay the linked gameplay.
      */
     @SuppressFBWarnings(value = "EI_EXPOSE_REP2", justification = "We need the original object")
     public EntityFactoryImpl(final Gameplay gameplay) {
