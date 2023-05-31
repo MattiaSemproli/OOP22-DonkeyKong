@@ -6,7 +6,6 @@ import java.util.Optional;
 import java.util.Random;
 
 import it.unibo.donkeykong.game.ecs.api.Entity;
-import it.unibo.donkeykong.utilities.Constants;
 import it.unibo.donkeykong.utilities.Constants.Barrel;
 import it.unibo.donkeykong.utilities.Constants.Level;
 import it.unibo.donkeykong.utilities.Constants.Monkey;

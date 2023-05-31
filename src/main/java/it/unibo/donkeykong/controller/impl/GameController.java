@@ -13,17 +13,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.IntStream;
 
 import javax.swing.Timer;
 
 import it.unibo.donkeykong.controller.api.GameEngine;
 import it.unibo.donkeykong.controller.api.GenericController;
 import it.unibo.donkeykong.game.ecs.api.Entity;
-import it.unibo.donkeykong.game.ecs.impl.FreezeComponent;
 import it.unibo.donkeykong.game.ecs.impl.HealthComponent;
-import it.unibo.donkeykong.game.ecs.impl.ShieldComponent;
-import it.unibo.donkeykong.game.ecs.impl.StarComponent;
 import it.unibo.donkeykong.game.model.api.Button;
 import it.unibo.donkeykong.game.model.api.Gameplay;
 import it.unibo.donkeykong.game.model.impl.Game;
@@ -45,7 +41,7 @@ public class GameController implements GameEngine, MouseListener, KeyListener, G
     private final List<Integer> keyInputs;
     private final Gameplay gameplay;
     private Timer timer;
-    private int seconds;
+    private float seconds;
     private int timeElapsed;
 
     /**
@@ -208,6 +204,7 @@ public class GameController implements GameEngine, MouseListener, KeyListener, G
     }
 
     private void initializeTimer() {
+        this.seconds = 0;
         this.timer = new Timer(1000, new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent e) {
@@ -228,7 +225,6 @@ public class GameController implements GameEngine, MouseListener, KeyListener, G
      */
     public final void stopTimer() {
         this.timer.stop();
-        this.seconds = 0;
     }
 
     /**
@@ -243,7 +239,7 @@ public class GameController implements GameEngine, MouseListener, KeyListener, G
      * 
      * @return seconds passed.
      */
-    public final int getSeconds() {
+    public final float getSeconds() {
         return this.seconds;
     }
 
