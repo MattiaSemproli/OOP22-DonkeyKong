@@ -137,6 +137,14 @@ public class GameController implements GameEngine, MouseListener, KeyListener, G
         }
     }
 
+    /**
+     * Get from the model the right animation sprite.
+     * 
+     * @param type of the entity.
+     * @param row of the animation.
+     * @param col of the animation.
+     * @return the correct animation sprite.
+     */
     public final BufferedImage getAnimationFromModel(final Type type, final int row, final int col) {
         return this.game.getEntityAni(type, row, col);
     }
@@ -182,14 +190,28 @@ public class GameController implements GameEngine, MouseListener, KeyListener, G
                                          || e.getEntityType() == Type.PRINCESS).toList();
     }
 
+    /**
+     * Get all the powerups active in the game.
+     * 
+     * @return a list of type of active power ups.
+     */
     public final List<Type> getListOfActivePowerUps() {
         return new ArrayList<>(this.gameplay.getActivePowerUps());
     }
 
+    /**
+     * Update the animation indexes.
+     */
     public final void updateAniIndex() {
         this.game.updateAnimations();
     }
 
+    /**
+     * Get the correct animation sprite and index of the entity.
+     * 
+     * @param entity to get the animation.
+     * @return a pair with the animation to get and the index of the animation.
+     */
     public final Pair<Integer, Integer> getIdleFromModel(final Entity entity) {
         return this.game.getIdle(entity);
     }

@@ -45,7 +45,7 @@ public enum PlayerIdle {
     public static void setPlayerIdle(final PlayerIdle idle) {
         playerIdle = idle;
     }
-    
+
     /**
      * @return the currently state of the princess.
      */

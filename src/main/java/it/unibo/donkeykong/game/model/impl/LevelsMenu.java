@@ -56,7 +56,12 @@ public class LevelsMenu implements ViewModel {
                                                LevelAssets.levelButtonWidth, 
                                                LevelAssets.levelButtonHeight, Gamestate.PLAYING);
     }
-    
+
+    /**
+     * Check which button is pressed.
+     * 
+     * @param b button to check for setting the level.
+     */
     public final void setLevelToPlay(final Button b) {
         if (b.equals(this.levelOneButton)) {
             CurrentLevel.setCurrentLevel(CurrentLevel.ONE);

@@ -27,5 +27,12 @@ public interface Level {
      */
     BufferedImage getLevelSprite(int val);
 
-    Optional<Type> getLevelMatrixType (final int x, final int y);
+    /**
+     * Get the type of a block in a x, y position of the matrix.
+     * 
+     * @param x the x coordinate of the matrix.
+     * @param y the y coordinate of the matrix.
+     * @return the type of the matrix if present.
+     */
+    Optional<Type> getLevelMatrixType(int x, int y);
 }

@@ -69,7 +69,7 @@ public class EndPauseController implements MouseListener, KeyListener, GameEngin
                 } else if (Gamestate.getGamestate() == Gamestate.WIN 
                            || Gamestate.getGamestate() == Gamestate.DEATH) {
                     AudioUtilities.playSoundtrack(Audio.gameMusic1);
-                    this.application.startGameController();        
+                    this.application.startGameController();
                 }
             }
             b.applyGamestate();
@@ -82,6 +82,11 @@ public class EndPauseController implements MouseListener, KeyListener, GameEngin
         this.endPause.setTheme(e);
     }
 
+    /**
+     * Get the seconds passed from the game controller.
+     * 
+     * @return the seconds from the game controller in float.
+     */
     public final float getSecondsFromGameController() {
         return this.application.getGameController().getSeconds();
     }

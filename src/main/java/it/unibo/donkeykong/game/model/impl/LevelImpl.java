@@ -32,8 +32,6 @@ public class LevelImpl implements Level {
 
     /**
      * Constructor.
-     * 
-     * @param levelSpriteName the level to be created.
      */
     public LevelImpl() {
         switch (CurrentLevel.getCurrentLevel()) {
@@ -89,7 +87,7 @@ public class LevelImpl implements Level {
     }
 
     @Override
-    public final Optional<Type> getLevelMatrixType (final int x, final int y) {
+    public final Optional<Type> getLevelMatrixType(final int x, final int y) {
         switch (this.levelData.get(new Pair<>(x, y))) {
             case Constants.Level.platformBlock:
             case Constants.Level.coloredLadder:

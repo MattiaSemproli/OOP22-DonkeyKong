@@ -1,9 +1,24 @@
 package it.unibo.donkeykong.utilities;
 
+/**
+ * Level enum.
+ */
 public enum CurrentLevel {
+    /**
+     * Level one.
+     */
     ONE,
+    /**
+     * Level two.
+     */
     TWO,
+    /**
+     * Level three.
+     */
     THREE,
+    /**
+     * Level four.
+     */
     FOUR;
 
     private static CurrentLevel level = ONE;

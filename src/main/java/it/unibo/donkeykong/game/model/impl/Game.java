@@ -60,7 +60,7 @@ public class Game implements ViewModel {
                                                   Window.TILES_DEFAULT_SIZE, 
                                                   SCALED_TILES_SIZE, 
                                                   SCALED_TILES_SIZE, Gamestate.PAUSE);
-        this.bufferAnimations();this.bufferAnimations();
+        this.bufferAnimations();
         this.aniPrincessTick = 0;
         this.aniPrincessIndex = 0;
         this.aniMonkeyTick = 0;
@@ -172,10 +172,16 @@ public class Game implements ViewModel {
         return new HashMap<>();
     }
 
+    /**
+     * This method is used by the GameView to get the data of the player to be drawn.
+     * 
+     * @param entity to get the idle.
+     * @return a pair with the animation and the index of the animation.
+     */
     public final Pair<Integer, Integer> getIdle(final Entity entity) {
         if (entity.getEntityType() == Type.PLAYER) {
             final MovementComponent mc = entity.getComponent(MovementComponent.class).get();
-            switch(PlayerIdle.getPlayerIdle()) {
+            switch (PlayerIdle.getPlayerIdle()) {
                 case RUN:
                     return new Pair<>(mc.getFacing() == Direction.LEFT ? Player.leftAni : Player.rightAni,
                                       aniPlayerIndex);
@@ -197,10 +203,10 @@ public class Game implements ViewModel {
         if (entity.getEntityType() == Type.BARREL) {
             return new Pair<>(entity.getComponent(DoubleDamageComponent.class)
                                     .get().getDoubleDamage() ? Barrel.ddBarrelAni : Barrel.barrelAni, 
-                              aniBarrelIndex);    
+                              aniBarrelIndex);
         }
         if (entity.getEntityType() == Type.MONKEY) {
-            if(entity.getComponent(ThrowComponent.class).get().isThrowing()) {
+            if (entity.getComponent(ThrowComponent.class).get().isThrowing()) {
                 return new Pair<>(Monkey.monkeyAni, aniMonkeyIndex);
             } else {
                 return new Pair<>(Monkey.monkeyAni, Monkey.monkeyAni);
@@ -211,6 +217,14 @@ public class Game implements ViewModel {
                           PlayerIdle.getPrincessIdle() == PlayerIdle.STOP ? Princess.princessAni : aniPrincessIndex);
     }
 
+    /**
+     * Get the animation of the entity from row and col.
+     * 
+     * @param type of the entity.
+     * @param row of the animation to get.
+     * @param col of the animation to get.
+     * @return the animation of the entity.
+     */
     public final BufferedImage getEntityAni(final Type type, final int row, final int col) {
         if (type == Type.PLAYER) {
             return this.playerMovementAni[row][col];
@@ -224,6 +238,9 @@ public class Game implements ViewModel {
         return this.princessAni[row][col];
     }
 
+    /**
+     * Update all the indexes of the animations.
+     */
     public final void updateAnimations() {
         this.updatePlayerAnimation();
         this.updateBarrelAnimation();
@@ -231,53 +248,65 @@ public class Game implements ViewModel {
         this.updatePrincessAnimation();
     }
 
+    /**
+     * Update the index of the player animation.
+     */
     private void updatePlayerAnimation() {
         aniPlayerTick++;
-        if(aniPlayerTick >= aniPlayerSpeed){
+        if (aniPlayerTick >= aniPlayerSpeed) {
             aniPlayerTick = 0;
             aniPlayerIndex++;
-            if(aniPlayerIndex >= Player.movementAniSprites){
+            if (aniPlayerIndex >= Player.movementAniSprites) {
                 aniPlayerIndex = 0;
             }
         }
         aniClimbTick++;
-        if(aniClimbTick >= aniClimbSpeed) {
+        if (aniClimbTick >= aniClimbSpeed) {
             aniClimbTick = 0;
             aniClimbIndex++;
-            if(aniClimbIndex >= Player.climbingAniSprites) {
+            if (aniClimbIndex >= Player.climbingAniSprites) {
                 aniClimbIndex = 0;
             }
         }
     }
 
+    /**
+     * Update the index of the barrel animation.
+     */
     private void updateBarrelAnimation() {
         aniBarrelTick++;
-        if(aniBarrelTick >= aniBarrelSpeed){
+        if (aniBarrelTick >= aniBarrelSpeed) {
             aniBarrelTick = 0;
             aniBarrelIndex++;
-            if(aniBarrelIndex >= Barrel.barrelAniSprites){
+            if (aniBarrelIndex >= Barrel.barrelAniSprites) {
                 aniBarrelIndex = 0;
             }
         }
     }
 
+    /**
+     * Update the index of the monkey animation.
+     */
     private void updateMonkeyAnimation() {
         aniMonkeyTick++;
-        if(aniMonkeyTick >= aniMonkeySpeed){
+        if (aniMonkeyTick >= aniMonkeySpeed) {
             aniMonkeyTick = 0;
             aniMonkeyIndex++;
-            if(aniMonkeyIndex >= Monkey.monkeyAniSprites){
+            if (aniMonkeyIndex >= Monkey.monkeyAniSprites) {
                 aniMonkeyIndex = 0;
             }
         }
     }
 
+    /**
+     * Update the index of the princess animation. 
+     */
     private void updatePrincessAnimation() {
         aniPrincessTick++;
-        if(aniPrincessTick >= aniPrincessSpeed){
+        if (aniPrincessTick >= aniPrincessSpeed) {
             aniPrincessTick = 0;
             aniPrincessIndex++;
-            if(aniPrincessIndex >= Princess.princessAniSprites){
+            if (aniPrincessIndex >= Princess.princessAniSprites) {
                 aniPrincessIndex = 0;
             }
         }
