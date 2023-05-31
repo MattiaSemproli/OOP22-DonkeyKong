@@ -1,6 +1,7 @@
 package it.unibo.donkeykong.game.ecs.impl;
 
 import it.unibo.donkeykong.utilities.Type;
+import it.unibo.donkeykong.utilities.Constants.Player;
 
 public class FreezeComponent extends AbstractComponent{
     
@@ -15,7 +16,7 @@ public class FreezeComponent extends AbstractComponent{
     @Override
     public void update() {
         this.timeElapsed++;
-        if (this.freezer && this.timeElapsed > 600) {
+        if (this.freezer && this.timeElapsed > Player.freezeDuration) {
             this.freezer = false;
             this.setMonkeyFreezer(freezer);
         }
