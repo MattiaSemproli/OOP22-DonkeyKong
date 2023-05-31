@@ -8,7 +8,7 @@ public class DoubleDamageComponent extends AbstractComponent {
     private boolean isDoubleDamage;
 
     /**
-     * Constructs a DoubleDamageComponent object.
+     * Constructor.
      */
     public DoubleDamageComponent() {
         this.isDoubleDamage = false;

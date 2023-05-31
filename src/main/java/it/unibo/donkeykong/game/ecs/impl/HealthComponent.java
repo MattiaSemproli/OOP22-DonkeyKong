@@ -10,7 +10,7 @@ public class HealthComponent extends AbstractComponent {
     private int lifes;
 
     /**
-     * Constructs that specified the number of lives.
+     * Constructor.
      * 
      * @param numLifes the initial number of lives for the player.
      */
