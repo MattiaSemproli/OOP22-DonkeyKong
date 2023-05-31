@@ -1,7 +1,7 @@
 package it.unibo.donkeykong.utilities;
 
 /**
- * Enum for every existing type.
+ * Enum representing every existing type.
  */
 public enum Type {
     /**
@@ -9,7 +9,7 @@ public enum Type {
      */
     PLAYER,
     /**
-     * Boss of the level.
+     * Level's boss.
      */
     MONKEY,
     /**
@@ -49,11 +49,11 @@ public enum Type {
      */
     HEART,
     /**
-     * Immortality for few seconds.
+     * Immortality.
      */
     STAR,
     /**
-     * Freeze Donkey Kong for few seconds.
+     * Freeze Donkey Kong.
      */
     SNOWFLAKE,
 }

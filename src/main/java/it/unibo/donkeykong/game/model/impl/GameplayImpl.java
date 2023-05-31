@@ -28,7 +28,7 @@ import it.unibo.donkeykong.utilities.Constants.Princess;
 import it.unibo.donkeykong.utilities.Constants.Window;
 
 /**
- * Gameplay class, manage and initialize entities and map.
+ * Gameplay class, manages and initializes entities and map.
  */
 public class GameplayImpl implements Gameplay {
 
@@ -42,7 +42,7 @@ public class GameplayImpl implements Gameplay {
     /**
      * Constructor.
      * 
-     * @param controller linked GameController
+     * @param controller the linked GameController
      */
     public GameplayImpl(final GameController controller) {
         this.level = new LevelImpl();
