@@ -11,7 +11,7 @@ public class StarComponent extends AbstractComponent {
     private int timeElapsed;
 
     /**
-     * Constructs that represents the invicibility of the player for few seconds.
+     * Constructor.
      */
     public StarComponent() {
         this.isInvincible = false;

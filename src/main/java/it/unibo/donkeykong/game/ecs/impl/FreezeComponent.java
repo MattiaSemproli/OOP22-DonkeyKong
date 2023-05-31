@@ -12,7 +12,7 @@ public class FreezeComponent extends AbstractComponent {
     private int timeElapsed;
 
     /**
-     * Constructs a FreezeComponent object.
+     * Constructor.
      */
     public FreezeComponent() {
         this.freezer = false;

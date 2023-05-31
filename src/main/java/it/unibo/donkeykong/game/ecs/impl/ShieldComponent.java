@@ -8,7 +8,7 @@ public class ShieldComponent extends AbstractComponent {
     private boolean isShielded;
 
     /**
-     * Constructs a ShieldComponent object.
+     * Constructor.
      */
     public ShieldComponent() {
         this.isShielded = false;
