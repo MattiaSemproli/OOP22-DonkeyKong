@@ -242,7 +242,6 @@ public class GameplayImpl implements Gameplay {
         //             if (freeze.isFrozen()) {
         //                 add(Type.SNOWFLAKE);
         //             }
-
         //         });
         // }}; 
     }
