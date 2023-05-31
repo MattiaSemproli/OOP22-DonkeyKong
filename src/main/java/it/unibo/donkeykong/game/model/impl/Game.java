@@ -162,9 +162,12 @@ public class Game implements ViewModel {
 
     @Override
     public final Map<Button, BufferedImage> getButtons() {
-        return new HashMap<>() {{
-            put(settingsPauseButton, getSettingsSources().get(SettingsAssets.roundedSettingsButton));
-        }};
+        final Map<Button, BufferedImage> buttons = new HashMap<>();
+        buttons.put(settingsPauseButton, getSettingsSources().get(SettingsAssets.roundedSettingsButton));
+        return buttons;
+        // return new HashMap<>() {{
+        //     put(settingsPauseButton, getSettingsSources().get(SettingsAssets.roundedSettingsButton));
+        // }};
     }
 
     @Override

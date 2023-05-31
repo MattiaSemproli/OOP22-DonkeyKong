@@ -205,27 +205,46 @@ public class GameplayImpl implements Gameplay {
 
     @Override
     public final List<Type> getActivePowerUps() {
-        return new ArrayList<>() {{
-            getEntities()
-                .stream()
-                .filter(e -> e.getEntityType() == Type.PLAYER)
-                .findFirst()
-                .ifPresent(e -> {
-                    final StarComponent star = e.getComponent(StarComponent.class).get();
-                    final ShieldComponent shield = e.getComponent(ShieldComponent.class).get();
-                    final FreezeComponent freeze = e.getComponent(FreezeComponent.class).get();
-                    if (star.isInvincible()) {
-                        add(Type.STAR);
-                    }
-                    if (shield.isShielded()) {
-                        add(Type.SHIELD);
-                    }
-                    if (freeze.isFrozen()) {
-                        add(Type.SNOWFLAKE);
-                    }
+        final List<Type> activePowerUps = new ArrayList<>();
+        this.entities.stream()
+                     .filter(e -> e.getEntityType() == Type.PLAYER)
+                     .findFirst()
+                     .ifPresent(e -> {
+                        final StarComponent star = e.getComponent(StarComponent.class).get();
+                        final ShieldComponent shield = e.getComponent(ShieldComponent.class).get();
+                        final FreezeComponent freeze = e.getComponent(FreezeComponent.class).get();
+                        if (star.isInvincible()) {
+                            activePowerUps.add(Type.STAR);
+                        }
+                        if (shield.isShielded()) {
+                            activePowerUps.add(Type.SHIELD);
+                        }
+                        if (freeze.isFrozen()) {
+                            activePowerUps.add(Type.SNOWFLAKE);
+                        }
+                     });
+        return activePowerUps;
+        // return new ArrayList<>() {{
+        //     getEntities()
+        //         .stream()
+        //         .filter(e -> e.getEntityType() == Type.PLAYER)
+        //         .findFirst()
+        //         .ifPresent(e -> {
+        //             final StarComponent star = e.getComponent(StarComponent.class).get();
+        //             final ShieldComponent shield = e.getComponent(ShieldComponent.class).get();
+        //             final FreezeComponent freeze = e.getComponent(FreezeComponent.class).get();
+        //             if (star.isInvincible()) {
+        //                 add(Type.STAR);
+        //             }
+        //             if (shield.isShielded()) {
+        //                 add(Type.SHIELD);
+        //             }
+        //             if (freeze.isFrozen()) {
+        //                 add(Type.SNOWFLAKE);
+        //             }
 
-                });
-        }}; 
+        //         });
+        // }}; 
     }
 
     @Override

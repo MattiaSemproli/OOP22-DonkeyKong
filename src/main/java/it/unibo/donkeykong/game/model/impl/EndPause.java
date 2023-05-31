@@ -84,25 +84,37 @@ public class EndPause implements ViewModel, VolumeSettings {
 
     @Override
     public final Map<Button, BufferedImage> getButtons() {
-        return new HashMap<>() {{
-            put(backHome, getSettingsSources().get(SettingsAssets.homeButton));
-            put(backToPlay, getSettingsSources().get(SettingsAssets.backToPlayButton));
-        }};
+        final Map<Button, BufferedImage> buttons = new HashMap<>();
+        buttons.put(backHome, getSettingsSources().get(SettingsAssets.homeButton));
+        buttons.put(backToPlay, getSettingsSources().get(SettingsAssets.backToPlayButton));
+        return buttons;
+        // return new HashMap<>() {{
+        //     put(backHome, getSettingsSources().get(SettingsAssets.homeButton));
+        //     put(backToPlay, getSettingsSources().get(SettingsAssets.backToPlayButton));
+        // }};
     }
 
     @Override
     public final Map<Rectangle, BufferedImage> getAlternativeButtons() {
-        return new HashMap<>() {{
-            put(volumeButtons[SettingsAssets.volOnB], 
-                getSettingsSources().get(SettingsAssets.roundedVolumeOn));
-            put(volumeButtons[SettingsAssets.volOffB], 
-                getSettingsSources().get(SettingsAssets.roundedVolumeOff));
-            put(gameThemesButtons[Audio.getGameSources().get(Audio.gameMusic0)], 
-                //getSettingsSources().get(SettingsAssets.themesButton)
-                ResourceFuncUtilities.loadSources("1"));
-            put(gameThemesButtons[Audio.getGameSources().get(Audio.gameMusic1)], 
-                //getSettingsSources().get(SettingsAssets.themesButton)
-                ResourceFuncUtilities.loadSources("2"));
-        }};
+        final Map<Rectangle, BufferedImage> alternativeButtons = new HashMap<>();
+        alternativeButtons.put(volumeButtons[SettingsAssets.volOnB], 
+                               getSettingsSources().get(SettingsAssets.roundedVolumeOn));
+        alternativeButtons.put(volumeButtons[SettingsAssets.volOffB],
+                               getSettingsSources().get(SettingsAssets.roundedVolumeOff));
+        alternativeButtons.put(gameThemesButtons[Audio.getGameSources().get(Audio.gameMusic0)],
+                               ResourceFuncUtilities.loadSources("1"));
+        alternativeButtons.put(gameThemesButtons[Audio.getGameSources().get(Audio.gameMusic1)],
+                               ResourceFuncUtilities.loadSources("2"));
+        return alternativeButtons;
+        // return new HashMap<>() {{
+        //     put(volumeButtons[SettingsAssets.volOnB], 
+        //         getSettingsSources().get(SettingsAssets.roundedVolumeOn));
+        //     put(volumeButtons[SettingsAssets.volOffB], 
+        //         getSettingsSources().get(SettingsAssets.roundedVolumeOff));
+        //     put(gameThemesButtons[Audio.getGameSources().get(Audio.gameMusic0)],
+        //         ResourceFuncUtilities.loadSources("1"));
+        //     put(gameThemesButtons[Audio.getGameSources().get(Audio.gameMusic1)],
+        //         ResourceFuncUtilities.loadSources("2"));
+        // }};
     }
 }

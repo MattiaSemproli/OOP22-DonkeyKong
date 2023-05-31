@@ -27,7 +27,6 @@ public class CollisionComponent extends AbstractComponent {
     private float x, y;
     private int width, height;
     private Entity entity;
-    private Type eType;
     private Rectangle2D.Float hitbox;
     private Optional<Pair<Float, Float>> nextPosition = Optional.empty();
     private final Random random = new Random();
@@ -36,7 +35,7 @@ public class CollisionComponent extends AbstractComponent {
     public final void update() {
         this.nextPosition = this.getEntity().getNextPosition();
         this.entity = this.getEntity();
-        this.eType = this.getEntity().getEntityType();
+        final Type eType = this.getEntity().getEntityType();
         if (this.nextPosition.isPresent()) {
             this.hitbox.x = nextPosition.get().getX();
             this.hitbox.y = nextPosition.get().getY();
@@ -275,26 +274,27 @@ public class CollisionComponent extends AbstractComponent {
     }
 
     private void checkBarrelInAir() {
-        if (entity.getGameplay().getEntities()
-                                .stream().filter(e -> !this.checkIsNotBlock(e.getEntityType()))
-                                .anyMatch(e -> {
-                                    Rectangle2D.Float e2hitbox = e.getComponent(CollisionComponent.class).get().getHitbox();
-                                    if (hitbox.intersectsLine(new Line2D.Float(e2hitbox.x,
-                                                                               e2hitbox.y,
-                                                                               e2hitbox.x + e2hitbox.width,
-                                                                               e2hitbox.y))
-                                        && hitbox.y + hitbox.height < e2hitbox.y + Barrel.barrelFloorError) {
-                                            this.nextPosition = Optional.of(new Pair<>(this.nextPosition.get().getX(),
-                                                                                       e2hitbox.y - hitbox.height));
-                                            return true;
-                                        }
-                                        return false;
-                                })) {
-                                entity.getComponent(MovementComponent.class).get().resetIsInAir();
-                            }  else {
-                                entity.getComponent(MovementComponent.class).get().setIsInAir(true);
-                                this.barrelChangedDirection = false;
-                            }
+        if (entity.getGameplay()
+                  .getEntities()
+                  .stream().filter(e -> !this.checkIsNotBlock(e.getEntityType()))
+                  .anyMatch(e -> {
+                            final Rectangle2D.Float e2hitbox = e.getComponent(CollisionComponent.class).get().getHitbox();
+                            if (hitbox.intersectsLine(new Line2D.Float(e2hitbox.x,
+                                                                       e2hitbox.y,
+                                                                       e2hitbox.x + e2hitbox.width,
+                                                                       e2hitbox.y))
+                                && hitbox.y + hitbox.height < e2hitbox.y + Barrel.barrelFloorError) {
+                                    this.nextPosition = Optional.of(new Pair<>(this.nextPosition.get().getX(),
+                                                                               e2hitbox.y - hitbox.height));
+                                    return true;
+                                }
+                                return false;
+                        })) {
+                        entity.getComponent(MovementComponent.class).get().resetIsInAir();
+                    }  else {
+                        entity.getComponent(MovementComponent.class).get().setIsInAir(true);
+                        this.barrelChangedDirection = false;
+                    }
     }
 
     private void checkBarrelCollision() {

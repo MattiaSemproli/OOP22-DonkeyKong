@@ -404,6 +404,12 @@ public class Constants {
         public static final int princessWidth = (int) (48 * Window.scala);
         public static final int princessHeight = (int) (66 * Window.scala);
         public static final float velocity = 0.5f * Window.scala;
+        public static final int nextRandomMoveTime = 24;
+        public static final int totalProbability = 10;
+        public static final int sameDirProb = 4;
+        public static final int changeDirProb = 7;
+        public static final int noMoveProb = 9;
+        public static final int noMoveAddictionalTime = 24;
         public static final int spriteWidth = 16;
         public static final int spriteHeight = 22;
         public static final int princessAni = 0;

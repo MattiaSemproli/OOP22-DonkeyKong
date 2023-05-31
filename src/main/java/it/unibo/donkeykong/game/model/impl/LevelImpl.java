@@ -54,19 +54,32 @@ public class LevelImpl implements Level {
     }
 
     private Map<Pair<Integer, Integer>, Integer> createLevel() {
-        return new HashMap<>() {{
-                final BufferedImage img = loadSources("level_" + levelSpriteName + "_data");
-                for (int r = 0; r < img.getHeight(); r++) {
-                    for (int c = 0; c < img.getWidth(); c++) {
-                        final Color color = new Color(img.getRGB(c, r));
-                        int value = color.getRed();
-                        if (value >= levelSpritesLength) {
-                            value = 0;
-                        }
-                        put(new Pair<>(c, r), value);
-                    }
+        final Map<Pair<Integer, Integer>, Integer> level = new HashMap<>();
+        final BufferedImage img = loadSources("level_" + levelSpriteName + "_data");
+        for (int r = 0; r < img.getHeight(); r++) {
+            for (int c = 0; c < img.getWidth(); c++) {
+                final Color color = new Color(img.getRGB(c, r));
+                int value = color.getRed();
+                if (value >= levelSpritesLength) {
+                    value = 0;
                 }
-            }};
+                level.put(new Pair<>(c, r), value);
+            }
+        }
+        return level;
+        // return new HashMap<>() {{
+        //         final BufferedImage img = loadSources("level_" + levelSpriteName + "_data");
+        //         for (int r = 0; r < img.getHeight(); r++) {
+        //             for (int c = 0; c < img.getWidth(); c++) {
+        //                 final Color color = new Color(img.getRGB(c, r));
+        //                 int value = color.getRed();
+        //                 if (value >= levelSpritesLength) {
+        //                     value = 0;
+        //                 }
+        //                 put(new Pair<>(c, r), value);
+        //             }
+        //         }
+        //     }};
     }
 
     private void importLevelSprites() {

@@ -76,13 +76,20 @@ public class LevelsMenu implements ViewModel {
 
     @Override
     public final Map<Button, BufferedImage> getButtons() {
-        return new HashMap<>() {{
-            put(backHome, getSettingsSources().get(SettingsAssets.homeButton));
-            put(levelOneButton, getLevelSources().get(levelOneSource).getX());
-            put(levelTwoButton, getLevelSources().get(levelTwoSource).getX());
-            put(levelThreeButton, getLevelSources().get(levelThreeSource).getX());
-            put(levelFourButton, getLevelSources().get(levelFourSource).getX());
-        }};
+        final Map<Button, BufferedImage> buttons = new HashMap<>();
+        buttons.put(this.backHome, getSettingsSources().get(SettingsAssets.homeButton));
+        buttons.put(this.levelOneButton, getLevelSources().get(levelOneSource).getX());
+        buttons.put(this.levelTwoButton, getLevelSources().get(levelTwoSource).getX());
+        buttons.put(this.levelThreeButton, getLevelSources().get(levelThreeSource).getX());
+        buttons.put(this.levelFourButton, getLevelSources().get(levelFourSource).getX());
+        return buttons;
+        // return new HashMap<>() {{
+        //     put(backHome, getSettingsSources().get(SettingsAssets.homeButton));
+        //     put(levelOneButton, getLevelSources().get(levelOneSource).getX());
+        //     put(levelTwoButton, getLevelSources().get(levelTwoSource).getX());
+        //     put(levelThreeButton, getLevelSources().get(levelThreeSource).getX());
+        //     put(levelFourButton, getLevelSources().get(levelFourSource).getX());
+        // }};
     }
 
     @Override

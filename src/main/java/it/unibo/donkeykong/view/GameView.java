@@ -92,7 +92,7 @@ public class GameView implements GameEngine {
     }
 
     private BufferedImage getSprite(final Entity entity) {
-        Pair<Integer, Integer> anim = this.gameController.getIdleFromModel(entity);
+        final Pair<Integer, Integer> anim = this.gameController.getIdleFromModel(entity);
         return this.gameController.getAnimationFromModel(entity.getEntityType(), anim.getX(), anim.getY());
     }
 
@@ -103,7 +103,7 @@ public class GameView implements GameEngine {
             .filter(e -> e.getEntityType() == Type.PLAYER)
             .findFirst()
             .ifPresent(e -> {
-                int lives = e.getComponent(HealthComponent.class).get().getLifes();
+                final int lives = e.getComponent(HealthComponent.class).get().getLifes();
                 IntStream.range(0, lives).forEach(i -> {
                  g.drawImage(PowerupAssets.getPowerupSources().get(PowerupAssets.life),
                              Window.GAME_WIDTH - Window.SCALED_TILES_SIZE * (Player.numLifes + i) + PowerupAssets.lifePadding,
@@ -133,15 +133,15 @@ public class GameView implements GameEngine {
     }
 
     private void drawActivePowerUps(final Graphics g) {
-        List<Type> activePowerUps = this.gameController.getListOfActivePowerUps();
+        final List<Type> activePowerUps = this.gameController.getListOfActivePowerUps();
                 IntStream.range(0, activePowerUps.size()).forEach(i -> {
                     g.drawImage(PowerupAssets.getPowerupSources().get(PowerupAssets.emptyBorder), 
-                                (i * Window.SCALED_TILES_SIZE) + PowerupAssets.powerupBorderPadding,
+                                i * Window.SCALED_TILES_SIZE + PowerupAssets.powerupBorderPadding,
                                 PowerupAssets.powerupBorderPadding, 
                                 PowerupAssets.powerupBorderDimension, 
                                 PowerupAssets.powerupBorderDimension, null);
                     g.drawImage(getPowerUpSprite(activePowerUps.get(i)),
-                                (i * Window.SCALED_TILES_SIZE) + PowerupAssets.powerupBorderPadding 
+                                i * Window.SCALED_TILES_SIZE + PowerupAssets.powerupBorderPadding 
                                                                + PowerupAssets.powerupActivePadding,
                                 PowerupAssets.powerupBorderPadding + PowerupAssets.powerupActivePadding, 
                                 PowerupAssets.powerupActiveDimension, 

@@ -56,12 +56,18 @@ public class MainMenu implements ViewModel {
 
     @Override
     public final Map<Button, BufferedImage> getButtons() {
-        return new HashMap<>() {{
-            put(funcButtons[MenuAssets.playB], getMenuSources().get(MenuAssets.playButton));
-            put(funcButtons[MenuAssets.levelsB], getMenuSources().get(MenuAssets.levelsButton));
-            put(utilityButtons[MenuAssets.settingsB], getMenuSources().get(MenuAssets.settingsButton));
-            put(utilityButtons[MenuAssets.quitB], getMenuSources().get(MenuAssets.quitButton));
-        }};
+        final Map<Button, BufferedImage> buttons = new HashMap<>();
+        buttons.put(funcButtons[MenuAssets.playB], getMenuSources().get(MenuAssets.playButton));
+        buttons.put(funcButtons[MenuAssets.levelsB], getMenuSources().get(MenuAssets.levelsButton));
+        buttons.put(utilityButtons[MenuAssets.settingsB], getMenuSources().get(MenuAssets.settingsButton));
+        buttons.put(utilityButtons[MenuAssets.quitB], getMenuSources().get(MenuAssets.quitButton));
+        return buttons;
+        // return new HashMap<>() {{
+        //     put(funcButtons[MenuAssets.playB], getMenuSources().get(MenuAssets.playButton));
+        //     put(funcButtons[MenuAssets.levelsB], getMenuSources().get(MenuAssets.levelsButton));
+        //     put(utilityButtons[MenuAssets.settingsB], getMenuSources().get(MenuAssets.settingsButton));
+        //     put(utilityButtons[MenuAssets.quitB], getMenuSources().get(MenuAssets.quitButton));
+        // }};
     }
 
     @Override

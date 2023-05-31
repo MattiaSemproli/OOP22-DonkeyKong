@@ -66,8 +66,8 @@ public final class EndPauseView implements GameEngine {
                 final Font font = new Font("Arial", Font.BOLD, MenuAssets.fontSize);
                 g.setColor(Color.WHITE);
                 g.setFont(font);
-                String txt = "Time: " + String.valueOf(this.endPauseController.getSecondsFromGameController());
-                int textWidth = g.getFontMetrics(font).stringWidth(txt);
+                final String txt = "Time: " + this.endPauseController.getSecondsFromGameController();
+                final int textWidth = g.getFontMetrics(font).stringWidth(txt);
                 g.drawString(txt,
                              menuX + (MenuAssets.menuTextureBox - textWidth) / 2,
                              menuY + MenuAssets.menuTextureBox / 2);

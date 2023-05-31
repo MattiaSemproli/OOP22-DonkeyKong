@@ -9,6 +9,7 @@ import it.unibo.donkeykong.utilities.Pair;
 import it.unibo.donkeykong.utilities.PlayerIdle;
 import it.unibo.donkeykong.utilities.Type;
 import it.unibo.donkeykong.utilities.Constants.Physics;
+import it.unibo.donkeykong.utilities.Constants.Princess;
 
 /**
  * This class handles movement of an entity in a game.
@@ -72,24 +73,25 @@ public class MovementComponent extends AbstractComponent {
                 this.getEntity().saveNextPosition(Optional.of(this.movePos));
             }
         } else if (this.getEntity().getEntityType() == Type.PRINCESS) {
-            if (timeElapsed > 24) {
+            final MovementComponent mc = this.getEntity().getComponent(MovementComponent.class).get();
+            if (timeElapsed > Princess.nextRandomMoveTime) {
                 isPrincessWalking = true;
                 PlayerIdle.setPrincessIdle(PlayerIdle.RUN);
                 timeElapsed = 0;
-                final int randomInt = random.nextInt(10);
-                if (randomInt < 4) {
-                    this.moveEntity(this.getEntity().getComponent(MovementComponent.class).get().getFacing());
-                } else if (randomInt < 7) {
-                    this.moveEntity(this.getEntity().getComponent(MovementComponent.class).get().getFacing().getOppositeDirection());
-                } else if (randomInt < 9) {
+                final int randomInt = random.nextInt(Princess.totalProbability);
+                if (randomInt < Princess.sameDirProb) {
+                    this.moveEntity(mc.getFacing());
+                } else if (randomInt < Princess.changeDirProb) {
+                    this.moveEntity(mc.getFacing().getOppositeDirection());
+                } else if (randomInt < Princess.noMoveProb) {
                     movePos = new Pair<>(0f, 0f);
                     isPrincessWalking = false;
-                    timeElapsed = -24;
+                    timeElapsed = -Princess.noMoveAddictionalTime;
                     PlayerIdle.setPrincessIdle(PlayerIdle.STOP);
                 }
             } else {
                 if (isPrincessWalking) {
-                    this.moveEntity(this.getEntity().getComponent(MovementComponent.class).get().getFacing());
+                    this.moveEntity(mc.getFacing());
                 }
             }
             this.getEntity().saveNextPosition(this.movePos.equals(new Pair<>(0f, 0f)) ? Optional.empty() 
@@ -203,7 +205,7 @@ public class MovementComponent extends AbstractComponent {
      */
     public final void setIsInAir(final boolean isInAir) {
         this.inAir = isInAir;
-        if(isInAir) {
+        if (isInAir) {
             this.canUseLadder = false;
             this.onLadder = false;
             this.onFloor = false;
@@ -239,6 +241,8 @@ public class MovementComponent extends AbstractComponent {
 
     /**
      * Reset entity status in air equals false.
+     * 
+     * @param canUseLadder true if can use ladder.
      */
     public final void setCanUseLadder(final boolean canUseLadder) {
         this.canUseLadder = canUseLadder;
@@ -247,7 +251,7 @@ public class MovementComponent extends AbstractComponent {
     /**
      * Check if entity is on ladder.
      * 
-     * @return
+     * @return true if is on ladder.
      */
     public final boolean isOnLadder() {
         return this.onLadder;
