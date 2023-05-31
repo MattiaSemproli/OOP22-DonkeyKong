@@ -6,31 +6,39 @@ import it.unibo.donkeykong.utilities.Gamestate;
 import it.unibo.donkeykong.utilities.Pair;
 
 /**
- * This interface models a button.
+ * Button interface, models a button.
  */
 public interface Button {
     /**
-     * @return a rectangle created with the button top left corner and the button bottom right corner.
+     * Get the button corners.
+     * 
+     * @return a rectangle created with the top left corner and the bottom right corner.
      */
     Rectangle getCorners();
 
     /**
-     * Set the game state.
+     * Set game state.
      */
     void applyGamestate();
 
     /**
-     * @return a pair of x pos, y pos.
+     * Get button position.
+     * 
+     * @return a pair of x, y pos.
      */
     Pair<Integer, Integer> getButtonPos();
 
     /**
+     * Get button dimension.
+     * 
      * @return a pair of width, height.
      */
     Pair<Integer, Integer> getButtonDim();
 
     /**
-     * @return the Gamestate of the button.
+     * Get button game state.
+     * 
+     * @return the button's game state.
      */
     Gamestate getButtonGamestate();
 }

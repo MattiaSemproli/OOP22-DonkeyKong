@@ -5,17 +5,21 @@ import java.awt.image.BufferedImage;
 import java.util.Map;
 
 /**
- * View model.
+ * ViewModel interface, models button functions for view.
  */
 public interface ViewModel {
 
     /**
-     * @return all the buttons.
+     * Get all the buttons to be displayed.
+     * 
+     * @return a map of buttons and images.
      */
     Map<Button, BufferedImage> getButtons();
 
     /**
-     * @return a map containing all the rectangles used as buttons (key) and their images (value).
+     * Get all the alternative buttons to be displayed.
+     * 
+     * @return a map of rectangles used as buttons and images.
      */
     Map<Rectangle, BufferedImage> getAlternativeButtons();
 

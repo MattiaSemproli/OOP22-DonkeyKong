@@ -8,14 +8,14 @@ import it.unibo.donkeykong.utilities.Pair;
 import it.unibo.donkeykong.utilities.Type;
 
 /**
- * This interface manages levels.
+ * Level interface, models a level.
  */
 public interface Level {
 
     /**
      * Get the level data.
      * 
-     * @return a map of the level data.
+     * @return a level data's map.
      */
     Map<Pair<Integer, Integer>, Integer> getLevelData();
 

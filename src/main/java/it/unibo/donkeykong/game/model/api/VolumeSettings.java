@@ -4,22 +4,22 @@ import java.awt.event.MouseEvent;
 import java.util.Optional;
 
 /**
- * Model for the volume settings.
+ * VolumeSettings interface, models audio functions.
  */
 public interface VolumeSettings {
 
     /**
-     * Method to mute or unmute the game musics.
+     * Mute or unmute game volume.
      * 
-     * @param e the mouse event to check if is pressing mute, unmute or no button.
+     * @param e the mouse event to be checked.
      * @return true if pressed mute game, false if pressed sound game, empty if no button pressed.
      */
     Optional<Boolean> mute(MouseEvent e);
 
     /**
-     * Method to set the theme of the game or the menu.
+     * Set game or menu theme
      * 
-     * @param e the mouse event to check if is pressing button 1 or 2, then set its theme.
+     * @param e the mouse event to check which theme button is pressed.
      */
     void setTheme(MouseEvent e);
 
