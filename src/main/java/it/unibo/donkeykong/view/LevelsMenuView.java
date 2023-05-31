@@ -12,15 +12,16 @@ import it.unibo.donkeykong.utilities.Constants.MenuAssets;
 import it.unibo.donkeykong.utilities.Constants.Window;
 
 /**
- * Levels menu view.
+ * levels menu view, manages levels menu graphics.
  */
 public class LevelsMenuView implements GameEngine {
 
     private final LevelsMenuController levelsMenuController;
 
     /**
+     * Constructor.
      * 
-     * @param levelsMenuController set the controller to this view.
+     * @param levelsMenuController the linked controller.
      */
     public LevelsMenuView(final LevelsMenuController levelsMenuController) {
         this.levelsMenuController = levelsMenuController;

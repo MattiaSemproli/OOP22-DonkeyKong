@@ -1,7 +1,7 @@
 package it.unibo.donkeykong.utilities;
 
 /**
- * Level enum.
+ * Enum representing levels.
  */
 public enum CurrentLevel {
     /**
@@ -24,6 +24,8 @@ public enum CurrentLevel {
     private static CurrentLevel level = ONE;
 
     /**
+     * Get the current level.
+     * 
      * @return the current level.
      */
     public static CurrentLevel getCurrentLevel() {
@@ -31,7 +33,9 @@ public enum CurrentLevel {
     }
 
     /**
-     * @param lvl set the current level.
+     * Set the current level.
+     * 
+     * @param lvl the new level.
      */
     public static void setCurrentLevel(final CurrentLevel lvl) {
         level = lvl;

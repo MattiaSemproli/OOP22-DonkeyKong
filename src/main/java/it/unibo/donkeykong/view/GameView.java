@@ -19,15 +19,16 @@ import it.unibo.donkeykong.utilities.Pair;
 import it.unibo.donkeykong.utilities.Type;
 
 /**
- * Game view.
+ * Game view, manages game graphics.
  */
 public class GameView implements GameEngine {
 
     private final GameController gameController;
 
     /**
+     * Constructor.
      * 
-     * @param gameController set the controller to this view.
+     * @param gameController the linked controller.
      */
     public GameView(final GameController gameController) {
         this.gameController = gameController;

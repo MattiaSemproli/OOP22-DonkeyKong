@@ -1,7 +1,7 @@
 package it.unibo.donkeykong.utilities;
 
 /**
- * Player idle enum.
+ * Enum representing player idles.
  */
 public enum PlayerIdle {
     /**
@@ -33,28 +33,36 @@ public enum PlayerIdle {
     private static PlayerIdle princessIdle = STOP;
 
     /**
-     * @return the currently state of the player.
+     * Get the current idle of the player.
+     * 
+     * @return the current idle of the player.
      */
     public static PlayerIdle getPlayerIdle() {
         return playerIdle;
     }
 
     /**
-     * @param idle set the current idle of the player.
+     * Set new idle of the player.
+     * 
+     * @param idle the new player's idle.
      */
     public static void setPlayerIdle(final PlayerIdle idle) {
         playerIdle = idle;
     }
 
     /**
-     * @return the currently state of the princess.
+     * Get the current idle of the princess.
+     * 
+     * @return the current idle of the princess.
      */
     public static PlayerIdle getPrincessIdle() {
         return princessIdle;
     }
 
     /**
-     * @param idle set the current idle of the princess.
+     * Set new idle of the princess.
+     * 
+     * @param idle the new princess's idle.
      */
     public static void setPrincessIdle(final PlayerIdle idle) {
         princessIdle = idle;

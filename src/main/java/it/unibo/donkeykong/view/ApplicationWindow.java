@@ -17,10 +17,10 @@ public class ApplicationWindow {
      * elements.
      * The settings below configure the appearance and behavior of the window.
      * 
-     * @param dkPanel The panel containing the content to be displayed in the
-     * @param dkApp The application linked.
+     * @param dkPanel the panel containing the content to be displayed in the window.
+     * @param application the linked application.
      */
-    public ApplicationWindow(final ApplicationPanel dkPanel, final Application dkApp) {
+    public ApplicationWindow(final ApplicationPanel dkPanel, final Application application) {
         final JFrame jframe = new JFrame();
         jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jframe.add(dkPanel);
@@ -39,7 +39,7 @@ public class ApplicationWindow {
 
             @Override
             public void windowLostFocus(final WindowEvent e) {
-                dkApp.windowFocusLost();
+                application.windowFocusLost();
             }
 
         });
