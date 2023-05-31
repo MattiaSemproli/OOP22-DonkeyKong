@@ -21,7 +21,7 @@ import it.unibo.donkeykong.utilities.Gamestate;
 import it.unibo.donkeykong.utilities.ResourceFuncUtilities;
 
 /**
- * Pause game model.
+ * Endgame or pause model, manages endgame or pause graphics.
  */
 public class EndPause implements ViewModel, VolumeSettings {
 

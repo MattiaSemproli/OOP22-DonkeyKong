@@ -21,7 +21,7 @@ import it.unibo.donkeykong.utilities.CurrentLevel;
 import it.unibo.donkeykong.utilities.Gamestate;
 
 /**
- * Levels menu model.
+ * Levels menu model, manages levels menu logics.
  */
 public class LevelsMenu implements ViewModel {
 
@@ -60,7 +60,7 @@ public class LevelsMenu implements ViewModel {
     /**
      * Check which button is pressed.
      * 
-     * @param b button to check for setting the level.
+     * @param b the button to check for setting the level.
      */
     public final void setLevelToPlay(final Button b) {
         if (b.equals(this.levelOneButton)) {

@@ -22,7 +22,7 @@ import static it.unibo.donkeykong.utilities.Constants.Level.levelThree;
 import static it.unibo.donkeykong.utilities.Constants.Level.levelFour;
 
 /**
- * This class manages a new level.
+ * Level class, manages a level.
  */
 public class LevelImpl implements Level {
 

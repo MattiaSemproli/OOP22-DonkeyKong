@@ -7,7 +7,7 @@ import it.unibo.donkeykong.utilities.Gamestate;
 import it.unibo.donkeykong.utilities.Pair;
 
 /**
- * Button implementation.
+ * Button class, manages a button.
  */
 public class ButtonImpl implements Button {
 
@@ -17,11 +17,11 @@ public class ButtonImpl implements Button {
     /**
      * Constructor.
      * 
-     * @param x      x pos of the button.
-     * @param y      y pos of the button.
-     * @param width  width of the button.
-     * @param height height of the button.
-     * @param state  state of the button.
+     * @param x the x pos of button.
+     * @param y the y pos of button.
+     * @param width the width of button.
+     * @param height the height of button.
+     * @param state the game state of button.
      */
     public ButtonImpl(final int x, final int y, final int width, final int height, final Gamestate state) {
         this.x = x;

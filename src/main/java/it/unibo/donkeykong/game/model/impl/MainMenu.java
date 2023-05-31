@@ -17,7 +17,7 @@ import it.unibo.donkeykong.utilities.Constants.MenuAssets;
 import it.unibo.donkeykong.utilities.Gamestate;
 
 /**
- * Main menu model.
+ * Main menu model, manages main menu logics.
  */
 public class MainMenu implements ViewModel {
 

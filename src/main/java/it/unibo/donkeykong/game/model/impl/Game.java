@@ -33,7 +33,7 @@ import it.unibo.donkeykong.utilities.PlayerIdle;
 import it.unibo.donkeykong.utilities.Type;
 
 /**
- * Game model (model of gameview like buttons etc...).
+ * Game model, manages game logics.
  */
 public class Game implements ViewModel {
 
@@ -73,18 +73,6 @@ public class Game implements ViewModel {
         this.aniClimbIndex = 0;
     }
 
-    /**
-     * Load all the animations.
-     * 
-     * PlayerMovementAni contains run and jump animation for the player, row 0 and 1 are for run, 2 and 3 for jump.
-     * First one of each is the left facing.
-     * 
-     * MonkeyAni contains the animation for the monkey
-     * 
-     * BarrelAni contains the animation for the barrel, first row is for normal barrel, second row for double damage barrel.
-     *
-     * PrincessAni contains the animation for the princess.
-     */
     private void bufferAnimations() {
         for (int r = 0; r < Player.numMovementAni - 1; r++) {
             for (int c = 0; c < Player.movementAniSprites; c++) {
@@ -152,34 +140,19 @@ public class Game implements ViewModel {
     }
 
     /**
-     * This method is used by the GameView to get the data of the level to be drawn.
+     * Get level's data to be drawn.
      * 
-     * @return a map containing the data of the level to be drawn.
+     * @return a level's data map.
      */
     public Map<Rectangle, BufferedImage> getDataLevel() {
         return new HashMap<>(this.dataLevel);
     }
 
-    @Override
-    public final Map<Button, BufferedImage> getButtons() {
-        final Map<Button, BufferedImage> buttons = new HashMap<>();
-        buttons.put(settingsPauseButton, getSettingsSources().get(SettingsAssets.roundedSettingsButton));
-        return buttons;
-        // return new HashMap<>() {{
-        //     put(settingsPauseButton, getSettingsSources().get(SettingsAssets.roundedSettingsButton));
-        // }};
-    }
-
-    @Override
-    public final Map<Rectangle, BufferedImage> getAlternativeButtons() {
-        return new HashMap<>();
-    }
-
     /**
-     * This method is used by the GameView to get the data of the player to be drawn.
+     * Get player's data to be drawn.
      * 
-     * @param entity to get the idle.
-     * @return a pair with the animation and the index of the animation.
+     * @param entity the entity.
+     * @return a pair of animation and animation's index.
      */
     public final Pair<Integer, Integer> getIdle(final Entity entity) {
         if (entity.getEntityType() == Type.PLAYER) {
@@ -221,12 +194,12 @@ public class Game implements ViewModel {
     }
 
     /**
-     * Get the animation of the entity from row and col.
+     * Get entity's animation from row and col.
      * 
-     * @param type of the entity.
-     * @param row of the animation to get.
-     * @param col of the animation to get.
-     * @return the animation of the entity.
+     * @param type the entity's type.
+     * @param row animation's col to get.
+     * @param col animation's row to get.
+     * @return entity's animation sprite.
      */
     public final BufferedImage getEntityAni(final Type type, final int row, final int col) {
         if (type == Type.PLAYER) {
@@ -242,7 +215,7 @@ public class Game implements ViewModel {
     }
 
     /**
-     * Update all the indexes of the animations.
+     * Update all the animations' indexes.
      */
     public final void updateAnimations() {
         this.updatePlayerAnimation();
@@ -252,7 +225,7 @@ public class Game implements ViewModel {
     }
 
     /**
-     * Update the index of the player animation.
+     * Update player animations' index.
      */
     private void updatePlayerAnimation() {
         aniPlayerTick++;
@@ -274,7 +247,7 @@ public class Game implements ViewModel {
     }
 
     /**
-     * Update the index of the barrel animation.
+     * Update barrel animations' index.
      */
     private void updateBarrelAnimation() {
         aniBarrelTick++;
@@ -288,7 +261,7 @@ public class Game implements ViewModel {
     }
 
     /**
-     * Update the index of the monkey animation.
+     * Update monkey animations' index.
      */
     private void updateMonkeyAnimation() {
         aniMonkeyTick++;
@@ -302,7 +275,7 @@ public class Game implements ViewModel {
     }
 
     /**
-     * Update the index of the princess animation. 
+     * Update princess animations' index.
      */
     private void updatePrincessAnimation() {
         aniPrincessTick++;
@@ -313,5 +286,20 @@ public class Game implements ViewModel {
                 aniPrincessIndex = 0;
             }
         }
+    }
+
+    @Override
+    public final Map<Button, BufferedImage> getButtons() {
+        final Map<Button, BufferedImage> buttons = new HashMap<>();
+        buttons.put(settingsPauseButton, getSettingsSources().get(SettingsAssets.roundedSettingsButton));
+        return buttons;
+        // return new HashMap<>() {{
+        //     put(settingsPauseButton, getSettingsSources().get(SettingsAssets.roundedSettingsButton));
+        // }};
+    }
+
+    @Override
+    public final Map<Rectangle, BufferedImage> getAlternativeButtons() {
+        return new HashMap<>();
     }
 }

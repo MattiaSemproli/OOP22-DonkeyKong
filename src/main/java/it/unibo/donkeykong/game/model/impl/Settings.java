@@ -20,7 +20,7 @@ import it.unibo.donkeykong.utilities.Gamestate;
 import it.unibo.donkeykong.utilities.ResourceFuncUtilities;
 
 /** 
- * Settings model. 
+ * Settings model, manages settings logics.
  */
 public class Settings implements ViewModel, VolumeSettings {
 
