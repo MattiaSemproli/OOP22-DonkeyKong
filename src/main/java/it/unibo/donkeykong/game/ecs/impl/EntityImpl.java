@@ -16,7 +16,7 @@ import it.unibo.donkeykong.utilities.Pair;
 import it.unibo.donkeykong.utilities.Type;
 
 /**
- * Entity implementation.
+ * Entity class, manages a entity.
  */
 public class EntityImpl implements Entity {
 
@@ -31,9 +31,9 @@ public class EntityImpl implements Entity {
     /**
      * Constructor.
      * 
-     * @param type type of the entity.
-     * @param pos position of the entity.
-     * @param gameplay gameplay where entity is placed.
+     * @param type the entity's type.
+     * @param pos the entity's position.
+     * @param gameplay the entity's linked gameplay.
      */
     @SuppressFBWarnings(value = "EI_EXPOSE_REP2", justification = "We need the original object")
     public EntityImpl(final Type type, final Pair<Float, Float> pos, final Gameplay gameplay) {

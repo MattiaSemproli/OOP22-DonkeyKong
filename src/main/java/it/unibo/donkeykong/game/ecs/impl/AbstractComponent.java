@@ -4,21 +4,25 @@ import it.unibo.donkeykong.game.ecs.api.Component;
 import it.unibo.donkeykong.game.ecs.api.Entity;
 
 /**
- * Defines the relationship between component and related entity.
+ * AbstractComponent class, manages a component and interaction with entity.
  */
 public abstract class AbstractComponent implements Component {
 
     private Entity entity;
 
     /**
-     * @return entity related to the component.
+     * Get the entity related to the component.
+     * 
+     * @return the entity.
      */
     protected Entity getEntity() {
         return this.entity;
     }
 
     /**
-     * @param entity entity to set to the component.
+     * Set a entity to the component.
+     * 
+     * @param entity the entity.
      */
     protected void setEntity(final Entity entity) {
         this.entity = entity;

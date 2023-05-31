@@ -9,79 +9,99 @@ import it.unibo.donkeykong.utilities.Pair;
 import it.unibo.donkeykong.utilities.Type;
 
 /**
- * This interface models the structure of an entity.
+ * Entity interface, models an entity.
  */
 public interface Entity {
 
     /**
-     * @return list of related components
+     * Get all entity's components.
+     * 
+     * @return a list of related components.
      */
     Set<Component> getAllComponents();
 
     /**
-     * @param <E>            type of the component requested
-     * @param classComponent class of the requested component
-     * @return an optional with requested component, an empty if not present
+     * Get an entity's component if present.
+     * 
+     * @param <E> the requested component's type.
+     * @param classComponent the requested component's class.
+     * @return an optional with requested component if present.
      */
     <E extends Component> Optional<E> getComponent(Class<E> classComponent);
 
     /**
-     * @param component to add to an entity
-     * @return the entity with the added component
+     * Add a component to an entity.
+     * 
+     * @param component the component.
+     * @return the entity with the added component.
      */
     Entity addComponent(AbstractComponent component);
 
     /**
-     * @return the position of the entity
+     * Get entity's position.
+     * 
+     * @return the entity's position.
      */
     Pair<Float, Float> getPosition();
 
     /**
-     * Save the next pos where the entity will be.
+     * Save the next position where the entity will be.
      * 
-     * @param position next position to be saved for collision check.
+     * @param position the next position.
      */
     void saveNextPosition(Optional<Pair<Float, Float>> position);
 
     /**
-     * Return the next position of the entity.
+     * Return entity's next position.
      * 
-     * @return an optional with the next position, an empty if not present.
+     * @return an optional with the next position if present.
      */
     Optional<Pair<Float, Float>> getNextPosition();
 
     /**
-     * @param position of the entity to be set
+     * Set entity's position.
+     * 
+     * @param position the new position.
      */
     void setPosition(Pair<Float, Float> position);
 
     /**
-     * @return the entity's type
+     * Get the entity's type.
+     * 
+     * @return the entity's type.
      */
     Type getEntityType();
 
     /**
-     * @return the gameplay where the entity is
+     * Get linked gameplay.
+     * 
+     * @return the gameplay where the entity is placed.
      */
     Gameplay getGameplay();
 
     /**
-     * @return the entity's width
+     * Get entity's width.
+     * 
+     * @return the entity's width.
      */
     int getWidth();
 
     /**
-     * @return the entity's height
+     * Get entity's height.
+     * 
+     * @return the entity's height.
      */
     int getHeight();
 
     /**
-     * @return the entity's speed
+     * Get entity's speed.
+     * 
+     * @return the entity's speed.
      */
     float getSpeed();
 
     /**
-     * Modify entity speed.
+     * Modify entity's speed.
      * 
      * @param speedModifier the speed modifier.
      */
