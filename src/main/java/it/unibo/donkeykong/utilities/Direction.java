@@ -1,23 +1,23 @@
 package it.unibo.donkeykong.utilities;
 
 /**
- * Direction enum.
+ * Enum representing directions.
  */
 public enum Direction {
     /**
-     * left direction.
+     * Left direction.
      */
     LEFT(-1, 0), 
     /**
-     * right direction.
+     * Right direction.
      */
     RIGHT(1, 0),
     /**
-     * up direction on ladder.
+     * Up direction on ladder.
      */
     UP(0, -1),
     /**
-     * down direction on ladder.
+     * Down direction on ladder.
      */
     DOWN(0, 1);
 
@@ -34,14 +34,14 @@ public enum Direction {
     }
 
     /**
-     * @return x
+     * @return x.
      */
     public int getX() {
         return this.x;
     }
 
     /**
-     * @return y
+     * @return y.
      */
     public int getY() {
         return this.y;
@@ -49,7 +49,8 @@ public enum Direction {
 
     /**
      * Method that return the opposite direction.
-     * @return left is the actual direction is right and vice versa 
+     * 
+     * @return left if the actual direction is right and vice versa.
     */
     public Direction getOppositeDirection() {
         return this == LEFT ? RIGHT : LEFT;

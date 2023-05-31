@@ -15,7 +15,7 @@ public interface GameEngine {
     /**
      * Drawing method.
      * 
-     * @param g graphic linked to GameEngine.
+     * @param g the linked graphic.
      */
     void draw(Graphics g);
 

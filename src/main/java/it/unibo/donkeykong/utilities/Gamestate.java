@@ -1,7 +1,7 @@
 package it.unibo.donkeykong.utilities;
 
 /**
- * Enum representing the state of the game.
+ * Enum representing states of game.
  */
 public enum Gamestate {
     /**
@@ -29,7 +29,7 @@ public enum Gamestate {
      */
     WIN,
     /**
-     * Currently in you died (death = lose) view.
+     * Currently in you death (death = lose) view.
      */
     DEATH, 
     /**
@@ -40,17 +40,20 @@ public enum Gamestate {
     private static Gamestate gamestate = MENU;
 
     /**
-     * @return the currently state of the game
+     * Get current Gamestate.
+     * 
+     * @return the current state of the game.
      */
     public static Gamestate getGamestate() {
         return gamestate;
     }
 
     /**
-     * @param gs set the state of the game
+     * Set new Gamestate.
+     * 
+     * @param gs the new Gamestate.
      */
     public static void setGamestate(final Gamestate gs) {
         gamestate = gs;
     }
-
 }

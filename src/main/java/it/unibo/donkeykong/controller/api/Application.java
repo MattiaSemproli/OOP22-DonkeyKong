@@ -7,7 +7,7 @@ import it.unibo.donkeykong.controller.impl.EndPauseController;
 import it.unibo.donkeykong.controller.impl.SettingsController;
 
 /**
- * Application class, models controllers management.
+ * Application interface, models controllers management.
  */
 public interface Application {
 
@@ -19,7 +19,7 @@ public interface Application {
     /**
      * Get GameEngine.
      * 
-     * @return linked GameEngine.
+     * @return the linked GameEngine.
      */
     GameEngine getGameEngine();
 
@@ -36,35 +36,35 @@ public interface Application {
     /**
      * Get MainMenuController.
      * 
-     * @return linked MainMenuController.
+     * @return the linked MainMenuController.
      */
     MainMenuController getMainMenuController();
 
     /**
      * Get SettingsController.
      * 
-     * @return linked SettingsController.
+     * @return the linked SettingsController.
      */
     SettingsController getSettingsController();
 
     /**
      * Get GameController.
      * 
-     * @return linked GameController.
+     * @return the linked GameController.
      */
     GameController getGameController();
 
     /**
      * Get PauseController.
      * 
-     * @return linked PauseController.
+     * @return the linked PauseController.
      */
     EndPauseController getEndPauseController();
 
     /**
      * Get LevelsMenuController.
      * 
-     * @return linked LevelsMenuController.
+     * @return the linked LevelsMenuController.
      */
     LevelsMenuController getLevelsMenuController();
 

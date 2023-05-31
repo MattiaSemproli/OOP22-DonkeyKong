@@ -8,7 +8,7 @@ public class SlowComponent extends AbstractComponent {
     private boolean giveSlow;
 
     /**
-     * 
+     * Constructor.
      */
     public SlowComponent() {
         this.giveSlow = false;
