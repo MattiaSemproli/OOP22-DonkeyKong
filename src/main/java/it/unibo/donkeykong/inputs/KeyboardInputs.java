@@ -7,16 +7,16 @@ import it.unibo.donkeykong.controller.api.Application;
 import it.unibo.donkeykong.utilities.Gamestate;
 
 /**
- * KeyboardInputsImpl class.
+ * KeyboardInputs class, manages keyboard's inputs.
  */
 public final class KeyboardInputs implements KeyListener {
 
     private final Application dkApp;
 
     /**
-     * KeyboardInputsImpl constructor.
+     * Constructor.
      * 
-     * @param dkApp Panel of application.
+     * @param dkApp the linked application.
      */
     public KeyboardInputs(final Application dkApp) {
         this.dkApp = dkApp;

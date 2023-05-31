@@ -7,16 +7,16 @@ import it.unibo.donkeykong.controller.api.Application;
 import it.unibo.donkeykong.utilities.Gamestate;
 
 /**
- * MouseInputsImpl class.
+ * MouseInputs class, manages mouse's inputs.
  */
 public final class MouseInputs implements MouseListener {
 
     private final Application dkApp;
 
     /**
-     * MouseInputsImpl constructor.
+     * Constructor.
      * 
-     * @param dkApp Panel of application.
+     * @param dkApp the linked application.
      */
     public MouseInputs(final Application dkApp) {
         this.dkApp = dkApp;
