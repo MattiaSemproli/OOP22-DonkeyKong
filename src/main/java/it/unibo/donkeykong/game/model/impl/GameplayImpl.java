@@ -28,7 +28,7 @@ import it.unibo.donkeykong.utilities.Constants.Princess;
 import it.unibo.donkeykong.utilities.Constants.Window;
 
 /**
- * Gameplay class, manages and initializes entities and map.
+ * Gameplay class, manages a gameplay
  */
 public class GameplayImpl implements Gameplay {
 
