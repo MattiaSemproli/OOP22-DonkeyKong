@@ -42,7 +42,7 @@ public class EntityFactoryImpl implements EntityFactory {
                    .addComponent(new InputsComponent())
                    .addComponent(new MovementComponent())
                    .addComponent(new CollisionComponent(position.getX(), position.getY(), Type.PLAYER))
-                   .addComponent(new HealthComponent(Player.numLifes))
+                   .addComponent(new HealthComponent(Player.numLives))
                    .addComponent(new StarComponent())
                    .addComponent(new ShieldComponent())
                    .addComponent(new FreezeComponent());

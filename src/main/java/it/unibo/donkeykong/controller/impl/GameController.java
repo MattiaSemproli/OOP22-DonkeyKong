@@ -80,7 +80,7 @@ public class GameController implements GameEngine, MouseListener, KeyListener, G
         return this.gameplay.getEntities()
                             .stream()
                             .filter(e -> e.getEntityType() == Type.PLAYER)
-                            .findFirst().get().getComponent(HealthComponent.class).get().getLifes() > 0;
+                            .findFirst().get().getComponent(HealthComponent.class).get().getLives() > 0;
     }
 
     @Override

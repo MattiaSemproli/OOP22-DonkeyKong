@@ -1,17 +1,17 @@
 package it.unibo.donkeykong.game.ecs.impl;
 
 /**
- * 
+ * Slow component, manages a slow barrel's power up.
  */
 public class SlowComponent extends AbstractComponent {
 
-    private boolean giveSlow;
+    private boolean slow;
 
     /**
      * Constructor.
      */
     public SlowComponent() {
-        this.giveSlow = false;
+        this.slow = false;
     }
 
     @Override
@@ -19,18 +19,20 @@ public class SlowComponent extends AbstractComponent {
     }
 
     /**
+     * Get if a barrel slows.
      * 
-     * @return giveSlow 
+     * @return true if is a slow barrel. 
      */
-    public final boolean getIfSlow() {
-        return this.giveSlow;
+    public final boolean isSlow() {
+        return this.slow;
     }
 
     /**
+     * Set if a barrel slows.
      * 
-     * @param giveSlow 
+     * @param giveSlow the new slow's state.
      */
-    public final void setIfSlow(final boolean giveSlow) {
-        this.giveSlow = giveSlow;
+    public final void setSlow(final boolean giveSlow) {
+        this.slow = giveSlow;
     }
 }

@@ -342,7 +342,7 @@ public class Constants {
         public static final int ladderErrorPercentage = 40;
         public static final float canLadderError = playerDimension * ladderErrorPercentage / 100;
         public static final float velocity = 2f * Window.scala;
-        public static final int numLifes = 3;
+        public static final int numLives = 3;
         public static final int damageTaken = -1;
         public static final int doubleDamage = 2 * damageTaken;
         public static final int extraLife = 1;

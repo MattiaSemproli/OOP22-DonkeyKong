@@ -1,7 +1,7 @@
 package it.unibo.donkeykong.game.ecs.impl;
 
 /**
- * Component that represents the double damage effect of barrels.
+ * DoubleDamage component, manages a double damage barrel's power up.
  */
 public class DoubleDamageComponent extends AbstractComponent {
 
@@ -19,18 +19,18 @@ public class DoubleDamageComponent extends AbstractComponent {
     }
 
     /**
-     * Checks if the double damage effect is currently active.
+     * Check if is a double damage barrel.
      * 
-     * @return true if the double damage effect is active, false otherwise.
+     * @return true if is a double damage barrel.
      */
     public final boolean getDoubleDamage() {
         return this.isDoubleDamage;
     }
 
     /**
-     * Sets the state of the double damage effect.
+     * Set barrel double damage's state.
      * 
-     * @param isDoubleDamage true to activate the double damage effect, false to disable it.
+     * @param isDoubleDamage the new double damage's state.
      */
     public final void setDoubleDamage(final boolean isDoubleDamage) {
         this.isDoubleDamage = isDoubleDamage;

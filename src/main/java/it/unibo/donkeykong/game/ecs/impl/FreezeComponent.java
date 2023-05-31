@@ -4,7 +4,7 @@ import it.unibo.donkeykong.utilities.Type;
 import it.unibo.donkeykong.utilities.Constants.Player;
 
 /**
- * Component that represents the freeze effect.
+ * Freeze component, manages a freeze power up.
  */
 public class FreezeComponent extends AbstractComponent {
 
@@ -29,18 +29,18 @@ public class FreezeComponent extends AbstractComponent {
     }
 
     /**
-     * Checks if the freeze effect is currently active.
+     * Checks if freeze effect is active.
      * 
-     * @return true if the freeze effect is active, false otherwise.
+     * @return true if is active.
      */
     public final boolean isFrozen() {
         return this.freezer;
     }
 
     /**
-     * Sets the state of the freeze effect.
+     * Set new freeze's state.
      * 
-     * @param freezer true to activate the freeze effect, false to disable it.
+     * @param freezer the new freeze's state.
      */
     public final void setFrozen(final boolean freezer) {
         this.freezer = freezer;
@@ -51,9 +51,9 @@ public class FreezeComponent extends AbstractComponent {
     }
 
     /**
-     * Sets the freeze state of the monkey entity.
+     * Set freeze state to monkey.
      * 
-     * @param freezer true to freeze the monkey entity, false to unfreeze it.
+     * @param freezer the freeze's state.
      */
     private void setMonkeyFreezer(final boolean freezer) {
         this.getEntity()

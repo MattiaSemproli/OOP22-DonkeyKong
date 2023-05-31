@@ -104,17 +104,17 @@ public class GameView implements GameEngine {
             .filter(e -> e.getEntityType() == Type.PLAYER)
             .findFirst()
             .ifPresent(e -> {
-                final int lives = e.getComponent(HealthComponent.class).get().getLifes();
+                final int lives = e.getComponent(HealthComponent.class).get().getLives();
                 IntStream.range(0, lives).forEach(i -> {
                  g.drawImage(PowerupAssets.getPowerupSources().get(PowerupAssets.life),
-                             Window.GAME_WIDTH - Window.SCALED_TILES_SIZE * (Player.numLifes + i) + PowerupAssets.lifePadding,
+                             Window.GAME_WIDTH - Window.SCALED_TILES_SIZE * (Player.numLives + i) + PowerupAssets.lifePadding,
                              PowerupAssets.lifePadding,
                              PowerupAssets.lifeDimension, 
                              PowerupAssets.lifeDimension, null);
                 });
-                IntStream.range(lives, Player.numLifes).forEach(i -> {
+                IntStream.range(lives, Player.numLives).forEach(i -> {
                 g.drawImage(PowerupAssets.getPowerupSources().get(PowerupAssets.noLife),
-                             Window.GAME_WIDTH - Window.SCALED_TILES_SIZE * (Player.numLifes + i) + PowerupAssets.lifePadding,
+                             Window.GAME_WIDTH - Window.SCALED_TILES_SIZE * (Player.numLives + i) + PowerupAssets.lifePadding,
                              PowerupAssets.lifePadding,
                              PowerupAssets.lifeDimension, 
                              PowerupAssets.lifeDimension, null);

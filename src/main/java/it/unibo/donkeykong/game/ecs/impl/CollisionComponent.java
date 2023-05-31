@@ -19,7 +19,7 @@ import it.unibo.donkeykong.utilities.Pair;
 import it.unibo.donkeykong.utilities.Type;
 
 /**
- * Collision Component, manage collisions between objects.
+ * Collision component, manages collisions between objects.
  */
 public class CollisionComponent extends AbstractComponent {
 
@@ -63,9 +63,9 @@ public class CollisionComponent extends AbstractComponent {
     /**
      * Constructor.
      * 
-     * @param x initial x-position of entity
-     * @param y initial y-position of entity
-     * @param type linked entity type
+     * @param x the initial entity's x-position.
+     * @param y the initial entity's y-position.
+     * @param type the entity's type.
      */
     public CollisionComponent(final float x, final float y, final Type type) {
         this.x = x;
@@ -75,9 +75,9 @@ public class CollisionComponent extends AbstractComponent {
     }
 
     /**
-     * Get the hitbox.
+     * Get entity's hitbox.
      * 
-     * @return defensive copy of the hitbox.
+     * @return a defensive copy of the hitbox.
      */
     public final Rectangle2D.Float getHitbox() {
         return new Rectangle2D.Float(this.hitbox.x, this.hitbox.y, this.hitbox.width, this.hitbox.height);
@@ -105,8 +105,8 @@ public class CollisionComponent extends AbstractComponent {
             }).forEach(eBlock -> {
                 this.nextPosition = Optional.of(new Pair<>(this.nextPosition.get().getX(),
                                                            eBlock.getPosition().getY() - hitbox.height));
-                mc.resetIsInAir();
-                mc.setIsOnLadder(false);
+                mc.resetInAir();
+                mc.setOnLadder(false);
             });
         }
     }
@@ -125,7 +125,7 @@ public class CollisionComponent extends AbstractComponent {
                       .filter(e -> e.getEntityType() == Type.LADDER
                                    && hitbox.intersects(e.getComponent(CollisionComponent.class).get().getHitbox()))
                       .findAny().ifPresentOrElse(e -> {
-                            mc.setIsOnLadder(true);
+                            mc.setOnLadder(true);
                             this.nextPosition = Optional.of(new Pair<>(e.getPosition().getX() - Level.ladderPadding,
                                                                        this.nextPosition.get().getY()));
                             },
@@ -136,7 +136,7 @@ public class CollisionComponent extends AbstractComponent {
                                                       && hitbox.intersects(e.getComponent(CollisionComponent.class)
                                                                             .get().getHitbox()))
                                          .findAny().isEmpty()) {
-                                   mc.setIsInAir(true);
+                                   mc.setInAir(true);
                                }
                             });
             }
@@ -177,13 +177,13 @@ public class CollisionComponent extends AbstractComponent {
                         return false;
                   })) {
                 if (mc.isOnFloor()) {
-                    mc.resetIsInAir();
+                    mc.resetInAir();
                 }
             } else {
                 if (!mc.isOnLadder()) {
-                    mc.setIsInAir(true);
+                    mc.setInAir(true);
                 }
-                mc.setIsOnFloor(false);
+                mc.setOnFloor(false);
             }
     }
 
@@ -267,9 +267,9 @@ public class CollisionComponent extends AbstractComponent {
                 entity.setPosition(new Pair<>(Player.levelFourStartingPlayerX, Player.levelFourStartingPlayerY));
                 break;
         }
-        mc.resetIsInAir();
+        mc.resetInAir();
         mc.setCanUseLadder(false);
-        mc.setIsOnLadder(false);
+        mc.setOnLadder(false);
         entity.getGameplay().removeAllBarrels();
     }
 
@@ -290,9 +290,9 @@ public class CollisionComponent extends AbstractComponent {
                                 }
                                 return false;
                         })) {
-                        entity.getComponent(MovementComponent.class).get().resetIsInAir();
+                        entity.getComponent(MovementComponent.class).get().resetInAir();
                     }  else {
-                        entity.getComponent(MovementComponent.class).get().setIsInAir(true);
+                        entity.getComponent(MovementComponent.class).get().setInAir(true);
                         this.barrelChangedDirection = false;
                     }
     }

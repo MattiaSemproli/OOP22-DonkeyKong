@@ -3,7 +3,7 @@ package it.unibo.donkeykong.game.ecs.impl;
 import it.unibo.donkeykong.utilities.Constants.Player;
 
 /**
- * Component that represents the star power up.
+ * Star component, manages a star power up.
  */
 public class StarComponent extends AbstractComponent {
 
@@ -27,18 +27,18 @@ public class StarComponent extends AbstractComponent {
     }
 
     /**
-     * Checks if the player is currently invincible.
+     * Checks if the player is invincible.
      * 
-     * @return true if the player is invincible, false otherwise.
+     * @return true if the player is invincible.
      */
     public final boolean isInvincible() {
         return this.isInvincible;
     }
 
     /**
-     * Sets the invincibility state of the player.
+     * Set new invincibility state.
      * 
-     * @param isInvincible true to make the player invincible, false to remove invincibility.
+     * @param isInvincible the invincibility state.
      */
     public final void setInvincible(final boolean isInvincible) {
         this.isInvincible = isInvincible;

@@ -6,7 +6,7 @@ import java.util.Optional;
 import it.unibo.donkeykong.utilities.Direction;
 
 /**
- * Component that handles game inputs. 
+ * Inputs component, manages inputs handling. 
  */
 public class InputsComponent extends AbstractComponent {
 

@@ -3,19 +3,19 @@ package it.unibo.donkeykong.game.ecs.impl;
 import it.unibo.donkeykong.utilities.Constants.Player;
 
 /**
- * Component that represents the lives of the player.
+ * Health component, manages player's health.
  */
 public class HealthComponent extends AbstractComponent {
 
-    private int lifes;
+    private int lives;
 
     /**
      * Constructor.
      * 
-     * @param numLifes the initial number of lives for the player.
+     * @param numLives the initial player's number of lives.
      */
-    public HealthComponent(final int numLifes) {
-        this.lifes = numLifes;
+    public HealthComponent(final int numLives) {
+        this.lives = numLives;
     }
 
     @Override
@@ -23,21 +23,21 @@ public class HealthComponent extends AbstractComponent {
     }
 
     /**
-     * Gets the current number of lives for the player.
+     * Get player's current lives.
      * 
      * @return the current number of lives.
      */
-    public final int getLifes() {
-        return this.lifes;
+    public final int getLives() {
+        return this.lives;
     }
 
     /**
-     * Sets the number of lives for the player.
+     * Set player's lives.
      * 
-     * @param lifes the new number of lives for the player.
+     * @param lives the new player's number of lives.
      */
-    public final void setLifes(final int lifes) {
-        this.lifes = this.lifes + lifes > Player.numLifes ? this.lifes : this.lifes + lifes;
-        this.lifes = this.lifes < 0 ? 0 : this.lifes;
+    public final void setLifes(final int lives) {
+        this.lives = this.lives + lives > Player.numLives ? this.lives : this.lives + lives;
+        this.lives = this.lives < 0 ? 0 : this.lives;
     }
 }

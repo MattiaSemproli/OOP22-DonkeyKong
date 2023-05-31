@@ -12,7 +12,7 @@ import it.unibo.donkeykong.utilities.Constants.Physics;
 import it.unibo.donkeykong.utilities.Constants.Princess;
 
 /**
- * This class handles movement of an entity in a game.
+ * Movement component, manages an entity's movement.
  */
 public class MovementComponent extends AbstractComponent {
 
@@ -23,7 +23,7 @@ public class MovementComponent extends AbstractComponent {
     private boolean inAir;
     private boolean movingInAir;
     private int timeElapsed;
-    private boolean isPrincessWalking = true;
+    private boolean isPrincessWalking;
     private final Random random = new Random();
     private boolean onLadder;
     private boolean onFloor;
@@ -38,8 +38,9 @@ public class MovementComponent extends AbstractComponent {
         this.barrelChangesCounter = 0;
         this.inAir = false;
         this.movingInAir = false;
-        this.onFloor = true;
+        this.isPrincessWalking = false;
         this.onLadder = false;
+        this.onFloor = true;
         this.canUseLadder = false;
     }
 
@@ -103,7 +104,7 @@ public class MovementComponent extends AbstractComponent {
     /**
      * Moves the entity in the specified direction.
      * 
-     * @param direction the direction in which to move the entity
+     * @param direction the direction.
      */
     public final void moveEntity(final Direction direction) {
         if (!this.onLadder) {
@@ -116,7 +117,7 @@ public class MovementComponent extends AbstractComponent {
     /**
      * Moves the entity on the ladder.
      * 
-     * @param direction the direction in which to move the entity
+     * @param direction the direction.
      */
     public final void moveEntityOnLadder(final Direction direction) {
         if (this.canUseLadder) {
@@ -128,11 +129,11 @@ public class MovementComponent extends AbstractComponent {
     }
 
     /**
-     * Set the entity to jump.
+     * Entity executes a jump.
      */
     public final void jump() {
         if (!this.inAir && !this.onLadder) {
-            this.setIsInAir(true);
+            this.setInAir(true);
             this.airSpeed = Physics.jumpSpeed;
         }
     }
@@ -165,25 +166,25 @@ public class MovementComponent extends AbstractComponent {
     }
 
     /**
-     * Get the number of times the barrel has changed direction.
+     * Get barrel's number of direction changes.
      * 
-     * @return numeber of direction changes.
+     * @return the number of direction changes.
      */
     public final int getBarrelChangesCounter() {
         return barrelChangesCounter;
     }
 
     /**
-     * This method retrieves the current facing direction of the entity.
+     * Get entity's facing direction.
      * 
-     * @return the direction in which the entity is currently facing
+     * @return the facing direction.
      */
     public final Direction getFacing() {
         return this.direction;
     }
 
     /**
-     * Change entity direction.
+     * Change entity's direction.
      */
     public final void changeDirection() {
         this.direction = direction.getOppositeDirection();
@@ -202,9 +203,9 @@ public class MovementComponent extends AbstractComponent {
     /**
      * Set if entity is in the air.
      * 
-     * @param isInAir set as new entity status.
+     * @param isInAir the new entity's in air status.
      */
-    public final void setIsInAir(final boolean isInAir) {
+    public final void setInAir(final boolean isInAir) {
         this.inAir = isInAir;
         if (isInAir) {
             this.canUseLadder = false;
@@ -214,9 +215,9 @@ public class MovementComponent extends AbstractComponent {
     }
 
     /**
-     * Reset entity status in air equals false.
+     * Reset entity's in air status to false.
      */
-    public final void resetIsInAir() {
+    public final void resetInAir() {
         this.inAir = false;
         this.airSpeed = 0f;
         this.onFloor = true;
@@ -232,7 +233,16 @@ public class MovementComponent extends AbstractComponent {
     }
 
     /**
-     * Reset entity status in air equals false.
+     * Set if entity is on floor.
+     * 
+     * @param onFloor the new entity's on floor status.
+     */
+    public final void setOnFloor(final boolean onFloor) {
+        this.onFloor = onFloor;
+    }
+
+    /**
+     * Check if entity can use ladder.
      * 
      * @return true if can use ladder.
      */
@@ -241,9 +251,9 @@ public class MovementComponent extends AbstractComponent {
     }
 
     /**
-     * Reset entity status in air equals false.
+     * Set if entity can use ladder.
      * 
-     * @param canUseLadder true if can use ladder.
+     * @param canUseLadder the new entity's can use ladder status.
      */
     public final void setCanUseLadder(final boolean canUseLadder) {
         this.canUseLadder = canUseLadder;
@@ -259,20 +269,11 @@ public class MovementComponent extends AbstractComponent {
     }
 
     /**
-     * Set if entity is on floor.
-     * 
-     * @param onFloor set as new entity status.
-     */
-    public final void setIsOnFloor(final boolean onFloor) {
-        this.onFloor = onFloor;
-    }
-
-    /**
      * Set if entity is on ladder.
      * 
-     * @param onLadder set as new entity status.
+     * @param onLadder the new entity's on ladder status.
      */
-    public final void setIsOnLadder(final boolean onLadder) {
+    public final void setOnLadder(final boolean onLadder) {
         this.onLadder = onLadder;
         if (onLadder) {
             this.onFloor = false;
