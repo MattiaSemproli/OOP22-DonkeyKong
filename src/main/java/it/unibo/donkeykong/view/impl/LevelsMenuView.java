@@ -28,11 +28,12 @@ import it.unibo.donkeykong.utilities.CurrentLevel;
 import it.unibo.donkeykong.utilities.Gamestate;
 import it.unibo.donkeykong.utilities.Pair;
 import it.unibo.donkeykong.view.api.Button;
+import it.unibo.donkeykong.view.api.View;
 
 /**
  * levels menu view, manages levels menu graphics.
  */
-public class LevelsMenuView implements GameEngine {
+public class LevelsMenuView implements GameEngine, View {
 
     private final LevelsMenuController levelsMenuController;
 
@@ -48,9 +49,9 @@ public class LevelsMenuView implements GameEngine {
         this.levelsMenuController = levelsMenuController;
 
         this.backHome = new ButtonImpl(MenuAssets.rightMenuBorder - SettingsAssets.homeButtonRightDistance, 
-                               MenuAssets.bottomMenuBorder - SettingsAssets.homeButtonBottomDistance, 
-                               SettingsAssets.squareButtonSize, 
-                               SettingsAssets.squareButtonSize, Gamestate.MENU);
+                                       MenuAssets.bottomMenuBorder - SettingsAssets.homeButtonBottomDistance, 
+                                       SettingsAssets.squareButtonSize, 
+                                       SettingsAssets.squareButtonSize, Gamestate.MENU);
         this.levelOneButton = new ButtonImpl(LevelAssets.leftLevelButtonX, 
                                              LevelAssets.topLevelbuttonY, 
                                              LevelAssets.levelButtonWidth, 
@@ -89,12 +90,13 @@ public class LevelsMenuView implements GameEngine {
                                                     b.getButtonDim().getY(), null));
     }
 
+    @Override
     public void mousePressed(final Pair<Integer, Integer> point) {
         this.buttons.keySet().forEach(b -> {
             if (b.getCorners().contains(new Point(point.getX(), point.getY()))) {
                 if (b.getButtonGamestate().equals(Gamestate.PLAYING)) {
                             AudioUtilities.playSoundtrack(Audio.gameMusic0);
-                            this.setLevelToPlay(b);
+                            this.levelToBePlayed(b);
                             this.levelsMenuController.startGameController();
                         }
                 this.levelsMenuController.applyGamestate(b.getButtonGamestate());
@@ -102,15 +104,15 @@ public class LevelsMenuView implements GameEngine {
         });
     }
 
-    private void setLevelToPlay(final Button b) {
+    private void levelToBePlayed(final Button b) {
         if (b.equals(this.levelOneButton)) {
-            this.levelsMenuController.setLevel(CurrentLevel.ONE);
+            this.levelsMenuController.handleChoosenLevel(CurrentLevel.ONE);
         } else if (b.equals(this.levelTwoButton)) {
-            this.levelsMenuController.setLevel(CurrentLevel.TWO);
+            this.levelsMenuController.handleChoosenLevel(CurrentLevel.TWO);
         } else if (b.equals(this.levelThreeButton)) {
-            this.levelsMenuController.setLevel(CurrentLevel.THREE);
+            this.levelsMenuController.handleChoosenLevel(CurrentLevel.THREE);
         } else if (b.equals(this.levelFourButton)) {
-            this.levelsMenuController.setLevel(CurrentLevel.FOUR);
+            this.levelsMenuController.handleChoosenLevel(CurrentLevel.FOUR);
         }
     }
 

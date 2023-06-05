@@ -9,6 +9,7 @@ import it.unibo.donkeykong.controller.api.GameEngine;
 import it.unibo.donkeykong.game.model.impl.LevelsMenu;
 import it.unibo.donkeykong.utilities.CurrentLevel;
 import it.unibo.donkeykong.utilities.Gamestate;
+import it.unibo.donkeykong.view.api.View;
 import it.unibo.donkeykong.view.impl.LevelsMenuView;
 
 /**
@@ -39,7 +40,7 @@ public class LevelsMenuController implements MouseListener, GameEngine {
         this.levelsMenuView.draw(g);
     }
 
-    public void setLevel(final CurrentLevel level) {
+    public void handleChoosenLevel(final CurrentLevel level) {
         this.levelsMenu.setLevel(level);
     }
 

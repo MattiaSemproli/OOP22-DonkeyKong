@@ -20,7 +20,6 @@ import it.unibo.donkeykong.utilities.Constants.Audio;
 import it.unibo.donkeykong.utilities.Constants.MenuAssets;
 import it.unibo.donkeykong.utilities.Constants.Window;
 import it.unibo.donkeykong.utilities.AudioUtilities;
-import it.unibo.donkeykong.utilities.CurrentLevel;
 import it.unibo.donkeykong.utilities.Gamestate;
 import it.unibo.donkeykong.utilities.Pair;
 import it.unibo.donkeykong.view.api.Button;
