@@ -21,7 +21,7 @@ public class MainMenuController implements Controller {
      * 
      * @param application the application.
      */
-    public MainMenuController(final ApplicationImpl application) {
+    public MainMenuController(final Application application) {
         this.application = application;
         this.menuView = new MainMenuView(this);
         this.menu = new MainMenu();

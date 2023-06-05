@@ -21,7 +21,7 @@ public class EndPauseController implements Controller {
      * 
      * @param application the application.
      */
-    public EndPauseController(final ApplicationImpl application) {
+    public EndPauseController(final Application application) {
         this.application = application;
         this.endPauseView = new EndPauseView(this);
         this.endPause = new EndPause();
