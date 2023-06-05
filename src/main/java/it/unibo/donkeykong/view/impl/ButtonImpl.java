@@ -1,10 +1,10 @@
-package it.unibo.donkeykong.game.model.impl;
+package it.unibo.donkeykong.view.impl;
 
 import java.awt.Rectangle;
 
-import it.unibo.donkeykong.game.model.api.Button;
 import it.unibo.donkeykong.utilities.Gamestate;
 import it.unibo.donkeykong.utilities.Pair;
+import it.unibo.donkeykong.view.api.Button;
 
 /**
  * Button class, manages a button.
@@ -34,11 +34,6 @@ public class ButtonImpl implements Button {
     @Override
     public final Rectangle getCorners() {
         return new Rectangle(this.x, this.y, this.width, this.height);
-    }
-
-    @Override
-    public final void applyGamestate() {
-        Gamestate.setGamestate(state);
     }
 
     @Override

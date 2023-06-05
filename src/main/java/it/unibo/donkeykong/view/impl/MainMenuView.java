@@ -1,17 +1,29 @@
-package it.unibo.donkeykong.view;
+package it.unibo.donkeykong.view.impl;
 
 import static it.unibo.donkeykong.utilities.Constants.MenuAssets.getMenuSources;
 import static it.unibo.donkeykong.utilities.Constants.MenuAssets.menuX;
 import static it.unibo.donkeykong.utilities.Constants.MenuAssets.menuY;
+import static it.unibo.donkeykong.utilities.Constants.MenuAssets.rightMenuBorder;
+import static it.unibo.donkeykong.utilities.Constants.MenuAssets.utilityButtonRightBorderDistanceX;
 
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Point;
+import java.awt.image.BufferedImage;
+import java.util.HashMap;
+import java.util.Map;
 
 import it.unibo.donkeykong.controller.api.GameEngine;
 import it.unibo.donkeykong.controller.impl.MainMenuController;
+import it.unibo.donkeykong.utilities.Constants.Audio;
 import it.unibo.donkeykong.utilities.Constants.MenuAssets;
 import it.unibo.donkeykong.utilities.Constants.Window;
+import it.unibo.donkeykong.utilities.AudioUtilities;
+import it.unibo.donkeykong.utilities.CurrentLevel;
+import it.unibo.donkeykong.utilities.Gamestate;
+import it.unibo.donkeykong.utilities.Pair;
+import it.unibo.donkeykong.view.api.Button;
 
 /**
  * Main menu view, manages main menu graphics.
@@ -19,6 +31,10 @@ import it.unibo.donkeykong.utilities.Constants.Window;
 public class MainMenuView implements GameEngine {
 
     private final MainMenuController menuController;
+    
+    private final Button[] funcButtons = new Button[MenuAssets.numFunctionButtons];
+    private final Button[] utilityButtons = new Button[MenuAssets.numUtilityButtons];
+    private Map<Button, BufferedImage> buttons = new HashMap<>();
 
     /**
      * Constructor.
@@ -27,6 +43,28 @@ public class MainMenuView implements GameEngine {
      */
     public MainMenuView(final MainMenuController menuController) {
         this.menuController = menuController;
+
+        this.funcButtons[MenuAssets.playB] = new ButtonImpl(MenuAssets.funcButtonX,
+                                                            menuY + MenuAssets.funcButtonsDistance,
+                                                            MenuAssets.buttonWidth, 
+                                                            MenuAssets.buttonHeight, Gamestate.PLAYING);
+        this.funcButtons[MenuAssets.levelsB] = new ButtonImpl(MenuAssets.funcButtonX,
+                                                              menuY + MenuAssets.funcButtonsDistance + MenuAssets.buttonHeight,
+                                                              MenuAssets.buttonWidth, 
+                                                              MenuAssets.buttonHeight, Gamestate.CHOSING_LEVELS);
+        this.utilityButtons[MenuAssets.settingsB] = new ButtonImpl(menuX + MenuAssets.utilityButtonLeftBorderDistanceX,
+                                                                   MenuAssets.utilityButtonY,
+                                                                   MenuAssets.buttonWidth, 
+                                                                   MenuAssets.buttonHeight, Gamestate.SETTINGS);
+        this.utilityButtons[MenuAssets.quitB] = new ButtonImpl(rightMenuBorder - utilityButtonRightBorderDistanceX,
+                                                               MenuAssets.utilityButtonY,
+                                                               MenuAssets.buttonWidth, 
+                                                               MenuAssets.buttonHeight, Gamestate.EXIT);
+
+        this.buttons.put(this.funcButtons[MenuAssets.playB], getMenuSources().get(MenuAssets.playButton));
+        this.buttons.put(this.funcButtons[MenuAssets.levelsB], getMenuSources().get(MenuAssets.levelsButton));
+        this.buttons.put(this.utilityButtons[MenuAssets.settingsB], getMenuSources().get(MenuAssets.settingsButton));
+        this.buttons.put(this.utilityButtons[MenuAssets.quitB], getMenuSources().get(MenuAssets.quitButton));
     }
 
     @Override
@@ -37,14 +75,26 @@ public class MainMenuView implements GameEngine {
     public final void draw(final Graphics g) {
         this.drawBackgroundAssets(g);
         this.drawLegend(g);
-        this.menuController.getButtonsFromModel()
-                           .forEach((b, i) -> g.drawImage(i, 
-                                                      b.getButtonPos().getX(), 
-                                                      b.getButtonPos().getY(),
-                                                      b.getButtonDim().getX(),
-                                                      b.getButtonDim().getY(), null));
+        this.buttons.forEach((b, bi) -> g.drawImage(bi, 
+                                                    b.getButtonPos().getX(), 
+                                                    b.getButtonPos().getY(),
+                                                    b.getButtonDim().getX(),
+                                                    b.getButtonDim().getY(), null));
     }
 
+    public void mousePressed(final Pair<Integer, Integer> point) {
+        this.buttons.keySet().forEach(b -> {
+            if (b.getCorners().contains(new Point(point.getX(), point.getY()))) {
+                if (b.getButtonGamestate().equals(Gamestate.PLAYING)) {
+                    AudioUtilities.playSoundtrack(Audio.gameMusic0);
+                    this.menuController.startLevel();
+                    this.menuController.startGameController();
+                }
+                this.menuController.applyGamestate(b.getButtonGamestate());
+            }
+        });
+    }
+    
     private void drawBackgroundAssets(final Graphics g) {
         g.drawImage(getMenuSources().get(MenuAssets.menuBackground), 
                     0, 

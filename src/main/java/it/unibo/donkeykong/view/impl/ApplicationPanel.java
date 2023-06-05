@@ -1,4 +1,4 @@
-package it.unibo.donkeykong.view;
+package it.unibo.donkeykong.view.impl;
 
 import static it.unibo.donkeykong.utilities.Constants.Window.GAME_HEIGHT;
 import static it.unibo.donkeykong.utilities.Constants.Window.GAME_WIDTH;

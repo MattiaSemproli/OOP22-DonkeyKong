@@ -1,4 +1,4 @@
-package it.unibo.donkeykong.game.model.api;
+package it.unibo.donkeykong.view.api;
 
 import java.awt.Rectangle;
 
@@ -15,11 +15,6 @@ public interface Button {
      * @return a rectangle created with the top left corner and the bottom right corner.
      */
     Rectangle getCorners();
-
-    /**
-     * Set game state.
-     */
-    void applyGamestate();
 
     /**
      * Get button position.

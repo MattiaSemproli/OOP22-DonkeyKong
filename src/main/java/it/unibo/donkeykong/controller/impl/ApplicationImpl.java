@@ -4,8 +4,8 @@ import it.unibo.donkeykong.controller.api.Application;
 import it.unibo.donkeykong.controller.api.GameEngine;
 import it.unibo.donkeykong.utilities.AudioUtilities;
 import it.unibo.donkeykong.utilities.Constants;
-import it.unibo.donkeykong.view.ApplicationPanel;
-import it.unibo.donkeykong.view.ApplicationWindow;
+import it.unibo.donkeykong.view.impl.ApplicationPanel;
+import it.unibo.donkeykong.view.impl.ApplicationWindow;
 
 /**
  * ApplicationImpl class, manage controllers.

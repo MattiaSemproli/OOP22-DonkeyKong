@@ -1,7 +1,6 @@
 package it.unibo.donkeykong.game.model.impl;
 
 import static it.unibo.donkeykong.utilities.Constants.Barrel.aniBarrelSpeed;
-import static it.unibo.donkeykong.utilities.Constants.MenuAssets.SettingsAssets.getSettingsSources;
 import static it.unibo.donkeykong.utilities.Constants.Monkey.aniMonkeySpeed;
 import static it.unibo.donkeykong.utilities.Constants.Player.aniClimbSpeed;
 import static it.unibo.donkeykong.utilities.Constants.Player.aniPlayerSpeed;
@@ -17,17 +16,13 @@ import it.unibo.donkeykong.game.ecs.api.Entity;
 import it.unibo.donkeykong.game.ecs.impl.DoubleDamageComponent;
 import it.unibo.donkeykong.game.ecs.impl.MovementComponent;
 import it.unibo.donkeykong.game.ecs.impl.ThrowComponent;
-import it.unibo.donkeykong.game.model.api.Button;
 import it.unibo.donkeykong.game.model.api.Level;
-import it.unibo.donkeykong.game.model.api.ViewModel;
 import it.unibo.donkeykong.utilities.Constants.Barrel;
-import it.unibo.donkeykong.utilities.Constants.MenuAssets.SettingsAssets;
 import it.unibo.donkeykong.utilities.Constants.Monkey;
 import it.unibo.donkeykong.utilities.Constants.Player;
 import it.unibo.donkeykong.utilities.Constants.Princess;
 import it.unibo.donkeykong.utilities.Constants.Window;
 import it.unibo.donkeykong.utilities.Direction;
-import it.unibo.donkeykong.utilities.Gamestate;
 import it.unibo.donkeykong.utilities.Pair;
 import it.unibo.donkeykong.utilities.PlayerIdle;
 import it.unibo.donkeykong.utilities.Type;
@@ -35,11 +30,10 @@ import it.unibo.donkeykong.utilities.Type;
 /**
  * Game model, manages game logics.
  */
-public class Game implements ViewModel {
+public class Game {
 
     private final Level level;
     private final Map<Rectangle, BufferedImage> dataLevel = new HashMap<>();
-    private final Button settingsPauseButton;
     private BufferedImage[][] playerMovementAni = new BufferedImage[Player.numMovementAni][Player.movementAniSprites];
     private BufferedImage[] monkeyAni = new BufferedImage[Monkey.monkeyAniSprites];
     private BufferedImage[][] barrelAni = new BufferedImage[Barrel.numBarrel][Barrel.barrelAniSprites];
@@ -56,10 +50,7 @@ public class Game implements ViewModel {
     public Game() {
         this.level = new LevelImpl();
         this.mapDataLevel();
-        this.settingsPauseButton = new ButtonImpl(Window.GAME_WIDTH - SCALED_TILES_SIZE - Window.TILES_DEFAULT_SIZE, 
-                                                  Window.TILES_DEFAULT_SIZE, 
-                                                  SCALED_TILES_SIZE, 
-                                                  SCALED_TILES_SIZE, Gamestate.PAUSE);
+
         this.bufferAnimations();
         this.aniPrincessTick = 0;
         this.aniPrincessIndex = 0;
@@ -286,20 +277,5 @@ public class Game implements ViewModel {
                 aniPrincessIndex = 0;
             }
         }
-    }
-
-    @Override
-    public final Map<Button, BufferedImage> getButtons() {
-        final Map<Button, BufferedImage> buttons = new HashMap<>();
-        buttons.put(settingsPauseButton, getSettingsSources().get(SettingsAssets.roundedSettingsButton));
-        return buttons;
-        // return new HashMap<>() {{
-        //     put(settingsPauseButton, getSettingsSources().get(SettingsAssets.roundedSettingsButton));
-        // }};
-    }
-
-    @Override
-    public final Map<Rectangle, BufferedImage> getAlternativeButtons() {
-        return new HashMap<>();
     }
 }

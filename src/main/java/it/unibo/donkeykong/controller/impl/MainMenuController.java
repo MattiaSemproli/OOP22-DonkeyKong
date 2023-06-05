@@ -1,28 +1,19 @@
 package it.unibo.donkeykong.controller.impl;
 
 import java.awt.Graphics;
-import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.image.BufferedImage;
-import java.util.Map;
 
 import it.unibo.donkeykong.controller.api.Application;
 import it.unibo.donkeykong.controller.api.GameEngine;
-import it.unibo.donkeykong.controller.api.GenericController;
-import it.unibo.donkeykong.game.model.api.Button;
 import it.unibo.donkeykong.game.model.impl.MainMenu;
-import it.unibo.donkeykong.utilities.AudioUtilities;
-import it.unibo.donkeykong.utilities.ButtonFuncUtilities;
-import it.unibo.donkeykong.utilities.CurrentLevel;
-import it.unibo.donkeykong.utilities.Constants.Audio;
 import it.unibo.donkeykong.utilities.Gamestate;
-import it.unibo.donkeykong.view.MainMenuView;
+import it.unibo.donkeykong.view.impl.MainMenuView;
 
 /**
  * Main menu controller.
  */
-public class MainMenuController implements MouseListener, GameEngine, GenericController {
+public class MainMenuController implements MouseListener, GameEngine {
 
     private final Application application;
     private final MainMenuView menuView;
@@ -50,25 +41,31 @@ public class MainMenuController implements MouseListener, GameEngine, GenericCon
     }
 
     @Override
-    public final Map<Button, BufferedImage> getButtonsFromModel() {
-        return this.menu.getButtons();
-    }
-
-    @Override
-    public final Map<Rectangle, BufferedImage> getAlternativeButtonsFromModel() {
-        return this.menu.getAlternativeButtons();
-    }
-
-    @Override
     public final void mousePressed(final MouseEvent e) {
-        ButtonFuncUtilities.getButtonPressed(e, this.menu.getButtons().keySet()).ifPresent(b -> {
-            if (b.getButtonGamestate().equals(Gamestate.PLAYING)) {
-                AudioUtilities.playSoundtrack(Audio.gameMusic0);
-                CurrentLevel.setCurrentLevel(CurrentLevel.ONE);
-                this.application.startGameController();
-            }
-            b.applyGamestate();
-        });
+        // ButtonFuncUtilities.getButtonPressed(e, this.menu.getButtons().keySet()).ifPresent(b -> {
+        //     if (b.getButtonGamestate().equals(Gamestate.PLAYING)) {
+        //         AudioUtilities.playSoundtrack(Audio.gameMusic0);
+        //         CurrentLevel.setCurrentLevel(CurrentLevel.ONE);
+        //         this.application.startGameController();
+        //     }
+        //     //b.applyGamestate();
+        // });
+    }
+
+    public final void startLevel() {
+        this.menu.startLevel();
+    }
+
+    public final void startGameController() {
+        this.application.startGameController();
+    }
+
+    public final void applyGamestate(final Gamestate gamestate) {
+        this.menu.applyGamestate(gamestate);
+    }
+
+    public final MainMenuView getView() {
+        return this.menuView;
     }
 
     @Override

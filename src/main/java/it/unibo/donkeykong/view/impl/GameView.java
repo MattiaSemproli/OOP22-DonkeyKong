@@ -1,8 +1,13 @@
-package it.unibo.donkeykong.view;
+package it.unibo.donkeykong.view.impl;
+
+import static it.unibo.donkeykong.utilities.Constants.MenuAssets.SettingsAssets.getSettingsSources;
+import static it.unibo.donkeykong.utilities.Constants.Window.SCALED_TILES_SIZE;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.IntStream;
 
 import it.unibo.donkeykong.controller.api.GameEngine;
@@ -11,12 +16,15 @@ import it.unibo.donkeykong.game.ecs.api.Entity;
 import it.unibo.donkeykong.game.ecs.impl.HealthComponent;
 import it.unibo.donkeykong.utilities.Constants.Barrel;
 import it.unibo.donkeykong.utilities.Constants.MenuAssets.LevelAssets;
+import it.unibo.donkeykong.utilities.Constants.MenuAssets.SettingsAssets;
 import it.unibo.donkeykong.utilities.Constants.Monkey;
 import it.unibo.donkeykong.utilities.Constants.Player;
 import it.unibo.donkeykong.utilities.Constants.PowerupAssets;
 import it.unibo.donkeykong.utilities.Constants.Window;
+import it.unibo.donkeykong.utilities.Gamestate;
 import it.unibo.donkeykong.utilities.Pair;
 import it.unibo.donkeykong.utilities.Type;
+import it.unibo.donkeykong.view.api.Button;
 
 /**
  * Game view, manages game graphics.
@@ -25,6 +33,9 @@ public class GameView implements GameEngine {
 
     private final GameController gameController;
 
+    private final Button settingsPauseButton;
+    private Map<Button, BufferedImage> buttons = new HashMap<>();
+    
     /**
      * Constructor.
      * 
@@ -32,6 +43,13 @@ public class GameView implements GameEngine {
      */
     public GameView(final GameController gameController) {
         this.gameController = gameController;
+
+        this.settingsPauseButton = new ButtonImpl(Window.GAME_WIDTH - SCALED_TILES_SIZE - Window.TILES_DEFAULT_SIZE, 
+                                                  Window.TILES_DEFAULT_SIZE, 
+                                                  SCALED_TILES_SIZE, 
+                                                  SCALED_TILES_SIZE, Gamestate.PAUSE);
+
+        buttons.put(settingsPauseButton, getSettingsSources().get(SettingsAssets.roundedSettingsButton));
     }
 
     @Override
@@ -54,12 +72,11 @@ public class GameView implements GameEngine {
                     Barrel.barrelBoxHeight, null);
         this.drawLives(g);
         this.drawActivePowerUps(g);
-        this.gameController.getButtonsFromModel()
-                           .forEach((b, i) -> g.drawImage(i, 
-                                                          b.getButtonPos().getX(),
-                                                          b.getButtonPos().getY(), 
-                                                          b.getButtonDim().getX(), 
-                                                          b.getButtonDim().getY(), null));
+        this.buttons.forEach((b, bi) -> g.drawImage(bi, 
+                                                    b.getButtonPos().getX(),
+                                                    b.getButtonPos().getY(), 
+                                                    b.getButtonDim().getX(), 
+                                                    b.getButtonDim().getY(), null));
         this.gameController.getEntitiesFromGameplay()
                            .stream()
                            .filter(e -> e.getEntityType() == Type.STAR

@@ -4,7 +4,7 @@ import java.awt.event.MouseEvent;
 import java.util.Optional;
 import java.util.Set;
 
-import it.unibo.donkeykong.game.model.api.Button;
+import it.unibo.donkeykong.view.api.Button;
 
 /**
  * Static class ButtonFuncUtilities, manages utilities function for buttons.

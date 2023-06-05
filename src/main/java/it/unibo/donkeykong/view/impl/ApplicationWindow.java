@@ -1,4 +1,4 @@
-package it.unibo.donkeykong.view;
+package it.unibo.donkeykong.view.impl;
 
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowFocusListener;

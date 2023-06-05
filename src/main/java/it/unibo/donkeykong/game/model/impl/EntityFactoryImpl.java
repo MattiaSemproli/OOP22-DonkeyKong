@@ -15,9 +15,9 @@ import it.unibo.donkeykong.game.ecs.impl.StarComponent;
 import it.unibo.donkeykong.game.ecs.impl.ThrowComponent;
 import it.unibo.donkeykong.game.model.api.EntityFactory;
 import it.unibo.donkeykong.game.model.api.Gameplay;
+import it.unibo.donkeykong.utilities.Constants.Player;
 import it.unibo.donkeykong.utilities.Pair;
 import it.unibo.donkeykong.utilities.Type;
-import it.unibo.donkeykong.utilities.Constants.Player;
 
 /**
  * EntityFactory class, manages an entity factory.

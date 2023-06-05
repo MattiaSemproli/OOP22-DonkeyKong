@@ -67,19 +67,6 @@ public class LevelImpl implements Level {
             }
         }
         return level;
-        // return new HashMap<>() {{
-        //         final BufferedImage img = loadSources("level_" + levelSpriteName + "_data");
-        //         for (int r = 0; r < img.getHeight(); r++) {
-        //             for (int c = 0; c < img.getWidth(); c++) {
-        //                 final Color color = new Color(img.getRGB(c, r));
-        //                 int value = color.getRed();
-        //                 if (value >= levelSpritesLength) {
-        //                     value = 0;
-        //                 }
-        //                 put(new Pair<>(c, r), value);
-        //             }
-        //         }
-        //     }};
     }
 
     private void importLevelSprites() {

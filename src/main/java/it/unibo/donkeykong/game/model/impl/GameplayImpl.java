@@ -224,26 +224,6 @@ public class GameplayImpl implements Gameplay {
                         }
                      });
         return activePowerUps;
-        // return new ArrayList<>() {{
-        //     getEntities()
-        //         .stream()
-        //         .filter(e -> e.getEntityType() == Type.PLAYER)
-        //         .findFirst()
-        //         .ifPresent(e -> {
-        //             final StarComponent star = e.getComponent(StarComponent.class).get();
-        //             final ShieldComponent shield = e.getComponent(ShieldComponent.class).get();
-        //             final FreezeComponent freeze = e.getComponent(FreezeComponent.class).get();
-        //             if (star.isInvincible()) {
-        //                 add(Type.STAR);
-        //             }
-        //             if (shield.isShielded()) {
-        //                 add(Type.SHIELD);
-        //             }
-        //             if (freeze.isFrozen()) {
-        //                 add(Type.SNOWFLAKE);
-        //             }
-        //         });
-        // }}; 
     }
 
     @Override

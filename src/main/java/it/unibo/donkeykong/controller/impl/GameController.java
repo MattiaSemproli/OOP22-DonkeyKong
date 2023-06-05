@@ -17,24 +17,21 @@ import java.util.Map;
 import javax.swing.Timer;
 
 import it.unibo.donkeykong.controller.api.GameEngine;
-import it.unibo.donkeykong.controller.api.GenericController;
 import it.unibo.donkeykong.game.ecs.api.Entity;
 import it.unibo.donkeykong.game.ecs.impl.HealthComponent;
-import it.unibo.donkeykong.game.model.api.Button;
 import it.unibo.donkeykong.game.model.api.Gameplay;
 import it.unibo.donkeykong.game.model.impl.Game;
 import it.unibo.donkeykong.game.model.impl.GameplayImpl;
-import it.unibo.donkeykong.utilities.ButtonFuncUtilities;
+import it.unibo.donkeykong.utilities.Constants.PowerupAssets;
 import it.unibo.donkeykong.utilities.Gamestate;
 import it.unibo.donkeykong.utilities.Pair;
 import it.unibo.donkeykong.utilities.Type;
-import it.unibo.donkeykong.utilities.Constants.PowerupAssets;
-import it.unibo.donkeykong.view.GameView;
+import it.unibo.donkeykong.view.impl.GameView;
 
 /**
  * Game controller.
  */
-public class GameController implements GameEngine, MouseListener, KeyListener, GenericController {
+public class GameController implements GameEngine, MouseListener, KeyListener {
 
     private final GameView gameView;
     private final Game game;
@@ -90,7 +87,7 @@ public class GameController implements GameEngine, MouseListener, KeyListener, G
 
     @Override
     public final void mousePressed(final MouseEvent e) {
-        ButtonFuncUtilities.getButtonPressed(e, this.game.getButtons().keySet()).ifPresent(b -> b.applyGamestate());
+        //ButtonFuncUtilities.getButtonPressed(e, this.game.getButtons().keySet()).ifPresent(b -> b.applyGamestate());
         if (Gamestate.getGamestate().equals(Gamestate.PAUSE)) {
             this.keyInputs.clear();
             this.pauseTimer();
@@ -147,16 +144,6 @@ public class GameController implements GameEngine, MouseListener, KeyListener, G
      */
     public final BufferedImage getAnimationFromModel(final Type type, final int row, final int col) {
         return this.game.getEntityAni(type, row, col);
-    }
-
-    @Override
-    public final Map<Button, BufferedImage> getButtonsFromModel() {
-        return this.game.getButtons();
-    }
-
-    @Override
-    public final Map<Rectangle, BufferedImage> getAlternativeButtonsFromModel() {
-        return this.game.getAlternativeButtons();
     }
 
     /**

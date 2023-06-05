@@ -1,27 +1,20 @@
 package it.unibo.donkeykong.controller.impl;
 
 import java.awt.Graphics;
-import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.image.BufferedImage;
-import java.util.Map;
 
 import it.unibo.donkeykong.controller.api.Application;
 import it.unibo.donkeykong.controller.api.GameEngine;
-import it.unibo.donkeykong.controller.api.GenericController;
-import it.unibo.donkeykong.game.model.api.Button;
 import it.unibo.donkeykong.game.model.impl.LevelsMenu;
-import it.unibo.donkeykong.utilities.AudioUtilities;
-import it.unibo.donkeykong.utilities.ButtonFuncUtilities;
-import it.unibo.donkeykong.utilities.Constants.Audio;
+import it.unibo.donkeykong.utilities.CurrentLevel;
 import it.unibo.donkeykong.utilities.Gamestate;
-import it.unibo.donkeykong.view.LevelsMenuView;
+import it.unibo.donkeykong.view.impl.LevelsMenuView;
 
 /**
  * Levels menu controller.
  */
-public class LevelsMenuController implements MouseListener, GameEngine, GenericController {
+public class LevelsMenuController implements MouseListener, GameEngine {
 
     private final Application application;
     private final LevelsMenuView levelsMenuView;
@@ -29,10 +22,8 @@ public class LevelsMenuController implements MouseListener, GameEngine, GenericC
 
     /**
      * Constructor.
-     * 
-     * @param application the application.
      */
-    public LevelsMenuController(final ApplicationImpl application) {
+    public LevelsMenuController(final Application application) {
         this.application = application;
         this.levelsMenuView = new LevelsMenuView(this);
         this.levelsMenu = new LevelsMenu();
@@ -48,26 +39,32 @@ public class LevelsMenuController implements MouseListener, GameEngine, GenericC
         this.levelsMenuView.draw(g);
     }
 
-    @Override
-    public final Map<Button, BufferedImage> getButtonsFromModel() {
-        return this.levelsMenu.getButtons();
-    }
-
-    @Override
-    public final Map<Rectangle, BufferedImage> getAlternativeButtonsFromModel() {
-        return this.levelsMenu.getAlternativeButtons();
+    public void setLevel(final CurrentLevel level) {
+        this.levelsMenu.setLevel(level);
     }
 
     @Override
     public final void mousePressed(final MouseEvent e) {
-        ButtonFuncUtilities.getButtonPressed(e, this.levelsMenu.getButtons().keySet()).ifPresent(b -> {
-            if (b.getButtonGamestate().equals(Gamestate.PLAYING)) {
-                AudioUtilities.playSoundtrack(Audio.gameMusic0);
-                this.levelsMenu.setLevelToPlay(b);
-                this.application.startGameController();
-            }
-            b.applyGamestate();
-        });
+        // ButtonFuncUtilities.getButtonPressed(e, this.levelsMenu.getButtons().keySet()).ifPresent(b -> {
+        //     if (b.getButtonGamestate().equals(Gamestate.PLAYING)) {
+        //         AudioUtilities.playSoundtrack(Audio.gameMusic0);
+        //         this.levelsMenu.setLevelToPlay(b);
+        //         this.application.startGameController();
+        //     }
+        //     //b.applyGamestate();
+        // });
+    }
+
+    public final void startGameController() {
+        this.application.startGameController();
+    }
+
+    public final void applyGamestate(final Gamestate gamestate) {
+        this.levelsMenu.applyGamestate(gamestate);
+    }
+
+    public final LevelsMenuView getView() {
+        return this.levelsMenuView;
     }
 
     @Override
