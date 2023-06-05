@@ -1,13 +1,15 @@
 package it.unibo.donkeykong.controller.impl;
 
+import it.unibo.donkeykong.controller.api.Controller;
 import it.unibo.donkeykong.model.impl.Settings;
 import it.unibo.donkeykong.utilities.Gamestate;
+import it.unibo.donkeykong.view.api.View;
 import it.unibo.donkeykong.view.impl.SettingsView;
 
 /**
- * Settings controller.
+ * Settings controller, manages settings view and model and interaction.
  */
-public class SettingsController {
+public class SettingsController implements Controller {
 
     private final SettingsView settingsView;
     private final Settings settings;
@@ -20,11 +22,19 @@ public class SettingsController {
         this.settings = new Settings();
     }
 
-    public final void applyGamestate(final Gamestate gamestate) {
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void applyGamestate(final Gamestate gamestate) {
         this.settings.applyGamestate(gamestate);
     }
 
-    public final SettingsView getView() {
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public View getView() {
         return this.settingsView;
     }
 }

@@ -1,14 +1,16 @@
 package it.unibo.donkeykong.controller.impl;
 
 import it.unibo.donkeykong.controller.api.Application;
+import it.unibo.donkeykong.controller.api.Controller;
 import it.unibo.donkeykong.model.impl.MainMenu;
 import it.unibo.donkeykong.utilities.Gamestate;
+import it.unibo.donkeykong.view.api.View;
 import it.unibo.donkeykong.view.impl.MainMenuView;
 
 /**
- * Main menu controller.
+ * Main menu controller, manages main menu view and model and interaction.
  */
-public class MainMenuController {
+public class MainMenuController implements Controller {
 
     private final Application application;
     private final MainMenuView menuView;
@@ -25,19 +27,33 @@ public class MainMenuController {
         this.menu = new MainMenu();
     }
 
-    public final void startLevel() {
-        this.menu.startLevel();
-    }
-
-    public final void startGameController() {
+    /**
+     * Start game controller.
+     */
+    public void startGameController() {
         this.application.startGameController();
     }
+   
+    /**
+     * Tell the model to start level.
+     */
+    public void startLevel() {
+        this.menu.setLevel();
+    }
 
-    public final void applyGamestate(final Gamestate gamestate) {
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void applyGamestate(final Gamestate gamestate) {
         this.menu.applyGamestate(gamestate);
     }
 
-    public final MainMenuView getView() {
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public View getView() {
         return this.menuView;
     }
 }

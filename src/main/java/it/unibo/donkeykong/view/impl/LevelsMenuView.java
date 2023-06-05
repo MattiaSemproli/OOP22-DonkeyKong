@@ -75,7 +75,11 @@ public class LevelsMenuView implements View {
         buttons.put(this.levelFourButton, getLevelSources().get(levelFourSource).getX());
     }
 
-    public final void draw(final Graphics g) {
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void draw(final Graphics g) {
         this.drawBackgroundAssets(g);
         this.buttons.forEach((b, bi) -> g.drawImage(bi, 
                                                     b.getButtonPos().getX(), 
@@ -84,6 +88,9 @@ public class LevelsMenuView implements View {
                                                     b.getButtonDim().getY(), null));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void mousePressed(final Pair<Integer, Integer> point) {
         this.buttons.keySet().forEach(b -> {

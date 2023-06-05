@@ -22,11 +22,12 @@ import it.unibo.donkeykong.utilities.Gamestate;
 import it.unibo.donkeykong.utilities.Pair;
 import it.unibo.donkeykong.utilities.ResourceFuncUtilities;
 import it.unibo.donkeykong.view.api.Button;
+import it.unibo.donkeykong.view.api.View;
 
 /**
  * Settings view, manages settings graphics.
  */
-public class SettingsView {
+public class SettingsView implements View {
 
     private final SettingsController settingsController;
 
@@ -76,22 +77,30 @@ public class SettingsView {
         alternativeButtons.put(themesButtons[Audio.getThemeSources().get(Audio.menuMusic1)],
                                ResourceFuncUtilities.loadSources("2"));
     }
-
-    public final void draw(final Graphics g) {
+    
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void draw(final Graphics g) {
         this.drawBackgroundAssets(g);
         this.buttons.forEach((b, bi) -> g.drawImage(bi, 
-                                                   b.getButtonPos().getX(), 
-                                                   b.getButtonPos().getY(),
-                                                   b.getButtonDim().getX(),
-                                                   b.getButtonDim().getY(), null));
+                                                    b.getButtonPos().getX(), 
+                                                    b.getButtonPos().getY(),
+                                                    b.getButtonDim().getX(),
+                                                    b.getButtonDim().getY(), null));
         this.alternativeButtons.forEach((rectangle, image) -> g.drawImage(image, 
                                                                           rectangle.x, 
                                                                           rectangle.y, 
                                                                           rectangle.width,
                                                                           rectangle.height, null));
     }
-
-    public final void mousePressed(final Pair<Integer, Integer> point) {
+    
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void mousePressed(final Pair<Integer, Integer> point) {
         final Point e = new Point(point.getX(), point.getY());
         this.buttons.keySet().forEach(b -> {
             if (b.getCorners().contains(e)) {

@@ -1,14 +1,16 @@
 package it.unibo.donkeykong.controller.impl;
 
 import it.unibo.donkeykong.controller.api.Application;
+import it.unibo.donkeykong.controller.api.Controller;
 import it.unibo.donkeykong.model.impl.EndPause;
 import it.unibo.donkeykong.utilities.Gamestate;
+import it.unibo.donkeykong.view.api.View;
 import it.unibo.donkeykong.view.impl.EndPauseView;
 
 /**
- * Pause controller.
+ * End pause controller, manages end pause view and model and interaction.
  */
-public class EndPauseController {
+public class EndPauseController implements Controller {
 
     private final Application application;
     private final EndPauseView endPauseView;
@@ -25,16 +27,25 @@ public class EndPauseController {
         this.endPause = new EndPause();
     }
 
-    public final void stopTimer() {
-        this.application.getGameController().stopTimer();
+    /**
+     * Start game controller.
+     */
+    public void startGameController() {
+        this.application.startGameController();
     }
 
+    /**
+     * Start the timer.
+     */
     public final void startTimer() {
         this.application.getGameController().startTimer();
     }
 
-    public final void startGameController() {
-        this.application.startGameController();
+    /**
+     * Stop the timer.
+     */
+    public void stopTimer() {
+        this.application.getGameController().stopTimer();
     }
 
     /**
@@ -46,11 +57,19 @@ public class EndPauseController {
         return this.application.getGameController().getSeconds();
     }
 
-    public final void applyGamestate(final Gamestate gamestate) {
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void applyGamestate(final Gamestate gamestate) {
         this.endPause.applyGamestate(gamestate);
     }
 
-    public final EndPauseView getView() {
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public View getView() {
         return this.endPauseView;
     }
 }

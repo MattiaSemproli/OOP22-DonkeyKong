@@ -25,11 +25,12 @@ import it.unibo.donkeykong.utilities.Gamestate;
 import it.unibo.donkeykong.utilities.Pair;
 import it.unibo.donkeykong.utilities.ResourceFuncUtilities;
 import it.unibo.donkeykong.view.api.Button;
+import it.unibo.donkeykong.view.api.View;
 
 /**
  * Endgame or pause view, manages endgame or pause graphics.
  */
-public final class EndPauseView {
+public final class EndPauseView implements View {
 
     private final EndPauseController endPauseController;
     
@@ -86,10 +87,9 @@ public final class EndPauseView {
     }
 
     /**
-     * Draw the endgame or pause graphics.
-     * 
-     * @param g
+     * {@inheritDoc}
      */
+    @Override
     public void draw(final Graphics g) {
         final Graphics2D pause;
         if (g instanceof Graphics2D) {
@@ -126,7 +126,11 @@ public final class EndPauseView {
         }
     }
 
-    public final void mousePressed(final Pair<Integer, Integer> point) {
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void mousePressed(final Pair<Integer, Integer> point) {
         final Point e = new Point(point.getX(), point.getY());
         this.buttons.keySet().forEach(b -> {
             if (b.getCorners().contains(e)) {
@@ -142,12 +146,10 @@ public final class EndPauseView {
                 this.endPauseController.applyGamestate(b.getButtonGamestate());
             }
         });
-
         if (Gamestate.getGamestate().equals(Gamestate.MENU)) {
             AudioUtilities.playSoundtrack(Audio.menuMusic0);
             this.endPauseController.stopTimer();
         }
-
         this.mute(e);
         this.themeChange(e);
     }
@@ -160,36 +162,33 @@ public final class EndPauseView {
         }
     }
 
-    private final void themeChange(final Point point) {
-        if (this.gameThemesButtons[Audio.getThemeSources().get(Audio.menuMusic0)].contains(point)) {
-            AudioUtilities.playSoundtrack(Audio.menuMusic0);
-        } else if (this.gameThemesButtons[Audio.getThemeSources().get(Audio.menuMusic1)].contains(point)) {
-            AudioUtilities.playSoundtrack(Audio.menuMusic1);
+    private void themeChange(final Point point) {
+        if (this.gameThemesButtons[Audio.getGameSources().get(Audio.gameMusic0)].contains(point)) {
+            AudioUtilities.playSoundtrack(Audio.gameMusic0);
+        } else if (this.gameThemesButtons[Audio.getGameSources().get(Audio.gameMusic1)].contains(point)) {
+            AudioUtilities.playSoundtrack(Audio.gameMusic1);
         }
     }
 
     private void drawText(final Graphics g) {
         if (Gamestate.getGamestate().equals(Gamestate.PAUSE)) {
             g.drawImage(SettingsAssets.getTextSources().get(Gamestate.getGamestate()), 
-                    menuX + (MenuAssets.menuTextureBox - SettingsAssets.pauseTextWidth) / 2,
-                    menuY - (SettingsAssets.pauseTextHeight / 2),
-                    SettingsAssets.pauseTextWidth,
-                    SettingsAssets.pauseTextHeight,
-                    null);
+                        menuX + (MenuAssets.menuTextureBox - SettingsAssets.pauseTextWidth) / 2,
+                        menuY - (SettingsAssets.pauseTextHeight / 2),
+                        SettingsAssets.pauseTextWidth,
+                        SettingsAssets.pauseTextHeight, null);
         } else if (Gamestate.getGamestate().equals(Gamestate.DEATH)) {
             g.drawImage(SettingsAssets.getTextSources().get(Gamestate.getGamestate()), 
-                    menuX + (MenuAssets.menuTextureBox - SettingsAssets.loseTextWidth) / 2,
-                    menuY - (SettingsAssets.loseTextHeight / 2),
-                    SettingsAssets.loseTextWidth,
-                    SettingsAssets.loseTextHeight,
-                    null);
+                        menuX + (MenuAssets.menuTextureBox - SettingsAssets.loseTextWidth) / 2,
+                        menuY - (SettingsAssets.loseTextHeight / 2),
+                        SettingsAssets.loseTextWidth,
+                        SettingsAssets.loseTextHeight, null);
         } else if (Gamestate.getGamestate().equals(Gamestate.WIN)) {
             g.drawImage(SettingsAssets.getTextSources().get(Gamestate.getGamestate()), 
-                    menuX + (MenuAssets.menuTextureBox - SettingsAssets.winTextWidth) / 2,
-                    menuY - (SettingsAssets.winTextHeight / 2),
-                    SettingsAssets.winTextWidth,
-                    SettingsAssets.winTextHeight,
-                    null);
+                        menuX + (MenuAssets.menuTextureBox - SettingsAssets.winTextWidth) / 2,
+                        menuY - (SettingsAssets.winTextHeight / 2),
+                        SettingsAssets.winTextWidth,
+                        SettingsAssets.winTextHeight, null);
         }
     }
 }

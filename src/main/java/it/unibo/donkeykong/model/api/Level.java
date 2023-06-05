@@ -11,7 +11,6 @@ import it.unibo.donkeykong.utilities.Type;
  * Level interface, models a level.
  */
 public interface Level {
-
     /**
      * Get the level data.
      * 

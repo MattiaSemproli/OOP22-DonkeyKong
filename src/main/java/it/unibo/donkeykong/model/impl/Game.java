@@ -18,6 +18,7 @@ import it.unibo.donkeykong.utilities.Constants.Player;
 import it.unibo.donkeykong.utilities.Constants.Princess;
 import it.unibo.donkeykong.utilities.Constants.Window;
 import it.unibo.donkeykong.model.api.Level;
+import it.unibo.donkeykong.model.api.ViewModel;
 import it.unibo.donkeykong.model.ecs.api.Entity;
 import it.unibo.donkeykong.model.ecs.impl.DoubleDamageComponent;
 import it.unibo.donkeykong.model.ecs.impl.MovementComponent;
@@ -31,7 +32,7 @@ import it.unibo.donkeykong.utilities.Type;
 /**
  * Game model, manages game logics.
  */
-public class Game {
+public class Game implements ViewModel {
 
     private final Level level;
     private final Map<Rectangle, BufferedImage> dataLevel = new HashMap<>();
@@ -63,10 +64,6 @@ public class Game {
         this.aniBarrelIndex = 0;
         this.aniClimbTick = 0;
         this.aniClimbIndex = 0;
-    }
-    
-    public void applyGamestate(final Gamestate gamestate) {
-        Gamestate.setGamestate(gamestate);
     }
 
     private void bufferAnimations() {
@@ -140,7 +137,7 @@ public class Game {
      * 
      * @return a level's data map.
      */
-    public Map<Rectangle, BufferedImage> getDataLevel() {
+    public final Map<Rectangle, BufferedImage> getDataLevel() {
         return new HashMap<>(this.dataLevel);
     }
 
@@ -282,5 +279,13 @@ public class Game {
                 aniPrincessIndex = 0;
             }
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void applyGamestate(final Gamestate gamestate) {
+        Gamestate.setGamestate(gamestate);
     }
 }

@@ -9,7 +9,7 @@ import it.unibo.donkeykong.view.impl.ApplicationPanel;
 import it.unibo.donkeykong.view.impl.ApplicationWindow;
 
 /**
- * ApplicationImpl class, manage controllers.
+ * ApplicationImpl class, manages controllers.
  */
 public class ApplicationImpl implements Application {
 

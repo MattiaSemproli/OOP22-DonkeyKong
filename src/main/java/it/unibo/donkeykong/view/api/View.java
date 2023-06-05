@@ -1,5 +1,7 @@
 package it.unibo.donkeykong.view.api;
 
+import java.awt.Graphics;
+
 import it.unibo.donkeykong.utilities.Pair;
 
 /**
@@ -7,9 +9,14 @@ import it.unibo.donkeykong.utilities.Pair;
  */
 public interface View {
     /**
+     * Draw the view.
+     */
+    void draw(Graphics g);
+
+    /**
      * Handle mouse pressed.
      * 
      * @param pt the point where the mouse is pressed.
      */
-    void mousePressed(final Pair<Integer,Integer> pt);
+    void mousePressed(Pair<Integer,Integer> pt);
 }

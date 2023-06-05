@@ -25,11 +25,12 @@ import it.unibo.donkeykong.utilities.Gamestate;
 import it.unibo.donkeykong.utilities.Pair;
 import it.unibo.donkeykong.utilities.Type;
 import it.unibo.donkeykong.view.api.Button;
+import it.unibo.donkeykong.view.api.View;
 
 /**
  * Game view, manages game graphics.
  */
-public class GameView {
+public class GameView implements View {
 
     private final GameController gameController;
 
@@ -52,11 +53,11 @@ public class GameView {
         buttons.put(settingsPauseButton, getSettingsSources().get(SettingsAssets.roundedSettingsButton));
     }
 
-    public final void update() {
-        this.gameController.updateAniIndex();
-    }
-
-    public final void draw(final Graphics g) {
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void draw(final Graphics g) {
         this.gameController.getDataLevelFromModel()
                            .forEach((tile, sprite) -> g.drawImage(sprite, 
                                                                   tile.x, 
@@ -99,7 +100,11 @@ public class GameView {
         // });
     }
 
-    public final void mousePressed(final Pair<Integer,Integer> point) {
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void mousePressed(final Pair<Integer,Integer> point) {
         this.buttons.keySet().forEach(b -> {
             if (b.getCorners().contains(new Point(point.getX(), point.getY()))) {
                 if (b.getButtonGamestate() == Gamestate.PAUSE) {
@@ -108,6 +113,13 @@ public class GameView {
                 this.gameController.applyGamestate(b.getButtonGamestate());
             }
         });
+    }
+
+    /**
+     * Update animations' indexes.
+     */
+    public void update() {
+        this.gameController.updateAniIndex();
     }
 
     private void drawEntity(final Graphics g, final Entity entity) {

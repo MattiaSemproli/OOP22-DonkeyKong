@@ -31,23 +31,35 @@ public class ButtonImpl implements Button {
         this.state = state;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public final Rectangle getCorners() {
+    public Rectangle getCorners() {
         return new Rectangle(this.x, this.y, this.width, this.height);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public final Pair<Integer, Integer> getButtonPos() {
+    public Pair<Integer, Integer> getButtonPos() {
         return new Pair<Integer, Integer>(this.x, this.y);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public final Pair<Integer, Integer> getButtonDim() {
+    public Pair<Integer, Integer> getButtonDim() {
         return new Pair<Integer, Integer>(this.width, this.height);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public final Gamestate getButtonGamestate() {
+    public Gamestate getButtonGamestate() {
         return this.state;
     }
 }

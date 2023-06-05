@@ -12,7 +12,6 @@ import it.unibo.donkeykong.utilities.Type;
  * Entity interface, models an entity.
  */
 public interface Entity {
-
     /**
      * Get all entity's components.
      * 

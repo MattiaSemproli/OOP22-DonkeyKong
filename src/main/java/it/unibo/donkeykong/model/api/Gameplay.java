@@ -11,7 +11,6 @@ import it.unibo.donkeykong.utilities.Type;
  * Gameplay interface, models a gameplay.
  */
 public interface Gameplay {
-
     /**
      * Get entities of gameplay.
      * 

@@ -22,11 +22,12 @@ import it.unibo.donkeykong.utilities.AudioUtilities;
 import it.unibo.donkeykong.utilities.Gamestate;
 import it.unibo.donkeykong.utilities.Pair;
 import it.unibo.donkeykong.view.api.Button;
+import it.unibo.donkeykong.view.api.View;
 
 /**
  * Main menu view, manages main menu graphics.
  */
-public class MainMenuView {
+public class MainMenuView implements View {
 
     private final MainMenuController menuController;
     
@@ -65,7 +66,11 @@ public class MainMenuView {
         this.buttons.put(this.utilityButtons[MenuAssets.quitB], getMenuSources().get(MenuAssets.quitButton));
     }
 
-    public final void draw(final Graphics g) {
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void draw(final Graphics g) {
         this.drawBackgroundAssets(g);
         this.drawLegend(g);
         this.buttons.forEach((b, bi) -> g.drawImage(bi, 
@@ -75,6 +80,10 @@ public class MainMenuView {
                                                     b.getButtonDim().getY(), null));
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public void mousePressed(final Pair<Integer, Integer> point) {
         this.buttons.keySet().forEach(b -> {
             if (b.getCorners().contains(new Point(point.getX(), point.getY()))) {
@@ -106,12 +115,6 @@ public class MainMenuView {
                     MenuAssets.titleHeight, null);
     }
 
-    /**
-     * TEMPORARY JAVADOC OTHERWISE THE CHECKSTYLE WILL COMPLAIN EVEN IF IT IS ONLY A MEMO TO REMEMBER IT.
-     * TO FIX THIS ONE. 
-     * 
-     * @param g graphics to draw.
-     */
     private void drawLegend(final Graphics g) {
         g.drawImage(getMenuSources().get(MenuAssets.aKey),
                 menuX + MenuAssets.menuTextureBox / 10, menuY + MenuAssets.buttonHeight * 3,
@@ -170,5 +173,4 @@ public class MainMenuView {
                 menuX + MenuAssets.menuTextureBox / 10 + MenuAssets.legendKeyBox * 2,
                 menuY + MenuAssets.menuTextureBox / 2 + MenuAssets.legendKeyBox * 3);
     }
-
 }

@@ -7,7 +7,6 @@ import it.unibo.donkeykong.utilities.Pair;
  * EntityFactory interface, manages creation of different entities.
  */
 public interface EntityFactory {
-
     /**
      * Create a player.
      * 
