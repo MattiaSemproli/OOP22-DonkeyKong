@@ -1,10 +1,11 @@
-package it.unibo.donkeykong.inputs;
+package it.unibo.donkeykong.view.inputs;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import it.unibo.donkeykong.controller.api.Application;
 import it.unibo.donkeykong.utilities.Gamestate;
+import it.unibo.donkeykong.utilities.Pair;
 
 /**
  * MouseInputs class, manages mouse's inputs.
@@ -26,21 +27,21 @@ public final class MouseInputs implements MouseListener {
     public void mousePressed(final MouseEvent mouseKey) {
         switch (Gamestate.getGamestate()) {
             case MENU:
-                this.dkApp.getMainMenuController().mousePressed(mouseKey);
+                this.dkApp.getMainMenuController().getView().mousePressed(new Pair<>(mouseKey.getX(), mouseKey.getY()));
                 break;
             case CHOSING_LEVELS:
-                this.dkApp.getLevelsMenuController().mousePressed(mouseKey);
+                this.dkApp.getLevelsMenuController().getView().mousePressed(new Pair<>(mouseKey.getX(), mouseKey.getY()));
                 break;
             case SETTINGS:
-                this.dkApp.getSettingsController().mousePressed(mouseKey);
+                this.dkApp.getSettingsController().getView().mousePressed(new Pair<>(mouseKey.getX(), mouseKey.getY()));
                 break;
             case PLAYING:
-                this.dkApp.getGameController().mousePressed(mouseKey);
+                this.dkApp.getGameController().getView().mousePressed(new Pair<>(mouseKey.getX(), mouseKey.getY()));
                 break;
             case PAUSE:
             case WIN:
             case DEATH:
-                this.dkApp.getEndPauseController().mousePressed(mouseKey);
+                this.dkApp.getEndPauseController().getView().mousePressed(new Pair<>(mouseKey.getX(), mouseKey.getY()));
                 break;
             default:
                 break;
@@ -49,27 +50,6 @@ public final class MouseInputs implements MouseListener {
 
     @Override
     public void mouseReleased(final MouseEvent mouseKey) {
-        switch (Gamestate.getGamestate()) {
-            case MENU:
-                this.dkApp.getMainMenuController().mouseReleased(mouseKey);
-                break;
-            case CHOSING_LEVELS:
-                this.dkApp.getLevelsMenuController().mouseReleased(mouseKey);
-                break;
-            case SETTINGS:
-                this.dkApp.getSettingsController().mouseReleased(mouseKey);
-                break;
-            case PLAYING:
-                this.dkApp.getGameController().mouseReleased(mouseKey);
-                break;
-            case PAUSE:
-            case WIN:
-            case DEATH:
-                this.dkApp.getEndPauseController().mouseReleased(mouseKey);
-                break;
-            default:
-                break;
-        }
     }
 
     @Override

@@ -1,4 +1,4 @@
-package it.unibo.donkeykong.inputs;
+package it.unibo.donkeykong.view.inputs;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -28,9 +28,6 @@ public final class KeyboardInputs implements KeyListener {
             case PLAYING:
                 this.dkApp.getGameController().keyPressed(key);
                 break;
-            case PAUSE:
-                this.dkApp.getEndPauseController().keyPressed(key);
-                break;
             default:
                 break;
         }
@@ -41,9 +38,6 @@ public final class KeyboardInputs implements KeyListener {
         switch (Gamestate.getGamestate()) {
             case PLAYING:
                 this.dkApp.getGameController().keyReleased(key);
-                break;
-            case PAUSE:
-                this.dkApp.getEndPauseController().keyReleased(key);
                 break;
             default:
                 break;

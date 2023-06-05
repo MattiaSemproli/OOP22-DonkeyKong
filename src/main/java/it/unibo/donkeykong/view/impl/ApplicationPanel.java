@@ -9,8 +9,8 @@ import java.awt.Graphics;
 import javax.swing.JPanel;
 
 import it.unibo.donkeykong.controller.api.Application;
-import it.unibo.donkeykong.inputs.KeyboardInputs;
-import it.unibo.donkeykong.inputs.MouseInputs;
+import it.unibo.donkeykong.view.inputs.KeyboardInputs;
+import it.unibo.donkeykong.view.inputs.MouseInputs;
 
 /**
  * Application panel.

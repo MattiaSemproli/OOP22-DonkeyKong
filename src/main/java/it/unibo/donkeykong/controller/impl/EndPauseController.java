@@ -15,7 +15,7 @@ import it.unibo.donkeykong.view.impl.EndPauseView;
 /**
  * Pause controller.
  */
-public class EndPauseController implements MouseListener, KeyListener, GameEngine {
+public class EndPauseController implements GameEngine {
 
     private final Application application;
     private final EndPauseView endPauseView;
@@ -54,28 +54,6 @@ public class EndPauseController implements MouseListener, KeyListener, GameEngin
         this.application.startGameController();
     }
 
-    @Override
-    public final void mousePressed(final MouseEvent e) {
-        // ButtonFuncUtilities.getButtonPressed(e, this.endPause.getButtons().keySet()).ifPresent(b -> {
-        //     if (b.getButtonGamestate().equals(Gamestate.PLAYING)) {
-        //         if (Gamestate.getGamestate() == Gamestate.PAUSE) {
-        //             this.application.getGameController().startTimer();
-        //         } else if (Gamestate.getGamestate() == Gamestate.WIN 
-        //                    || Gamestate.getGamestate() == Gamestate.DEATH) {
-        //             AudioUtilities.playSoundtrack(Audio.gameMusic1);
-        //             this.application.startGameController();
-        //         }
-        //     }
-        //     //b.applyGamestate();
-        // });
-        // if (Gamestate.getGamestate().equals(Gamestate.MENU)) {
-        //     AudioUtilities.playSoundtrack(Audio.menuMusic0);
-        //     this.application.getGameController().stopTimer();
-        // }
-        // // this.endPause.mute(e).ifPresent(mute -> AudioUtilities.setMuted(mute));
-        // // this.endPause.setTheme(e);
-    }
-
     /**
      * Get the seconds passed from the game controller.
      * 
@@ -85,43 +63,11 @@ public class EndPauseController implements MouseListener, KeyListener, GameEngin
         return this.application.getGameController().getSeconds();
     }
 
-    @Override
-    public final void keyReleased(final KeyEvent e) {
-        if (Gamestate.getGamestate().equals(Gamestate.PAUSE) && e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-            Gamestate.setGamestate(Gamestate.PLAYING);
-            this.application.getGameController().startTimer();
-        }
-    }
-
     public final void applyGamestate(final Gamestate gamestate) {
         this.endPause.applyGamestate(gamestate);
     }
 
     public final EndPauseView getView() {
         return this.endPauseView;
-    }
-
-    @Override
-    public void keyPressed(final KeyEvent e) {
-    }
-
-    @Override
-    public void keyTyped(final KeyEvent e) {
-    }
-
-    @Override
-    public void mouseClicked(final MouseEvent e) {
-    }
-
-    @Override
-    public void mouseReleased(final MouseEvent e) {
-    }
-
-    @Override
-    public void mouseEntered(final MouseEvent e) {
-    }
-
-    @Override
-    public void mouseExited(final MouseEvent e) {
     }
 }

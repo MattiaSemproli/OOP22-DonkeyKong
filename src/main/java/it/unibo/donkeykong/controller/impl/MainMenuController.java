@@ -1,8 +1,6 @@
 package it.unibo.donkeykong.controller.impl;
 
 import java.awt.Graphics;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
 import it.unibo.donkeykong.controller.api.Application;
 import it.unibo.donkeykong.controller.api.GameEngine;
@@ -13,7 +11,7 @@ import it.unibo.donkeykong.view.impl.MainMenuView;
 /**
  * Main menu controller.
  */
-public class MainMenuController implements MouseListener, GameEngine {
+public class MainMenuController implements GameEngine {
 
     private final Application application;
     private final MainMenuView menuView;
@@ -40,18 +38,6 @@ public class MainMenuController implements MouseListener, GameEngine {
         this.menuView.draw(g);
     }
 
-    @Override
-    public final void mousePressed(final MouseEvent e) {
-        // ButtonFuncUtilities.getButtonPressed(e, this.menu.getButtons().keySet()).ifPresent(b -> {
-        //     if (b.getButtonGamestate().equals(Gamestate.PLAYING)) {
-        //         AudioUtilities.playSoundtrack(Audio.gameMusic0);
-        //         CurrentLevel.setCurrentLevel(CurrentLevel.ONE);
-        //         this.application.startGameController();
-        //     }
-        //     //b.applyGamestate();
-        // });
-    }
-
     public final void startLevel() {
         this.menu.startLevel();
     }
@@ -66,21 +52,5 @@ public class MainMenuController implements MouseListener, GameEngine {
 
     public final MainMenuView getView() {
         return this.menuView;
-    }
-
-    @Override
-    public void mouseClicked(final MouseEvent e) {
-    }
-
-    @Override
-    public void mouseReleased(final MouseEvent e) {
-    }
-
-    @Override
-    public void mouseEntered(final MouseEvent e) {
-    }
-
-    @Override
-    public void mouseExited(final MouseEvent e) {
     }
 }
