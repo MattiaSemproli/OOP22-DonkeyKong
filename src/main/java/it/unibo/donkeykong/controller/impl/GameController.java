@@ -5,8 +5,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -31,7 +29,7 @@ import it.unibo.donkeykong.view.impl.GameView;
 /**
  * Game controller, manages game view and model and interaction.
  */
-public class GameController implements MouseListener, KeyListener, Controller {
+public class GameController implements KeyListener, Controller {
 
     private final GameView gameView;
     private final Game game;
@@ -80,15 +78,6 @@ public class GameController implements MouseListener, KeyListener, Controller {
                             .stream()
                             .filter(e -> e.getEntityType() == Type.PLAYER)
                             .findFirst().get().getComponent(HealthComponent.class).get().getLives() > 0;
-    }
-
-    @Override
-    public final void mousePressed(final MouseEvent e) {
-        //ButtonFuncUtilities.getButtonPressed(e, this.game.getButtons().keySet()).ifPresent(b -> b.applyGamestate());
-        if (Gamestate.getGamestate().equals(Gamestate.PAUSE)) {
-            this.keyInputs.clear();
-            this.pauseTimer();
-        }
     }
 
     @Override
@@ -267,21 +256,5 @@ public class GameController implements MouseListener, KeyListener, Controller {
 
     @Override
     public void keyTyped(final KeyEvent e) {
-    }
-
-    @Override
-    public void mouseClicked(final MouseEvent e) {
-    }
-
-    @Override
-    public void mouseReleased(final MouseEvent e) {
-    }
-
-    @Override
-    public void mouseEntered(final MouseEvent e) {
-    }
-
-    @Override
-    public void mouseExited(final MouseEvent e) {
     }
 }
