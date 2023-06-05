@@ -16,7 +16,6 @@ import java.awt.image.BufferedImage;
 import java.util.HashMap;
 import java.util.Map;
 
-import it.unibo.donkeykong.controller.api.GameEngine;
 import it.unibo.donkeykong.controller.impl.LevelsMenuController;
 import it.unibo.donkeykong.utilities.Constants.Audio;
 import it.unibo.donkeykong.utilities.Constants.MenuAssets;
@@ -33,7 +32,7 @@ import it.unibo.donkeykong.view.api.View;
 /**
  * levels menu view, manages levels menu graphics.
  */
-public class LevelsMenuView implements GameEngine, View {
+public class LevelsMenuView implements View {
 
     private final LevelsMenuController levelsMenuController;
 
@@ -76,11 +75,6 @@ public class LevelsMenuView implements GameEngine, View {
         buttons.put(this.levelFourButton, getLevelSources().get(levelFourSource).getX());
     }
 
-    @Override
-    public final void update() {
-    }
-
-    @Override
     public final void draw(final Graphics g) {
         this.drawBackgroundAssets(g);
         this.buttons.forEach((b, bi) -> g.drawImage(bi, 

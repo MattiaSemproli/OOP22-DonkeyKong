@@ -1,21 +1,14 @@
 package it.unibo.donkeykong.controller.impl;
 
-import java.awt.Graphics;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-
 import it.unibo.donkeykong.controller.api.Application;
-import it.unibo.donkeykong.controller.api.GameEngine;
-import it.unibo.donkeykong.game.model.impl.EndPause;
+import it.unibo.donkeykong.model.impl.EndPause;
 import it.unibo.donkeykong.utilities.Gamestate;
 import it.unibo.donkeykong.view.impl.EndPauseView;
 
 /**
  * Pause controller.
  */
-public class EndPauseController implements GameEngine {
+public class EndPauseController {
 
     private final Application application;
     private final EndPauseView endPauseView;
@@ -30,16 +23,6 @@ public class EndPauseController implements GameEngine {
         this.application = application;
         this.endPauseView = new EndPauseView(this);
         this.endPause = new EndPause();
-    }
-
-    @Override
-    public final void update() {
-        this.endPauseView.update();
-    }
-
-    @Override
-    public final void draw(final Graphics g) {
-        this.endPauseView.draw(g);
     }
 
     public final void stopTimer() {

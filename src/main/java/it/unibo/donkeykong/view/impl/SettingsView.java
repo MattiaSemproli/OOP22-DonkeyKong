@@ -12,7 +12,6 @@ import java.awt.image.BufferedImage;
 import java.util.HashMap;
 import java.util.Map;
 
-import it.unibo.donkeykong.controller.api.GameEngine;
 import it.unibo.donkeykong.controller.impl.SettingsController;
 import it.unibo.donkeykong.utilities.AudioUtilities;
 import it.unibo.donkeykong.utilities.Constants.Audio;
@@ -27,7 +26,7 @@ import it.unibo.donkeykong.view.api.Button;
 /**
  * Settings view, manages settings graphics.
  */
-public class SettingsView implements GameEngine {
+public class SettingsView {
 
     private final SettingsController settingsController;
 
@@ -78,11 +77,6 @@ public class SettingsView implements GameEngine {
                                ResourceFuncUtilities.loadSources("2"));
     }
 
-    @Override
-    public final void update() {
-    }
-
-    @Override
     public final void draw(final Graphics g) {
         this.drawBackgroundAssets(g);
         this.buttons.forEach((b, bi) -> g.drawImage(bi, 

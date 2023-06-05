@@ -1,6 +1,5 @@
 package it.unibo.donkeykong.controller.impl;
 
-import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,13 +15,12 @@ import java.util.Map;
 
 import javax.swing.Timer;
 
-import it.unibo.donkeykong.controller.api.GameEngine;
-import it.unibo.donkeykong.game.ecs.api.Entity;
-import it.unibo.donkeykong.game.ecs.impl.HealthComponent;
-import it.unibo.donkeykong.game.model.api.Gameplay;
-import it.unibo.donkeykong.game.model.impl.Game;
-import it.unibo.donkeykong.game.model.impl.GameplayImpl;
 import it.unibo.donkeykong.utilities.Constants.PowerupAssets;
+import it.unibo.donkeykong.model.api.Gameplay;
+import it.unibo.donkeykong.model.ecs.api.Entity;
+import it.unibo.donkeykong.model.ecs.impl.HealthComponent;
+import it.unibo.donkeykong.model.impl.Game;
+import it.unibo.donkeykong.model.impl.GameplayImpl;
 import it.unibo.donkeykong.utilities.Gamestate;
 import it.unibo.donkeykong.utilities.Pair;
 import it.unibo.donkeykong.utilities.Type;
@@ -31,7 +29,7 @@ import it.unibo.donkeykong.view.impl.GameView;
 /**
  * Game controller.
  */
-public class GameController implements GameEngine, MouseListener, KeyListener {
+public class GameController implements MouseListener, KeyListener {
 
     private final GameView gameView;
     private final Game game;
@@ -54,7 +52,9 @@ public class GameController implements GameEngine, MouseListener, KeyListener {
         this.startTimer();
     }
 
-    @Override
+    /**
+     * Update the game.
+     */
     public final void update() {
         this.timeElapsed++;
         this.gameplay.getEntities().forEach(e -> e.getAllComponents().forEach(c -> c.update()));
@@ -78,11 +78,6 @@ public class GameController implements GameEngine, MouseListener, KeyListener {
                             .stream()
                             .filter(e -> e.getEntityType() == Type.PLAYER)
                             .findFirst().get().getComponent(HealthComponent.class).get().getLives() > 0;
-    }
-
-    @Override
-    public final void draw(final Graphics g) {
-        this.gameView.draw(g);
     }
 
     @Override

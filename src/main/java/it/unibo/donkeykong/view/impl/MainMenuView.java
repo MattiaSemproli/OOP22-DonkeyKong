@@ -14,7 +14,6 @@ import java.awt.image.BufferedImage;
 import java.util.HashMap;
 import java.util.Map;
 
-import it.unibo.donkeykong.controller.api.GameEngine;
 import it.unibo.donkeykong.controller.impl.MainMenuController;
 import it.unibo.donkeykong.utilities.Constants.Audio;
 import it.unibo.donkeykong.utilities.Constants.MenuAssets;
@@ -27,7 +26,7 @@ import it.unibo.donkeykong.view.api.Button;
 /**
  * Main menu view, manages main menu graphics.
  */
-public class MainMenuView implements GameEngine {
+public class MainMenuView {
 
     private final MainMenuController menuController;
     
@@ -66,11 +65,6 @@ public class MainMenuView implements GameEngine {
         this.buttons.put(this.utilityButtons[MenuAssets.quitB], getMenuSources().get(MenuAssets.quitButton));
     }
 
-    @Override
-    public final void update() {
-    }
-
-    @Override
     public final void draw(final Graphics g) {
         this.drawBackgroundAssets(g);
         this.drawLegend(g);

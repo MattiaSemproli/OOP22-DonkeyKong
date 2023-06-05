@@ -1,19 +1,15 @@
 package it.unibo.donkeykong.controller.impl;
 
-import java.awt.Graphics;
-
 import it.unibo.donkeykong.controller.api.Application;
-import it.unibo.donkeykong.controller.api.GameEngine;
-import it.unibo.donkeykong.game.model.impl.LevelsMenu;
+import it.unibo.donkeykong.model.impl.LevelsMenu;
 import it.unibo.donkeykong.utilities.CurrentLevel;
 import it.unibo.donkeykong.utilities.Gamestate;
-import it.unibo.donkeykong.view.api.View;
 import it.unibo.donkeykong.view.impl.LevelsMenuView;
 
 /**
  * Levels menu controller.
  */
-public class LevelsMenuController implements GameEngine {
+public class LevelsMenuController {
 
     private final Application application;
     private final LevelsMenuView levelsMenuView;
@@ -26,16 +22,6 @@ public class LevelsMenuController implements GameEngine {
         this.application = application;
         this.levelsMenuView = new LevelsMenuView(this);
         this.levelsMenu = new LevelsMenu();
-    }
-
-    @Override
-    public final void update() {
-        this.levelsMenuView.update();
-    }
-
-    @Override
-    public final void draw(final Graphics g) {
-        this.levelsMenuView.draw(g);
     }
 
     public void handleChoosenLevel(final CurrentLevel level) {

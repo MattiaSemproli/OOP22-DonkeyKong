@@ -15,7 +15,6 @@ import java.awt.image.BufferedImage;
 import java.util.HashMap;
 import java.util.Map;
 
-import it.unibo.donkeykong.controller.api.GameEngine;
 import it.unibo.donkeykong.controller.impl.EndPauseController;
 import it.unibo.donkeykong.utilities.AudioUtilities;
 import it.unibo.donkeykong.utilities.Constants.Audio;
@@ -30,7 +29,7 @@ import it.unibo.donkeykong.view.api.Button;
 /**
  * Endgame or pause view, manages endgame or pause graphics.
  */
-public final class EndPauseView implements GameEngine {
+public final class EndPauseView {
 
     private final EndPauseController endPauseController;
     
@@ -86,11 +85,11 @@ public final class EndPauseView implements GameEngine {
                                ResourceFuncUtilities.loadSources("2"));
     }
 
-    @Override
-    public void update() {
-    }
-
-    @Override
+    /**
+     * Draw the endgame or pause graphics.
+     * 
+     * @param g
+     */
     public void draw(final Graphics g) {
         final Graphics2D pause;
         if (g instanceof Graphics2D) {

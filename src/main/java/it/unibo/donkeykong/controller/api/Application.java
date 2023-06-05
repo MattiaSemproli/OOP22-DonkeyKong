@@ -5,11 +5,17 @@ import it.unibo.donkeykong.controller.impl.LevelsMenuController;
 import it.unibo.donkeykong.controller.impl.MainMenuController;
 import it.unibo.donkeykong.controller.impl.EndPauseController;
 import it.unibo.donkeykong.controller.impl.SettingsController;
+import it.unibo.donkeykong.game.core.api.GameEngine;
 
 /**
  * Application interface, models controllers management.
  */
 public interface Application {
+
+    /**
+     * Update game.
+     */
+    void updateGame();
 
     /**
      * Call method in gamecontroller (if exists) when the window lose the focus.

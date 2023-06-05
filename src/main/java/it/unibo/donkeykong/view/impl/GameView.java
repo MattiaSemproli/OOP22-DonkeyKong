@@ -11,10 +11,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.IntStream;
 
-import it.unibo.donkeykong.controller.api.GameEngine;
 import it.unibo.donkeykong.controller.impl.GameController;
-import it.unibo.donkeykong.game.ecs.api.Entity;
-import it.unibo.donkeykong.game.ecs.impl.HealthComponent;
+import it.unibo.donkeykong.model.ecs.api.Entity;
+import it.unibo.donkeykong.model.ecs.impl.HealthComponent;
 import it.unibo.donkeykong.utilities.Constants.Barrel;
 import it.unibo.donkeykong.utilities.Constants.MenuAssets.LevelAssets;
 import it.unibo.donkeykong.utilities.Constants.MenuAssets.SettingsAssets;
@@ -30,7 +29,7 @@ import it.unibo.donkeykong.view.api.Button;
 /**
  * Game view, manages game graphics.
  */
-public class GameView implements GameEngine {
+public class GameView {
 
     private final GameController gameController;
 
@@ -53,12 +52,10 @@ public class GameView implements GameEngine {
         buttons.put(settingsPauseButton, getSettingsSources().get(SettingsAssets.roundedSettingsButton));
     }
 
-    @Override
     public final void update() {
         this.gameController.updateAniIndex();
     }
 
-    @Override
     public final void draw(final Graphics g) {
         this.gameController.getDataLevelFromModel()
                            .forEach((tile, sprite) -> g.drawImage(sprite, 
