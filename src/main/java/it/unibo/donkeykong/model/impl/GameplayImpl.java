@@ -28,7 +28,7 @@ import it.unibo.donkeykong.utilities.Constants.Princess;
 import it.unibo.donkeykong.utilities.Constants.Window;
 
 /**
- * Gameplay class, manages a gameplay
+ * Gameplay class, manages a gameplay.
  */
 public class GameplayImpl implements Gameplay {
 
@@ -51,6 +51,9 @@ public class GameplayImpl implements Gameplay {
         this.opPowerUpSpawned = false;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public final void initializeGame() {
         this.generateInteractableEntities();
@@ -173,8 +176,11 @@ public class GameplayImpl implements Gameplay {
         return new Pair<>((float) passX, (float) passY + platformBlockPadding);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public final void throwBarrel(final Pair<Float, Float> position) {
+    public void throwBarrel(final Pair<Float, Float> position) {
         final Entity barrel = this.entityFactoryImpl.generateBarrel(position);
         if (random.nextInt(Barrel.totalPUProbability) < Barrel.doubleDamageProbability) {
             barrel.getComponent(DoubleDamageComponent.class).get().setDoubleDamage(true);
@@ -182,8 +188,11 @@ public class GameplayImpl implements Gameplay {
         this.entities.add(barrel);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public final void spawnOpPowerUp() {
+    public void spawnOpPowerUp() {
         if (!this.opPowerUpSpawned) {
             this.entities.add(this.entityFactoryImpl.generateSnowflakePowerUp(this.generateRandomPosition(Type.SNOWFLAKE)));
             this.entities.add(this.entityFactoryImpl.generateStarPowerUp(this.generateRandomPosition(Type.STAR)));
@@ -191,8 +200,11 @@ public class GameplayImpl implements Gameplay {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public final void moveOpPowerUpRandom() {
+    public void moveOpPowerUpRandom() {
         if (this.opPowerUpSpawned) {
             this.entities.stream()
                          .filter(e -> e.getEntityType() == Type.STAR
@@ -203,8 +215,11 @@ public class GameplayImpl implements Gameplay {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public final List<Type> getActivePowerUps() {
+    public List<Type> getActivePowerUps() {
         final List<Type> activePowerUps = new ArrayList<>();
         this.entities.stream()
                      .filter(e -> e.getEntityType() == Type.PLAYER)
@@ -226,33 +241,51 @@ public class GameplayImpl implements Gameplay {
         return activePowerUps;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public final ArrayList<Entity> getEntities() {
+    public ArrayList<Entity> getEntities() {
         return new ArrayList<>(this.entities);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public final GameController getController() {
+    public GameController getController() {
         return this.controller;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public final void removeEntity(final Entity entity) {
+    public void removeEntity(final Entity entity) {
         this.entities.remove(entity);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public final void removeAllBarrels() {
+    public void removeAllBarrels() {
         this.entities.removeAll(entities.stream().filter(e -> e.getEntityType() == Type.BARREL).toList());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public final void removePlayer() {
         this.entities.removeIf(e -> e.getEntityType() == Type.PLAYER);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public final boolean isSpawnedOpPowerUp() {
+    public boolean isSpawnedOpPowerUp() {
         return this.opPowerUpSpawned;
     }
 }

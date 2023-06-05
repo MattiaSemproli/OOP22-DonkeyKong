@@ -35,11 +35,6 @@ public interface Application {
     void redraw();
 
     /**
-     * Initialize controllers.
-     */
-    void initialize();
-
-    /**
      * Get MainMenuController.
      * 
      * @return the linked MainMenuController.

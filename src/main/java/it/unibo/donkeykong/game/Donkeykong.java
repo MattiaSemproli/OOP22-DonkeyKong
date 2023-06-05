@@ -9,6 +9,7 @@ public final class Donkeykong {
 
     private Donkeykong() {
     }
+
     /**
      * Main method.
      * @param args

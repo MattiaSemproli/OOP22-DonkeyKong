@@ -24,6 +24,9 @@ public class GameEngineImpl implements GameEngine {
         this.framePerSecond = GameLoop.NANOSECOND / GameLoop.FPS_SET;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void mainLoop() {
         long previousTime = System.nanoTime();

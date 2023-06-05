@@ -108,7 +108,7 @@ public class GameController implements MouseListener, KeyListener {
     public final GameView getView() {
         return this.gameView;
     }
-    
+
     public final void applyGamestate(final Gamestate gamestate) {
         this.game.applyGamestate(gamestate);
     }

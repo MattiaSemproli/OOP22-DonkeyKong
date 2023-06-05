@@ -35,25 +35,44 @@ public class ApplicationImpl implements Application {
         this.gameEngine.mainLoop();
     }
 
+    private void initialize() {
+        this.mainMenuController = new MainMenuController(this);
+        this.settingsController = new SettingsController();
+        this.endPauseController = new EndPauseController(this);
+        this.levelsMenuController = new LevelsMenuController(this);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public final void windowFocusLost() {
+    public void windowFocusLost() {
         if (this.gameController != null) {
             this.gameController.resetKeysOnFocusLost();
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public final GameEngine getGameEngine() {
+    public GameEngine getGameEngine() {
         return this.gameEngine;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void updateGame() {
         this.gameController.update();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public final void redraw() {
+    public void redraw() {
         this.dkPanel.repaint();
     }
 
@@ -70,41 +89,51 @@ public class ApplicationImpl implements Application {
         Constants.PowerupAssets.loadPowerupSources();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public final void startGameController() {
+    public void startGameController() {
         this.gameController = new GameController();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public final void initialize() {
-        this.mainMenuController = new MainMenuController(this);
-        this.settingsController = new SettingsController();
-        this.endPauseController = new EndPauseController(this);
-        this.levelsMenuController = new LevelsMenuController(this);
-    }
-
-    @Override
-    public final MainMenuController getMainMenuController() {
+    public MainMenuController getMainMenuController() {
         return this.mainMenuController;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public final SettingsController getSettingsController() {
+    public SettingsController getSettingsController() {
         return this.settingsController;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public final GameController getGameController() {
+    public GameController getGameController() {
         return this.gameController;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public final EndPauseController getEndPauseController() {
+    public EndPauseController getEndPauseController() {
         return this.endPauseController;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public final LevelsMenuController getLevelsMenuController() {
+    public LevelsMenuController getLevelsMenuController() {
         return this.levelsMenuController;
     }
 }

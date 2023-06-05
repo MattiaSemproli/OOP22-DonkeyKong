@@ -36,8 +36,11 @@ public class EntityFactoryImpl implements EntityFactory {
         this.gameplay = gameplay;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public final Entity generatePlayer(final Pair<Float, Float> position) {
+    public Entity generatePlayer(final Pair<Float, Float> position) {
         return new EntityImpl(Type.PLAYER, position, this.gameplay)
                    .addComponent(new InputsComponent())
                    .addComponent(new MovementComponent())
@@ -48,8 +51,11 @@ public class EntityFactoryImpl implements EntityFactory {
                    .addComponent(new FreezeComponent());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public final Entity generateBarrel(final Pair<Float, Float> position) {
+    public Entity generateBarrel(final Pair<Float, Float> position) {
         return new EntityImpl(Type.BARREL, position, this.gameplay)
                    .addComponent(new MovementComponent())
                    .addComponent(new CollisionComponent(position.getX(), position.getY(), Type.BARREL))
@@ -57,70 +63,103 @@ public class EntityFactoryImpl implements EntityFactory {
                    .addComponent(new SlowComponent());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public final Entity generateMonkey(final Pair<Float, Float> position) {
+    public Entity generateMonkey(final Pair<Float, Float> position) {
         return new EntityImpl(Type.MONKEY, position, this.gameplay)
                    .addComponent(new ThrowComponent())
                    .addComponent(new CollisionComponent(position.getX(), position.getY(), Type.MONKEY));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public final Entity generatePrincess(final Pair<Float, Float> position) {
+    public Entity generatePrincess(final Pair<Float, Float> position) {
         return new EntityImpl(Type.PRINCESS, position, this.gameplay)
                    .addComponent(new MovementComponent())
                    .addComponent(new CollisionComponent(position.getX(), position.getY(), Type.PRINCESS));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public final Entity generateBlock(final Pair<Float, Float> position) {
+    public Entity generateBlock(final Pair<Float, Float> position) {
         return new EntityImpl(Type.BLOCK, position, this.gameplay)
                    .addComponent(new CollisionComponent(position.getX(), position.getY(), Type.BLOCK));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public final Entity generateLadder(final Pair<Float, Float> position) {
+    public Entity generateLadder(final Pair<Float, Float> position) {
         return new EntityImpl(Type.LADDER, position, this.gameplay)
                    .addComponent(new CollisionComponent(position.getX(), position.getY(), Type.LADDER));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public final Entity generateBlockWithUpLadder(final Pair<Float, Float> position) {
+    public Entity generateBlockWithUpLadder(final Pair<Float, Float> position) {
         return new EntityImpl(Type.BLOCK_LADDER_UP, position, this.gameplay)
                    .addComponent(new CollisionComponent(position.getX(), position.getY(), Type.BLOCK_LADDER_UP));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public final Entity generateBlockWithDownLadder(final Pair<Float, Float> position) {
+    public Entity generateBlockWithDownLadder(final Pair<Float, Float> position) {
         return new EntityImpl(Type.BLOCK_LADDER_DOWN, position, this.gameplay)
                    .addComponent(new CollisionComponent(position.getX(), position.getY(), Type.BLOCK_LADDER_DOWN));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public final Entity generateBlockWithUpDownLadder(final Pair<Float, Float> position) {
+    public Entity generateBlockWithUpDownLadder(final Pair<Float, Float> position) {
         return new EntityImpl(Type.BLOCK_LADDER_UPDOWN, position, this.gameplay)
                    .addComponent(new CollisionComponent(position.getX(), position.getY(), Type.BLOCK_LADDER_UPDOWN));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public final Entity generateHeartPowerUp(final Pair<Float, Float> position) {
+    public Entity generateHeartPowerUp(final Pair<Float, Float> position) {
         return new EntityImpl(Type.HEART, position, this.gameplay)
                    .addComponent(new CollisionComponent(position.getX(), position.getY(), Type.HEART));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public final Entity generateShieldPowerUp(final Pair<Float, Float> position) {
+    public Entity generateShieldPowerUp(final Pair<Float, Float> position) {
         return new EntityImpl(Type.SHIELD, position, this.gameplay)
                    .addComponent(new CollisionComponent(position.getX(), position.getY(), Type.SHIELD));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public final Entity generateStarPowerUp(final Pair<Float, Float> position) {
+    public Entity generateStarPowerUp(final Pair<Float, Float> position) {
         return new EntityImpl(Type.STAR, position, this.gameplay)
                    .addComponent(new CollisionComponent(position.getX(), position.getY(), Type.STAR));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public final Entity generateSnowflakePowerUp(final Pair<Float, Float> position) {
+    public Entity generateSnowflakePowerUp(final Pair<Float, Float> position) {
         return new EntityImpl(Type.SNOWFLAKE, position, this.gameplay)
                    .addComponent(new CollisionComponent(position.getX(), position.getY(), Type.SNOWFLAKE));
     }
