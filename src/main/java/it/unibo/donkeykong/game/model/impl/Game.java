@@ -23,6 +23,7 @@ import it.unibo.donkeykong.utilities.Constants.Player;
 import it.unibo.donkeykong.utilities.Constants.Princess;
 import it.unibo.donkeykong.utilities.Constants.Window;
 import it.unibo.donkeykong.utilities.Direction;
+import it.unibo.donkeykong.utilities.Gamestate;
 import it.unibo.donkeykong.utilities.Pair;
 import it.unibo.donkeykong.utilities.PlayerIdle;
 import it.unibo.donkeykong.utilities.Type;
@@ -62,6 +63,10 @@ public class Game {
         this.aniBarrelIndex = 0;
         this.aniClimbTick = 0;
         this.aniClimbIndex = 0;
+    }
+    
+    public void applyGamestate(final Gamestate gamestate) {
+        Gamestate.setGamestate(gamestate);
     }
 
     private void bufferAnimations() {

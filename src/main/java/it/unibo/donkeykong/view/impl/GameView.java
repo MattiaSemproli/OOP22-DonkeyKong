@@ -4,6 +4,7 @@ import static it.unibo.donkeykong.utilities.Constants.MenuAssets.SettingsAssets.
 import static it.unibo.donkeykong.utilities.Constants.Window.SCALED_TILES_SIZE;
 
 import java.awt.Graphics;
+import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.util.HashMap;
 import java.util.List;
@@ -99,6 +100,17 @@ public class GameView implements GameEngine {
         //     g.setColor(java.awt.Color.GREEN);
         //     g.drawRect((int) r.getX(), (int) r.getY(), (int) r.getWidth(), (int) r.getHeight());
         // });
+    }
+
+    public final void mousePressed(final Pair<Integer,Integer> point) {
+        this.buttons.keySet().forEach(b -> {
+            if (b.getCorners().contains(new Point(point.getX(), point.getY()))) {
+                if (b.getButtonGamestate() == Gamestate.PAUSE) {
+                    this.gameController.pauseTimer();
+                }
+                this.gameController.applyGamestate(b.getButtonGamestate());
+            }
+        });
     }
 
     private void drawEntity(final Graphics g, final Entity entity) {

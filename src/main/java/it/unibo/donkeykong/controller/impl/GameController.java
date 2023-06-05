@@ -113,6 +113,10 @@ public class GameController implements GameEngine, MouseListener, KeyListener {
     public final GameView getView() {
         return this.gameView;
     }
+    
+    public final void applyGamestate(final Gamestate gamestate) {
+        this.game.applyGamestate(gamestate);
+    }
 
     @Override
     public final void keyReleased(final KeyEvent e) {
