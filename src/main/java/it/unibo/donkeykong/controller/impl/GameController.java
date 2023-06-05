@@ -110,6 +110,10 @@ public class GameController implements GameEngine, MouseListener, KeyListener {
         }
     }
 
+    public final GameView getView() {
+        return this.gameView;
+    }
+
     @Override
     public final void keyReleased(final KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
