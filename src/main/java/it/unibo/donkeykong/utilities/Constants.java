@@ -501,7 +501,7 @@ public class Constants {
              * Level sources map of string source and pair of image and index.
              */
             private static final Map<String, Pair<BufferedImage, Integer>> LEVELSOURCES = new HashMap<>();
-            
+
             /**
              * Get level sources map.
              * 
@@ -515,10 +515,10 @@ public class Constants {
              * Load level sources.
              */
             public static void loadLevelSources() {
-                LEVELSOURCES.put(LEVEL_ONE_SOURCE, new Pair<BufferedImage,Integer>(loadSources(LEVEL_ONE_SOURCE), 0));
-                LEVELSOURCES.put(LEVEL_TWO_SOURCE, new Pair<BufferedImage,Integer>(loadSources(LEVEL_TWO_SOURCE), 1));
-                LEVELSOURCES.put(LEVEL_THREE_SOURCE, new Pair<BufferedImage,Integer>(loadSources(LEVEL_THREE_SOURCE), 2));
-                LEVELSOURCES.put(LEVEL_FOUR_SOURCE, new Pair<BufferedImage,Integer>(loadSources(LEVEL_FOUR_SOURCE), 3));
+                LEVELSOURCES.put(LEVEL_ONE_SOURCE, new Pair<>(loadSources(LEVEL_ONE_SOURCE), 0));
+                LEVELSOURCES.put(LEVEL_TWO_SOURCE, new Pair<>(loadSources(LEVEL_TWO_SOURCE), 1));
+                LEVELSOURCES.put(LEVEL_THREE_SOURCE, new Pair<>(loadSources(LEVEL_THREE_SOURCE), 2));
+                LEVELSOURCES.put(LEVEL_FOUR_SOURCE, new Pair<>(loadSources(LEVEL_FOUR_SOURCE), 3));
             }
         }
     }
