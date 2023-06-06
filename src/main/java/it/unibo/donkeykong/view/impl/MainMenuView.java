@@ -30,10 +30,8 @@ import it.unibo.donkeykong.view.api.View;
 public class MainMenuView implements View {
 
     private final MainMenuController menuController;
-    
-    private final Button[] funcButtons = new Button[MenuAssets.numFunctionButtons];
-    private final Button[] utilityButtons = new Button[MenuAssets.numUtilityButtons];
-    private Map<Button, BufferedImage> buttons = new HashMap<>();
+
+    private final Map<Button, BufferedImage> buttons = new HashMap<>();
 
     /**
      * Constructor.
@@ -43,27 +41,30 @@ public class MainMenuView implements View {
     public MainMenuView(final MainMenuController menuController) {
         this.menuController = menuController;
 
-        this.funcButtons[MenuAssets.playB] = new ButtonImpl(MenuAssets.funcButtonX,
-                                                            menuY + MenuAssets.funcButtonsDistance,
-                                                            MenuAssets.buttonWidth, 
-                                                            MenuAssets.buttonHeight, Gamestate.PLAYING);
-        this.funcButtons[MenuAssets.levelsB] = new ButtonImpl(MenuAssets.funcButtonX,
-                                                              menuY + MenuAssets.funcButtonsDistance + MenuAssets.buttonHeight,
-                                                              MenuAssets.buttonWidth, 
-                                                              MenuAssets.buttonHeight, Gamestate.CHOSING_LEVELS);
-        this.utilityButtons[MenuAssets.settingsB] = new ButtonImpl(menuX + MenuAssets.utilityButtonLeftBorderDistanceX,
-                                                                   MenuAssets.utilityButtonY,
-                                                                   MenuAssets.buttonWidth, 
-                                                                   MenuAssets.buttonHeight, Gamestate.SETTINGS);
-        this.utilityButtons[MenuAssets.quitB] = new ButtonImpl(rightMenuBorder - utilityButtonRightBorderDistanceX,
-                                                               MenuAssets.utilityButtonY,
-                                                               MenuAssets.buttonWidth, 
-                                                               MenuAssets.buttonHeight, Gamestate.EXIT);
+        final Button[] funcButtons = new Button[MenuAssets.numFunctionButtons];
+        final Button[] utilityButtons = new Button[MenuAssets.numUtilityButtons];
 
-        this.buttons.put(this.funcButtons[MenuAssets.playB], getMenuSources().get(MenuAssets.playButton));
-        this.buttons.put(this.funcButtons[MenuAssets.levelsB], getMenuSources().get(MenuAssets.levelsButton));
-        this.buttons.put(this.utilityButtons[MenuAssets.settingsB], getMenuSources().get(MenuAssets.settingsButton));
-        this.buttons.put(this.utilityButtons[MenuAssets.quitB], getMenuSources().get(MenuAssets.quitButton));
+        funcButtons[MenuAssets.playB] = new ButtonImpl(MenuAssets.funcButtonX,
+                                                       menuY + MenuAssets.funcButtonsDistance,
+                                                       MenuAssets.buttonWidth, 
+                                                       MenuAssets.buttonHeight, Gamestate.PLAYING);
+        funcButtons[MenuAssets.levelsB] = new ButtonImpl(MenuAssets.funcButtonX,
+                                                         menuY + MenuAssets.funcButtonsDistance + MenuAssets.buttonHeight,
+                                                         MenuAssets.buttonWidth, 
+                                                         MenuAssets.buttonHeight, Gamestate.CHOSING_LEVELS);
+        utilityButtons[MenuAssets.settingsB] = new ButtonImpl(menuX + MenuAssets.utilityButtonLeftBorderDistanceX,
+                                                              MenuAssets.utilityButtonY,
+                                                              MenuAssets.buttonWidth, 
+                                                              MenuAssets.buttonHeight, Gamestate.SETTINGS);
+        utilityButtons[MenuAssets.quitB] = new ButtonImpl(rightMenuBorder - utilityButtonRightBorderDistanceX,
+                                                          MenuAssets.utilityButtonY,
+                                                          MenuAssets.buttonWidth, 
+                                                          MenuAssets.buttonHeight, Gamestate.EXIT);
+
+        this.buttons.put(funcButtons[MenuAssets.playB], getMenuSources().get(MenuAssets.playButton));
+        this.buttons.put(funcButtons[MenuAssets.levelsB], getMenuSources().get(MenuAssets.levelsButton));
+        this.buttons.put(utilityButtons[MenuAssets.settingsB], getMenuSources().get(MenuAssets.settingsButton));
+        this.buttons.put(utilityButtons[MenuAssets.quitB], getMenuSources().get(MenuAssets.quitButton));
     }
 
     /**
@@ -96,7 +97,7 @@ public class MainMenuView implements View {
             }
         });
     }
-    
+
     private void drawBackgroundAssets(final Graphics g) {
         g.drawImage(getMenuSources().get(MenuAssets.menuBackground), 
                     0, 

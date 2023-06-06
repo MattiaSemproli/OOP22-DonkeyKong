@@ -35,14 +35,13 @@ public class GameView implements View {
 
     private final GameController gameController;
 
-    private final Button settingsPauseButton;
     private final Level level;
-    private Map<Button, BufferedImage> buttons = new HashMap<>();
+    private final Map<Button, BufferedImage> buttons = new HashMap<>();
     private BufferedImage[][] playerMovementAni = new BufferedImage[Player.numMovementAni][Player.movementAniSprites];
     private BufferedImage[] monkeyAni = new BufferedImage[Monkey.monkeyAniSprites];
     private BufferedImage[][] barrelAni = new BufferedImage[Barrel.numBarrel][Barrel.barrelAniSprites];
     private BufferedImage[][] princessAni = new BufferedImage[Princess.numPrincessAni][Princess.princessAniSprites];
-    
+
     /**
      * Constructor.
      * 
@@ -53,10 +52,10 @@ public class GameView implements View {
         this.level = new LevelImpl();
         this.bufferAnimations();
 
-        this.settingsPauseButton = new ButtonImpl(Window.GAME_WIDTH - SCALED_TILES_SIZE - Window.TILES_DEFAULT_SIZE, 
-                                                  Window.TILES_DEFAULT_SIZE, 
-                                                  SCALED_TILES_SIZE, 
-                                                  SCALED_TILES_SIZE, Gamestate.PAUSE);
+        final Button settingsPauseButton = new ButtonImpl(Window.GAME_WIDTH - SCALED_TILES_SIZE - Window.TILES_DEFAULT_SIZE, 
+                                                    Window.TILES_DEFAULT_SIZE, 
+                                                    SCALED_TILES_SIZE, 
+                                                    SCALED_TILES_SIZE, Gamestate.PAUSE);
 
         buttons.put(settingsPauseButton, getSettingsSources().get(SettingsAssets.roundedSettingsButton));
     }
@@ -100,7 +99,7 @@ public class GameView implements View {
      * {@inheritDoc}
      */
     @Override
-    public void mousePressed(final Pair<Integer,Integer> point) {
+    public void mousePressed(final Pair<Integer, Integer> point) {
         this.buttons.keySet().forEach(b -> {
             if (b.getCorners().contains(new Point(point.getX(), point.getY()))) {
                 if (b.getButtonGamestate() == Gamestate.PAUSE) {
@@ -157,14 +156,14 @@ public class GameView implements View {
         final int lives = this.gameController.getPlayerLives();
         IntStream.range(0, lives).forEach(i -> {
             g.drawImage(PowerupAssets.getPowerupSources().get(PowerupAssets.life),
-                        Window.GAME_WIDTH - Window.SCALED_TILES_SIZE * (Player.numLives + i) + PowerupAssets.lifePadding,
+                        Window.GAME_WIDTH - SCALED_TILES_SIZE * (Player.numLives + i) + PowerupAssets.lifePadding,
                         PowerupAssets.lifePadding,
                         PowerupAssets.lifeDimension, 
                         PowerupAssets.lifeDimension, null);
         });
         IntStream.range(lives, Player.numLives).forEach(i -> {
         g.drawImage(PowerupAssets.getPowerupSources().get(PowerupAssets.noLife),
-                    Window.GAME_WIDTH - Window.SCALED_TILES_SIZE * (Player.numLives + i) + PowerupAssets.lifePadding,
+                    Window.GAME_WIDTH - SCALED_TILES_SIZE * (Player.numLives + i) + PowerupAssets.lifePadding,
                     PowerupAssets.lifePadding,
                     PowerupAssets.lifeDimension, 
                     PowerupAssets.lifeDimension, null);
@@ -186,12 +185,12 @@ public class GameView implements View {
         final List<Type> activePowerUps = this.gameController.getListOfActivePowerUps();
         IntStream.range(0, activePowerUps.size()).forEach(i -> {
             g.drawImage(PowerupAssets.getPowerupSources().get(PowerupAssets.emptyBorder), 
-                        i * Window.SCALED_TILES_SIZE + PowerupAssets.powerupBorderPadding,
+                        i * SCALED_TILES_SIZE + PowerupAssets.powerupBorderPadding,
                         PowerupAssets.powerupBorderPadding, 
                         PowerupAssets.powerupBorderDimension, 
                         PowerupAssets.powerupBorderDimension, null);
             g.drawImage(getPowerUpSprite(activePowerUps.get(i)),
-                        i * Window.SCALED_TILES_SIZE + PowerupAssets.powerupBorderPadding 
+                        i * SCALED_TILES_SIZE + PowerupAssets.powerupBorderPadding 
                                                         + PowerupAssets.powerupActivePadding,
                         PowerupAssets.powerupBorderPadding + PowerupAssets.powerupActivePadding, 
                         PowerupAssets.powerupActiveDimension, 

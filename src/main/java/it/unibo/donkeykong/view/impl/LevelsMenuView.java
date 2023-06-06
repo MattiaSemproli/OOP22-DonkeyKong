@@ -36,8 +36,8 @@ public class LevelsMenuView implements View {
 
     private final LevelsMenuController levelsMenuController;
 
-    private final Button backHome, levelOneButton, levelTwoButton, levelThreeButton, levelFourButton;
-    private Map<Button, BufferedImage> buttons = new HashMap<>();
+    private final Button levelOneButton, levelTwoButton, levelThreeButton, levelFourButton;
+    private final Map<Button, BufferedImage> buttons = new HashMap<>();
 
     /**
      * Constructor.
@@ -47,10 +47,10 @@ public class LevelsMenuView implements View {
     public LevelsMenuView(final LevelsMenuController levelsMenuController) {
         this.levelsMenuController = levelsMenuController;
 
-        this.backHome = new ButtonImpl(MenuAssets.rightMenuBorder - SettingsAssets.homeButtonRightDistance, 
-                                       MenuAssets.bottomMenuBorder - SettingsAssets.homeButtonBottomDistance, 
-                                       SettingsAssets.squareButtonSize, 
-                                       SettingsAssets.squareButtonSize, Gamestate.MENU);
+        final Button backHome = new ButtonImpl(MenuAssets.rightMenuBorder - SettingsAssets.homeButtonRightDistance, 
+                                               MenuAssets.bottomMenuBorder - SettingsAssets.homeButtonBottomDistance, 
+                                               SettingsAssets.squareButtonSize, 
+                                               SettingsAssets.squareButtonSize, Gamestate.MENU);
         this.levelOneButton = new ButtonImpl(LevelAssets.leftLevelButtonX, 
                                              LevelAssets.topLevelbuttonY, 
                                              LevelAssets.levelButtonWidth, 
@@ -67,8 +67,8 @@ public class LevelsMenuView implements View {
                                                LevelAssets.botLevelButtonY,
                                                LevelAssets.levelButtonWidth, 
                                                LevelAssets.levelButtonHeight, Gamestate.PLAYING);
-        
-        buttons.put(this.backHome, getSettingsSources().get(SettingsAssets.homeButton));
+
+        buttons.put(backHome, getSettingsSources().get(SettingsAssets.homeButton));
         buttons.put(this.levelOneButton, getLevelSources().get(levelOneSource).getX());
         buttons.put(this.levelTwoButton, getLevelSources().get(levelTwoSource).getX());
         buttons.put(this.levelThreeButton, getLevelSources().get(levelThreeSource).getX());

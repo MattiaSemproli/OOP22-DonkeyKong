@@ -31,11 +31,10 @@ public class SettingsView implements View {
 
     private final SettingsController settingsController;
 
-    private Button backHome;
     private final Rectangle[] volumeButtons = new Rectangle[SettingsAssets.numVolumeButtons];
     private final Rectangle[] themesButtons = new Rectangle[Audio.numThemesButtons];
-    private Map<Button, BufferedImage> buttons = new HashMap<>();
-    private Map<Rectangle, BufferedImage> alternativeButtons = new HashMap<>();
+    private final Map<Button, BufferedImage> buttons = new HashMap<>();
+    private final Map<Rectangle, BufferedImage> alternativeButtons = new HashMap<>();
 
     /**
      * Constructor.
@@ -45,7 +44,7 @@ public class SettingsView implements View {
     public SettingsView(final SettingsController settingsController) {
         this.settingsController = settingsController;
 
-        this.backHome = new ButtonImpl(MenuAssets.rightMenuBorder - SettingsAssets.homeButtonRightDistance, 
+        final Button backHome = new ButtonImpl(MenuAssets.rightMenuBorder - SettingsAssets.homeButtonRightDistance, 
                                        MenuAssets.bottomMenuBorder - SettingsAssets.homeButtonBottomDistance, 
                                        SettingsAssets.squareButtonSize, 
                                        SettingsAssets.squareButtonSize, Gamestate.MENU);
@@ -65,8 +64,8 @@ public class SettingsView implements View {
                                                                                           SettingsAssets.musicsButtonY, 
                                                                                           SettingsAssets.themesButtonWidth, 
                                                                                           SettingsAssets.squareButtonSize);
-        
-        buttons.put(this.backHome, getSettingsSources().get(SettingsAssets.homeButton));
+
+        buttons.put(backHome, getSettingsSources().get(SettingsAssets.homeButton));
 
         alternativeButtons.put(volumeButtons[SettingsAssets.volOnB], 
                                getSettingsSources().get(SettingsAssets.roundedVolumeOn));
@@ -77,7 +76,7 @@ public class SettingsView implements View {
         alternativeButtons.put(themesButtons[Audio.getThemeSources().get(Audio.menuMusic1)],
                                ResourceFuncUtilities.loadSources("2"));
     }
-    
+
     /**
      * {@inheritDoc}
      */
@@ -95,7 +94,7 @@ public class SettingsView implements View {
                                                                           rectangle.width,
                                                                           rectangle.height, null));
     }
-    
+
     /**
      * {@inheritDoc}
      */

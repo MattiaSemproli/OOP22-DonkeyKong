@@ -10,6 +10,8 @@ import it.unibo.donkeykong.utilities.Pair;
 public interface View {
     /**
      * Draw the view.
+     * 
+     * @param g the graphics.
      */
     void draw(Graphics g);
 
@@ -18,5 +20,5 @@ public interface View {
      * 
      * @param pt the point where the mouse is pressed.
      */
-    void mousePressed(Pair<Integer,Integer> pt);
+    void mousePressed(Pair<Integer, Integer> pt);
 }

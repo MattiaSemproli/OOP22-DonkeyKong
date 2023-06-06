@@ -33,12 +33,11 @@ import it.unibo.donkeykong.view.api.View;
 public final class EndPauseView implements View {
 
     private final EndPauseController endPauseController;
-    
-    private Button backHome, backToPlay;
+
     private final Rectangle[] volumeButtons = new Rectangle[SettingsAssets.numVolumeButtons];
     private final Rectangle[] gameThemesButtons = new Rectangle[Audio.numGameThemesButtons];
-    private Map<Button, BufferedImage> buttons = new HashMap<>();
-    private Map<Rectangle, BufferedImage> alternativeButtons = new HashMap<>();
+    private final Map<Button, BufferedImage> buttons = new HashMap<>();
+    private final Map<Rectangle, BufferedImage> alternativeButtons = new HashMap<>();
 
     /**
      * Constructor.
@@ -48,14 +47,14 @@ public final class EndPauseView implements View {
     public EndPauseView(final EndPauseController endPauseController) {
         this.endPauseController = endPauseController;
 
-        this.backHome = new ButtonImpl(MenuAssets.rightMenuBorder - SettingsAssets.homeButtonRightDistance, 
-                                       MenuAssets.bottomMenuBorder - SettingsAssets.homeButtonBottomDistance, 
-                                       SettingsAssets.squareButtonSize, 
-                                       SettingsAssets.squareButtonSize, Gamestate.MENU);
-        this.backToPlay = new ButtonImpl(menuX + SettingsAssets.repeatButtonLeftDistance - SettingsAssets.squareButtonSize, 
-                                         MenuAssets.bottomMenuBorder - SettingsAssets.repeatButtonBottomDistance, 
+        final Button backHome = new ButtonImpl(MenuAssets.rightMenuBorder - SettingsAssets.homeButtonRightDistance, 
+                                         MenuAssets.bottomMenuBorder - SettingsAssets.homeButtonBottomDistance, 
                                          SettingsAssets.squareButtonSize, 
-                                         SettingsAssets.squareButtonSize, Gamestate.PLAYING);
+                                         SettingsAssets.squareButtonSize, Gamestate.MENU);
+        final Button backToPlay = new ButtonImpl(menuX + SettingsAssets.repeatButtonLeftDistance - SettingsAssets.squareButtonSize, 
+                                           MenuAssets.bottomMenuBorder - SettingsAssets.repeatButtonBottomDistance, 
+                                           SettingsAssets.squareButtonSize, 
+                                           SettingsAssets.squareButtonSize, Gamestate.PLAYING);
         this.volumeButtons[SettingsAssets.volOnB] = new Rectangle(SettingsAssets.leftSettingsButtonX, 
                                                                   SettingsAssets.muteButtonY, 
                                                                   SettingsAssets.squareButtonSize, 
@@ -73,8 +72,8 @@ public final class EndPauseView implements View {
                                                                                              SettingsAssets.themesButtonWidth, 
                                                                                              SettingsAssets.squareButtonSize);
 
-        this.buttons.put(this.backHome, getSettingsSources().get(SettingsAssets.homeButton));
-        this.buttons.put(this.backToPlay, getSettingsSources().get(SettingsAssets.backToPlayButton));
+        this.buttons.put(backHome, getSettingsSources().get(SettingsAssets.homeButton));
+        this.buttons.put(backToPlay, getSettingsSources().get(SettingsAssets.backToPlayButton));
 
         alternativeButtons.put(volumeButtons[SettingsAssets.volOnB], 
                                getSettingsSources().get(SettingsAssets.roundedVolumeOn));
