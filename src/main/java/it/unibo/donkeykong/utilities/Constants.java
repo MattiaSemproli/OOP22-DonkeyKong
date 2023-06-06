@@ -219,10 +219,16 @@ public class Constants {
          * Title y position.
          */
         public static final int TITLE_Y = MENU_Y - (int) (65 * Window.SCALE);
+
         /**
          * Menu sources map of string source and image.
          */
         private static final Map<String, BufferedImage> MENUSOURCES = new HashMap<>();
+
+        /**
+         * Private constructor.
+         */
+        private MenuAssets() {}
 
         /**
          * Get menu sources map.
@@ -401,6 +407,11 @@ public class Constants {
             private static final Map<Gamestate, BufferedImage> TEXTSOURCES = new HashMap<>();
 
             /**
+             * Private constructor.
+             */
+            private SettingsAssets() {}
+
+            /**
              * Get settings sources map.
              * 
              * @return the unmodifiable settings sources map.
@@ -503,6 +514,11 @@ public class Constants {
             private static final Map<String, Pair<BufferedImage, Integer>> LEVELSOURCES = new HashMap<>();
 
             /**
+             * Private constructor.
+             */
+            private LevelAssets() {}
+
+            /**
              * Get level sources map.
              * 
              * @return the unmodifiable level sources map.
@@ -555,6 +571,8 @@ public class Constants {
         public static final String emptyBorder = "empty_border";
 
         private static final Map<String, BufferedImage> powerupsources = new HashMap<>();
+
+        private PowerupAssets() {}
 
         public static final Map<String, BufferedImage> getPowerupSources() {
             return Collections.unmodifiableMap(powerupsources);
