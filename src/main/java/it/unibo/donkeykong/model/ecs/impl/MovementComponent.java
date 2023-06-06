@@ -139,7 +139,7 @@ public class MovementComponent extends AbstractComponent {
     }
 
     private void isMovingInAir() {
-        if (this.getEntity().getGameplay().getController().getInputs().stream()
+        if (this.getEntity().getGameplay().getInputs().stream()
                 .filter(k -> k != Action.JUMP && Action.isMovementCode(k))
                 .findFirst().isPresent()) {
                 this.movingInAir = true;

@@ -12,7 +12,7 @@ public class InputsComponent extends AbstractComponent {
 
     @Override
     public final void update() {
-        final Optional<Integer> input = this.getEntity().getGameplay().getController().getInputs().stream().findFirst();
+        final Optional<Integer> input = this.getEntity().getGameplay().getInputs().stream().findFirst();
         if (input.isPresent()) {
             switch (input.get()) {
                 case Action.MOVE_LEFT:
