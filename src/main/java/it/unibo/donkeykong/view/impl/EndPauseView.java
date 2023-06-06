@@ -4,6 +4,7 @@ import static it.unibo.donkeykong.utilities.Constants.MenuAssets.getMenuSources;
 import static it.unibo.donkeykong.utilities.Constants.MenuAssets.menuX;
 import static it.unibo.donkeykong.utilities.Constants.MenuAssets.menuY;
 import static it.unibo.donkeykong.utilities.Constants.MenuAssets.SettingsAssets.getSettingsSources;
+import static it.unibo.donkeykong.utilities.Constants.MenuAssets.SettingsAssets.repeatButtonLeftDistance;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -48,13 +49,13 @@ public final class EndPauseView implements View {
         this.endPauseController = endPauseController;
 
         final Button backHome = new ButtonImpl(MenuAssets.rightMenuBorder - SettingsAssets.homeButtonRightDistance, 
-                                         MenuAssets.bottomMenuBorder - SettingsAssets.homeButtonBottomDistance, 
-                                         SettingsAssets.squareButtonSize, 
-                                         SettingsAssets.squareButtonSize, Gamestate.MENU);
-        final Button backToPlay = new ButtonImpl(menuX + SettingsAssets.repeatButtonLeftDistance - SettingsAssets.squareButtonSize, 
-                                           MenuAssets.bottomMenuBorder - SettingsAssets.repeatButtonBottomDistance, 
-                                           SettingsAssets.squareButtonSize, 
-                                           SettingsAssets.squareButtonSize, Gamestate.PLAYING);
+                                               MenuAssets.bottomMenuBorder - SettingsAssets.homeButtonBottomDistance, 
+                                               SettingsAssets.squareButtonSize, 
+                                               SettingsAssets.squareButtonSize, Gamestate.MENU);
+        final Button backToPlay = new ButtonImpl(menuX + repeatButtonLeftDistance - SettingsAssets.squareButtonSize, 
+                                                 MenuAssets.bottomMenuBorder - SettingsAssets.repeatButtonBottomDistance, 
+                                                 SettingsAssets.squareButtonSize, 
+                                                 SettingsAssets.squareButtonSize, Gamestate.PLAYING);
         this.volumeButtons[SettingsAssets.volOnB] = new Rectangle(SettingsAssets.leftSettingsButtonX, 
                                                                   SettingsAssets.muteButtonY, 
                                                                   SettingsAssets.squareButtonSize, 
