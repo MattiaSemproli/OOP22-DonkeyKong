@@ -45,9 +45,9 @@ public class SettingsView implements View {
         this.settingsController = settingsController;
 
         final Button backHome = new ButtonImpl(MenuAssets.rightMenuBorder - SettingsAssets.homeButtonRightDistance, 
-                                       MenuAssets.bottomMenuBorder - SettingsAssets.homeButtonBottomDistance, 
-                                       SettingsAssets.squareButtonSize, 
-                                       SettingsAssets.squareButtonSize, Gamestate.MENU);
+                                               MenuAssets.bottomMenuBorder - SettingsAssets.homeButtonBottomDistance, 
+                                               SettingsAssets.squareButtonSize, 
+                                               SettingsAssets.squareButtonSize, Gamestate.MENU);
         this.volumeButtons[SettingsAssets.volOnB] = new Rectangle(SettingsAssets.leftSettingsButtonX, 
                                                                   SettingsAssets.muteButtonY, 
                                                                   SettingsAssets.squareButtonSize, 
