@@ -90,13 +90,13 @@ public class CollisionComponent extends AbstractComponent {
                   .filter(e -> {
                     final Rectangle e2Hitbox = e.getComponent(CollisionComponent.class).get().getHitbox();
                     if (hitbox.intersectsLine(new Line(e2Hitbox.getX(),
-                                                               e2Hitbox.getY(),
-                                                               e2Hitbox.getMaxX(),
-                                                               e2Hitbox.getY()))
+                                                       e2Hitbox.getY(),
+                                                       e2Hitbox.getMaxX(),
+                                                       e2Hitbox.getY()))
                        && !hitbox.intersectsLine(new Line(e2Hitbox.getX(),
-                                                                  e2Hitbox.getMaxY(),
-                                                                  e2Hitbox.getMaxX(),
-                                                                  e2Hitbox.getMaxY()))
+                                                          e2Hitbox.getMaxY(),
+                                                          e2Hitbox.getMaxX(),
+                                                          e2Hitbox.getMaxY()))
                        && hitbox.getMaxY() < e2Hitbox.getY() + 8) {
                         return true;
                     }
@@ -164,13 +164,13 @@ public class CollisionComponent extends AbstractComponent {
                       .anyMatch(e -> {
                           final Rectangle e2Hitbox = e.getComponent(CollisionComponent.class).get().getHitbox();
                           if (hitbox.intersectsLine(new Line(e2Hitbox.getX(),
-                                                                    e2Hitbox.getY(),
-                                                                    e2Hitbox.getMaxX(),
-                                                                    e2Hitbox.getY()))
+                                                             e2Hitbox.getY(),
+                                                             e2Hitbox.getMaxX(),
+                                                             e2Hitbox.getY()))
                              && !hitbox.intersectsLine(new Line(e2Hitbox.getX(),
-                                                                        e2Hitbox.getMaxY(),
-                                                                        e2Hitbox.getMaxX(),
-                                                                        e2Hitbox.getMaxY()))) {
+                                                                e2Hitbox.getMaxY(),
+                                                                e2Hitbox.getMaxX(),
+                                                                e2Hitbox.getMaxY()))) {
                               return true;
                           }
                           return false;
@@ -278,9 +278,9 @@ public class CollisionComponent extends AbstractComponent {
                   .anyMatch(e -> {
                             final Rectangle e2hitbox = e.getComponent(CollisionComponent.class).get().getHitbox();
                             if (hitbox.intersectsLine(new Line(e2hitbox.getX(),
-                                                                       e2hitbox.getY(),
-                                                                       e2hitbox.getMaxX(),
-                                                                       e2hitbox.getY()))
+                                                               e2hitbox.getY(),
+                                                               e2hitbox.getMaxX(),
+                                                               e2hitbox.getY()))
                                 && hitbox.getMaxY() < e2hitbox.getY() + Barrel.barrelFloorError) {
                                     this.nextPosition = Optional.of(new Pair<>(this.nextPosition.get().getX(),
                                                                                e2hitbox.getY() - hitbox.getHeight()));
