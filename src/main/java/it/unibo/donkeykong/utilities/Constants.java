@@ -426,4 +426,16 @@ public class Constants {
             princessSources.put(princessAni, loadSources("princess"));
         }
     }
+
+    public static final class Action {
+        public static final int MOVE_LEFT = 65;
+        public static final int MOVE_LEFT_ARROW = 37;
+        public static final int MOVE_RIGHT = 68;
+        public static final int MOVE_RIGHT_ARROW = 39;
+        public static final int MOVE_UP = 87;
+        public static final int MOVE_UP_ARROW = 38;
+        public static final int MOVE_DOWN = 83;
+        public static final int MOVE_DOWN_ARROW = 40;
+        public static final int JUMP = 32;
+    }
 }
