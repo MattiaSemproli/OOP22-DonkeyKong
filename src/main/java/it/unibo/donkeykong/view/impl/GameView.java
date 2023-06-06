@@ -73,7 +73,7 @@ public class GameView implements View {
                                   SCALED_TILES_SIZE, 
                                   SCALED_TILES_SIZE, null);
                   });
-        g.drawImage(LevelAssets.barrelBox, 
+        g.drawImage(LevelAssets.BARRELBOX, 
                     0, 
                     Math.round(Monkey.levelOneStartingMonkeyY + Monkey.monkeyHeight - Barrel.barrelBoxHeight), 
                     Barrel.barrelBoxWidth, 

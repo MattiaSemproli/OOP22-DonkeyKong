@@ -283,7 +283,7 @@ public class Constants {
              */
             public static final String AGAIN_BUTTON = "square_playagain_button";
             /**
-             * Text scale
+             * Text scale.
              */
             public static final int TEXTSCALE = 3;
             /**
@@ -440,32 +440,85 @@ public class Constants {
             }
         }
 
+        /**
+         * Level graphics constants.
+         */
         public static final class LevelAssets {
-            public static final int levelButtonHeight = (int) (135 * Window.SCALE);
-            public static final int levelButtonWidth = (int) (192 * Window.SCALE);
-            public static final int levelButtonDistance = (int) (50 * Window.SCALE);
-            public static final int levelButtonSpacingY = (int) (15 * Window.SCALE);
-            public static final int leftLevelButtonX = MENU_X + levelButtonDistance;
-            public static final int rightLevelButtonX = RIGHT_MENU_BORDER - levelButtonDistance - levelButtonWidth;
-            public static final int topLevelbuttonY = MENU_Y + levelButtonDistance;
-            public static final int botLevelButtonY = topLevelbuttonY + levelButtonHeight + levelButtonSpacingY;
-            public static final String levelOneSource = "level_one";
-            public static final String levelTwoSource = "level_two";
-            public static final String levelThreeSource = "level_three";
-            public static final String levelFourSource = "level_four";
-            public static final BufferedImage barrelBox = loadSources("barrelbox");
+            /**
+             * Level button height.
+             */
+            public static final int LEVEL_BUTTON_HEIGHT = (int) (135 * Window.SCALE);
+            /**
+             * Level button width.
+             */
+            public static final int LEVEL_BUTTON_WIDTH = (int) (192 * Window.SCALE);
+            /**
+             * Distance between level buttons.
+             */
+            public static final int LEVEL_BUTTON_DISTANCE = (int) (50 * Window.SCALE);
+            /**
+             * Level buttons spacing y axis.
+             */
+            public static final int LEVEL_BUTTON_SPACING_Y = (int) (15 * Window.SCALE);
+            /**
+             * Left level buttons x position.
+             */
+            public static final int LEFT_LEVEL_BUTTON_X = MENU_X + LEVEL_BUTTON_DISTANCE;
+            /**
+             * Right level buttons x position.
+             */
+            public static final int RIGHT_LEVEL_BUTTON_X = RIGHT_MENU_BORDER - LEVEL_BUTTON_DISTANCE - LEVEL_BUTTON_WIDTH;
+            /**
+             * Top level buttons y position.
+             */
+            public static final int TOP_LEVEL_BUTTON_Y = MENU_Y + LEVEL_BUTTON_DISTANCE;
+            /**
+             * Bottom level buttons y position.
+             */
+            public static final int BOT_LEVEL_BUTTON_Y = TOP_LEVEL_BUTTON_Y + LEVEL_BUTTON_HEIGHT + LEVEL_BUTTON_SPACING_Y;
+            /**
+             * Level one string source.
+             */
+            public static final String LEVEL_ONE_SOURCE = "level_one";
+            /**
+             * Level two string source.
+             */
+            public static final String LEVEL_TWO_SOURCE = "level_two";
+            /**
+             * Level three string source.
+             */
+            public static final String LEVEL_THREE_SOURCE = "level_three";
+            /**
+             * Level four string source.
+             */
+            public static final String LEVEL_FOUR_SOURCE = "level_four";
+            /**
+             * Barrel box string source.
+             */
+            public static final BufferedImage BARRELBOX = loadSources("barrelbox");
 
-            private static final Map<String, Pair<BufferedImage, Integer>> levelSources = new HashMap<>();
+            /**
+             * Level sources map of string source and pair of image and index.
+             */
+            private static final Map<String, Pair<BufferedImage, Integer>> LEVELSOURCES = new HashMap<>();
             
-            public static final Map<String, Pair<BufferedImage, Integer>> getLevelSources() {
-                return Collections.unmodifiableMap(levelSources);
+            /**
+             * Get level sources map.
+             * 
+             * @return the unmodifiable level sources map.
+             */
+            public static Map<String, Pair<BufferedImage, Integer>> getLevelSources() {
+                return Collections.unmodifiableMap(LEVELSOURCES);
             }
 
-            public static final void loadLevelSources() {
-                levelSources.put(levelOneSource, new Pair<BufferedImage,Integer>(loadSources(levelOneSource), 0));
-                levelSources.put(levelTwoSource, new Pair<BufferedImage,Integer>(loadSources(levelTwoSource), 1));
-                levelSources.put(levelThreeSource, new Pair<BufferedImage,Integer>(loadSources(levelThreeSource), 2));
-                levelSources.put(levelFourSource, new Pair<BufferedImage,Integer>(loadSources(levelFourSource), 3));
+            /**
+             * Load level sources.
+             */
+            public static void loadLevelSources() {
+                LEVELSOURCES.put(LEVEL_ONE_SOURCE, new Pair<BufferedImage,Integer>(loadSources(LEVEL_ONE_SOURCE), 0));
+                LEVELSOURCES.put(LEVEL_TWO_SOURCE, new Pair<BufferedImage,Integer>(loadSources(LEVEL_TWO_SOURCE), 1));
+                LEVELSOURCES.put(LEVEL_THREE_SOURCE, new Pair<BufferedImage,Integer>(loadSources(LEVEL_THREE_SOURCE), 2));
+                LEVELSOURCES.put(LEVEL_FOUR_SOURCE, new Pair<BufferedImage,Integer>(loadSources(LEVEL_FOUR_SOURCE), 3));
             }
         }
     }

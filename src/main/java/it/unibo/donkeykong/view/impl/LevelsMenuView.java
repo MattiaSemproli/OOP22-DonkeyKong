@@ -4,10 +4,10 @@ import static it.unibo.donkeykong.utilities.Constants.MenuAssets.getMenuSources;
     import static it.unibo.donkeykong.utilities.Constants.MenuAssets.MENU_X;
 import static it.unibo.donkeykong.utilities.Constants.MenuAssets.MENU_Y;
 import static it.unibo.donkeykong.utilities.Constants.MenuAssets.LevelAssets.getLevelSources;
-import static it.unibo.donkeykong.utilities.Constants.MenuAssets.LevelAssets.levelFourSource;
-import static it.unibo.donkeykong.utilities.Constants.MenuAssets.LevelAssets.levelOneSource;
-import static it.unibo.donkeykong.utilities.Constants.MenuAssets.LevelAssets.levelThreeSource;
-import static it.unibo.donkeykong.utilities.Constants.MenuAssets.LevelAssets.levelTwoSource;
+import static it.unibo.donkeykong.utilities.Constants.MenuAssets.LevelAssets.LEVEL_ONE_SOURCE;
+import static it.unibo.donkeykong.utilities.Constants.MenuAssets.LevelAssets.LEVEL_TWO_SOURCE;
+import static it.unibo.donkeykong.utilities.Constants.MenuAssets.LevelAssets.LEVEL_THREE_SOURCE;
+import static it.unibo.donkeykong.utilities.Constants.MenuAssets.LevelAssets.LEVEL_FOUR_SOURCE;
 import static it.unibo.donkeykong.utilities.Constants.MenuAssets.SettingsAssets.getSettingsSources;
 
 import java.awt.Graphics;
@@ -51,28 +51,28 @@ public class LevelsMenuView implements View {
                                                MenuAssets.BOTTOM_MENU_BORDER - SettingsAssets.HOME_BUTTON_BOTTOM_DISTANCE, 
                                                SettingsAssets.SQUARE_BUTTON_SIZE, 
                                                SettingsAssets.SQUARE_BUTTON_SIZE, Gamestate.MENU);
-        this.levelOneButton = new ButtonImpl(LevelAssets.leftLevelButtonX, 
-                                             LevelAssets.topLevelbuttonY, 
-                                             LevelAssets.levelButtonWidth, 
-                                             LevelAssets.levelButtonHeight, Gamestate.PLAYING);
-        this.levelTwoButton = new ButtonImpl(LevelAssets.rightLevelButtonX, 
-                                             LevelAssets.topLevelbuttonY, 
-                                             LevelAssets.levelButtonWidth, 
-                                             LevelAssets.levelButtonHeight, Gamestate.PLAYING);
-        this.levelThreeButton = new ButtonImpl(LevelAssets.leftLevelButtonX, 
-                                               LevelAssets.botLevelButtonY, 
-                                               LevelAssets.levelButtonWidth, 
-                                               LevelAssets.levelButtonHeight, Gamestate.PLAYING);
-        this.levelFourButton = new ButtonImpl(LevelAssets.rightLevelButtonX, 
-                                               LevelAssets.botLevelButtonY,
-                                               LevelAssets.levelButtonWidth, 
-                                               LevelAssets.levelButtonHeight, Gamestate.PLAYING);
+        this.levelOneButton = new ButtonImpl(LevelAssets.LEFT_LEVEL_BUTTON_X, 
+                                             LevelAssets.TOP_LEVEL_BUTTON_Y, 
+                                             LevelAssets.LEVEL_BUTTON_WIDTH, 
+                                             LevelAssets.LEVEL_BUTTON_HEIGHT, Gamestate.PLAYING);
+        this.levelTwoButton = new ButtonImpl(LevelAssets.RIGHT_LEVEL_BUTTON_X, 
+                                             LevelAssets.TOP_LEVEL_BUTTON_Y, 
+                                             LevelAssets.LEVEL_BUTTON_WIDTH, 
+                                             LevelAssets.LEVEL_BUTTON_HEIGHT, Gamestate.PLAYING);
+        this.levelThreeButton = new ButtonImpl(LevelAssets.LEFT_LEVEL_BUTTON_X, 
+                                               LevelAssets.BOT_LEVEL_BUTTON_Y, 
+                                               LevelAssets.LEVEL_BUTTON_WIDTH, 
+                                               LevelAssets.LEVEL_BUTTON_HEIGHT, Gamestate.PLAYING);
+        this.levelFourButton = new ButtonImpl(LevelAssets.RIGHT_LEVEL_BUTTON_X, 
+                                              LevelAssets.BOT_LEVEL_BUTTON_Y,
+                                              LevelAssets.LEVEL_BUTTON_WIDTH, 
+                                              LevelAssets.LEVEL_BUTTON_HEIGHT, Gamestate.PLAYING);
 
         buttons.put(backHome, getSettingsSources().get(SettingsAssets.HOME_BUTTON));
-        buttons.put(this.levelOneButton, getLevelSources().get(levelOneSource).getX());
-        buttons.put(this.levelTwoButton, getLevelSources().get(levelTwoSource).getX());
-        buttons.put(this.levelThreeButton, getLevelSources().get(levelThreeSource).getX());
-        buttons.put(this.levelFourButton, getLevelSources().get(levelFourSource).getX());
+        buttons.put(this.levelOneButton, getLevelSources().get(LEVEL_ONE_SOURCE).getX());
+        buttons.put(this.levelTwoButton, getLevelSources().get(LEVEL_TWO_SOURCE).getX());
+        buttons.put(this.levelThreeButton, getLevelSources().get(LEVEL_THREE_SOURCE).getX());
+        buttons.put(this.levelFourButton, getLevelSources().get(LEVEL_FOUR_SOURCE).getX());
     }
 
     /**
