@@ -1,6 +1,10 @@
 package it.unibo.donkeykong.view.impl;
 
+import static it.unibo.donkeykong.utilities.Constants.Level.levelFour;
+import static it.unibo.donkeykong.utilities.Constants.Level.levelOne;
 import static it.unibo.donkeykong.utilities.Constants.Level.levelSpritesLength;
+import static it.unibo.donkeykong.utilities.Constants.Level.levelThree;
+import static it.unibo.donkeykong.utilities.Constants.Level.levelTwo;
 import static it.unibo.donkeykong.utilities.Constants.Window.TILES_DEFAULT_SIZE;
 import static it.unibo.donkeykong.utilities.ResourceFuncUtilities.loadSources;
 
@@ -8,18 +12,10 @@ import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 
-import it.unibo.donkeykong.utilities.Constants;
 import it.unibo.donkeykong.utilities.CurrentLevel;
 import it.unibo.donkeykong.utilities.Pair;
-import it.unibo.donkeykong.utilities.Type;
 import it.unibo.donkeykong.view.api.Level;
-
-import static it.unibo.donkeykong.utilities.Constants.Level.levelOne;
-import static it.unibo.donkeykong.utilities.Constants.Level.levelTwo;
-import static it.unibo.donkeykong.utilities.Constants.Level.levelThree;
-import static it.unibo.donkeykong.utilities.Constants.Level.levelFour;
 
 /**
  * Level class, manages a level.
@@ -90,23 +86,5 @@ public class LevelImpl implements Level {
     @Override
     public Map<Pair<Integer, Integer>, Integer> getLevelData() {
         return new HashMap<>(this.levelData);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Optional<Type> getLevelMatrixType(final int x, final int y) {
-        switch (this.levelData.get(new Pair<>(x, y))) {
-            case Constants.Level.platformBlock:
-            case Constants.Level.coloredLadder:
-            case Constants.Level.whiteLadder:
-            case Constants.Level.blockWithUpperLadder:
-            case Constants.Level.blockWithLowerLadder:
-            case Constants.Level.blockWithDoubleLadder:
-                return Optional.of(Type.BLOCK);
-            default:
-                return Optional.empty();
-        }
     }
 }

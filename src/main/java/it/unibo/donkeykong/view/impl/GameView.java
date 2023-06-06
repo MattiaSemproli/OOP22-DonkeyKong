@@ -61,10 +61,6 @@ public class GameView implements View {
         buttons.put(settingsPauseButton, getSettingsSources().get(SettingsAssets.roundedSettingsButton));
     }
 
-    public Level getLevel() {
-        return this.level;
-    }
-
     /**
      * {@inheritDoc}
      */
@@ -120,6 +116,15 @@ public class GameView implements View {
      */
     public void update() {
         this.gameController.updateAniIndex();
+    }
+
+    /**
+     * Get the level data map.
+     * 
+     * @return map of pos and value.
+     */
+    public Map<Pair<Integer, Integer>, Integer> getLevelMap() {
+        return this.level.getLevelData();
     }
 
     private void drawEntity(final Graphics g, final Entity entity) {

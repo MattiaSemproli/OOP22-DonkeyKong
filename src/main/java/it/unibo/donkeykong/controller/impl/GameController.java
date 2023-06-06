@@ -40,10 +40,10 @@ public class GameController implements KeyListener, Controller {
      * Constructor.
      */
     public GameController() {
-        this.gameView = new GameView(this);
         this.game = new Game();
-        this.gameplay = new GameplayImpl(this, this.gameView.getLevel());
-        this.gameplay.initializeGame();
+        this.gameplay = new GameplayImpl(this);
+        this.gameView = new GameView(this);
+        this.gameplay.initializeGame(this.gameView.getLevelMap());
         this.keyInputs = new ArrayList<>();
         this.initializeTimer();
     }

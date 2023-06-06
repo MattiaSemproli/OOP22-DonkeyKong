@@ -4,7 +4,10 @@ import static it.unibo.donkeykong.utilities.Constants.Level.platformBlockPadding
 import static it.unibo.donkeykong.utilities.Constants.Window.SCALED_TILES_SIZE;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import java.util.Random;
 
 import it.unibo.donkeykong.controller.impl.GameController;
@@ -25,7 +28,6 @@ import it.unibo.donkeykong.utilities.Constants.Player;
 import it.unibo.donkeykong.utilities.Constants.PowerupAssets;
 import it.unibo.donkeykong.utilities.Constants.Princess;
 import it.unibo.donkeykong.utilities.Constants.Window;
-import it.unibo.donkeykong.view.api.Level;
 
 /**
  * Gameplay class, manages a gameplay.
@@ -33,8 +35,8 @@ import it.unibo.donkeykong.view.api.Level;
 public class GameplayImpl implements Gameplay {
 
     private final GameController controller;
-    private final Level level;
     private final EntityFactory entityFactoryImpl;
+    private final Map<Pair<Integer, Integer>, Integer> levelMap = new HashMap<>();
     private final List<Entity> entities = new ArrayList<>();
     private final Random random = new Random();
     private boolean opPowerUpSpawned;
@@ -44,9 +46,8 @@ public class GameplayImpl implements Gameplay {
      * 
      * @param controller the linked GameController
      */
-    public GameplayImpl(final GameController controller, final Level level) {
+    public GameplayImpl(final GameController controller) {
         this.controller = controller;
-        this.level = level;
         this.entityFactoryImpl = new EntityFactoryImpl(this);
         this.opPowerUpSpawned = false;
     }
@@ -55,7 +56,8 @@ public class GameplayImpl implements Gameplay {
      * {@inheritDoc}
      */
     @Override
-    public final void initializeGame() {
+    public final void initializeGame(final Map<Pair<Integer, Integer>, Integer> levelMap) {
+        this.levelMap.putAll(levelMap);
         this.generateInteractableEntities();
         this.createMapEntities();
         this.generatePowerUps();
@@ -94,7 +96,7 @@ public class GameplayImpl implements Gameplay {
     }
 
     private void createMapEntities() {
-        this.level.getLevelData().forEach((k, v) -> {
+        this.levelMap.forEach((k, v) -> {
             switch (v) {
                 case Constants.Level.platformBlock:
                     this.entities.add(this.entityFactoryImpl
@@ -143,8 +145,8 @@ public class GameplayImpl implements Gameplay {
         do {
             final int x = random.nextInt(Window.TILES_IN_WIDTH);
             final int y = random.nextInt(PowerupAssets.minSpawn, PowerupAssets.maxSpawn);
-            isBlock = this.level.getLevelMatrixType(x, y).isPresent();
-            isOnBlock = this.level.getLevelMatrixType(x, y + 1).isPresent();
+            isBlock = this.getLevelMatrixType(x, y).isPresent();
+            isOnBlock = this.getLevelMatrixType(x, y + 1).isPresent();
             isOccupied = this.getEntities().stream()
                              .filter(e -> e.getEntityType() == Type.STAR
                                           || e.getEntityType() == Type.HEART
@@ -174,6 +176,20 @@ public class GameplayImpl implements Gameplay {
             passX += PowerupAssets.starPadding;
         }
         return new Pair<>((float) passX, (float) passY + platformBlockPadding);
+    }
+
+    private Optional<Type> getLevelMatrixType(final int x, final int y) {
+        switch (this.levelMap.get(new Pair<>(x, y))) {
+            case Constants.Level.platformBlock:
+            case Constants.Level.coloredLadder:
+            case Constants.Level.whiteLadder:
+            case Constants.Level.blockWithUpperLadder:
+            case Constants.Level.blockWithLowerLadder:
+            case Constants.Level.blockWithDoubleLadder:
+                return Optional.of(Type.BLOCK);
+            default:
+                return Optional.empty();
+        }
     }
 
     /**
@@ -209,9 +225,7 @@ public class GameplayImpl implements Gameplay {
             this.entities.stream()
                          .filter(e -> e.getEntityType() == Type.STAR
                                       || e.getEntityType() == Type.SNOWFLAKE)
-                         .forEach(e -> {
-                            e.setPosition(this.generateRandomPosition(e.getEntityType()));
-                         });
+                         .forEach(e -> e.setPosition(this.generateRandomPosition(e.getEntityType())));
         }
     }
 
@@ -222,19 +236,15 @@ public class GameplayImpl implements Gameplay {
     public List<Type> getActivePowerUps() {
         final List<Type> activePowerUps = new ArrayList<>();
         this.entities.stream()
-                     .filter(e -> e.getEntityType() == Type.PLAYER)
-                     .findFirst()
+                     .filter(e -> e.getEntityType() == Type.PLAYER).findFirst()
                      .ifPresent(e -> {
-                        final StarComponent star = e.getComponent(StarComponent.class).get();
-                        final ShieldComponent shield = e.getComponent(ShieldComponent.class).get();
-                        final FreezeComponent freeze = e.getComponent(FreezeComponent.class).get();
-                        if (star.isInvincible()) {
+                        if(e.getComponent(StarComponent.class).get().isInvincible()) {
                             activePowerUps.add(Type.STAR);
                         }
-                        if (shield.isShielded()) {
+                        if(e.getComponent(ShieldComponent.class).get().isShielded()) {
                             activePowerUps.add(Type.SHIELD);
                         }
-                        if (freeze.isFrozen()) {
+                        if(e.getComponent(FreezeComponent.class).get().isFrozen()) {
                             activePowerUps.add(Type.SNOWFLAKE);
                         }
                      });

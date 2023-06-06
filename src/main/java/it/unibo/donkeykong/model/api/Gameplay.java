@@ -1,6 +1,7 @@
 package it.unibo.donkeykong.model.api;
 
 import java.util.List;
+import java.util.Map;
 
 import it.unibo.donkeykong.controller.impl.GameController;
 import it.unibo.donkeykong.model.ecs.api.Entity;
@@ -52,7 +53,7 @@ public interface Gameplay {
     /**
      * Initialize game's entitities.
      */
-    void initializeGame();
+    void initializeGame(Map<Pair<Integer, Integer>, Integer> levelMap);
 
     /**
      * Every three seconds move randomly most powerful powerups.
