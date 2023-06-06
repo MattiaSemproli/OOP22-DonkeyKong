@@ -47,10 +47,10 @@ public class LevelsMenuView implements View {
     public LevelsMenuView(final LevelsMenuController levelsMenuController) {
         this.levelsMenuController = levelsMenuController;
 
-        final Button backHome = new ButtonImpl(MenuAssets.RIGHT_MENU_BORDER - SettingsAssets.homeButtonRightDistance, 
-                                               MenuAssets.BOTTOM_MENU_BORDER - SettingsAssets.homeButtonBottomDistance, 
-                                               SettingsAssets.squareButtonSize, 
-                                               SettingsAssets.squareButtonSize, Gamestate.MENU);
+        final Button backHome = new ButtonImpl(MenuAssets.RIGHT_MENU_BORDER - SettingsAssets.HOME_BUTTON_RIGHT_DISTANCE, 
+                                               MenuAssets.BOTTOM_MENU_BORDER - SettingsAssets.HOME_BUTTON_BOTTOM_DISTANCE, 
+                                               SettingsAssets.SQUARE_BUTTON_SIZE, 
+                                               SettingsAssets.SQUARE_BUTTON_SIZE, Gamestate.MENU);
         this.levelOneButton = new ButtonImpl(LevelAssets.leftLevelButtonX, 
                                              LevelAssets.topLevelbuttonY, 
                                              LevelAssets.levelButtonWidth, 
@@ -68,7 +68,7 @@ public class LevelsMenuView implements View {
                                                LevelAssets.levelButtonWidth, 
                                                LevelAssets.levelButtonHeight, Gamestate.PLAYING);
 
-        buttons.put(backHome, getSettingsSources().get(SettingsAssets.homeButton));
+        buttons.put(backHome, getSettingsSources().get(SettingsAssets.HOME_BUTTON));
         buttons.put(this.levelOneButton, getLevelSources().get(levelOneSource).getX());
         buttons.put(this.levelTwoButton, getLevelSources().get(levelTwoSource).getX());
         buttons.put(this.levelThreeButton, getLevelSources().get(levelThreeSource).getX());

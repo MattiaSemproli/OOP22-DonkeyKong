@@ -52,12 +52,12 @@ public class GameView implements View {
         this.level = new LevelImpl();
         this.bufferAnimations();
 
-        final Button settingsPauseButton = new ButtonImpl(Window.GAME_WIDTH - SCALED_TILES_SIZE - Window.TILES_DEFAULT_SIZE, 
+        final Button settingsPauseButton = new ButtonImpl(Window.GAME_WIDTH - SCALED_TILES_SIZE - Window.TILES_DEFAULT_SIZE,
                                                           Window.TILES_DEFAULT_SIZE, 
                                                           SCALED_TILES_SIZE, 
                                                           SCALED_TILES_SIZE, Gamestate.PAUSE);
 
-        buttons.put(settingsPauseButton, getSettingsSources().get(SettingsAssets.roundedSettingsButton));
+        buttons.put(settingsPauseButton, getSettingsSources().get(SettingsAssets.ROUNDED_SETTINGS_BUTTON));
     }
 
     /**

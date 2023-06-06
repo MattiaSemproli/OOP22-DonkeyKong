@@ -44,27 +44,27 @@ public class MainMenuView implements View {
         final Button[] funcButtons = new Button[MenuAssets.NUM_FUNCTION_BUTTONS];
         final Button[] utilityButtons = new Button[MenuAssets.NUM_UTILITY_BUTTONS];
 
-        funcButtons[MenuAssets.PLAY_B] = new ButtonImpl(MenuAssets.funcButtonX,
-                                                       MENU_Y + MenuAssets.funcButtonsDistance,
-                                                       MenuAssets.buttonWidth, 
-                                                       MenuAssets.buttonHeight, Gamestate.PLAYING);
-        funcButtons[MenuAssets.LEVELS_B] = new ButtonImpl(MenuAssets.funcButtonX,
-                                                         MENU_Y + MenuAssets.funcButtonsDistance + MenuAssets.buttonHeight,
-                                                         MenuAssets.buttonWidth, 
-                                                         MenuAssets.buttonHeight, Gamestate.CHOSING_LEVELS);
-        utilityButtons[MenuAssets.SETTINGS_B] = new ButtonImpl(MENU_X + MenuAssets.utilityButtonLeftBorderDistanceX,
-                                                              MenuAssets.utilityButtonY,
-                                                              MenuAssets.buttonWidth, 
-                                                              MenuAssets.buttonHeight, Gamestate.SETTINGS);
-        utilityButtons[MenuAssets.QUIT_B] = new ButtonImpl(RIGHT_MENU_BORDER; - UTILITY_BUTTON_RIGHT_BORDER_DISTANCE_X;,
-                                                          MenuAssets.utilityButtonY,
-                                                          MenuAssets.buttonWidth, 
-                                                          MenuAssets.buttonHeight, Gamestate.EXIT);
+        funcButtons[MenuAssets.PLAY_B] = new ButtonImpl(MenuAssets.FUNC_BUTTON_X,
+                                                        MENU_Y + MenuAssets.FUNC_BUTTON_DISTANCE,
+                                                        MenuAssets.BUTTON_WIDTH, 
+                                                        MenuAssets.BUTTON_HEIGHT, Gamestate.PLAYING);
+        funcButtons[MenuAssets.LEVELS_B] = new ButtonImpl(MenuAssets.FUNC_BUTTON_X,
+                                                          MENU_Y + MenuAssets.FUNC_BUTTON_DISTANCE + MenuAssets.BUTTON_HEIGHT,
+                                                          MenuAssets.BUTTON_WIDTH, 
+                                                          MenuAssets.BUTTON_HEIGHT, Gamestate.CHOSING_LEVELS);
+        utilityButtons[MenuAssets.SETTINGS_B] = new ButtonImpl(MENU_X + MenuAssets.UTILITY_BUTTON_LEFT_BORDER_DISTANCE_X,
+                                                               MenuAssets.UTILITY_BUTTON_Y,
+                                                               MenuAssets.BUTTON_WIDTH, 
+                                                               MenuAssets.BUTTON_HEIGHT, Gamestate.SETTINGS);
+        utilityButtons[MenuAssets.QUIT_B] = new ButtonImpl(RIGHT_MENU_BORDER - UTILITY_BUTTON_RIGHT_BORDER_DISTANCE_X,
+                                                           MenuAssets.UTILITY_BUTTON_Y,
+                                                           MenuAssets.BUTTON_WIDTH, 
+                                                           MenuAssets.BUTTON_HEIGHT, Gamestate.EXIT);
 
-        this.buttons.put(funcButtons[MenuAssets.playB], getMenuSources().get(MenuAssets.playButton));
-        this.buttons.put(funcButtons[MenuAssets.levelsB], getMenuSources().get(MenuAssets.levelsButton));
-        this.buttons.put(utilityButtons[MenuAssets.settingsB], getMenuSources().get(MenuAssets.settingsButton));
-        this.buttons.put(utilityButtons[MenuAssets.quitB], getMenuSources().get(MenuAssets.quitButton));
+        this.buttons.put(funcButtons[MenuAssets.PLAY_B], getMenuSources().get(MenuAssets.PLAY_BUTTON));
+        this.buttons.put(funcButtons[MenuAssets.LEVELS_B], getMenuSources().get(MenuAssets.LEVELS_BUTTON));
+        this.buttons.put(utilityButtons[MenuAssets.SETTINGS_B], getMenuSources().get(MenuAssets.SETTINGS_BUTTON));
+        this.buttons.put(utilityButtons[MenuAssets.QUIT_B], getMenuSources().get(MenuAssets.QUIT_BUTTON));
     }
 
     /**
@@ -99,80 +99,80 @@ public class MainMenuView implements View {
     }
 
     private void drawBackgroundAssets(final Graphics g) {
-        g.drawImage(getMenuSources().get(MenuAssets.menuBackground), 
+        g.drawImage(getMenuSources().get(MenuAssets.MENU_BACKGROUND), 
                     0, 
                     0, 
                     Window.GAME_WIDTH, 
                     Window.GAME_HEIGHT, null);
-        g.drawImage(getMenuSources().get(MenuAssets.menuTexture), 
+        g.drawImage(getMenuSources().get(MenuAssets.MENU_TEXTURE), 
                     MENU_X, 
                     MENU_Y, 
-                    MenuAssets.menuTextureBox, 
-                    MenuAssets.menuTextureBox, null);
-        g.drawImage(getMenuSources().get(MenuAssets.title), 
-                    MenuAssets.titleX, 
-                    MenuAssets.titleY, 
-                    MenuAssets.titleWidth, 
-                    MenuAssets.titleHeight, null);
+                    MenuAssets.MENU_TEXTURE_BOX, 
+                    MenuAssets.MENU_TEXTURE_BOX, null);
+        g.drawImage(getMenuSources().get(MenuAssets.TITLE), 
+                    MenuAssets.TITLE_X, 
+                    MenuAssets.TITLE_Y, 
+                    MenuAssets.TITLE_WIDTH, 
+                    MenuAssets.TITLE_HEIGHT, null);
     }
 
     private void drawLegend(final Graphics g) {
-        g.drawImage(getMenuSources().get(MenuAssets.aKey),
-                MENU_X + MenuAssets.menuTextureBox / 10, MENU_Y + MenuAssets.buttonHeight * 3,
-                MenuAssets.legendKeyBox, MenuAssets.legendKeyBox, null);
-        g.drawImage(getMenuSources().get(MenuAssets.dKey),
-                MENU_X + MenuAssets.menuTextureBox / 10, MENU_Y + MenuAssets.buttonHeight * 3 + MenuAssets.legendKeyBox,
-                MenuAssets.legendKeyBox, MenuAssets.legendKeyBox, null);
-        g.drawImage(getMenuSources().get(MenuAssets.wKey),
-                MENU_X + MenuAssets.menuTextureBox / 10,
-                MENU_Y + MenuAssets.buttonHeight * 3 + MenuAssets.legendKeyBox * 2,
-                MenuAssets.legendKeyBox, MenuAssets.legendKeyBox, null);
-        g.drawImage(getMenuSources().get(MenuAssets.sKey),
-                MENU_X + MenuAssets.menuTextureBox / 10,
-                MENU_Y + MenuAssets.buttonHeight * 3 + MenuAssets.legendKeyBox * 3,
-                MenuAssets.legendKeyBox, MenuAssets.legendKeyBox, null);
+        g.drawImage(getMenuSources().get(MenuAssets.A),
+                    MENU_X + MenuAssets.MENU_TEXTURE_BOX / 10, MENU_Y + MenuAssets.BUTTON_HEIGHT * 3,
+                    MenuAssets.LEGEND_KEY_BOX, MenuAssets.LEGEND_KEY_BOX, null);
+        g.drawImage(getMenuSources().get(MenuAssets.D),
+                    MENU_X + MenuAssets.MENU_TEXTURE_BOX / 10, MENU_Y + MenuAssets.BUTTON_HEIGHT * 3 + MenuAssets.LEGEND_KEY_BOX,
+                    MenuAssets.LEGEND_KEY_BOX, MenuAssets.LEGEND_KEY_BOX, null);
+        g.drawImage(getMenuSources().get(MenuAssets.W),
+                    MENU_X + MenuAssets.MENU_TEXTURE_BOX / 10,
+                    MENU_Y + MenuAssets.BUTTON_HEIGHT * 3 + MenuAssets.LEGEND_KEY_BOX * 2,
+                    MenuAssets.LEGEND_KEY_BOX, MenuAssets.LEGEND_KEY_BOX, null);
+        g.drawImage(getMenuSources().get(MenuAssets.S),
+                    MENU_X + MenuAssets.MENU_TEXTURE_BOX / 10,
+                    MENU_Y + MenuAssets.BUTTON_HEIGHT * 3 + MenuAssets.LEGEND_KEY_BOX * 3,
+                    MenuAssets.LEGEND_KEY_BOX, MenuAssets.LEGEND_KEY_BOX, null);
 
-        g.drawImage(getMenuSources().get(MenuAssets.left),
-                MENU_X + MenuAssets.menuTextureBox / 10 + MenuAssets.legendKeyBox, MENU_Y + MenuAssets.buttonHeight * 3,
-                MenuAssets.legendKeyBox, MenuAssets.legendKeyBox, null);
-        g.drawImage(getMenuSources().get(MenuAssets.right),
-                MENU_X + MenuAssets.menuTextureBox / 10 + MenuAssets.legendKeyBox,
-                MENU_Y + MenuAssets.buttonHeight * 3 + MenuAssets.legendKeyBox,
-                MenuAssets.legendKeyBox, MenuAssets.legendKeyBox, null);
-        g.drawImage(getMenuSources().get(MenuAssets.up),
-                MENU_X + MenuAssets.menuTextureBox / 10 + MenuAssets.legendKeyBox,
-                MENU_Y + MenuAssets.buttonHeight * 3 + MenuAssets.legendKeyBox * 2,
-                MenuAssets.legendKeyBox, MenuAssets.legendKeyBox, null);
-        g.drawImage(getMenuSources().get(MenuAssets.down),
-                MENU_X + MenuAssets.menuTextureBox / 10 + MenuAssets.legendKeyBox,
-                MENU_Y + MenuAssets.buttonHeight * 3 + MenuAssets.legendKeyBox * 3,
-                MenuAssets.legendKeyBox, MenuAssets.legendKeyBox, null);
+        g.drawImage(getMenuSources().get(MenuAssets.LEFT),
+                    MENU_X + MenuAssets.MENU_TEXTURE_BOX / 10 + MenuAssets.LEGEND_KEY_BOX, MENU_Y + MenuAssets.BUTTON_HEIGHT * 3,
+                    MenuAssets.LEGEND_KEY_BOX, MenuAssets.LEGEND_KEY_BOX, null);
+        g.drawImage(getMenuSources().get(MenuAssets.RIGHT),
+                    MENU_X + MenuAssets.MENU_TEXTURE_BOX / 10 + MenuAssets.LEGEND_KEY_BOX,
+                    MENU_Y + MenuAssets.BUTTON_HEIGHT * 3 + MenuAssets.LEGEND_KEY_BOX,
+                    MenuAssets.LEGEND_KEY_BOX, MenuAssets.LEGEND_KEY_BOX, null);
+        g.drawImage(getMenuSources().get(MenuAssets.UP),
+                    MENU_X + MenuAssets.MENU_TEXTURE_BOX / 10 + MenuAssets.LEGEND_KEY_BOX,
+                    MENU_Y + MenuAssets.BUTTON_HEIGHT * 3 + MenuAssets.LEGEND_KEY_BOX * 2,
+                    MenuAssets.LEGEND_KEY_BOX, MenuAssets.LEGEND_KEY_BOX, null);
+        g.drawImage(getMenuSources().get(MenuAssets.DOWN),
+                    MENU_X + MenuAssets.MENU_TEXTURE_BOX / 10 + MenuAssets.LEGEND_KEY_BOX,
+                    MENU_Y + MenuAssets.BUTTON_HEIGHT * 3 + MenuAssets.LEGEND_KEY_BOX * 3,
+                    MenuAssets.LEGEND_KEY_BOX, MenuAssets.LEGEND_KEY_BOX, null);
 
         final Font font = new Font("Arial", Font.BOLD, 10 * 2);
 
         g.setColor(Color.WHITE);
         g.setFont(font);
         g.drawString("TO MOVE LEFT",
-                MENU_X + MenuAssets.menuTextureBox / 10 + MenuAssets.legendKeyBox * 2,
-                MENU_Y + MenuAssets.menuTextureBox / 2);
+                MENU_X + MenuAssets.MENU_TEXTURE_BOX / 10 + MenuAssets.LEGEND_KEY_BOX * 2,
+                MENU_Y + MenuAssets.MENU_TEXTURE_BOX / 2);
 
         g.setColor(Color.WHITE);
         g.setFont(font);
         g.drawString("TO MOVE RIGHT",
-                MENU_X + MenuAssets.menuTextureBox / 10 + MenuAssets.legendKeyBox * 2,
-                MENU_Y + MenuAssets.menuTextureBox / 2 + MenuAssets.legendKeyBox);
+                MENU_X + MenuAssets.MENU_TEXTURE_BOX / 10 + MenuAssets.LEGEND_KEY_BOX * 2,
+                MENU_Y + MenuAssets.MENU_TEXTURE_BOX / 2 + MenuAssets.LEGEND_KEY_BOX);
 
         g.setColor(Color.WHITE);
         g.setFont(font);
         g.drawString("TO MOVE UP",
-                MENU_X + MenuAssets.menuTextureBox / 10 + MenuAssets.legendKeyBox * 2,
-                MENU_Y + MenuAssets.menuTextureBox / 2 + MenuAssets.legendKeyBox * 2);
+                MENU_X + MenuAssets.MENU_TEXTURE_BOX / 10 + MenuAssets.LEGEND_KEY_BOX * 2,
+                MENU_Y + MenuAssets.MENU_TEXTURE_BOX / 2 + MenuAssets.LEGEND_KEY_BOX * 2);
 
         g.setColor(Color.WHITE);
         g.setFont(font);
         g.drawString("TO MOVE DOWN",
-                MENU_X + MenuAssets.menuTextureBox / 10 + MenuAssets.legendKeyBox * 2,
-                MENU_Y + MenuAssets.menuTextureBox / 2 + MenuAssets.legendKeyBox * 3);
+                MENU_X + MenuAssets.MENU_TEXTURE_BOX / 10 + MenuAssets.LEGEND_KEY_BOX * 2,
+                MENU_Y + MenuAssets.MENU_TEXTURE_BOX / 2 + MenuAssets.LEGEND_KEY_BOX * 3);
     }
 
     /**

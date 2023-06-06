@@ -7,8 +7,14 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Constants class.
+ */
 public class Constants {
 
+    /**
+     * Window general constants.
+     */
     public static class Window {
         /**
          * Tile default size in pixels.
@@ -47,6 +53,9 @@ public class Constants {
         public final static int DELTAF_DEFAULT = 0;
     }
 
+    /**
+     * Menu graphics constants.
+     */
     public static final class MenuAssets {
         /**
          * Application title.
@@ -210,101 +219,224 @@ public class Constants {
          * Title y position.
          */
         public static final int TITLE_Y = MENU_Y - (int) (65 * Window.SCALE);
-
         /**
          * Menu sources map of string source and image.
          */
-        private static final Map<String, BufferedImage> menuSources = new HashMap<>();
+        private static final Map<String, BufferedImage> MENUSOURCES = new HashMap<>();
 
         /**
          * Get menu sources map.
          * 
          * @return the unmodifiable menu sources map.
          */
-        public static final Map<String, BufferedImage> getMenuSources() {
-            return Collections.unmodifiableMap(menuSources);
+        public static Map<String, BufferedImage> getMenuSources() {
+            return Collections.unmodifiableMap(MENUSOURCES);
         }
 
         /**
          * Load all menu sources.
          */
-        public static final void loadMenuSources() {
-            menuSources.put(MENU_BACKGROUND, loadSources(MENU_BACKGROUND));
-            menuSources.put(MENU_TEXTURE, loadSources(MENU_TEXTURE));
-            menuSources.put(TITLE, loadSources(TITLE));
-            menuSources.put(PLAY_BUTTON, loadSources(PLAY_BUTTON));
-            menuSources.put(SETTINGS_BUTTON, loadSources(SETTINGS_BUTTON));
-            menuSources.put(QUIT_BUTTON, loadSources(QUIT_BUTTON));
-            menuSources.put(LEVELS_BUTTON, loadSources(LEVELS_BUTTON));
-            menuSources.put(A, loadSources(A));
-            menuSources.put(D, loadSources(D));
-            menuSources.put(W, loadSources(W));
-            menuSources.put(S, loadSources(S));
-            menuSources.put(LEFT, loadSources(LEFT));
-            menuSources.put(RIGHT, loadSources(RIGHT));
-            menuSources.put(UP, loadSources(UP));
-            menuSources.put(DOWN, loadSources(DOWN));
+        public static void loadMenuSources() {
+            MENUSOURCES.put(MENU_BACKGROUND, loadSources(MENU_BACKGROUND));
+            MENUSOURCES.put(MENU_TEXTURE, loadSources(MENU_TEXTURE));
+            MENUSOURCES.put(TITLE, loadSources(TITLE));
+            MENUSOURCES.put(PLAY_BUTTON, loadSources(PLAY_BUTTON));
+            MENUSOURCES.put(SETTINGS_BUTTON, loadSources(SETTINGS_BUTTON));
+            MENUSOURCES.put(QUIT_BUTTON, loadSources(QUIT_BUTTON));
+            MENUSOURCES.put(LEVELS_BUTTON, loadSources(LEVELS_BUTTON));
+            MENUSOURCES.put(A, loadSources(A));
+            MENUSOURCES.put(D, loadSources(D));
+            MENUSOURCES.put(W, loadSources(W));
+            MENUSOURCES.put(S, loadSources(S));
+            MENUSOURCES.put(LEFT, loadSources(LEFT));
+            MENUSOURCES.put(RIGHT, loadSources(RIGHT));
+            MENUSOURCES.put(UP, loadSources(UP));
+            MENUSOURCES.put(DOWN, loadSources(DOWN));
         }
 
+        /**
+         * Settings graphics constants.
+         */
         public static final class SettingsAssets {
-            public static final String homeButton = "square_home_button";
-            public static final String roundedVolumeOn = "square_volume_on_button";
-            public static final String roundedVolumeOff = "square_volume_off_button";
-            public static final String roundedSettingsButton = "square_option_button";
-            public static final String themesButton = "button_layout";
-            public static final String backToPlayButton = "square_playagain_button";
-            public static final String loseText = "lose";
-            public static final int textScale = 3;
-            public static final int loseTextWidth = (int) (62 * textScale  * Window.SCALE);
-            public static final int loseTextHeight = (int) (21 * textScale  * Window.SCALE);
-            public static final String winText = "win";
-            public static final int winTextWidth = (int) (61 * textScale  * Window.SCALE);
-            public static final int winTextHeight = (int) (21 * textScale  * Window.SCALE);
-            public static final String pauseText = "pause";
-            public static final int pauseTextWidth = (int) (79 * textScale  * Window.SCALE);
-            public static final int pauseTextHeight = (int) (21 * textScale  * Window.SCALE);
-            public static final String settingsText = "settings";
-            public static final int settingsTextWidth = (int) (119 * textScale  * Window.SCALE);
-            public static final int settingsTextHeight = (int) (21 * textScale * Window.SCALE);
-            public static final int numVolumeButtons = 2;
-            public static final int volOnB = 0;
-            public static final int volOffB = 1;
-            public static final int squareButtonSize = (int) (75 * Window.SCALE);
-            public static final int themesButtonWidth = (int) (40 * Window.SCALE);
-            public static final int homeButtonRightDistance = (int) (125 * Window.SCALE);
-            public static final int homeButtonBottomDistance = (int) (150 * Window.SCALE);
-            public static final int repeatButtonLeftDistance = (int) (125 * Window.SCALE);
-            public static final int repeatButtonBottomDistance = (int) (150 * Window.SCALE);
-            public static final int muteButtonY = MENU_Y + squareButtonSize;
-            public static final int musicsButtonY = MENU_Y + squareButtonSize * 3;
-            public static final int leftSettingsButtonX = MENU_TEXTURE_BOX / 2 - squareButtonSize / 2;
-            public static final int rightSettingsButtonX = MENU_TEXTURE_BOX / 2 + squareButtonSize * 2;
-            public static final int pauseBgOpacity = 128;
+            /**
+             * Home button string source.
+             */
+            public static final String HOME_BUTTON = "square_home_button";
+            /**
+             * Rounded volume on button string source.
+             */
+            public static final String ROUNDED_VOLUME_ON = "square_volume_on_button";
+            /**
+             * Rounded volume off button string source.
+             */
+            public static final String ROUNDED_VOLUME_OFF = "square_volume_off_button";
+            /**
+             * Rounded settings button string source.
+             */
+            public static final String ROUNDED_SETTINGS_BUTTON = "square_option_button";
+            /**
+             * Themes button string source.
+             */
+            public static final String THEMESBUTTON = "button_layout";
+            /**
+             * Play again (or back to play) button string source.
+             */
+            public static final String AGAIN_BUTTON = "square_playagain_button";
+            /**
+             * Text scale
+             */
+            public static final int TEXTSCALE = 3;
+            /**
+             * Lose text string source.
+             */
+            public static final String LOSE_TEXT = "lose";
+            /**
+             * Lose text width.
+             */
+            public static final int LOSE_TEXT_WIDTH = (int) (62 * TEXTSCALE  * Window.SCALE);
+            /**
+             * Lose text height.
+             */
+            public static final int LOSE_TEXT_HEIGHT = (int) (21 * TEXTSCALE  * Window.SCALE);
+            /**
+             * Win text string source.
+             */
+            public static final String WIN_TEXT = "win";
+            /**
+             * Win text width.
+             */
+            public static final int WIN_TEXT_WIDTH = (int) (61 * TEXTSCALE  * Window.SCALE);
+            /**
+             * Win text height.
+             */
+            public static final int WIN_TEXT_HEIGHT = (int) (21 * TEXTSCALE  * Window.SCALE);
+            /**
+             * Pause text string source.
+             */
+            public static final String PAUSE_TEXT = "pause";
+            /**
+             * Pause text width.
+             */
+            public static final int PAUSE_TEXT_WIDTH = (int) (79 * TEXTSCALE  * Window.SCALE);
+            /**
+             * Pause text height.
+             */
+            public static final int PAUSE_TEXT_HEIGHT = (int) (21 * TEXTSCALE  * Window.SCALE);
+            /**
+             * Settings text string source.
+             */
+            public static final String SETTINGS_TEXT = "settings";
+            /**
+             * Settings text width.
+             */
+            public static final int SETTINGS_TEXT_WIDTH = (int) (119 * TEXTSCALE  * Window.SCALE);
+            /**
+             * Settings text height.
+             */
+            public static final int SETTINGS_TEXT_HEIGHT = (int) (21 * TEXTSCALE * Window.SCALE);
+            /**
+             * Number of volume buttons.
+             */
+            public static final int NUM_VOLUME_BUTTONS = 2;
+            /**
+             * Volume on button index.
+             */
+            public static final int VOL_ON_B = 0;
+            /**
+             * Volume off button index.
+             */
+            public static final int VOL_OFF_B = 1;
+            /**
+             * Square button size.
+             */
+            public static final int SQUARE_BUTTON_SIZE = (int) (75 * Window.SCALE);
+            /**
+             * Themes button width.
+             */
+            public static final int THEMES_BUTTON_WIDTH = (int) (40 * Window.SCALE);
+            /**
+             * Home button right distance.
+             */
+            public static final int HOME_BUTTON_RIGHT_DISTANCE = (int) (125 * Window.SCALE);
+            /**
+             * Home button bottom distance.
+             */
+            public static final int HOME_BUTTON_BOTTOM_DISTANCE = (int) (150 * Window.SCALE);
+            /**
+             * Repeat button left distance.
+             */
+            public static final int REPEAT_BUTTON_LEFT_DISTANCE = (int) (125 * Window.SCALE);
+            /**
+             * Repeat button bottom distance.
+             */
+            public static final int REPEAT_BUTTON_BOTTOM_DISTANCE = (int) (150 * Window.SCALE);
+            /**
+             * Mute button y position.
+             */
+            public static final int MUTE_BUTTON_Y = MENU_Y + SQUARE_BUTTON_SIZE;
+            /**
+             * Music buttons y position.
+             */
+            public static final int MUSIC_BUTTON_Y = MENU_Y + SQUARE_BUTTON_SIZE * 3;
+            /**
+             * Left settings button x position.
+             */
+            public static final int LEFT_SETTINGS_BUTTON_X = MENU_TEXTURE_BOX / 2 - SQUARE_BUTTON_SIZE / 2;
+            /**
+             * Right settings button x position.
+             */
+            public static final int RIGHT_SETTINGS_BUTTON_X = MENU_TEXTURE_BOX / 2 + SQUARE_BUTTON_SIZE * 2;
+            /**
+             * Background opacity behind pause view.
+             */
+            public static final int PAUSE_BG_OPACITY = 128;
 
-            private static final Map<String, BufferedImage> settingsSources = new HashMap<>();
-            private static final Map<Gamestate, BufferedImage> textSources = new HashMap<>();
+            /**
+             * Settings sources map of string source and image.
+             */
+            private static final Map<String, BufferedImage> SETTINGSSOURCES = new HashMap<>();
+            /**
+             * Text sources map of gamestate and image.
+             */
+            private static final Map<Gamestate, BufferedImage> TEXTSOURCES = new HashMap<>();
 
-            public static final Map<String, BufferedImage> getSettingsSources() {
-                return Collections.unmodifiableMap(settingsSources);
+            /**
+             * Get settings sources map.
+             * 
+             * @return the unmodifiable settings sources map.
+             */
+            public static Map<String, BufferedImage> getSettingsSources() {
+                return Collections.unmodifiableMap(SETTINGSSOURCES);
             }
-            public static final Map<Gamestate, BufferedImage> getTextSources() {
-                return Collections.unmodifiableMap(textSources);
+            /**
+             * Get text sources map.
+             * 
+             * @return the unmodifiable text sources map.
+             */
+            public static Map<Gamestate, BufferedImage> getTextSources() {
+                return Collections.unmodifiableMap(TEXTSOURCES);
             }
 
-            public static final void loadSettingsSources() {
-                settingsSources.put(homeButton, loadSources(homeButton));
-                settingsSources.put(roundedVolumeOn, loadSources(roundedVolumeOn));
-                settingsSources.put(roundedVolumeOff, loadSources(roundedVolumeOff));
-                settingsSources.put(roundedSettingsButton, loadSources(roundedSettingsButton));
-                settingsSources.put(themesButton, loadSources(themesButton));
-                settingsSources.put(backToPlayButton, loadSources(backToPlayButton));
+            /**
+             * Load settings sources.
+             */
+            public static void loadSettingsSources() {
+                SETTINGSSOURCES.put(HOME_BUTTON, loadSources(HOME_BUTTON));
+                SETTINGSSOURCES.put(ROUNDED_VOLUME_ON, loadSources(ROUNDED_VOLUME_ON));
+                SETTINGSSOURCES.put(ROUNDED_VOLUME_OFF, loadSources(ROUNDED_VOLUME_OFF));
+                SETTINGSSOURCES.put(ROUNDED_SETTINGS_BUTTON, loadSources(ROUNDED_SETTINGS_BUTTON));
+                SETTINGSSOURCES.put(THEMESBUTTON, loadSources(THEMESBUTTON));
+                SETTINGSSOURCES.put(AGAIN_BUTTON, loadSources(AGAIN_BUTTON));
             }
 
-            public static final void loadTextSources() {
-                textSources.put(Gamestate.WIN, loadSources(winText));
-                textSources.put(Gamestate.DEATH, loadSources(loseText));
-                textSources.put(Gamestate.SETTINGS, loadSources(settingsText));
-                textSources.put(Gamestate.PAUSE, loadSources(pauseText));
+            /**
+             * Load text sources.
+             */
+            public static void loadTextSources() {
+                TEXTSOURCES.put(Gamestate.WIN, loadSources(WIN_TEXT));
+                TEXTSOURCES.put(Gamestate.DEATH, loadSources(LOSE_TEXT));
+                TEXTSOURCES.put(Gamestate.SETTINGS, loadSources(SETTINGS_TEXT));
+                TEXTSOURCES.put(Gamestate.PAUSE, loadSources(PAUSE_TEXT));
             }
         }
 

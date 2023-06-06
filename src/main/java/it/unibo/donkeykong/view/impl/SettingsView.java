@@ -31,7 +31,7 @@ public class SettingsView implements View {
 
     private final SettingsController settingsController;
 
-    private final Rectangle[] volumeButtons = new Rectangle[SettingsAssets.numVolumeButtons];
+    private final Rectangle[] volumeButtons = new Rectangle[SettingsAssets.NUM_VOLUME_BUTTONS];
     private final Rectangle[] themesButtons = new Rectangle[Audio.numThemesButtons];
     private final Map<Button, BufferedImage> buttons = new HashMap<>();
     private final Map<Rectangle, BufferedImage> alternativeButtons = new HashMap<>();
@@ -44,33 +44,35 @@ public class SettingsView implements View {
     public SettingsView(final SettingsController settingsController) {
         this.settingsController = settingsController;
 
-        final Button backHome = new ButtonImpl(MenuAssets.RIGHT_MENU_BORDER - SettingsAssets.homeButtonRightDistance, 
-                                               MenuAssets.BOTTOM_MENU_BORDER - SettingsAssets.homeButtonBottomDistance, 
-                                               SettingsAssets.squareButtonSize, 
-                                               SettingsAssets.squareButtonSize, Gamestate.MENU);
-        this.volumeButtons[SettingsAssets.volOnB] = new Rectangle(SettingsAssets.leftSettingsButtonX, 
-                                                                  SettingsAssets.muteButtonY, 
-                                                                  SettingsAssets.squareButtonSize, 
-                                                                  SettingsAssets.squareButtonSize);
-        this.volumeButtons[SettingsAssets.volOffB] = new Rectangle(SettingsAssets.rightSettingsButtonX, 
-                                                                   SettingsAssets.muteButtonY, 
-                                                                   SettingsAssets.squareButtonSize, 
-                                                                   SettingsAssets.squareButtonSize);
-        this.themesButtons[Audio.getThemeSources().get(Audio.menuMusic0)] = new Rectangle(SettingsAssets.leftSettingsButtonX, 
-                                                                                          SettingsAssets.musicsButtonY, 
-                                                                                          SettingsAssets.themesButtonWidth, 
-                                                                                          SettingsAssets.squareButtonSize);
-        this.themesButtons[Audio.getThemeSources().get(Audio.menuMusic1)] = new Rectangle(SettingsAssets.rightSettingsButtonX, 
-                                                                                          SettingsAssets.musicsButtonY, 
-                                                                                          SettingsAssets.themesButtonWidth, 
-                                                                                          SettingsAssets.squareButtonSize);
+        final Button backHome = new ButtonImpl(MenuAssets.RIGHT_MENU_BORDER - SettingsAssets.HOME_BUTTON_RIGHT_DISTANCE, 
+                                               MenuAssets.BOTTOM_MENU_BORDER - SettingsAssets.HOME_BUTTON_BOTTOM_DISTANCE, 
+                                               SettingsAssets.SQUARE_BUTTON_SIZE, 
+                                               SettingsAssets.SQUARE_BUTTON_SIZE, Gamestate.MENU);
+        this.volumeButtons[SettingsAssets.VOL_ON_B] = new Rectangle(SettingsAssets.LEFT_SETTINGS_BUTTON_X, 
+                                                                    SettingsAssets.MUTE_BUTTON_Y, 
+                                                                    SettingsAssets.SQUARE_BUTTON_SIZE, 
+                                                                    SettingsAssets.SQUARE_BUTTON_SIZE);
+        this.volumeButtons[SettingsAssets.VOL_OFF_B] = new Rectangle(SettingsAssets.RIGHT_SETTINGS_BUTTON_X, 
+                                                                     SettingsAssets.MUTE_BUTTON_Y, 
+                                                                     SettingsAssets.SQUARE_BUTTON_SIZE, 
+                                                                     SettingsAssets.SQUARE_BUTTON_SIZE);
+        this.themesButtons[Audio.getThemeSources()
+                                .get(Audio.menuMusic0)] = new Rectangle(SettingsAssets.LEFT_SETTINGS_BUTTON_X, 
+                                                                        SettingsAssets.MUSIC_BUTTON_Y, 
+                                                                        SettingsAssets.THEMES_BUTTON_WIDTH, 
+                                                                        SettingsAssets.SQUARE_BUTTON_SIZE);
+        this.themesButtons[Audio.getThemeSources()
+                                .get(Audio.menuMusic1)] = new Rectangle(SettingsAssets.RIGHT_SETTINGS_BUTTON_X, 
+                                                                        SettingsAssets.MUSIC_BUTTON_Y, 
+                                                                        SettingsAssets.THEMES_BUTTON_WIDTH, 
+                                                                        SettingsAssets.SQUARE_BUTTON_SIZE);
 
-        buttons.put(backHome, getSettingsSources().get(SettingsAssets.homeButton));
+        buttons.put(backHome, getSettingsSources().get(SettingsAssets.HOME_BUTTON));
 
-        alternativeButtons.put(volumeButtons[SettingsAssets.volOnB], 
-                               getSettingsSources().get(SettingsAssets.roundedVolumeOn));
-        alternativeButtons.put(volumeButtons[SettingsAssets.volOffB], 
-                               getSettingsSources().get(SettingsAssets.roundedVolumeOff));
+        alternativeButtons.put(volumeButtons[SettingsAssets.VOL_ON_B], 
+                               getSettingsSources().get(SettingsAssets.ROUNDED_VOLUME_ON));
+        alternativeButtons.put(volumeButtons[SettingsAssets.VOL_OFF_B], 
+                               getSettingsSources().get(SettingsAssets.ROUNDED_VOLUME_OFF));
         alternativeButtons.put(themesButtons[Audio.getThemeSources().get(Audio.menuMusic0)],
                                ResourceFuncUtilities.loadSources("1"));
         alternativeButtons.put(themesButtons[Audio.getThemeSources().get(Audio.menuMusic1)],
@@ -111,9 +113,9 @@ public class SettingsView implements View {
     }
 
     private void mute(final Point point) {
-        if (this.volumeButtons[SettingsAssets.volOnB].contains(point)) {
+        if (this.volumeButtons[SettingsAssets.VOL_ON_B].contains(point)) {
             AudioUtilities.setMuted(false);
-        } else if (this.volumeButtons[SettingsAssets.volOffB].contains(point)) {
+        } else if (this.volumeButtons[SettingsAssets.VOL_OFF_B].contains(point)) {
             AudioUtilities.setMuted(true);
         }
     }
@@ -138,10 +140,10 @@ public class SettingsView implements View {
                     MenuAssets.MENU_TEXTURE_BOX, 
                     MenuAssets.MENU_TEXTURE_BOX, null);
         g.drawImage(SettingsAssets.getTextSources().get(Gamestate.getGamestate()), 
-                    MENU_X + (MenuAssets.MENU_TEXTURE_BOX - SettingsAssets.settingsTextWidth) / 2,
-                    MENU_Y - (SettingsAssets.settingsTextHeight / 2),
-                    SettingsAssets.settingsTextWidth,
-                    SettingsAssets.settingsTextHeight, null);
+                    MENU_X + (MenuAssets.MENU_TEXTURE_BOX - SettingsAssets.SETTINGS_TEXT_WIDTH) / 2,
+                    MENU_Y - (SettingsAssets.SETTINGS_TEXT_HEIGHT / 2),
+                    SettingsAssets.SETTINGS_TEXT_WIDTH,
+                    SettingsAssets.SETTINGS_TEXT_HEIGHT, null);
     }
 
     /**
