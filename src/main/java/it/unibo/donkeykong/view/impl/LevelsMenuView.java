@@ -129,4 +129,18 @@ public class LevelsMenuView implements View {
                     MenuAssets.menuTextureBox, 
                     MenuAssets.menuTextureBox, null);
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void keyPressed(int keyCode) {
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void keyReleased(int keyCode) {
+    }
 }

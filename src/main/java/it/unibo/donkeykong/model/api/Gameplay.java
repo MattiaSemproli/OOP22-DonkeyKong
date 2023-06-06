@@ -80,4 +80,14 @@ public interface Gameplay {
      * @return a list of active powerups.
      */
     List<Type> getActivePowerUps();
+
+    void resetKeys();
+
+    void updateKeyPressed(int keyCode);
+
+    void updateKeyReleased(int keyCode);
+
+    void resetKeysOnFocusLost();
+
+    List<Integer> getInputs();
 }

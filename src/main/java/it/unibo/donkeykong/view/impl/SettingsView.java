@@ -143,4 +143,18 @@ public class SettingsView implements View {
                     SettingsAssets.settingsTextWidth,
                     SettingsAssets.settingsTextHeight, null);
     }
+   
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void keyPressed(int keyCode) {
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void keyReleased(int keyCode) {
+    }
 }

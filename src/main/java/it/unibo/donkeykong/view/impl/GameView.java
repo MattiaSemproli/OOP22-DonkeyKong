@@ -110,6 +110,22 @@ public class GameView implements View {
             }
         });
     }
+    
+    /**
+     * {@inheritDoc} 
+     */
+    @Override
+    public void keyPressed(int keyCode) {
+        this.gameController.notifyKeyPressed(keyCode);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void keyReleased(int keyCode) {
+        this.gameController.notifyKeyReleased(keyCode);
+    }
 
     /**
      * Update animations' indexes.

@@ -4,6 +4,7 @@ import static it.unibo.donkeykong.utilities.Constants.Level.platformBlockPadding
 import static it.unibo.donkeykong.utilities.Constants.Window.SCALED_TILES_SIZE;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,8 +21,10 @@ import it.unibo.donkeykong.model.ecs.impl.ShieldComponent;
 import it.unibo.donkeykong.model.ecs.impl.StarComponent;
 import it.unibo.donkeykong.utilities.Constants;
 import it.unibo.donkeykong.utilities.CurrentLevel;
+import it.unibo.donkeykong.utilities.Gamestate;
 import it.unibo.donkeykong.utilities.Pair;
 import it.unibo.donkeykong.utilities.Type;
+import it.unibo.donkeykong.utilities.Constants.Action;
 import it.unibo.donkeykong.utilities.Constants.Barrel;
 import it.unibo.donkeykong.utilities.Constants.Monkey;
 import it.unibo.donkeykong.utilities.Constants.Player;
@@ -40,6 +43,7 @@ public class GameplayImpl implements Gameplay {
     private final List<Entity> entities = new ArrayList<>();
     private final Random random = new Random();
     private boolean opPowerUpSpawned;
+    private final List<Integer> keyInputs;
 
     /**
      * Constructor.
@@ -50,6 +54,7 @@ public class GameplayImpl implements Gameplay {
         this.controller = controller;
         this.entityFactoryImpl = new EntityFactoryImpl(this);
         this.opPowerUpSpawned = false;
+        this.keyInputs = new ArrayList<>();
     }
 
     /**
@@ -61,6 +66,51 @@ public class GameplayImpl implements Gameplay {
         this.generateInteractableEntities();
         this.createMapEntities();
         this.generatePowerUps();
+    }
+
+    public void updateKeyPressed(final int keyCode) {
+        if (Action.isMovementCode(keyCode)) {
+            this.keyInputs.add(0, keyCode);
+        }
+    }
+
+    public void updateKeyReleased(final int keyCode) {
+        if (keyCode == Action.ESCAPE) {
+            Gamestate.setGamestate(Gamestate.PAUSE);
+            resetKeys();
+            this.controller.pauseTimer();
+        } else {
+            if (this.keyInputs.contains(keyCode)) {
+                this.keyInputs.removeAll(Collections.singleton(keyCode));
+            }
+        }
+    }
+
+    /**
+     * Get all the inputs.
+     * 
+     * @return list of keys pressed.
+     */
+    public List<Integer> getInputs() {
+        return new ArrayList<>(this.keyInputs);
+    }
+
+    /**
+     * If we change PC's window and therefor our application loses focus, the game pauses.
+     */
+    public void resetKeysOnFocusLost() {
+        if (Gamestate.getGamestate().equals(Gamestate.PLAYING)) {
+            Gamestate.setGamestate(Gamestate.PAUSE);
+            resetKeys();
+            this.controller.pauseTimer();
+        }
+    }
+
+    /**
+     * Reset keys input.
+     */
+    public void resetKeys() {
+        this.keyInputs.clear();
     }
 
     private void generateInteractableEntities() {

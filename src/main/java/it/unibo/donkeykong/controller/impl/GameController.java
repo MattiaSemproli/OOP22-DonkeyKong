@@ -29,7 +29,6 @@ public class GameController implements Controller {
 
     private final GameView gameView;
     private final Game game;
-    private final List<Integer> keyInputs;
     private final Gameplay gameplay;
     private Timer timer;
     private float seconds;
@@ -43,7 +42,6 @@ public class GameController implements Controller {
         this.gameplay = new GameplayImpl(this);
         this.gameView = new GameView(this);
         this.gameplay.initializeGame(this.gameView.getLevelMap());
-        this.keyInputs = new ArrayList<>();
         this.initializeTimer();
     }
 
@@ -68,10 +66,12 @@ public class GameController implements Controller {
         }
     }
 
-    private boolean hasPlayerLife() {
-        return this.gameplay.getEntities().stream()
-                                          .filter(e -> e.getEntityType() == Type.PLAYER)
-                                          .findFirst().get().getComponent(HealthComponent.class).get().getLives() > 0;
+    public void resetKeys() {
+        this.gameplay.resetKeys();
+    }
+
+    public void resetKeysOnFocusLost() {
+        this.gameplay.resetKeysOnFocusLost();
     }
 
     /**
@@ -79,10 +79,8 @@ public class GameController implements Controller {
      * 
      * @param keyCode the int code of key pressed.
      */
-    public void keyPressed(final int keyCode) { 
-        if (Action.isMovementCode(keyCode)) {
-            this.keyInputs.add(0, keyCode);
-        }
+    public void notifyKeyPressed(final int keyCode) {
+        this.gameplay.updateKeyPressed(keyCode);
     }
 
     /**
@@ -90,43 +88,14 @@ public class GameController implements Controller {
      * 
      * @param keyCode the int code of key released.
      */
-    public void keyReleased(final int keyCode) {
-        if (keyCode == Action.ESCAPE) {
-            Gamestate.setGamestate(Gamestate.PAUSE);
-            resetKeys();
-            this.pauseTimer();
-        } else {
-            if (this.keyInputs.contains(keyCode)) {
-                this.keyInputs.removeAll(Collections.singleton(keyCode));
-            }
-        }
+    public void notifyKeyReleased(final int keyCode) {
+        this.gameplay.updateKeyReleased(keyCode);
     }
 
-    /**
-     * Get all the inputs.
-     * 
-     * @return list of keys pressed.
-     */
-    public List<Integer> getInputs() {
-        return new ArrayList<>(this.keyInputs);
-    }
-
-    /**
-     * If we change PC's window and therefor our application loses focus, the game pauses.
-     */
-    public void resetKeysOnFocusLost() {
-        if (Gamestate.getGamestate().equals(Gamestate.PLAYING)) {
-            Gamestate.setGamestate(Gamestate.PAUSE);
-            resetKeys();
-            this.pauseTimer();
-        }
-    }
-
-    /**
-     * Reset keys input.
-     */
-    public void resetKeys() {
-        this.keyInputs.clear();
+    private boolean hasPlayerLife() {
+        return this.gameplay.getEntities().stream()
+                                          .filter(e -> e.getEntityType() == Type.PLAYER)
+                                          .findFirst().get().getComponent(HealthComponent.class).get().getLives() > 0;
     }
 
     /**
