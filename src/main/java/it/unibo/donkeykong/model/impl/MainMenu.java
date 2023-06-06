@@ -16,7 +16,7 @@ public class MainMenu implements ViewModel {
     public void applyGamestate(final Gamestate gamestate) {
         Gamestate.setGamestate(gamestate);
     }
-    
+
     /**
      * Set level one.
      */

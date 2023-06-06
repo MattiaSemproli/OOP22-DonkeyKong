@@ -33,7 +33,7 @@ public class MainMenuController implements Controller {
     public void startGameController() {
         this.application.startGameController();
     }
-   
+
     /**
      * Tell the model to start level.
      */

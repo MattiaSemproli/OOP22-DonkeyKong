@@ -75,6 +75,9 @@ public class GameController implements KeyListener, Controller {
                                           .findFirst().get().getComponent(HealthComponent.class).get().getLives() > 0;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void keyPressed(final KeyEvent e) { 
         if (e.getKeyCode() != KeyEvent.VK_ESCAPE
@@ -107,6 +110,9 @@ public class GameController implements KeyListener, Controller {
         return this.gameView;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void keyReleased(final KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
@@ -177,7 +183,6 @@ public class GameController implements KeyListener, Controller {
                             .findFirst()
                             .map(e -> e.getComponent(HealthComponent.class).get().getLives())
                             .orElse(0);
-                            
     }
 
     /**
