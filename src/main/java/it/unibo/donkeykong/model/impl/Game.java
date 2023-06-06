@@ -12,17 +12,17 @@ import java.awt.image.BufferedImage;
 import java.util.HashMap;
 import java.util.Map;
 
-import it.unibo.donkeykong.utilities.Constants.Barrel;
-import it.unibo.donkeykong.utilities.Constants.Monkey;
-import it.unibo.donkeykong.utilities.Constants.Player;
-import it.unibo.donkeykong.utilities.Constants.Princess;
-import it.unibo.donkeykong.utilities.Constants.Window;
 import it.unibo.donkeykong.model.api.Level;
 import it.unibo.donkeykong.model.api.ViewModel;
 import it.unibo.donkeykong.model.ecs.api.Entity;
 import it.unibo.donkeykong.model.ecs.impl.DoubleDamageComponent;
 import it.unibo.donkeykong.model.ecs.impl.MovementComponent;
 import it.unibo.donkeykong.model.ecs.impl.ThrowComponent;
+import it.unibo.donkeykong.utilities.Constants.Barrel;
+import it.unibo.donkeykong.utilities.Constants.Monkey;
+import it.unibo.donkeykong.utilities.Constants.Player;
+import it.unibo.donkeykong.utilities.Constants.Princess;
+import it.unibo.donkeykong.utilities.Constants.Window;
 import it.unibo.donkeykong.utilities.Direction;
 import it.unibo.donkeykong.utilities.Gamestate;
 import it.unibo.donkeykong.utilities.Pair;
@@ -36,10 +36,6 @@ public class Game implements ViewModel {
 
     private final Level level;
     private final Map<Rectangle, BufferedImage> dataLevel = new HashMap<>();
-    private BufferedImage[][] playerMovementAni = new BufferedImage[Player.numMovementAni][Player.movementAniSprites];
-    private BufferedImage[] monkeyAni = new BufferedImage[Monkey.monkeyAniSprites];
-    private BufferedImage[][] barrelAni = new BufferedImage[Barrel.numBarrel][Barrel.barrelAniSprites];
-    private BufferedImage[][] princessAni = new BufferedImage[Princess.numPrincessAni][Princess.princessAniSprites];
     private int aniPrincessTick, aniPrincessIndex;
     private int aniMonkeyTick, aniMonkeyIndex;
     private int aniPlayerTick, aniPlayerIndex;
@@ -53,7 +49,6 @@ public class Game implements ViewModel {
         this.level = new LevelImpl();
         this.mapDataLevel();
 
-        this.bufferAnimations();
         this.aniPrincessTick = 0;
         this.aniPrincessIndex = 0;
         this.aniMonkeyTick = 0;
@@ -64,59 +59,6 @@ public class Game implements ViewModel {
         this.aniBarrelIndex = 0;
         this.aniClimbTick = 0;
         this.aniClimbIndex = 0;
-    }
-
-    private void bufferAnimations() {
-        for (int r = 0; r < Player.numMovementAni - 1; r++) {
-            for (int c = 0; c < Player.movementAniSprites; c++) {
-                playerMovementAni[r][c] = Player.getPlayerSources()
-                                                .get(Player.movementAni)
-                                                .getSubimage(c * Player.spriteDimension, 
-                                                             r * Player.spriteDimension, 
-                                                             Player.spriteDimension, 
-                                                             Player.spriteDimension);
-            }
-        }
-        for (int c = 0; c < Player.climbingAniSprites; c++) {
-            playerMovementAni[Player.climbAni][c] = Player.getPlayerSources()
-                                                          .get(Player.climbingAni)
-                                                          .getSubimage(c * Player.spriteDimension, 
-                                                                       0, 
-                                                                       Player.spriteDimension, 
-                                                                       Player.spriteDimension);
-        }
-        for (int c = 0; c < monkeyAni.length; c++) {
-            monkeyAni[c] = Monkey.getMonkeySources()
-                                 .get(Monkey.monkeyAni)
-                                 .getSubimage(c * Monkey.spriteWidth, 
-                                              0, 
-                                              Monkey.spriteWidth, 
-                                              Monkey.spriteHeight);
-        }
-        for (int c = 0; c < Barrel.barrelAniSprites; c++) {
-            barrelAni[Barrel.barrelAni][c] = Barrel.getBarrelSources()
-                                                   .get(Barrel.barrelAni)
-                                                   .getSubimage(c * Barrel.spriteWidth,
-                                                                0, 
-                                                                Barrel.spriteWidth, 
-                                                                Barrel.spriteHeight);
-            barrelAni[Barrel.ddBarrelAni][c] = Barrel.getBarrelSources()
-                                                     .get(Barrel.ddBarrelAni)
-                                                     .getSubimage(c * Barrel.spriteWidth,
-                                                                  0, 
-                                                                  Barrel.spriteWidth, 
-                                                                  Barrel.spriteHeight);
-        }
-        for (int r = 0; r < Princess.numPrincessAni; r++) {
-            for (int c = 0; c < Princess.princessAniSprites; c++) {
-                princessAni[r][c] = Princess.getPrincessSources()
-                                         .get(Princess.princessAni)
-                                         .getSubimage(c * Princess.spriteWidth,
-                                                      r * Princess.spriteHeight, 
-                                                      Princess.spriteWidth, 
-                                                      Princess.spriteHeight);
-            }
-        }
     }
 
     private void mapDataLevel() {
