@@ -110,7 +110,7 @@ public class GameView implements View {
             }
         });
     }
-    
+
     /**
      * {@inheritDoc} 
      */

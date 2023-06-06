@@ -69,7 +69,7 @@ public class GameController implements Controller {
                                           .filter(e -> e.getEntityType() == Type.PLAYER)
                                           .findFirst().get().getComponent(HealthComponent.class).get().getLives() > 0;
     }
-    
+
     /**
      * Notify the model with the pressed key.
      * 

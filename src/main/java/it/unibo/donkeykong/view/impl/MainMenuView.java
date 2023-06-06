@@ -174,7 +174,7 @@ public class MainMenuView implements View {
                 menuX + MenuAssets.menuTextureBox / 10 + MenuAssets.legendKeyBox * 2,
                 menuY + MenuAssets.menuTextureBox / 2 + MenuAssets.legendKeyBox * 3);
     }
-    
+
     /**
      * {@inheritDoc}
      */

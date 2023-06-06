@@ -143,7 +143,7 @@ public class SettingsView implements View {
                     SettingsAssets.settingsTextWidth,
                     SettingsAssets.settingsTextHeight, null);
     }
-   
+
     /**
      * {@inheritDoc}
      */

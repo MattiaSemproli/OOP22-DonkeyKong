@@ -80,11 +80,15 @@ public interface Gameplay {
 
     /**
      * Update input keys list with pressed key.
+     * 
+     * @param keyCode the pressed key.
      */
     void updateKeyPressed(int keyCode);
 
     /**
      * Remove released key from input keys list.
+     * 
+     * @param keyCode the released key.
      */
     void updateKeyReleased(int keyCode);
 

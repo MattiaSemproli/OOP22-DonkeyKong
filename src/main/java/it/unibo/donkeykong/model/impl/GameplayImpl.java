@@ -195,7 +195,7 @@ public class GameplayImpl implements Gameplay {
             default:
                 return Optional.empty();
         }
-    }    
+    }
 
     /**
      * {@inheritDoc}
@@ -226,7 +226,7 @@ public class GameplayImpl implements Gameplay {
     /**
      * {@inheritDoc}
      */
-    @Override    
+    @Override
     public List<Integer> getInputs() {
         return new ArrayList<>(this.keyInputs);
     }
