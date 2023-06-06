@@ -74,10 +74,9 @@ public class GameController implements KeyListener, Controller {
     }
 
     private boolean hasPlayerLife() {
-        return this.gameplay.getEntities()
-                            .stream()
-                            .filter(e -> e.getEntityType() == Type.PLAYER)
-                            .findFirst().get().getComponent(HealthComponent.class).get().getLives() > 0;
+        return this.gameplay.getEntities().stream()
+                                          .filter(e -> e.getEntityType() == Type.PLAYER)
+                                          .findFirst().get().getComponent(HealthComponent.class).get().getLives() > 0;
     }
 
     @Override
@@ -167,16 +166,29 @@ public class GameController implements KeyListener, Controller {
     }
 
     /**
-     * Get all the entities that are not blocks from the gameplay.
+     * Get all the entities that are neither powerups nor blocks from the gameplay.
      * 
      * @return list of entities.
      */
     public final List<Entity> getInteractableEntitiesFromGameplay() {
-        return this.gameplay.getEntities()
-                   .stream().filter(e -> e.getEntityType() == Type.PLAYER
-                                         || e.getEntityType() == Type.MONKEY
-                                         || e.getEntityType() == Type.BARREL
-                                         || e.getEntityType() == Type.PRINCESS).toList();
+        return this.gameplay.getEntities().stream()
+                                          .filter(e -> e.getEntityType() == Type.PLAYER
+                                                       || e.getEntityType() == Type.MONKEY
+                                                       || e.getEntityType() == Type.BARREL
+                                                       || e.getEntityType() == Type.PRINCESS).toList();
+    }
+
+    /**
+     * Get all the powerups entities the gameplay.
+     * 
+     * @return list of entities.
+     */
+    public final List<Entity> getPowerupEntitiesFromGameplay() {
+        return this.gameplay.getEntities().stream()
+                                          .filter(e -> e.getEntityType() == Type.STAR
+                                                       || e.getEntityType() == Type.HEART
+                                                       || e.getEntityType() == Type.SNOWFLAKE
+                                                       || e.getEntityType() == Type.SHIELD).toList();
     }
 
     /**

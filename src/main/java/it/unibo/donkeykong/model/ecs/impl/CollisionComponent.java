@@ -86,22 +86,22 @@ public class CollisionComponent extends AbstractComponent {
     private void checkPlayerPlatformCollision() {
         final MovementComponent mc = entity.getComponent(MovementComponent.class).get();
         if (this.nextPosition.get().getY() > entity.getPosition().getY()) {
-            entity.getGameplay().getEntities()
-            .stream().filter(e -> !this.checkIsNotBlock(e.getEntityType()))
-            .filter(e -> {
-                  final Rectangle2D.Float e2Hitbox = e.getComponent(CollisionComponent.class).get().getHitbox();
-                  if (hitbox.intersectsLine(new Line2D.Float(e2Hitbox.x,
-                                                            e2Hitbox.y,
-                                                            e2Hitbox.x + e2Hitbox.width,
-                                                            e2Hitbox.y))
-                     && !hitbox.intersectsLine(new Line2D.Float(e2Hitbox.x,
-                                                                e2Hitbox.y + e2Hitbox.height,
-                                                                e2Hitbox.x + e2Hitbox.width,
-                                                                e2Hitbox.y + e2Hitbox.height))
-                     && hitbox.y + hitbox.height < e2Hitbox.y + 8) {
-                      return true;
-                  }
-                  return false;
+            entity.getGameplay().getEntities().stream()
+                  .filter(e -> !this.checkIsNotBlock(e.getEntityType()))
+                  .filter(e -> {
+                    final Rectangle2D.Float e2Hitbox = e.getComponent(CollisionComponent.class).get().getHitbox();
+                    if (hitbox.intersectsLine(new Line2D.Float(e2Hitbox.x,
+                                                               e2Hitbox.y,
+                                                               e2Hitbox.x + e2Hitbox.width,
+                                                               e2Hitbox.y))
+                       && !hitbox.intersectsLine(new Line2D.Float(e2Hitbox.x,
+                                                                  e2Hitbox.y + e2Hitbox.height,
+                                                                  e2Hitbox.x + e2Hitbox.width,
+                                                                  e2Hitbox.y + e2Hitbox.height))
+                       && hitbox.y + hitbox.height < e2Hitbox.y + 8) {
+                        return true;
+                    }
+                    return false;
             }).forEach(eBlock -> {
                 this.nextPosition = Optional.of(new Pair<>(this.nextPosition.get().getX(),
                                                            eBlock.getPosition().getY() - hitbox.height));
@@ -160,22 +160,22 @@ public class CollisionComponent extends AbstractComponent {
 
     private void checkPlayerState() {
         final MovementComponent mc = entity.getComponent(MovementComponent.class).get();
-            if (entity.getGameplay().getEntities()
-                  .stream().filter(e -> !this.checkIsNotBlock(e.getEntityType()))
-                  .anyMatch(e -> {
-                        final Rectangle2D.Float e2Hitbox = e.getComponent(CollisionComponent.class).get().getHitbox();
-                        if (hitbox.intersectsLine(new Line2D.Float(e2Hitbox.x,
-                                                                  e2Hitbox.y,
-                                                                  e2Hitbox.x + e2Hitbox.width,
-                                                                  e2Hitbox.y))
-                           && !hitbox.intersectsLine(new Line2D.Float(e2Hitbox.x,
-                                                                      e2Hitbox.y + e2Hitbox.height,
-                                                                      e2Hitbox.x + e2Hitbox.width,
-                                                                      e2Hitbox.y + e2Hitbox.height))) {
-                            return true;
-                        }
-                        return false;
-                  })) {
+            if (entity.getGameplay().getEntities().stream()
+                      .filter(e -> !this.checkIsNotBlock(e.getEntityType()))
+                      .anyMatch(e -> {
+                          final Rectangle2D.Float e2Hitbox = e.getComponent(CollisionComponent.class).get().getHitbox();
+                          if (hitbox.intersectsLine(new Line2D.Float(e2Hitbox.x,
+                                                                    e2Hitbox.y,
+                                                                    e2Hitbox.x + e2Hitbox.width,
+                                                                    e2Hitbox.y))
+                             && !hitbox.intersectsLine(new Line2D.Float(e2Hitbox.x,
+                                                                        e2Hitbox.y + e2Hitbox.height,
+                                                                        e2Hitbox.x + e2Hitbox.width,
+                                                                        e2Hitbox.y + e2Hitbox.height))) {
+                              return true;
+                          }
+                          return false;
+                       })) {
                 if (mc.isOnFloor()) {
                     mc.resetInAir();
                 }
@@ -274,9 +274,8 @@ public class CollisionComponent extends AbstractComponent {
     }
 
     private void checkBarrelInAir() {
-        if (entity.getGameplay()
-                  .getEntities()
-                  .stream().filter(e -> !this.checkIsNotBlock(e.getEntityType()))
+        if (entity.getGameplay().getEntities().stream()
+                  .filter(e -> !this.checkIsNotBlock(e.getEntityType()))
                   .anyMatch(e -> {
                             final Rectangle2D.Float e2hitbox = e.getComponent(CollisionComponent.class).get().getHitbox();
                             if (hitbox.intersectsLine(new Line2D.Float(e2hitbox.x,
@@ -300,17 +299,17 @@ public class CollisionComponent extends AbstractComponent {
     private void checkBarrelCollision() {
         final MovementComponent mc = this.entity.getComponent(MovementComponent.class).get();
         this.entity.getGameplay().getEntities().stream()
-                        .filter(e -> !this.checkIsNotBlock(e.getEntityType()))
-                        .filter(e -> hitbox.intersects(e.getComponent(CollisionComponent.class).get().getHitbox()))
-                        .forEach(e -> {
-                            if (random.nextInt(Barrel.totalDirProbability) == Barrel.changeDirProbability
-                                && !this.barrelChangedDirection
-                                && !mc.isInAir()
-                            ) {
-                                mc.changeDirection();
-                            }
-                            this.barrelChangedDirection = true;
-                        });
+                   .filter(e -> !this.checkIsNotBlock(e.getEntityType()))
+                   .filter(e -> hitbox.intersects(e.getComponent(CollisionComponent.class).get().getHitbox()))
+                   .forEach(e -> {
+                       if (random.nextInt(Barrel.totalDirProbability) == Barrel.changeDirProbability
+                           && !this.barrelChangedDirection
+                           && !mc.isInAir()
+                       ) {
+                           mc.changeDirection();
+                       }
+                       this.barrelChangedDirection = true;
+                   });
         if (hitbox.x < 0 || hitbox.x + hitbox.width > Window.GAME_WIDTH) {
             mc.moveEntity(mc.getFacing().getOppositeDirection());
         } else if (hitbox.y > Window.GAME_HEIGHT) {

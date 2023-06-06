@@ -139,11 +139,11 @@ public class MovementComponent extends AbstractComponent {
     }
 
     private void isMovingInAir() {
-        if (this.getEntity().getGameplay().getController().getInputs()
-                .stream().filter(k -> k == KeyEvent.VK_D
-                                      || k == KeyEvent.VK_A
-                                      || k == KeyEvent.VK_RIGHT
-                                      || k == KeyEvent.VK_LEFT)
+        if (this.getEntity().getGameplay().getController().getInputs().stream()
+                .filter(k -> k == KeyEvent.VK_D
+                             || k == KeyEvent.VK_A
+                             || k == KeyEvent.VK_RIGHT
+                             || k == KeyEvent.VK_LEFT)
                 .findAny().isPresent()) {
                 this.movingInAir = true;
             }

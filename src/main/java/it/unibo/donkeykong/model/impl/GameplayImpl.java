@@ -146,15 +146,15 @@ public class GameplayImpl implements Gameplay {
             isBlock = this.level.getLevelMatrixType(x, y).isPresent();
             isOnBlock = this.level.getLevelMatrixType(x, y + 1).isPresent();
             isOccupied = this.getEntities().stream()
-                              .filter(e -> e.getEntityType() == Type.STAR
-                                           || e.getEntityType() == Type.HEART
-                                           || e.getEntityType() == Type.SHIELD
-                                           || e.getEntityType() == Type.SNOWFLAKE)
-                              .anyMatch(e -> {
-                                final int eX = (int) (e.getPosition().getX() / SCALED_TILES_SIZE);
-                                final int eY = (int) (e.getPosition().getY() / SCALED_TILES_SIZE);
-                                return eY == y && (eX == x || eX + 1 == x || eX - 1 == x);
-                              });
+                             .filter(e -> e.getEntityType() == Type.STAR
+                                          || e.getEntityType() == Type.HEART
+                                          || e.getEntityType() == Type.SHIELD
+                                          || e.getEntityType() == Type.SNOWFLAKE)
+                             .anyMatch(e -> {
+                               final int eX = (int) (e.getPosition().getX() / SCALED_TILES_SIZE);
+                               final int eY = (int) (e.getPosition().getY() / SCALED_TILES_SIZE);
+                               return eY == y && (eX == x || eX + 1 == x || eX - 1 == x);
+                             });
             passX = x;
             passY = y;
         } while (!isOnBlock || isBlock || isOccupied);

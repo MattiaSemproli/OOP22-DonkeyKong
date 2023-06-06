@@ -76,12 +76,8 @@ public class GameView implements View {
                                                     b.getButtonPos().getY(), 
                                                     b.getButtonDim().getX(), 
                                                     b.getButtonDim().getY(), null));
-        this.gameController.getEntitiesFromGameplay()
+        this.gameController.getPowerupEntitiesFromGameplay()
                            .stream()
-                           .filter(e -> e.getEntityType() == Type.STAR
-                                        || e.getEntityType() == Type.HEART
-                                        || e.getEntityType() == Type.SNOWFLAKE
-                                        || e.getEntityType() == Type.SHIELD)
                            .forEach(e -> g.drawImage(this.getPowerUpSprite(e.getEntityType()),
                                                      Math.round(e.getPosition().getX()), 
                                                      Math.round(e.getPosition().getY()),
