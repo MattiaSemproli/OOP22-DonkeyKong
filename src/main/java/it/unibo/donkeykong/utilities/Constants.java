@@ -10,13 +10,34 @@ import java.util.Map;
 public class Constants {
 
     public static class Window {
-        public final static int TILES_DEFAULT_SIZE = 16;
-        public final static float SCALE = 1f;
-        public final static int TILES_IN_WIDTH = 14;
-        public final static int TILES_IN_HEIGHT = 14;
-        public final static int SCALED_TILES_SIZE = Math.round(48 * SCALE);
-        public final static int GAME_WIDTH = SCALED_TILES_SIZE * TILES_IN_WIDTH;
-        public final static int GAME_HEIGHT = SCALED_TILES_SIZE * TILES_IN_HEIGHT;
+        /**
+         * Tile default size in pixels.
+         */
+        public static final int TILES_DEFAULT_SIZE = 16;
+        /**
+         * Application scale multiplier.
+         */
+        public static final float SCALE = 1f;
+        /**
+         * Number of tiles in width.
+         */
+        public static final int TILES_IN_WIDTH = 14;
+        /**
+         * Number of tiles in height.
+         */
+        public static final int TILES_IN_HEIGHT = 14;
+        /**
+         * Scaled tile size in pixels.
+         */
+        public static final int SCALED_TILES_SIZE = Math.round(48 * SCALE);
+        /**
+         * Game width.
+         */
+        public static final int GAME_WIDTH = SCALED_TILES_SIZE * TILES_IN_WIDTH;
+        /**
+         * Game height.
+         */
+        public static final int GAME_HEIGHT = SCALED_TILES_SIZE * TILES_IN_HEIGHT;
     }
 
     public static class GameLoop {
@@ -27,70 +48,202 @@ public class Constants {
     }
 
     public static final class MenuAssets {
-        public static final String title = "title";
-        public static final String menuBackground = "menu_background";
-        public static final String menuTexture = "menu_layout";
-        public static final String gameLegend = "";
-        public static final String playButton = "play_button";
-        public static final String settingsButton = "settings_button";
-        public static final String quitButton = "quit_button";
-        public static final String levelsButton = "levels_button";
-        public static final String aKey = "aKey";
-        public static final String dKey = "dKey";
-        public static final String wKey = "wKey";
-        public static final String sKey = "sKey";
-        public static final String left = "left_arrow";
-        public static final String right = "right_arrow";
-        public static final String up = "up_arrow";
-        public static final String down = "down_arrow";
-        public static final int menuTextureBox = (int) (500 * Window.SCALE);
-        public static final int buttonHeight = (int)  (75 * Window.SCALE);
-        public static final int buttonWidth = (int)  (200 * Window.SCALE);
-        public static final int legendKeyBox = (int)  (32 * Window.SCALE);
-        public static final int menuX = Window.GAME_WIDTH / 2 - menuTextureBox / 2;
-        public static final int menuY = Window.GAME_HEIGHT / 2 - menuTextureBox / 2;
-        public static final int numFunctionButtons = 2;
-        public static final int numUtilityButtons = 2;
-        public static final int playB = 0;
-        public static final int levelsB = 1;
-        public static final int settingsB = 0;
-        public static final int quitB = 1;
-        public static final int fontSize = (int) (60 * Window.SCALE);
-        public static final int bottomMenuBorder = menuY + menuTextureBox;
-        public static final int rightMenuBorder = menuX + menuTextureBox;
-        public static final int funcButtonX = menuX + (menuTextureBox - buttonWidth) / 2;
-        public static final int funcButtonsDistance = menuTextureBox / 10;
-        public static final int utilityButtonBorderDistanceY = menuTextureBox / 8 + buttonHeight;
-        public static final int utilityButtonLeftBorderDistanceX = menuTextureBox / 12;
-        public static final int utilityButtonRightBorderDistanceX = menuTextureBox / 12 + buttonWidth;
-        public static final int utilityButtonY = bottomMenuBorder - utilityButtonBorderDistanceY;
-        public static final int titleHeight = (int) (125 * Window.SCALE);
-        public static final int titleWidth = (int) (250 * Window.SCALE);
-        public static final int titleX = menuX + (int) (115 * Window.SCALE);
-        public static final int titleY = menuY - (int) (65 * Window.SCALE);
+        /**
+         * Application title.
+         */
+        public static final String TITLE = "title";
+        /**
+         * Menu background string source.
+         */
+        public static final String MENU_BACKGROUND = "menu_background";
+        /**
+         * Menu layout string source.
+         */
+        public static final String MENU_TEXTURE = "menu_layout";
+        /**
+         * Play button string source.
+         */
+        public static final String PLAY_BUTTON = "play_button";
+        /**
+         * Settings button string source.
+         */
+        public static final String SETTINGS_BUTTON = "settings_button";
+        /**
+         * Quit button string source.
+         */
+        public static final String QUIT_BUTTON = "quit_button";
+        /**
+         * Levels button string source.
+         */
+        public static final String LEVELS_BUTTON = "levels_button";
+        /**
+         * A key string source.
+         */
+        public static final String A = "aKey";
+        /**
+         * D key string source.
+         */
+        public static final String D = "dKey";
+        /**
+         * W key string source.
+         */
+        public static final String W = "wKey";
+        /**
+         * S key string source.
+         */
+        public static final String S = "sKey";
+        /**
+         * Left arrow string source.
+         */
+        public static final String LEFT = "left_arrow";
+        /**
+         * Right arrow string source.
+         */
+        public static final String RIGHT = "right_arrow";
+        /**
+         * Up arrow string source.
+         */
+        public static final String UP = "up_arrow";
+        /**
+         * Down arrow string source.
+         */
+        public static final String DOWN = "down_arrow";
+        /**
+         * Menu texture box size.
+         */
+        public static final int MENU_TEXTURE_BOX = (int) (500 * Window.SCALE);
+        /**
+         * Button height.
+         */
+        public static final int BUTTON_HEIGHT = (int)  (75 * Window.SCALE);
+        /**
+         * Button width.
+         */
+        public static final int BUTTON_WIDTH = (int)  (200 * Window.SCALE);
+        /**
+         * Legend key box size.
+         */
+        public static final int LEGEND_KEY_BOX = (int)  (32 * Window.SCALE);
+        /**
+         * Menu box x position.
+         */
+        public static final int MENU_X = Window.GAME_WIDTH / 2 - MENU_TEXTURE_BOX / 2;
+        /**
+         * Menu box y position.
+         */
+        public static final int MENU_Y = Window.GAME_HEIGHT / 2 - MENU_TEXTURE_BOX / 2;
+        /**
+         * Number of function buttons.
+         * Playbutton and levelsbutton.
+         */
+        public static final int NUM_FUNCTION_BUTTONS = 2;
+        /**
+         * Number of utility buttons.
+         * Settingsbutton and quitbutton.
+         */
+        public static final int NUM_UTILITY_BUTTONS = 2;
+        /**
+         * Play button index.
+         */
+        public static final int PLAY_B = 0;
+        /**
+         * Levels button index.
+         */
+        public static final int LEVELS_B = 1;
+        /**
+         * Settings button index.
+         */
+        public static final int SETTINGS_B = 0;
+        /**
+         * Quit button index.
+         */
+        public static final int QUIT_B = 1;
+        /**
+         * Font size.
+         */
+        public static final int FONTSIZE = (int) (60 * Window.SCALE);
+        /**
+         * Bottom menu border distance.
+         */
+        public static final int BOTTOM_MENU_BORDER = MENU_Y + MENU_TEXTURE_BOX;
+        /**
+         * Right menu border distance.
+         */
+        public static final int RIGHT_MENU_BORDER = MENU_X + MENU_TEXTURE_BOX;
+        /**
+         * Function buttons x position.
+         */
+        public static final int FUNC_BUTTON_X = MENU_X + (MENU_TEXTURE_BOX - BUTTON_WIDTH) / 2;
+        /**
+         * X distance between function buttons.
+         */
+        public static final int FUNC_BUTTON_DISTANCE = MENU_TEXTURE_BOX / 10;
+        /**
+         * Utility buttons y border distance.
+         */
+        public static final int UTILITY_BUTTON_BORDER_DISTANCE_Y = MENU_TEXTURE_BOX / 8 + BUTTON_HEIGHT;
+        /**
+         * Utility buttons left border distance.
+         */
+        public static final int UTILITY_BUTTON_LEFT_BORDER_DISTANCE_X = MENU_TEXTURE_BOX / 12;
+        /**
+         * Utility buttons right border distance.
+         */
+        public static final int UTILITY_BUTTON_RIGHT_BORDER_DISTANCE_X = MENU_TEXTURE_BOX / 12 + BUTTON_WIDTH;
+        /**
+         * Utility buttons y position.
+         */
+        public static final int UTILITY_BUTTON_Y = BOTTOM_MENU_BORDER - UTILITY_BUTTON_BORDER_DISTANCE_Y;
+        /**
+         * Title height.
+         */
+        public static final int TITLE_HEIGHT = (int) (125 * Window.SCALE);
+        /**
+         * Title width.
+         */
+        public static final int TITLE_WIDTH = (int) (250 * Window.SCALE);
+        /**
+         * Title x position.
+         */
+        public static final int TITLE_X = MENU_X + (int) (115 * Window.SCALE);
+        /**
+         * Title y position.
+         */
+        public static final int TITLE_Y = MENU_Y - (int) (65 * Window.SCALE);
 
+        /**
+         * Menu sources map of string source and image.
+         */
         private static final Map<String, BufferedImage> menuSources = new HashMap<>();
 
+        /**
+         * Get menu sources map.
+         * 
+         * @return the unmodifiable menu sources map.
+         */
         public static final Map<String, BufferedImage> getMenuSources() {
             return Collections.unmodifiableMap(menuSources);
         }
 
+        /**
+         * Load all menu sources.
+         */
         public static final void loadMenuSources() {
-            menuSources.put(menuBackground, loadSources(menuBackground));
-            menuSources.put(menuTexture, loadSources(menuTexture));
-            menuSources.put(title, loadSources(title));
-            menuSources.put(playButton, loadSources(playButton));
-            menuSources.put(settingsButton, loadSources(settingsButton));
-            menuSources.put(quitButton, loadSources(quitButton));
-            menuSources.put(levelsButton, loadSources(levelsButton));
-            menuSources.put(aKey, loadSources(aKey));
-            menuSources.put(dKey, loadSources(dKey));
-            menuSources.put(wKey, loadSources(wKey));
-            menuSources.put(sKey, loadSources(sKey));
-            menuSources.put(left, loadSources(left));
-            menuSources.put(right, loadSources(right));
-            menuSources.put(up, loadSources(up));
-            menuSources.put(down, loadSources(down));
+            menuSources.put(MENU_BACKGROUND, loadSources(MENU_BACKGROUND));
+            menuSources.put(MENU_TEXTURE, loadSources(MENU_TEXTURE));
+            menuSources.put(TITLE, loadSources(TITLE));
+            menuSources.put(PLAY_BUTTON, loadSources(PLAY_BUTTON));
+            menuSources.put(SETTINGS_BUTTON, loadSources(SETTINGS_BUTTON));
+            menuSources.put(QUIT_BUTTON, loadSources(QUIT_BUTTON));
+            menuSources.put(LEVELS_BUTTON, loadSources(LEVELS_BUTTON));
+            menuSources.put(A, loadSources(A));
+            menuSources.put(D, loadSources(D));
+            menuSources.put(W, loadSources(W));
+            menuSources.put(S, loadSources(S));
+            menuSources.put(LEFT, loadSources(LEFT));
+            menuSources.put(RIGHT, loadSources(RIGHT));
+            menuSources.put(UP, loadSources(UP));
+            menuSources.put(DOWN, loadSources(DOWN));
         }
 
         public static final class SettingsAssets {
@@ -122,10 +275,10 @@ public class Constants {
             public static final int homeButtonBottomDistance = (int) (150 * Window.SCALE);
             public static final int repeatButtonLeftDistance = (int) (125 * Window.SCALE);
             public static final int repeatButtonBottomDistance = (int) (150 * Window.SCALE);
-            public static final int muteButtonY = menuY + squareButtonSize;
-            public static final int musicsButtonY = menuY + squareButtonSize * 3;
-            public static final int leftSettingsButtonX = menuTextureBox / 2 - squareButtonSize / 2;
-            public static final int rightSettingsButtonX = menuTextureBox / 2 + squareButtonSize * 2;
+            public static final int muteButtonY = MENU_Y + squareButtonSize;
+            public static final int musicsButtonY = MENU_Y + squareButtonSize * 3;
+            public static final int leftSettingsButtonX = MENU_TEXTURE_BOX / 2 - squareButtonSize / 2;
+            public static final int rightSettingsButtonX = MENU_TEXTURE_BOX / 2 + squareButtonSize * 2;
             public static final int pauseBgOpacity = 128;
 
             private static final Map<String, BufferedImage> settingsSources = new HashMap<>();
@@ -160,9 +313,9 @@ public class Constants {
             public static final int levelButtonWidth = (int) (192 * Window.SCALE);
             public static final int levelButtonDistance = (int) (50 * Window.SCALE);
             public static final int levelButtonSpacingY = (int) (15 * Window.SCALE);
-            public static final int leftLevelButtonX = menuX + levelButtonDistance;
-            public static final int rightLevelButtonX = rightMenuBorder - levelButtonDistance - levelButtonWidth;
-            public static final int topLevelbuttonY = menuY + levelButtonDistance;
+            public static final int leftLevelButtonX = MENU_X + levelButtonDistance;
+            public static final int rightLevelButtonX = RIGHT_MENU_BORDER - levelButtonDistance - levelButtonWidth;
+            public static final int topLevelbuttonY = MENU_Y + levelButtonDistance;
             public static final int botLevelButtonY = topLevelbuttonY + levelButtonHeight + levelButtonSpacingY;
             public static final String levelOneSource = "level_one";
             public static final String levelTwoSource = "level_two";
@@ -254,14 +407,14 @@ public class Constants {
     }
 
     public static final class Audio {
-        public final static String menuMusic0 = "soundtrack.wav";
-        public final static String menuMusic1 = "soundtrack1.wav";
-        public final static String gameMusic0 = "game.wav";
-        public final static String gameMusic1 = "game1.wav";
-        public final static int numThemesButtons = 2;
-        public final static int numGameThemesButtons = 2;
-        public final static float baseVolume = 0.03f;
-        public final static int gainMultiplier = 20;
+        public static final String menuMusic0 = "soundtrack.wav";
+        public static final String menuMusic1 = "soundtrack1.wav";
+        public static final String gameMusic0 = "game.wav";
+        public static final String gameMusic1 = "game1.wav";
+        public static final int numThemesButtons = 2;
+        public static final int numGameThemesButtons = 2;
+        public static final float baseVolume = 0.03f;
+        public static final int gainMultiplier = 20;
 
         private static final Map<String, Integer> themeSources = new HashMap<>();
         private static final Map<String, Integer> gameSources = new HashMap<>();

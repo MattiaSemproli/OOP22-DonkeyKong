@@ -1,8 +1,8 @@
 package it.unibo.donkeykong.view.impl;
 
 import static it.unibo.donkeykong.utilities.Constants.MenuAssets.getMenuSources;
-import static it.unibo.donkeykong.utilities.Constants.MenuAssets.menuX;
-import static it.unibo.donkeykong.utilities.Constants.MenuAssets.menuY;
+    import static it.unibo.donkeykong.utilities.Constants.MenuAssets.MENU_X;
+import static it.unibo.donkeykong.utilities.Constants.MenuAssets.MENU_Y;
 import static it.unibo.donkeykong.utilities.Constants.MenuAssets.SettingsAssets.getSettingsSources;
 import static it.unibo.donkeykong.utilities.Constants.MenuAssets.SettingsAssets.repeatButtonLeftDistance;
 
@@ -48,12 +48,12 @@ public final class EndPauseView implements View {
     public EndPauseView(final EndPauseController endPauseController) {
         this.endPauseController = endPauseController;
 
-        final Button backHome = new ButtonImpl(MenuAssets.rightMenuBorder - SettingsAssets.homeButtonRightDistance, 
-                                               MenuAssets.bottomMenuBorder - SettingsAssets.homeButtonBottomDistance, 
+        final Button backHome = new ButtonImpl(MenuAssets.RIGHT_MENU_BORDER - SettingsAssets.homeButtonRightDistance, 
+                                               MenuAssets.BOTTOM_MENU_BORDER - SettingsAssets.homeButtonBottomDistance, 
                                                SettingsAssets.squareButtonSize, 
                                                SettingsAssets.squareButtonSize, Gamestate.MENU);
-        final Button backToPlay = new ButtonImpl(menuX + repeatButtonLeftDistance - SettingsAssets.squareButtonSize, 
-                                                 MenuAssets.bottomMenuBorder - SettingsAssets.repeatButtonBottomDistance, 
+        final Button backToPlay = new ButtonImpl(MENU_X + repeatButtonLeftDistance - SettingsAssets.squareButtonSize, 
+                                                 MenuAssets.BOTTOM_MENU_BORDER - SettingsAssets.repeatButtonBottomDistance, 
                                                  SettingsAssets.squareButtonSize, 
                                                  SettingsAssets.squareButtonSize, Gamestate.PLAYING);
         this.volumeButtons[SettingsAssets.volOnB] = new Rectangle(SettingsAssets.leftSettingsButtonX, 
@@ -96,11 +96,11 @@ public final class EndPauseView implements View {
             pause = (Graphics2D) g;
             pause.setColor(new Color(0, 0, 0, SettingsAssets.pauseBgOpacity));
             pause.fillRect(0, 0, Window.GAME_WIDTH, Window.GAME_HEIGHT);
-            pause.drawImage(getMenuSources().get(MenuAssets.menuTexture), 
-                            menuX, 
-                            menuY, 
-                            MenuAssets.menuTextureBox, 
-                            MenuAssets.menuTextureBox, null);
+            pause.drawImage(getMenuSources().get(MenuAssets.MENU_TEXTURE), 
+                            MENU_X, 
+                            MENU_Y, 
+                            MenuAssets.MENU_TEXTURE_BOX, 
+                            MenuAssets.MENU_TEXTURE_BOX, null);
             this.buttons.forEach((b, bi) -> g.drawImage(bi, 
                                                         b.getButtonPos().getX(), 
                                                         b.getButtonPos().getY(),
@@ -114,14 +114,14 @@ public final class EndPauseView implements View {
                                                                                   rectangle.width,
                                                                                   rectangle.height, null));
             } else {
-                final Font font = new Font("Arial", Font.BOLD, MenuAssets.fontSize);
+                final Font font = new Font("Arial", Font.BOLD, MenuAssets.FONTSIZE);
                 g.setColor(Color.WHITE);
                 g.setFont(font);
                 final String txt = "Time: " + this.endPauseController.getSecondsFromGameController();
                 final int textWidth = g.getFontMetrics(font).stringWidth(txt);
                 g.drawString(txt,
-                             menuX + (MenuAssets.menuTextureBox - textWidth) / 2,
-                             menuY + MenuAssets.menuTextureBox / 2);
+                             MENU_X + (MenuAssets.MENU_TEXTURE_BOX - textWidth) / 2,
+                             MENU_Y + MenuAssets.MENU_TEXTURE_BOX / 2);
             }
         }
     }
@@ -173,20 +173,20 @@ public final class EndPauseView implements View {
     private void drawText(final Graphics g) {
         if (Gamestate.getGamestate().equals(Gamestate.PAUSE)) {
             g.drawImage(SettingsAssets.getTextSources().get(Gamestate.getGamestate()), 
-                        menuX + (MenuAssets.menuTextureBox - SettingsAssets.pauseTextWidth) / 2,
-                        menuY - (SettingsAssets.pauseTextHeight / 2),
+                        MENU_X + (MenuAssets.MENU_TEXTURE_BOX - SettingsAssets.pauseTextWidth) / 2,
+                        MENU_Y - (SettingsAssets.pauseTextHeight / 2),
                         SettingsAssets.pauseTextWidth,
                         SettingsAssets.pauseTextHeight, null);
         } else if (Gamestate.getGamestate().equals(Gamestate.DEATH)) {
             g.drawImage(SettingsAssets.getTextSources().get(Gamestate.getGamestate()), 
-                        menuX + (MenuAssets.menuTextureBox - SettingsAssets.loseTextWidth) / 2,
-                        menuY - (SettingsAssets.loseTextHeight / 2),
+                        MENU_X + (MenuAssets.MENU_TEXTURE_BOX - SettingsAssets.loseTextWidth) / 2,
+                        MENU_Y - (SettingsAssets.loseTextHeight / 2),
                         SettingsAssets.loseTextWidth,
                         SettingsAssets.loseTextHeight, null);
         } else if (Gamestate.getGamestate().equals(Gamestate.WIN)) {
             g.drawImage(SettingsAssets.getTextSources().get(Gamestate.getGamestate()), 
-                        menuX + (MenuAssets.menuTextureBox - SettingsAssets.winTextWidth) / 2,
-                        menuY - (SettingsAssets.winTextHeight / 2),
+                        MENU_X + (MenuAssets.MENU_TEXTURE_BOX - SettingsAssets.winTextWidth) / 2,
+                        MENU_Y - (SettingsAssets.winTextHeight / 2),
                         SettingsAssets.winTextWidth,
                         SettingsAssets.winTextHeight, null);
         }

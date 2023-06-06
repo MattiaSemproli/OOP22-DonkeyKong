@@ -1,8 +1,8 @@
 package it.unibo.donkeykong.view.impl;
 
 import static it.unibo.donkeykong.utilities.Constants.MenuAssets.getMenuSources;
-import static it.unibo.donkeykong.utilities.Constants.MenuAssets.menuX;
-import static it.unibo.donkeykong.utilities.Constants.MenuAssets.menuY;
+    import static it.unibo.donkeykong.utilities.Constants.MenuAssets.MENU_X;
+import static it.unibo.donkeykong.utilities.Constants.MenuAssets.MENU_Y;
 import static it.unibo.donkeykong.utilities.Constants.MenuAssets.LevelAssets.getLevelSources;
 import static it.unibo.donkeykong.utilities.Constants.MenuAssets.LevelAssets.levelFourSource;
 import static it.unibo.donkeykong.utilities.Constants.MenuAssets.LevelAssets.levelOneSource;
@@ -47,8 +47,8 @@ public class LevelsMenuView implements View {
     public LevelsMenuView(final LevelsMenuController levelsMenuController) {
         this.levelsMenuController = levelsMenuController;
 
-        final Button backHome = new ButtonImpl(MenuAssets.rightMenuBorder - SettingsAssets.homeButtonRightDistance, 
-                                               MenuAssets.bottomMenuBorder - SettingsAssets.homeButtonBottomDistance, 
+        final Button backHome = new ButtonImpl(MenuAssets.RIGHT_MENU_BORDER - SettingsAssets.homeButtonRightDistance, 
+                                               MenuAssets.BOTTOM_MENU_BORDER - SettingsAssets.homeButtonBottomDistance, 
                                                SettingsAssets.squareButtonSize, 
                                                SettingsAssets.squareButtonSize, Gamestate.MENU);
         this.levelOneButton = new ButtonImpl(LevelAssets.leftLevelButtonX, 
@@ -118,16 +118,16 @@ public class LevelsMenuView implements View {
     }
 
     private void drawBackgroundAssets(final Graphics g) {
-        g.drawImage(getMenuSources().get(MenuAssets.menuBackground), 
+        g.drawImage(getMenuSources().get(MenuAssets.MENU_BACKGROUND), 
                     0, 
                     0, 
                     Window.GAME_WIDTH, 
                     Window.GAME_HEIGHT, null);
-        g.drawImage(getMenuSources().get(MenuAssets.menuTexture), 
-                    menuX, 
-                    menuY, 
-                    MenuAssets.menuTextureBox, 
-                    MenuAssets.menuTextureBox, null);
+        g.drawImage(getMenuSources().get(MenuAssets.MENU_TEXTURE), 
+                    MENU_X, 
+                    MENU_Y, 
+                    MenuAssets.MENU_TEXTURE_BOX, 
+                    MenuAssets.MENU_TEXTURE_BOX, null);
     }
 
     /**

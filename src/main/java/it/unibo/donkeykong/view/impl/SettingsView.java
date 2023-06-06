@@ -1,8 +1,8 @@
 package it.unibo.donkeykong.view.impl;
 
 import static it.unibo.donkeykong.utilities.Constants.MenuAssets.getMenuSources;
-import static it.unibo.donkeykong.utilities.Constants.MenuAssets.menuX;
-import static it.unibo.donkeykong.utilities.Constants.MenuAssets.menuY;
+import static it.unibo.donkeykong.utilities.Constants.MenuAssets.MENU_X;
+import static it.unibo.donkeykong.utilities.Constants.MenuAssets.MENU_Y;
 import static it.unibo.donkeykong.utilities.Constants.MenuAssets.SettingsAssets.getSettingsSources;
 
 import java.awt.Graphics;
@@ -44,8 +44,8 @@ public class SettingsView implements View {
     public SettingsView(final SettingsController settingsController) {
         this.settingsController = settingsController;
 
-        final Button backHome = new ButtonImpl(MenuAssets.rightMenuBorder - SettingsAssets.homeButtonRightDistance, 
-                                               MenuAssets.bottomMenuBorder - SettingsAssets.homeButtonBottomDistance, 
+        final Button backHome = new ButtonImpl(MenuAssets.RIGHT_MENU_BORDER - SettingsAssets.homeButtonRightDistance, 
+                                               MenuAssets.BOTTOM_MENU_BORDER - SettingsAssets.homeButtonBottomDistance, 
                                                SettingsAssets.squareButtonSize, 
                                                SettingsAssets.squareButtonSize, Gamestate.MENU);
         this.volumeButtons[SettingsAssets.volOnB] = new Rectangle(SettingsAssets.leftSettingsButtonX, 
@@ -127,19 +127,19 @@ public class SettingsView implements View {
     }
 
     private void drawBackgroundAssets(final Graphics g) {
-        g.drawImage(getMenuSources().get(MenuAssets.menuBackground), 
+        g.drawImage(getMenuSources().get(MenuAssets.MENU_BACKGROUND), 
                     0, 
                     0, 
                     Window.GAME_WIDTH, 
                     Window.GAME_HEIGHT, null);
-        g.drawImage(getMenuSources().get(MenuAssets.menuTexture), 
-                    menuX, 
-                    menuY, 
-                    MenuAssets.menuTextureBox, 
-                    MenuAssets.menuTextureBox, null);
+        g.drawImage(getMenuSources().get(MenuAssets.MENU_TEXTURE), 
+                    MENU_X, 
+                    MENU_Y, 
+                    MenuAssets.MENU_TEXTURE_BOX, 
+                    MenuAssets.MENU_TEXTURE_BOX, null);
         g.drawImage(SettingsAssets.getTextSources().get(Gamestate.getGamestate()), 
-                    menuX + (MenuAssets.menuTextureBox - SettingsAssets.settingsTextWidth) / 2,
-                    menuY - (SettingsAssets.settingsTextHeight / 2),
+                    MENU_X + (MenuAssets.MENU_TEXTURE_BOX - SettingsAssets.settingsTextWidth) / 2,
+                    MENU_Y - (SettingsAssets.settingsTextHeight / 2),
                     SettingsAssets.settingsTextWidth,
                     SettingsAssets.settingsTextHeight, null);
     }
