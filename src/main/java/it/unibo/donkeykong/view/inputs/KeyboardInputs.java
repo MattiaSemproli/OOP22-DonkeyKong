@@ -26,7 +26,7 @@ public final class KeyboardInputs implements KeyListener {
     public void keyPressed(final KeyEvent key) {
         switch (Gamestate.getGamestate()) {
             case PLAYING:
-                this.dkApp.getGameController().keyPressed(key);
+                this.dkApp.getGameController().keyPressed(key.getKeyCode());
                 break;
             default:
                 break;
@@ -37,7 +37,7 @@ public final class KeyboardInputs implements KeyListener {
     public void keyReleased(final KeyEvent key) {
         switch (Gamestate.getGamestate()) {
             case PLAYING:
-                this.dkApp.getGameController().keyReleased(key);
+                this.dkApp.getGameController().keyReleased(key.getKeyCode());
                 break;
             default:
                 break;

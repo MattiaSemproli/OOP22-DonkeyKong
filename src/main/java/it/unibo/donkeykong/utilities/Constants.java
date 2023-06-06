@@ -437,5 +437,14 @@ public class Constants {
         public static final int MOVE_DOWN = 83;
         public static final int MOVE_DOWN_ARROW = 40;
         public static final int JUMP = 32;
+        public static final int ESCAPE = 27;
+
+        public static boolean isMovementCode(final int code) {
+            return code == MOVE_LEFT || code == MOVE_LEFT_ARROW 
+                || code == MOVE_RIGHT || code == MOVE_RIGHT_ARROW
+                || code == MOVE_UP || code == MOVE_UP_ARROW 
+                || code == MOVE_DOWN || code == MOVE_DOWN_ARROW
+                || code == JUMP;
+        }
     }
 }

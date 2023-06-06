@@ -2,8 +2,6 @@ package it.unibo.donkeykong.controller.impl;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -16,6 +14,7 @@ import it.unibo.donkeykong.model.ecs.api.Entity;
 import it.unibo.donkeykong.model.ecs.impl.HealthComponent;
 import it.unibo.donkeykong.model.impl.Game;
 import it.unibo.donkeykong.model.impl.GameplayImpl;
+import it.unibo.donkeykong.utilities.Constants.Action;
 import it.unibo.donkeykong.utilities.Constants.PowerupAssets;
 import it.unibo.donkeykong.utilities.Gamestate;
 import it.unibo.donkeykong.utilities.Pair;
@@ -26,7 +25,7 @@ import it.unibo.donkeykong.view.impl.GameView;
 /**
  * Game controller, manages game view and model and interaction.
  */
-public class GameController implements KeyListener, Controller {
+public class GameController implements Controller {
 
     private final GameView gameView;
     private final Game game;
@@ -76,21 +75,13 @@ public class GameController implements KeyListener, Controller {
     }
 
     /**
-     * {@inheritDoc}
+     * Handle the key pressed.
+     * 
+     * @param keyCode the int code of key pressed.
      */
-    @Override
-    public void keyPressed(final KeyEvent e) { 
-        if (e.getKeyCode() != KeyEvent.VK_ESCAPE
-            && (e.getKeyCode() == KeyEvent.VK_A
-                || e.getKeyCode() == KeyEvent.VK_LEFT
-                || e.getKeyCode() == KeyEvent.VK_D
-                || e.getKeyCode() == KeyEvent.VK_RIGHT
-                || e.getKeyCode() == KeyEvent.VK_SPACE
-                || e.getKeyCode() == KeyEvent.VK_UP
-                || e.getKeyCode() == KeyEvent.VK_W
-                || e.getKeyCode() == KeyEvent.VK_DOWN
-                || e.getKeyCode() == KeyEvent.VK_S)) {
-            this.keyInputs.add(0, e.getKeyCode());
+    public void keyPressed(final int keyCode) { 
+        if (Action.isMovementCode(keyCode)) {
+            this.keyInputs.add(0, keyCode);
         }
     }
 
@@ -111,17 +102,18 @@ public class GameController implements KeyListener, Controller {
     }
 
     /**
-     * {@inheritDoc}
+     * Handle the key released.
+     * 
+     * @param keyCode the int code of key released.
      */
-    @Override
-    public void keyReleased(final KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+    public void keyReleased(final int keyCode) {
+        if (keyCode == Action.ESCAPE) {
             Gamestate.setGamestate(Gamestate.PAUSE);
             this.keyInputs.clear();
             this.pauseTimer();
         } else {
-            if (this.keyInputs.contains(e.getKeyCode())) {
-                this.keyInputs.removeAll(Collections.singleton(e.getKeyCode()));
+            if (this.keyInputs.contains(keyCode)) {
+                this.keyInputs.removeAll(Collections.singleton(keyCode));
             }
         }
     }
@@ -259,9 +251,5 @@ public class GameController implements KeyListener, Controller {
      */
     public float getSeconds() {
         return this.seconds;
-    }
-
-    @Override
-    public void keyTyped(final KeyEvent e) {
     }
 }
