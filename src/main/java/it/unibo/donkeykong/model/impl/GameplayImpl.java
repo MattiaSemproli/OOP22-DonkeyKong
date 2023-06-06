@@ -238,13 +238,13 @@ public class GameplayImpl implements Gameplay {
         this.entities.stream()
                      .filter(e -> e.getEntityType() == Type.PLAYER).findFirst()
                      .ifPresent(e -> {
-                        if(e.getComponent(StarComponent.class).get().isInvincible()) {
+                        if (e.getComponent(StarComponent.class).get().isInvincible()) {
                             activePowerUps.add(Type.STAR);
                         }
-                        if(e.getComponent(ShieldComponent.class).get().isShielded()) {
+                        if (e.getComponent(ShieldComponent.class).get().isShielded()) {
                             activePowerUps.add(Type.SHIELD);
                         }
-                        if(e.getComponent(FreezeComponent.class).get().isFrozen()) {
+                        if (e.getComponent(FreezeComponent.class).get().isFrozen()) {
                             activePowerUps.add(Type.SNOWFLAKE);
                         }
                      });

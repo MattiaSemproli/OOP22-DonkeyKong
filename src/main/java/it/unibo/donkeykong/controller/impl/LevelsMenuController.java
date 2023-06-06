@@ -19,6 +19,8 @@ public class LevelsMenuController implements Controller {
 
     /**
      * Constructor.
+     * 
+     * @param application the linked application
      */
     public LevelsMenuController(final Application application) {
         this.application = application;
@@ -41,7 +43,7 @@ public class LevelsMenuController implements Controller {
     public void handleChoosenLevel(final CurrentLevel level) {
         this.levelsMenu.setLevel(level);
     }
-    
+
     /**
      * {@inheritDoc}
      */

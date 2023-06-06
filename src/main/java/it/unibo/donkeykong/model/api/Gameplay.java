@@ -52,6 +52,8 @@ public interface Gameplay {
 
     /**
      * Initialize game's entitities.
+     * 
+     * @param levelMap the linked level map scheme.
      */
     void initializeGame(Map<Pair<Integer, Integer>, Integer> levelMap);
 

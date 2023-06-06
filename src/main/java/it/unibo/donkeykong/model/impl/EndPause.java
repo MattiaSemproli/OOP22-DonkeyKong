@@ -7,7 +7,7 @@ import it.unibo.donkeykong.utilities.Gamestate;
  * Endgame or pause model, manages endgame or pause graphics.
  */
 public class EndPause implements ViewModel {
-    
+
     /**
      * {@inheritDoc}
      */
