@@ -103,7 +103,7 @@ public class GameView implements View {
         this.buttons.keySet().forEach(b -> {
             if (b.getCorners().contains(new Point(point.getX(), point.getY()))) {
                 if (b.getButtonGamestate() == Gamestate.PAUSE) {
-                    this.gameController.resetKeys();
+                    this.gameController.notifyResetKeys();
                     this.gameController.pauseTimer();
                 }
                 this.gameController.applyGamestate(b.getButtonGamestate());

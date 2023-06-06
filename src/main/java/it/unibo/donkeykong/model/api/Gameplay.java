@@ -81,13 +81,30 @@ public interface Gameplay {
      */
     List<Type> getActivePowerUps();
 
+    /**
+     * Reset input keys list.
+     */
     void resetKeys();
 
+    /**
+     * Update input keys list with pressed key.
+     */
     void updateKeyPressed(int keyCode);
 
+    /**
+     * Remove released key from input keys list.
+     */
     void updateKeyReleased(int keyCode);
 
+    /**
+     * Reset input keys list when window focus is lost.
+     */
     void resetKeysOnFocusLost();
 
+    /**
+     * Get input keys list.
+     * 
+     * @return the list of pressed keys.
+     */
     List<Integer> getInputs();
 }

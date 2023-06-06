@@ -3,7 +3,6 @@ package it.unibo.donkeykong.controller.impl;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import javax.swing.Timer;
@@ -14,7 +13,6 @@ import it.unibo.donkeykong.model.ecs.api.Entity;
 import it.unibo.donkeykong.model.ecs.impl.HealthComponent;
 import it.unibo.donkeykong.model.impl.Game;
 import it.unibo.donkeykong.model.impl.GameplayImpl;
-import it.unibo.donkeykong.utilities.Constants.Action;
 import it.unibo.donkeykong.utilities.Constants.PowerupAssets;
 import it.unibo.donkeykong.utilities.Gamestate;
 import it.unibo.donkeykong.utilities.Pair;
@@ -66,36 +64,42 @@ public class GameController implements Controller {
         }
     }
 
-    public void resetKeys() {
-        this.gameplay.resetKeys();
+    private boolean hasPlayerLife() {
+        return this.gameplay.getEntities().stream()
+                                          .filter(e -> e.getEntityType() == Type.PLAYER)
+                                          .findFirst().get().getComponent(HealthComponent.class).get().getLives() > 0;
     }
-
-    public void resetKeysOnFocusLost() {
-        this.gameplay.resetKeysOnFocusLost();
-    }
-
+    
     /**
-     * Handle the key pressed.
+     * Notify the model with the pressed key.
      * 
-     * @param keyCode the int code of key pressed.
+     * @param keyCode the int code of the pressed key.
      */
     public void notifyKeyPressed(final int keyCode) {
         this.gameplay.updateKeyPressed(keyCode);
     }
 
     /**
-     * Handle the key released.
+     * Notify the model with the released key.
      * 
-     * @param keyCode the int code of key released.
+     * @param keyCode the int code of the released key.
      */
     public void notifyKeyReleased(final int keyCode) {
         this.gameplay.updateKeyReleased(keyCode);
     }
 
-    private boolean hasPlayerLife() {
-        return this.gameplay.getEntities().stream()
-                                          .filter(e -> e.getEntityType() == Type.PLAYER)
-                                          .findFirst().get().getComponent(HealthComponent.class).get().getLives() > 0;
+    /**
+     * Notify the model to reset the keys.
+     */
+    public void notifyResetKeys() {
+        this.gameplay.resetKeys();
+    }
+
+    /**
+     * Notify the model to reset the keys when the focus is lost.
+     */
+    public void notifyResetKeysOnFocusLost() {
+        this.gameplay.resetKeysOnFocusLost();
     }
 
     /**

@@ -48,7 +48,7 @@ public class ApplicationImpl implements Application {
     @Override
     public void windowFocusLost() {
         if (this.gameController != null) {
-            this.gameController.resetKeysOnFocusLost();
+            this.gameController.notifyResetKeysOnFocusLost();
         }
     }
 
