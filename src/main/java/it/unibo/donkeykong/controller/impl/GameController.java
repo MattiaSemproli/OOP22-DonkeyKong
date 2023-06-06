@@ -86,22 +86,6 @@ public class GameController implements Controller {
     }
 
     /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void applyGamestate(final Gamestate gamestate) {
-        this.game.applyGamestate(gamestate);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public View getView() {
-        return this.gameView;
-    }
-
-    /**
      * Handle the key released.
      * 
      * @param keyCode the int code of key released.
@@ -116,6 +100,15 @@ public class GameController implements Controller {
                 this.keyInputs.removeAll(Collections.singleton(keyCode));
             }
         }
+    }
+
+    /**
+     * Get all the inputs.
+     * 
+     * @return list of keys pressed.
+     */
+    public List<Integer> getInputs() {
+        return new ArrayList<>(this.keyInputs);
     }
 
     /**
@@ -203,15 +196,6 @@ public class GameController implements Controller {
         return this.game.getIdle(entity);
     }
 
-    /**
-     * Get all the inputs.
-     * 
-     * @return list of keys pressed.
-     */
-    public List<Integer> getInputs() {
-        return new ArrayList<>(this.keyInputs);
-    }
-
     private void initializeTimer() {
         this.seconds = 0;
         this.timer = new Timer(1000, new ActionListener() {
@@ -251,5 +235,21 @@ public class GameController implements Controller {
      */
     public float getSeconds() {
         return this.seconds;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void applyGamestate(final Gamestate gamestate) {
+        this.game.applyGamestate(gamestate);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public View getView() {
+        return this.gameView;
     }
 }
