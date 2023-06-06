@@ -1,6 +1,5 @@
 package it.unibo.donkeykong.model.ecs.impl;
 
-import java.awt.event.KeyEvent;
 import java.util.Optional;
 import java.util.Random;
 
@@ -8,6 +7,7 @@ import it.unibo.donkeykong.utilities.Direction;
 import it.unibo.donkeykong.utilities.Pair;
 import it.unibo.donkeykong.utilities.PlayerIdle;
 import it.unibo.donkeykong.utilities.Type;
+import it.unibo.donkeykong.utilities.Constants.Action;
 import it.unibo.donkeykong.utilities.Constants.Physics;
 import it.unibo.donkeykong.utilities.Constants.Princess;
 
@@ -140,11 +140,8 @@ public class MovementComponent extends AbstractComponent {
 
     private void isMovingInAir() {
         if (this.getEntity().getGameplay().getController().getInputs().stream()
-                .filter(k -> k == KeyEvent.VK_D
-                             || k == KeyEvent.VK_A
-                             || k == KeyEvent.VK_RIGHT
-                             || k == KeyEvent.VK_LEFT)
-                .findAny().isPresent()) {
+                .filter(k -> k != Action.JUMP && Action.isMovementCode(k))
+                .findFirst().isPresent()) {
                 this.movingInAir = true;
             }
     }
