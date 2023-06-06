@@ -78,7 +78,7 @@ public class Game implements ViewModel {
         }
         if (entity.getEntityType() == Type.BARREL) {
             return new Pair<>(entity.getComponent(DoubleDamageComponent.class)
-                                    .get().getDoubleDamage() ? Barrel.ddBarrelAni : Barrel.barrelAni, 
+                                    .get().isDoubleDamage() ? Barrel.ddBarrelAni : Barrel.barrelAni, 
                               aniBarrelIndex);
         }
         if (entity.getEntityType() == Type.MONKEY) {

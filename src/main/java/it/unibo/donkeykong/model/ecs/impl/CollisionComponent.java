@@ -199,14 +199,14 @@ public class CollisionComponent extends AbstractComponent {
                     if (e.getEntityType() == Type.BARREL) {
                         if (!starC.isInvincible()) {
                             if (!shieldC.isShielded()) {
-                                if (e.getComponent(DoubleDamageComponent.class).get().getDoubleDamage()) {
+                                if (e.getComponent(DoubleDamageComponent.class).get().isDoubleDamage()) {
                                     healthC.setLifes(Player.doubleDamage);
                                 } else {
                                     healthC.setLifes(Player.damageTaken);
                                 }
                                 this.resetPlayer(movementC);
                             } else {
-                                if (e.getComponent(DoubleDamageComponent.class).get().getDoubleDamage()) {
+                                if (e.getComponent(DoubleDamageComponent.class).get().isDoubleDamage()) {
                                     healthC.setLifes(Player.damageTaken);
                                 }
                                 shieldC.setShield(false);

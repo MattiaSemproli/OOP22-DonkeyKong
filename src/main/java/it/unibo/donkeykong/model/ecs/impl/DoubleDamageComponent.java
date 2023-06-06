@@ -23,7 +23,7 @@ public class DoubleDamageComponent extends AbstractComponent {
      * 
      * @return true if is a double damage barrel.
      */
-    public final boolean getDoubleDamage() {
+    public final boolean isDoubleDamage() {
         return this.isDoubleDamage;
     }
 
