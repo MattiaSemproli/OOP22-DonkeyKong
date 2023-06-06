@@ -179,13 +179,13 @@ public class MainMenuView implements View {
      * {@inheritDoc}
      */
     @Override
-    public void keyPressed(int keyCode) {
+    public void keyPressed(final int keyCode) {
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public void keyReleased(int keyCode) {
+    public void keyReleased(final int keyCode) {
     }
 }

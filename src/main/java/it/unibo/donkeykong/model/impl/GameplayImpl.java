@@ -68,51 +68,6 @@ public class GameplayImpl implements Gameplay {
         this.generatePowerUps();
     }
 
-    public void updateKeyPressed(final int keyCode) {
-        if (Action.isMovementCode(keyCode)) {
-            this.keyInputs.add(0, keyCode);
-        }
-    }
-
-    public void updateKeyReleased(final int keyCode) {
-        if (keyCode == Action.ESCAPE) {
-            Gamestate.setGamestate(Gamestate.PAUSE);
-            resetKeys();
-            this.controller.pauseTimer();
-        } else {
-            if (this.keyInputs.contains(keyCode)) {
-                this.keyInputs.removeAll(Collections.singleton(keyCode));
-            }
-        }
-    }
-
-    /**
-     * Get all the inputs.
-     * 
-     * @return list of keys pressed.
-     */
-    public List<Integer> getInputs() {
-        return new ArrayList<>(this.keyInputs);
-    }
-
-    /**
-     * If we change PC's window and therefor our application loses focus, the game pauses.
-     */
-    public void resetKeysOnFocusLost() {
-        if (Gamestate.getGamestate().equals(Gamestate.PLAYING)) {
-            Gamestate.setGamestate(Gamestate.PAUSE);
-            resetKeys();
-            this.controller.pauseTimer();
-        }
-    }
-
-    /**
-     * Reset keys input.
-     */
-    public void resetKeys() {
-        this.keyInputs.clear();
-    }
-
     private void generateInteractableEntities() {
         this.generatePlayer();
         this.entities.add(this.entityFactoryImpl.generateMonkey(new Pair<>(Monkey.levelOneStartingMonkeyX, 
@@ -240,6 +195,60 @@ public class GameplayImpl implements Gameplay {
             default:
                 return Optional.empty();
         }
+    }    
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void updateKeyPressed(final int keyCode) {
+        if (Action.isMovementCode(keyCode)) {
+            this.keyInputs.add(0, keyCode);
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void updateKeyReleased(final int keyCode) {
+        if (keyCode == Action.ESCAPE) {
+            Gamestate.setGamestate(Gamestate.PAUSE);
+            resetKeys();
+            this.controller.pauseTimer();
+        } else {
+            if (this.keyInputs.contains(keyCode)) {
+                this.keyInputs.removeAll(Collections.singleton(keyCode));
+            }
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override    
+    public List<Integer> getInputs() {
+        return new ArrayList<>(this.keyInputs);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void resetKeysOnFocusLost() {
+        if (Gamestate.getGamestate().equals(Gamestate.PLAYING)) {
+            Gamestate.setGamestate(Gamestate.PAUSE);
+            resetKeys();
+            this.controller.pauseTimer();
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void resetKeys() {
+        this.keyInputs.clear();
     }
 
     /**
@@ -307,14 +316,6 @@ public class GameplayImpl implements Gameplay {
     @Override
     public ArrayList<Entity> getEntities() {
         return new ArrayList<>(this.entities);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public GameController getController() {
-        return this.controller;
     }
 
     /**

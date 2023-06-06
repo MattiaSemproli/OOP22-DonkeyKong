@@ -27,12 +27,12 @@ public interface View {
      * 
      * @param keyCode the int code of pressed key.
      */
-    void keyPressed(final int keyCode);
+    void keyPressed(int keyCode);
 
     /**
      * Handle key released.
      * 
      * @param keyCode the int code of released key.
      */
-    void keyReleased(final int keyCode);
+    void keyReleased(int keyCode);
 }

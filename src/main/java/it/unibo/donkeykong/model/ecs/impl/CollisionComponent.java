@@ -145,7 +145,6 @@ public class CollisionComponent extends AbstractComponent {
     private void checkPlayerWallCollision() {
         if (hitbox.getY() > Window.GAME_HEIGHT) {
             Gamestate.setGamestate(Gamestate.DEATH);
-            entity.getGameplay().getController().stopTimer();
         } else if (hitbox.getX() > (Window.GAME_WIDTH - hitbox.getWidth())) {
             entity.setPosition(new Pair<>(Window.GAME_WIDTH - hitbox.getWidth(), this.nextPosition.get().getY()));
         } else if (hitbox.getY() < 0) {
@@ -218,11 +217,9 @@ public class CollisionComponent extends AbstractComponent {
                     }
                     if (e.getEntityType() == Type.PRINCESS && movementC.isOnFloor()) {
                         Gamestate.setGamestate(Gamestate.WIN);
-                        entity.getGameplay().getController().stopTimer();
                     }
                     if (e.getEntityType() == Type.MONKEY) {
                         Gamestate.setGamestate(Gamestate.DEATH);
-                        entity.getGameplay().getController().stopTimer();
                     }
                     if (e.getEntityType() == Type.STAR) {
                         starC.setInvincible(true);
