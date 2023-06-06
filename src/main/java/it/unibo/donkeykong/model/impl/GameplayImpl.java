@@ -349,4 +349,12 @@ public class GameplayImpl implements Gameplay {
     public boolean isSpawnedOpPowerUp() {
         return this.opPowerUpSpawned;
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void pauseTimer() {
+        this.controller.pauseTimer();
+    }
 }

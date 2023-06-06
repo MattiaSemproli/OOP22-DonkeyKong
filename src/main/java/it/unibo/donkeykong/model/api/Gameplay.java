@@ -103,4 +103,9 @@ public interface Gameplay {
      * @return the list of pressed keys.
      */
     List<Integer> getInputs();
+
+    /**
+     * Pause timer when player wins or loses.
+     */
+    void pauseTimer();
 }
