@@ -1,25 +1,22 @@
 package it.unibo.donkeykong.controller.impl;
 
-import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 
 import javax.swing.Timer;
 
-import it.unibo.donkeykong.utilities.Constants.PowerupAssets;
 import it.unibo.donkeykong.controller.api.Controller;
 import it.unibo.donkeykong.model.api.Gameplay;
 import it.unibo.donkeykong.model.ecs.api.Entity;
 import it.unibo.donkeykong.model.ecs.impl.HealthComponent;
 import it.unibo.donkeykong.model.impl.Game;
 import it.unibo.donkeykong.model.impl.GameplayImpl;
+import it.unibo.donkeykong.utilities.Constants.PowerupAssets;
 import it.unibo.donkeykong.utilities.Gamestate;
 import it.unibo.donkeykong.utilities.Pair;
 import it.unibo.donkeykong.utilities.Type;
@@ -43,19 +40,18 @@ public class GameController implements KeyListener, Controller {
      * Constructor.
      */
     public GameController() {
-        this.game = new Game();
-        this.gameplay = new GameplayImpl(this);
-        this.gameplay.initializeGame();
         this.gameView = new GameView(this);
+        this.game = new Game();
+        this.gameplay = new GameplayImpl(this, this.gameView.getLevel());
+        this.gameplay.initializeGame();
         this.keyInputs = new ArrayList<>();
         this.initializeTimer();
-        this.startTimer();
     }
 
     /**
      * Update the game.
      */
-    public final void update() {
+    public void update() {
         this.timeElapsed++;
         this.gameplay.getEntities().forEach(e -> e.getAllComponents().forEach(c -> c.update()));
         if (!this.gameplay.isSpawnedOpPowerUp() && this.timeElapsed > PowerupAssets.spawnOpPowerUpDelay) {
@@ -80,7 +76,7 @@ public class GameController implements KeyListener, Controller {
     }
 
     @Override
-    public final void keyPressed(final KeyEvent e) { 
+    public void keyPressed(final KeyEvent e) { 
         if (e.getKeyCode() != KeyEvent.VK_ESCAPE
             && (e.getKeyCode() == KeyEvent.VK_A
                 || e.getKeyCode() == KeyEvent.VK_LEFT
@@ -112,7 +108,7 @@ public class GameController implements KeyListener, Controller {
     }
 
     @Override
-    public final void keyReleased(final KeyEvent e) {
+    public void keyReleased(final KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
             Gamestate.setGamestate(Gamestate.PAUSE);
             this.keyInputs.clear();
@@ -127,7 +123,7 @@ public class GameController implements KeyListener, Controller {
     /**
      * If we change PC's window and therefor our application loses focus, the game pauses.
      */
-    public final void resetKeysOnFocusLost() {
+    public void resetKeysOnFocusLost() {
         if (Gamestate.getGamestate().equals(Gamestate.PLAYING)) {
             Gamestate.setGamestate(Gamestate.PAUSE);
             this.keyInputs.clear();
@@ -136,32 +132,11 @@ public class GameController implements KeyListener, Controller {
     }
 
     /**
-     * Get from the model the right animation sprite.
-     * 
-     * @param type of the entity.
-     * @param row of the animation.
-     * @param col of the animation.
-     * @return the correct animation sprite.
-     */
-    public final BufferedImage getAnimationFromModel(final Type type, final int row, final int col) {
-        return this.game.getEntityAni(type, row, col);
-    }
-
-    /**
-     * Get all the data level from the model.
-     * 
-     * @return map of every tiles and its images.
-     */
-    public final Map<Rectangle, BufferedImage> getDataLevelFromModel() {
-        return this.game.getDataLevel();
-    }
-
-    /**
      * Get all the entities from the gameplay.
      * 
      * @return list of entities.
      */
-    public final List<Entity> getEntitiesFromGameplay() {
+    public List<Entity> getEntitiesFromGameplay() {
         return this.gameplay.getEntities();
     }
 
@@ -170,7 +145,7 @@ public class GameController implements KeyListener, Controller {
      * 
      * @return list of entities.
      */
-    public final List<Entity> getInteractableEntitiesFromGameplay() {
+    public List<Entity> getInteractableEntitiesFromGameplay() {
         return this.gameplay.getEntities().stream()
                                           .filter(e -> e.getEntityType() == Type.PLAYER
                                                        || e.getEntityType() == Type.MONKEY
@@ -183,7 +158,7 @@ public class GameController implements KeyListener, Controller {
      * 
      * @return list of entities.
      */
-    public final List<Entity> getPowerupEntitiesFromGameplay() {
+    public List<Entity> getPowerupEntitiesFromGameplay() {
         return this.gameplay.getEntities().stream()
                                           .filter(e -> e.getEntityType() == Type.STAR
                                                        || e.getEntityType() == Type.HEART
@@ -192,18 +167,32 @@ public class GameController implements KeyListener, Controller {
     }
 
     /**
+     * Get player lives.
+     * 
+     * @return the number of lives.
+     */
+    public int getPlayerLives() {
+        return this.gameplay.getEntities().stream()
+                            .filter(e -> e.getEntityType() == Type.PLAYER)
+                            .findFirst()
+                            .map(e -> e.getComponent(HealthComponent.class).get().getLives())
+                            .orElse(0);
+                            
+    }
+
+    /**
      * Get all the powerups active in the game.
      * 
      * @return a list of type of active power ups.
      */
-    public final List<Type> getListOfActivePowerUps() {
+    public List<Type> getListOfActivePowerUps() {
         return new ArrayList<>(this.gameplay.getActivePowerUps());
     }
 
     /**
      * Update the animation indexes.
      */
-    public final void updateAniIndex() {
+    public void updateAniIndex() {
         this.game.updateAnimations();
     }
 
@@ -213,7 +202,7 @@ public class GameController implements KeyListener, Controller {
      * @param entity to get the animation.
      * @return a pair with the animation to get and the index of the animation.
      */
-    public final Pair<Integer, Integer> getIdleFromModel(final Entity entity) {
+    public Pair<Integer, Integer> getIdleFromModel(final Entity entity) {
         return this.game.getIdle(entity);
     }
 
@@ -222,7 +211,7 @@ public class GameController implements KeyListener, Controller {
      * 
      * @return list of keys pressed.
      */
-    public final List<Integer> getInputs() {
+    public List<Integer> getInputs() {
         return new ArrayList<>(this.keyInputs);
     }
 
@@ -234,26 +223,27 @@ public class GameController implements KeyListener, Controller {
                 seconds++;
             }
         });
+        this.timer.start();
     }
 
     /**
      * Start the game timer.
      */
-    public final void startTimer() {
+    public void startTimer() {
         this.timer.start();
     }
 
     /**
      * Stop and reset the game timer.
      */
-    public final void stopTimer() {
+    public void stopTimer() {
         this.timer.stop();
     }
 
     /**
      * Pause temporarily the game timer.
      */
-    public final void pauseTimer() {
+    public void pauseTimer() {
         this.timer.stop();
     }
 
@@ -262,7 +252,7 @@ public class GameController implements KeyListener, Controller {
      * 
      * @return seconds passed.
      */
-    public final float getSeconds() {
+    public float getSeconds() {
         return this.seconds;
     }
 

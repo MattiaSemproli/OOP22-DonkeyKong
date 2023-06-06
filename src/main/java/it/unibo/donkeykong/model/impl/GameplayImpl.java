@@ -10,7 +10,6 @@ import java.util.Random;
 import it.unibo.donkeykong.controller.impl.GameController;
 import it.unibo.donkeykong.model.api.EntityFactory;
 import it.unibo.donkeykong.model.api.Gameplay;
-import it.unibo.donkeykong.model.api.Level;
 import it.unibo.donkeykong.model.ecs.api.Entity;
 import it.unibo.donkeykong.model.ecs.impl.DoubleDamageComponent;
 import it.unibo.donkeykong.model.ecs.impl.FreezeComponent;
@@ -26,15 +25,16 @@ import it.unibo.donkeykong.utilities.Constants.Player;
 import it.unibo.donkeykong.utilities.Constants.PowerupAssets;
 import it.unibo.donkeykong.utilities.Constants.Princess;
 import it.unibo.donkeykong.utilities.Constants.Window;
+import it.unibo.donkeykong.view.api.Level;
 
 /**
  * Gameplay class, manages a gameplay.
  */
 public class GameplayImpl implements Gameplay {
 
-    private final EntityFactory entityFactoryImpl;
     private final GameController controller;
     private final Level level;
+    private final EntityFactory entityFactoryImpl;
     private final List<Entity> entities = new ArrayList<>();
     private final Random random = new Random();
     private boolean opPowerUpSpawned;
@@ -44,9 +44,9 @@ public class GameplayImpl implements Gameplay {
      * 
      * @param controller the linked GameController
      */
-    public GameplayImpl(final GameController controller) {
-        this.level = new LevelImpl();
+    public GameplayImpl(final GameController controller, final Level level) {
         this.controller = controller;
+        this.level = level;
         this.entityFactoryImpl = new EntityFactoryImpl(this);
         this.opPowerUpSpawned = false;
     }

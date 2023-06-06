@@ -1,4 +1,4 @@
-package it.unibo.donkeykong.model.api;
+package it.unibo.donkeykong.view.api;
 
 import java.awt.image.BufferedImage;
 import java.util.Map;

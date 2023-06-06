@@ -13,7 +13,6 @@ import java.util.stream.IntStream;
 
 import it.unibo.donkeykong.controller.impl.GameController;
 import it.unibo.donkeykong.model.ecs.api.Entity;
-import it.unibo.donkeykong.model.ecs.impl.HealthComponent;
 import it.unibo.donkeykong.utilities.Constants.Barrel;
 import it.unibo.donkeykong.utilities.Constants.MenuAssets.LevelAssets;
 import it.unibo.donkeykong.utilities.Constants.MenuAssets.SettingsAssets;
@@ -26,6 +25,7 @@ import it.unibo.donkeykong.utilities.Gamestate;
 import it.unibo.donkeykong.utilities.Pair;
 import it.unibo.donkeykong.utilities.Type;
 import it.unibo.donkeykong.view.api.Button;
+import it.unibo.donkeykong.view.api.Level;
 import it.unibo.donkeykong.view.api.View;
 
 /**
@@ -36,6 +36,7 @@ public class GameView implements View {
     private final GameController gameController;
 
     private final Button settingsPauseButton;
+    private final Level level;
     private Map<Button, BufferedImage> buttons = new HashMap<>();
     private BufferedImage[][] playerMovementAni = new BufferedImage[Player.numMovementAni][Player.movementAniSprites];
     private BufferedImage[] monkeyAni = new BufferedImage[Monkey.monkeyAniSprites];
@@ -49,6 +50,8 @@ public class GameView implements View {
      */
     public GameView(final GameController gameController) {
         this.gameController = gameController;
+        this.level = new LevelImpl();
+        this.bufferAnimations();
 
         this.settingsPauseButton = new ButtonImpl(Window.GAME_WIDTH - SCALED_TILES_SIZE - Window.TILES_DEFAULT_SIZE, 
                                                   Window.TILES_DEFAULT_SIZE, 
@@ -56,7 +59,10 @@ public class GameView implements View {
                                                   SCALED_TILES_SIZE, Gamestate.PAUSE);
 
         buttons.put(settingsPauseButton, getSettingsSources().get(SettingsAssets.roundedSettingsButton));
-        this.bufferAnimations();
+    }
+
+    public Level getLevel() {
+        return this.level;
     }
 
     /**
@@ -64,12 +70,14 @@ public class GameView implements View {
      */
     @Override
     public void draw(final Graphics g) {
-        this.gameController.getDataLevelFromModel()
-                           .forEach((tile, sprite) -> g.drawImage(sprite, 
-                                                                  tile.x, 
-                                                                  tile.y, 
-                                                                  tile.width, 
-                                                                  tile.height, null));
+        this.level.getLevelData()
+                  .forEach((pos, val) -> {
+                      g.drawImage(level.getLevelSprite(val), 
+                                  SCALED_TILES_SIZE * pos.getY(), 
+                                  SCALED_TILES_SIZE * pos.getX(), 
+                                  SCALED_TILES_SIZE, 
+                                  SCALED_TILES_SIZE, null);
+                  });
         g.drawImage(LevelAssets.barrelBox, 
                     0, 
                     Math.round(Monkey.levelOneStartingMonkeyY + Monkey.monkeyHeight - Barrel.barrelBoxHeight), 
@@ -83,7 +91,6 @@ public class GameView implements View {
                                                     b.getButtonDim().getX(), 
                                                     b.getButtonDim().getY(), null));
         this.gameController.getPowerupEntitiesFromGameplay()
-                           .stream()
                            .forEach(e -> g.drawImage(this.getPowerUpSprite(e.getEntityType()),
                                                      Math.round(e.getPosition().getX()), 
                                                      Math.round(e.getPosition().getY()),
@@ -91,15 +98,6 @@ public class GameView implements View {
                                                      e.getHeight(), null));
         this.gameController.getInteractableEntitiesFromGameplay()
                            .forEach(entity -> this.drawEntity(g, entity));
-
-        /**
-         * Draw hitboxes.
-         */
-        // this.gameController.getEntitiesFromGameplay().forEach(e -> {
-        //     final Rectangle2D r = e.getComponent(CollisionComponent.class).get().getHitbox();
-        //     g.setColor(java.awt.Color.GREEN);
-        //     g.drawRect((int) r.getX(), (int) r.getY(), (int) r.getWidth(), (int) r.getHeight());
-        // });
     }
 
     /**
@@ -134,32 +132,38 @@ public class GameView implements View {
 
     private BufferedImage getSprite(final Entity entity) {
         final Pair<Integer, Integer> anim = this.gameController.getIdleFromModel(entity);
-        return this.gameController.getAnimationFromModel(entity.getEntityType(), anim.getX(), anim.getY());
+        return this.getEntityAni(entity.getEntityType(), anim.getX(), anim.getY());
+    }
+
+    private BufferedImage getEntityAni(final Type type, final int row, final int col) {
+        if (type == Type.PLAYER) {
+            return this.playerMovementAni[row][col];
+        }
+        if (type == Type.MONKEY) {
+            return this.monkeyAni[col];
+        }
+        if (type == Type.BARREL) {
+            return this.barrelAni[row][col];
+        }
+        return this.princessAni[row][col];
     }
 
     private void drawLives(final Graphics g) {
-        this.gameController
-            .getInteractableEntitiesFromGameplay()
-            .stream()
-            .filter(e -> e.getEntityType() == Type.PLAYER)
-            .findFirst()
-            .ifPresent(e -> {
-                final int lives = e.getComponent(HealthComponent.class).get().getLives();
-                IntStream.range(0, lives).forEach(i -> {
-                 g.drawImage(PowerupAssets.getPowerupSources().get(PowerupAssets.life),
-                             Window.GAME_WIDTH - Window.SCALED_TILES_SIZE * (Player.numLives + i) + PowerupAssets.lifePadding,
-                             PowerupAssets.lifePadding,
-                             PowerupAssets.lifeDimension, 
-                             PowerupAssets.lifeDimension, null);
-                });
-                IntStream.range(lives, Player.numLives).forEach(i -> {
-                g.drawImage(PowerupAssets.getPowerupSources().get(PowerupAssets.noLife),
-                             Window.GAME_WIDTH - Window.SCALED_TILES_SIZE * (Player.numLives + i) + PowerupAssets.lifePadding,
-                             PowerupAssets.lifePadding,
-                             PowerupAssets.lifeDimension, 
-                             PowerupAssets.lifeDimension, null);
-                });
-            });
+        final int lives = this.gameController.getPlayerLives();
+        IntStream.range(0, lives).forEach(i -> {
+            g.drawImage(PowerupAssets.getPowerupSources().get(PowerupAssets.life),
+                        Window.GAME_WIDTH - Window.SCALED_TILES_SIZE * (Player.numLives + i) + PowerupAssets.lifePadding,
+                        PowerupAssets.lifePadding,
+                        PowerupAssets.lifeDimension, 
+                        PowerupAssets.lifeDimension, null);
+        });
+        IntStream.range(lives, Player.numLives).forEach(i -> {
+        g.drawImage(PowerupAssets.getPowerupSources().get(PowerupAssets.noLife),
+                    Window.GAME_WIDTH - Window.SCALED_TILES_SIZE * (Player.numLives + i) + PowerupAssets.lifePadding,
+                    PowerupAssets.lifePadding,
+                    PowerupAssets.lifeDimension, 
+                    PowerupAssets.lifeDimension, null);
+        });
     }
 
     private BufferedImage getPowerUpSprite(final Type powerup) {
@@ -175,19 +179,19 @@ public class GameView implements View {
 
     private void drawActivePowerUps(final Graphics g) {
         final List<Type> activePowerUps = this.gameController.getListOfActivePowerUps();
-                IntStream.range(0, activePowerUps.size()).forEach(i -> {
-                    g.drawImage(PowerupAssets.getPowerupSources().get(PowerupAssets.emptyBorder), 
-                                i * Window.SCALED_TILES_SIZE + PowerupAssets.powerupBorderPadding,
-                                PowerupAssets.powerupBorderPadding, 
-                                PowerupAssets.powerupBorderDimension, 
-                                PowerupAssets.powerupBorderDimension, null);
-                    g.drawImage(getPowerUpSprite(activePowerUps.get(i)),
-                                i * Window.SCALED_TILES_SIZE + PowerupAssets.powerupBorderPadding 
-                                                               + PowerupAssets.powerupActivePadding,
-                                PowerupAssets.powerupBorderPadding + PowerupAssets.powerupActivePadding, 
-                                PowerupAssets.powerupActiveDimension, 
-                                PowerupAssets.powerupActiveDimension, null);
-                });
+        IntStream.range(0, activePowerUps.size()).forEach(i -> {
+            g.drawImage(PowerupAssets.getPowerupSources().get(PowerupAssets.emptyBorder), 
+                        i * Window.SCALED_TILES_SIZE + PowerupAssets.powerupBorderPadding,
+                        PowerupAssets.powerupBorderPadding, 
+                        PowerupAssets.powerupBorderDimension, 
+                        PowerupAssets.powerupBorderDimension, null);
+            g.drawImage(getPowerUpSprite(activePowerUps.get(i)),
+                        i * Window.SCALED_TILES_SIZE + PowerupAssets.powerupBorderPadding 
+                                                        + PowerupAssets.powerupActivePadding,
+                        PowerupAssets.powerupBorderPadding + PowerupAssets.powerupActivePadding, 
+                        PowerupAssets.powerupActiveDimension, 
+                        PowerupAssets.powerupActiveDimension, null);
+        });
     }
     private void bufferAnimations() {
         for (int r = 0; r < Player.numMovementAni - 1; r++) {

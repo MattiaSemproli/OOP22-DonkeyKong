@@ -1,4 +1,4 @@
-package it.unibo.donkeykong.model.impl;
+package it.unibo.donkeykong.view.impl;
 
 import static it.unibo.donkeykong.utilities.Constants.Level.levelSpritesLength;
 import static it.unibo.donkeykong.utilities.Constants.Window.TILES_DEFAULT_SIZE;
@@ -10,11 +10,11 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
-import it.unibo.donkeykong.model.api.Level;
 import it.unibo.donkeykong.utilities.Constants;
 import it.unibo.donkeykong.utilities.CurrentLevel;
 import it.unibo.donkeykong.utilities.Pair;
 import it.unibo.donkeykong.utilities.Type;
+import it.unibo.donkeykong.view.api.Level;
 
 import static it.unibo.donkeykong.utilities.Constants.Level.levelOne;
 import static it.unibo.donkeykong.utilities.Constants.Level.levelTwo;
@@ -76,18 +76,27 @@ public class LevelImpl implements Level {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public final BufferedImage getLevelSprite(final int val) {
+    public BufferedImage getLevelSprite(final int val) {
         return this.spritesArray[val];
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public final Map<Pair<Integer, Integer>, Integer> getLevelData() {
+    public Map<Pair<Integer, Integer>, Integer> getLevelData() {
         return new HashMap<>(this.levelData);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public final Optional<Type> getLevelMatrixType(final int x, final int y) {
+    public Optional<Type> getLevelMatrixType(final int x, final int y) {
         switch (this.levelData.get(new Pair<>(x, y))) {
             case Constants.Level.platformBlock:
             case Constants.Level.coloredLadder:
