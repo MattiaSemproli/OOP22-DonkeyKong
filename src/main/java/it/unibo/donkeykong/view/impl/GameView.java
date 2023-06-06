@@ -69,8 +69,8 @@ public class GameView implements View {
         this.level.getLevelData()
                   .forEach((pos, val) -> {
                       g.drawImage(level.getLevelSprite(val), 
-                                  SCALED_TILES_SIZE * pos.getY(), 
                                   SCALED_TILES_SIZE * pos.getX(), 
+                                  SCALED_TILES_SIZE * pos.getY(), 
                                   SCALED_TILES_SIZE, 
                                   SCALED_TILES_SIZE, null);
                   });

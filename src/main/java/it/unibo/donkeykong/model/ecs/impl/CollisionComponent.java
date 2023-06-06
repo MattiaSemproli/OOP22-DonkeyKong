@@ -1,10 +1,11 @@
 package it.unibo.donkeykong.model.ecs.impl;
 
-import java.awt.geom.Line2D;
-import java.awt.geom.Rectangle2D;
 import java.util.Optional;
 import java.util.Random;
 
+import it.unibo.donkeykong.common.Line;
+import it.unibo.donkeykong.common.Rectangle;
+import it.unibo.donkeykong.model.ecs.api.Entity;
 import it.unibo.donkeykong.utilities.Constants.Barrel;
 import it.unibo.donkeykong.utilities.Constants.Level;
 import it.unibo.donkeykong.utilities.Constants.Monkey;
@@ -12,7 +13,6 @@ import it.unibo.donkeykong.utilities.Constants.Player;
 import it.unibo.donkeykong.utilities.Constants.PowerupAssets;
 import it.unibo.donkeykong.utilities.Constants.Princess;
 import it.unibo.donkeykong.utilities.Constants.Window;
-import it.unibo.donkeykong.model.ecs.api.Entity;
 import it.unibo.donkeykong.utilities.CurrentLevel;
 import it.unibo.donkeykong.utilities.Gamestate;
 import it.unibo.donkeykong.utilities.Pair;
@@ -27,7 +27,7 @@ public class CollisionComponent extends AbstractComponent {
     private float x, y;
     private int width, height;
     private Entity entity;
-    private Rectangle2D.Float hitbox;
+    private Rectangle hitbox;
     private Optional<Pair<Float, Float>> nextPosition = Optional.empty();
     private final Random random = new Random();
 
@@ -37,8 +37,8 @@ public class CollisionComponent extends AbstractComponent {
         this.entity = this.getEntity();
         final Type eType = this.getEntity().getEntityType();
         if (this.nextPosition.isPresent()) {
-            this.hitbox.x = nextPosition.get().getX();
-            this.hitbox.y = nextPosition.get().getY();
+            this.hitbox.setX(nextPosition.get().getX());
+            this.hitbox.setY(nextPosition.get().getY());
             if (eType == Type.PLAYER) {
                 this.checkPlayerPlatformCollision();
                 this.checkPlayerLadderCollision();
@@ -52,8 +52,8 @@ public class CollisionComponent extends AbstractComponent {
             }
         } else {
             this.nextPosition = Optional.of(this.getEntity().getPosition());
-            this.hitbox.x = this.getEntity().getPosition().getX();
-            this.hitbox.y = this.getEntity().getPosition().getY();
+            this.hitbox.setX(this.getEntity().getPosition().getX());
+            this.hitbox.setY(this.getEntity().getPosition().getY());
         }
         if (eType == Type.PLAYER) {
             this.checkIsCollidingWithOtherEntities();
@@ -79,8 +79,8 @@ public class CollisionComponent extends AbstractComponent {
      * 
      * @return a defensive copy of the hitbox.
      */
-    public final Rectangle2D.Float getHitbox() {
-        return new Rectangle2D.Float(this.hitbox.x, this.hitbox.y, this.hitbox.width, this.hitbox.height);
+    public final Rectangle getHitbox() {
+        return this.hitbox.getCopy();
     }
 
     private void checkPlayerPlatformCollision() {
@@ -89,22 +89,22 @@ public class CollisionComponent extends AbstractComponent {
             entity.getGameplay().getEntities().stream()
                   .filter(e -> !this.checkIsNotBlock(e.getEntityType()))
                   .filter(e -> {
-                    final Rectangle2D.Float e2Hitbox = e.getComponent(CollisionComponent.class).get().getHitbox();
-                    if (hitbox.intersectsLine(new Line2D.Float(e2Hitbox.x,
-                                                               e2Hitbox.y,
-                                                               e2Hitbox.x + e2Hitbox.width,
-                                                               e2Hitbox.y))
-                       && !hitbox.intersectsLine(new Line2D.Float(e2Hitbox.x,
-                                                                  e2Hitbox.y + e2Hitbox.height,
-                                                                  e2Hitbox.x + e2Hitbox.width,
-                                                                  e2Hitbox.y + e2Hitbox.height))
-                       && hitbox.y + hitbox.height < e2Hitbox.y + 8) {
+                    final Rectangle e2Hitbox = e.getComponent(CollisionComponent.class).get().getHitbox();
+                    if (hitbox.intersectsLine(new Line(e2Hitbox.getX(),
+                                                       e2Hitbox.getY(),
+                                                       e2Hitbox.getMaxX(),
+                                                       e2Hitbox.getY()))
+                       && !hitbox.intersectsLine(new Line(e2Hitbox.getX(),
+                                                          e2Hitbox.getMaxY(),
+                                                          e2Hitbox.getMaxX(),
+                                                          e2Hitbox.getMaxY()))
+                       && hitbox.getMaxY() < e2Hitbox.getY() + 8) {
                         return true;
                     }
                     return false;
             }).forEach(eBlock -> {
                 this.nextPosition = Optional.of(new Pair<>(this.nextPosition.get().getX(),
-                                                           eBlock.getPosition().getY() - hitbox.height));
+                                                           eBlock.getPosition().getY() - hitbox.getHeight()));
                 mc.resetInAir();
                 mc.setOnLadder(false);
             });
@@ -144,14 +144,14 @@ public class CollisionComponent extends AbstractComponent {
     }
 
     private void checkPlayerWallCollision() {
-        if (hitbox.y > Window.GAME_HEIGHT) {
+        if (hitbox.getY() > Window.GAME_HEIGHT) {
             Gamestate.setGamestate(Gamestate.DEATH);
             entity.getGameplay().getController().stopTimer();
-        } else if (hitbox.x > (Window.GAME_WIDTH - hitbox.width)) {
-            entity.setPosition(new Pair<>(Window.GAME_WIDTH - hitbox.width, this.nextPosition.get().getY()));
-        } else if (hitbox.y < 0) {
+        } else if (hitbox.getX() > (Window.GAME_WIDTH - hitbox.getWidth())) {
+            entity.setPosition(new Pair<>(Window.GAME_WIDTH - hitbox.getWidth(), this.nextPosition.get().getY()));
+        } else if (hitbox.getY() < 0) {
             entity.setPosition(new Pair<>(this.nextPosition.get().getX(), 0f));
-        } else if (hitbox.x < 0) {
+        } else if (hitbox.getX() < 0) {
             entity.setPosition(new Pair<>(0f, this.nextPosition.get().getY()));
         } else {
             entity.setPosition(new Pair<>(this.nextPosition.get().getX(), this.nextPosition.get().getY()));
@@ -163,15 +163,15 @@ public class CollisionComponent extends AbstractComponent {
             if (entity.getGameplay().getEntities().stream()
                       .filter(e -> !this.checkIsNotBlock(e.getEntityType()))
                       .anyMatch(e -> {
-                          final Rectangle2D.Float e2Hitbox = e.getComponent(CollisionComponent.class).get().getHitbox();
-                          if (hitbox.intersectsLine(new Line2D.Float(e2Hitbox.x,
-                                                                    e2Hitbox.y,
-                                                                    e2Hitbox.x + e2Hitbox.width,
-                                                                    e2Hitbox.y))
-                             && !hitbox.intersectsLine(new Line2D.Float(e2Hitbox.x,
-                                                                        e2Hitbox.y + e2Hitbox.height,
-                                                                        e2Hitbox.x + e2Hitbox.width,
-                                                                        e2Hitbox.y + e2Hitbox.height))) {
+                          final Rectangle e2Hitbox = e.getComponent(CollisionComponent.class).get().getHitbox();
+                          if (hitbox.intersectsLine(new Line(e2Hitbox.getX(),
+                                                             e2Hitbox.getY(),
+                                                             e2Hitbox.getMaxY(),
+                                                             e2Hitbox.getY()))
+                             && !hitbox.intersectsLine(new Line(e2Hitbox.getX(),
+                                                                e2Hitbox.getMaxY(),
+                                                                e2Hitbox.getMaxX(),
+                                                                e2Hitbox.getMaxY()))) {
                               return true;
                           }
                           return false;
@@ -277,14 +277,14 @@ public class CollisionComponent extends AbstractComponent {
         if (entity.getGameplay().getEntities().stream()
                   .filter(e -> !this.checkIsNotBlock(e.getEntityType()))
                   .anyMatch(e -> {
-                            final Rectangle2D.Float e2hitbox = e.getComponent(CollisionComponent.class).get().getHitbox();
-                            if (hitbox.intersectsLine(new Line2D.Float(e2hitbox.x,
-                                                                       e2hitbox.y,
-                                                                       e2hitbox.x + e2hitbox.width,
-                                                                       e2hitbox.y))
-                                && hitbox.y + hitbox.height < e2hitbox.y + Barrel.barrelFloorError) {
+                            final Rectangle e2hitbox = e.getComponent(CollisionComponent.class).get().getHitbox();
+                            if (hitbox.intersectsLine(new Line(e2hitbox.getX(),
+                                                               e2hitbox.getY(),
+                                                               e2hitbox.getMaxX(),
+                                                               e2hitbox.getY()))
+                                && hitbox.getMaxY() < e2hitbox.getY() + Barrel.barrelFloorError) {
                                     this.nextPosition = Optional.of(new Pair<>(this.nextPosition.get().getX(),
-                                                                               e2hitbox.y - hitbox.height));
+                                                                               e2hitbox.getY() - hitbox.getHeight()));
                                     return true;
                                 }
                                 return false;
@@ -310,9 +310,9 @@ public class CollisionComponent extends AbstractComponent {
                        }
                        this.barrelChangedDirection = true;
                    });
-        if (hitbox.x < 0 || hitbox.x + hitbox.width > Window.GAME_WIDTH) {
+        if (hitbox.getX() < 0 || hitbox.getMaxX() > Window.GAME_WIDTH) {
             mc.moveEntity(mc.getFacing().getOppositeDirection());
-        } else if (hitbox.y > Window.GAME_HEIGHT) {
+        } else if (hitbox.getY() > Window.GAME_HEIGHT) {
             this.entity.getGameplay().removeEntity(entity);
         } else {
             entity.setPosition(new Pair<>(this.nextPosition.get().getX(), this.nextPosition.get().getY()));
@@ -322,8 +322,8 @@ public class CollisionComponent extends AbstractComponent {
     private void checkPrincessCollision() {
         final int leftTile = (int) (Princess.levelOneStartingPrincessX / Window.SCALED_TILES_SIZE) - 1;
         final int rightTile = (int) (Princess.levelOneStartingPrincessX / Window.SCALED_TILES_SIZE) + 1;
-        if (hitbox.x + hitbox.width > rightTile * Window.SCALED_TILES_SIZE + Window.SCALED_TILES_SIZE
-            || hitbox.x < leftTile * Window.SCALED_TILES_SIZE) {
+        if (hitbox.getMaxX() > rightTile * Window.SCALED_TILES_SIZE + Window.SCALED_TILES_SIZE
+            || hitbox.getX() < leftTile * Window.SCALED_TILES_SIZE) {
             final MovementComponent mc = this.entity.getComponent(MovementComponent.class).get();
             mc.moveEntity(mc.getFacing().getOppositeDirection());
         }
@@ -337,50 +337,50 @@ public class CollisionComponent extends AbstractComponent {
             case BARREL:
                 width = Barrel.barrelWidth;
                 height = Barrel.barrelHeight;
-                hitbox = new Rectangle2D.Float(x, y, width, height);
+                hitbox = new Rectangle(x, y, width, height);
                 break;
             case PLAYER:
-                hitbox = new Rectangle2D.Float(x, y, width, height);
+                hitbox = new Rectangle(x, y, width, height);
                 break;
             case PRINCESS:
                 width = Princess.princessWidth;
                 height = Princess.princessHeight;
-                hitbox = new Rectangle2D.Float(x, y, width, height);
+                hitbox = new Rectangle(x, y, width, height);
                 break;
             case MONKEY:
                 width = Monkey.monkeyWidth;
                 height = Monkey.monkeyHeight;
-                hitbox = new Rectangle2D.Float(x, y, width, height);
+                hitbox = new Rectangle(x, y, width, height);
                 break;
             case HEART:
                 width = PowerupAssets.heartWidth;
                 height = PowerupAssets.heartHeight;
-                hitbox = new Rectangle2D.Float(x, y, width, height);
+                hitbox = new Rectangle(x, y, width, height);
                 break;
             case SNOWFLAKE:
                 width = PowerupAssets.freezeDimension;
                 height = PowerupAssets.freezeDimension;
-                hitbox = new Rectangle2D.Float(x, y, width, height);
+                hitbox = new Rectangle(x, y, width, height);
                 break;
             case STAR:
                 width = PowerupAssets.starDimension;
                 height = PowerupAssets.starDimension;
-                hitbox = new Rectangle2D.Float(x, y, width, height);
+                hitbox = new Rectangle(x, y, width, height);
                 break;
             case SHIELD:
                 width = PowerupAssets.shieldWidth;
                 height = PowerupAssets.shieldHeight;
-                hitbox = new Rectangle2D.Float(x, y, width, height);
+                hitbox = new Rectangle(x, y, width, height);
                 break;
             case LADDER:
-                hitbox = new Rectangle2D.Float(x, y, width - (Level.ladderPadding * 2), height);
+                hitbox = new Rectangle(x, y, width - (Level.ladderPadding * 2), height);
                 break;
             case BLOCK:
             case BLOCK_LADDER_DOWN:
             case BLOCK_LADDER_UP:
             case BLOCK_LADDER_UPDOWN:
             default:
-                hitbox = new Rectangle2D.Float(x, y, width, height - Level.platformBlockPadding * 2);
+                hitbox = new Rectangle(x, y, width, height - Level.platformBlockPadding * 2);
                 break;
         }
     }
