@@ -24,8 +24,7 @@ import it.unibo.donkeykong.utilities.Type;
 public class CollisionComponent extends AbstractComponent {
 
     private boolean barrelChangedDirection;
-    private float x, y;
-    private int width, height;
+    private final float x, y;
     private Entity entity;
     private Rectangle hitbox;
     private Optional<Pair<Float, Float>> nextPosition = Optional.empty();
@@ -331,8 +330,8 @@ public class CollisionComponent extends AbstractComponent {
     }
 
     private void initDifferentHitbox(final Type type) {
-        width = Window.SCALED_TILES_SIZE;
-        height = width;
+        int width = Window.SCALED_TILES_SIZE;
+        int height = width;
         switch (type) {
             case BARREL:
                 width = Barrel.barrelWidth;
