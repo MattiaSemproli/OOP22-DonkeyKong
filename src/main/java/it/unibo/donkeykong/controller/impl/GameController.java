@@ -93,7 +93,7 @@ public class GameController implements Controller {
     public void keyReleased(final int keyCode) {
         if (keyCode == Action.ESCAPE) {
             Gamestate.setGamestate(Gamestate.PAUSE);
-            this.keyInputs.clear();
+            resetKeys();
             this.pauseTimer();
         } else {
             if (this.keyInputs.contains(keyCode)) {
@@ -117,9 +117,16 @@ public class GameController implements Controller {
     public void resetKeysOnFocusLost() {
         if (Gamestate.getGamestate().equals(Gamestate.PLAYING)) {
             Gamestate.setGamestate(Gamestate.PAUSE);
-            this.keyInputs.clear();
+            resetKeys();
             this.pauseTimer();
         }
+    }
+
+    /**
+     * Reset keys input.
+     */
+    public void resetKeys() {
+        this.keyInputs.clear();
     }
 
     /**

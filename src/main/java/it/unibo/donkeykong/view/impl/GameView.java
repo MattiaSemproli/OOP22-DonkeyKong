@@ -53,9 +53,9 @@ public class GameView implements View {
         this.bufferAnimations();
 
         final Button settingsPauseButton = new ButtonImpl(Window.GAME_WIDTH - SCALED_TILES_SIZE - Window.TILES_DEFAULT_SIZE, 
-                                                    Window.TILES_DEFAULT_SIZE, 
-                                                    SCALED_TILES_SIZE, 
-                                                    SCALED_TILES_SIZE, Gamestate.PAUSE);
+                                                          Window.TILES_DEFAULT_SIZE, 
+                                                          SCALED_TILES_SIZE, 
+                                                          SCALED_TILES_SIZE, Gamestate.PAUSE);
 
         buttons.put(settingsPauseButton, getSettingsSources().get(SettingsAssets.roundedSettingsButton));
     }
@@ -103,6 +103,7 @@ public class GameView implements View {
         this.buttons.keySet().forEach(b -> {
             if (b.getCorners().contains(new Point(point.getX(), point.getY()))) {
                 if (b.getButtonGamestate() == Gamestate.PAUSE) {
+                    this.gameController.resetKeys();
                     this.gameController.pauseTimer();
                 }
                 this.gameController.applyGamestate(b.getButtonGamestate());
