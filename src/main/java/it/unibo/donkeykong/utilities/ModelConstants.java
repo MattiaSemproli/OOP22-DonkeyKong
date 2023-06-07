@@ -3,10 +3,13 @@ package it.unibo.donkeykong.utilities;
 import it.unibo.donkeykong.utilities.ViewConstants.Window;
 
 /**
- * Constants class.
+ * Model constants class.
  */
-public class Constants {
+public class ModelConstants {
 
+    /**
+     * Application constants.
+     */
     public static class Application {
         /**
          * Number of tiles in width.
@@ -35,7 +38,7 @@ public class Constants {
      */
     public static class GameLoop {
         /**
-         * FPS capslock;
+         * FPS capslock.
          */
         public static final int FPS_SET = 120;
         /**
@@ -252,6 +255,9 @@ public class Constants {
         public static final int BARREL_ANI_SPRITES = 4;
     }
 
+    /**
+     * Player constants.
+     */
     public static final class Player {
         /**
          * Player level one starting x position.
@@ -362,7 +368,7 @@ public class Constants {
          */
         public static final int MOVEMENT_ANI_SPRITES = 3;
     }
-    
+
     /**
      * Monkey constants.
      */
@@ -385,7 +391,7 @@ public class Constants {
         public static final int MONKEY_HEIGHT = (int) (96 * Window.SCALE);
         /**
          * Monkey ani index.
-         */     
+         */
         public static final int MONKEY_ANI = 0;
         /**
          * Number of monkey ani sprites.
@@ -401,6 +407,9 @@ public class Constants {
         public static final int THROW_ANIMATION_TIME = ANI_MONKEY_SPEED * (MONKEY_ANI_SPRITES - 1);
     }
 
+    /**
+     * Princess constants.
+     */
     public static final class Princess {
         /**
          * Princess starting x position.
@@ -512,6 +521,8 @@ public class Constants {
          * Integer code for pause action (Esc).
          */
         public static final int ESCAPE = 27;
+
+        private Action() { }
 
         /**
          * Check if a code is a movement code (no escape).

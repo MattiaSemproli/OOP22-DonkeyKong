@@ -1,10 +1,10 @@
 package it.unibo.donkeykong.model.impl;
 
-import static it.unibo.donkeykong.utilities.Constants.Barrel.ANI_BARREL_SPEED;
-import static it.unibo.donkeykong.utilities.Constants.Monkey.ANI_MONKEY_SPEED;
-import static it.unibo.donkeykong.utilities.Constants.Player.ANI_CLIMB_SPEED;
-import static it.unibo.donkeykong.utilities.Constants.Player.ANI_PLAYER_SPEED;
-import static it.unibo.donkeykong.utilities.Constants.Princess.ANI_PRINCESS_SPEED;
+import static it.unibo.donkeykong.utilities.ModelConstants.Barrel.ANI_BARREL_SPEED;
+import static it.unibo.donkeykong.utilities.ModelConstants.Monkey.ANI_MONKEY_SPEED;
+import static it.unibo.donkeykong.utilities.ModelConstants.Player.ANI_CLIMB_SPEED;
+import static it.unibo.donkeykong.utilities.ModelConstants.Player.ANI_PLAYER_SPEED;
+import static it.unibo.donkeykong.utilities.ModelConstants.Princess.ANI_PRINCESS_SPEED;
 
 import it.unibo.donkeykong.common.Pair;
 import it.unibo.donkeykong.model.api.ViewModel;
@@ -12,10 +12,10 @@ import it.unibo.donkeykong.model.ecs.api.Entity;
 import it.unibo.donkeykong.model.ecs.impl.DoubleDamageComponent;
 import it.unibo.donkeykong.model.ecs.impl.MovementComponent;
 import it.unibo.donkeykong.model.ecs.impl.ThrowComponent;
-import it.unibo.donkeykong.utilities.Constants.Barrel;
-import it.unibo.donkeykong.utilities.Constants.Monkey;
-import it.unibo.donkeykong.utilities.Constants.Player;
-import it.unibo.donkeykong.utilities.Constants.Princess;
+import it.unibo.donkeykong.utilities.ModelConstants.Barrel;
+import it.unibo.donkeykong.utilities.ModelConstants.Monkey;
+import it.unibo.donkeykong.utilities.ModelConstants.Player;
+import it.unibo.donkeykong.utilities.ModelConstants.Princess;
 import it.unibo.donkeykong.utilities.Direction;
 import it.unibo.donkeykong.utilities.Gamestate;
 import it.unibo.donkeykong.utilities.PlayerIdle;

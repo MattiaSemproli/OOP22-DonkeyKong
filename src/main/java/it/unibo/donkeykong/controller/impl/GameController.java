@@ -11,7 +11,7 @@ import it.unibo.donkeykong.model.ecs.api.Entity;
 import it.unibo.donkeykong.model.ecs.impl.HealthComponent;
 import it.unibo.donkeykong.model.impl.Game;
 import it.unibo.donkeykong.model.impl.GameplayImpl;
-import it.unibo.donkeykong.utilities.Constants.Powerup;
+import it.unibo.donkeykong.utilities.ModelConstants.Powerup;
 import it.unibo.donkeykong.utilities.Gamestate;
 import it.unibo.donkeykong.utilities.Type;
 import it.unibo.donkeykong.view.api.View;
@@ -25,7 +25,7 @@ public class GameController implements Controller {
     private final GameView gameView;
     private final Game game;
     private final Gameplay gameplay;
-    private Timer timer;
+    private final Timer timer;
     private int timeElapsed;
 
     /**

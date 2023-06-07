@@ -1,7 +1,7 @@
 package it.unibo.donkeykong.model.impl;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
-import it.unibo.donkeykong.utilities.Constants.Player;
+import it.unibo.donkeykong.utilities.ModelConstants.Player;
 import it.unibo.donkeykong.common.Pair;
 import it.unibo.donkeykong.model.api.EntityFactory;
 import it.unibo.donkeykong.model.api.Gameplay;

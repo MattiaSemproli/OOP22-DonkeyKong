@@ -3,7 +3,7 @@ package it.unibo.donkeykong.game.core.impl;
 import it.unibo.donkeykong.controller.api.Application;
 import it.unibo.donkeykong.game.core.api.GameEngine;
 import it.unibo.donkeykong.utilities.AudioUtilities;
-import it.unibo.donkeykong.utilities.Constants.GameLoop;
+import it.unibo.donkeykong.utilities.ModelConstants.GameLoop;
 import it.unibo.donkeykong.utilities.Gamestate;
 
 /**

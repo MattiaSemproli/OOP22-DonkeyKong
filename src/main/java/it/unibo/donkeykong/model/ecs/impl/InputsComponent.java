@@ -3,7 +3,7 @@ package it.unibo.donkeykong.model.ecs.impl;
 import java.util.Optional;
 
 import it.unibo.donkeykong.utilities.Direction;
-import it.unibo.donkeykong.utilities.Constants.Action;
+import it.unibo.donkeykong.utilities.ModelConstants.Action;
 
 /**
  * Inputs component, manages inputs handling. 

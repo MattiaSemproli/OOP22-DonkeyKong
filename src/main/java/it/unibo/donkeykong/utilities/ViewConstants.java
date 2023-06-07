@@ -8,10 +8,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 import it.unibo.donkeykong.common.Pair;
-import it.unibo.donkeykong.utilities.Constants.Monkey;
+import it.unibo.donkeykong.utilities.ModelConstants.Monkey;
 
+/**
+ * View constants class.
+ */
 public class ViewConstants {
-    
+
     /**
      * Window general constants.
      */
@@ -221,7 +224,7 @@ public class ViewConstants {
         /**
          * Private constructor.
          */
-        private MenuAssets() {}
+        private MenuAssets() { }
 
         /**
          * Get menu sources map.
@@ -402,7 +405,7 @@ public class ViewConstants {
             /**
              * Private constructor.
              */
-            private SettingsAssets() {}
+            private SettingsAssets() { }
 
             /**
              * Get settings sources map.
@@ -495,7 +498,7 @@ public class ViewConstants {
             /**
              * Level four source (for levels chose view).
              */
-            public static final String LEVEL_FOUR_SOURCE = "level_four";            
+            public static final String LEVEL_FOUR_SOURCE = "level_four";
             /**
              * Level one data source.
              */
@@ -541,7 +544,7 @@ public class ViewConstants {
             /**
              * Private constructor.
              */
-            private LevelAssets() {}
+            private LevelAssets() { }
 
             /**
              * Get level sources map.
@@ -563,7 +566,7 @@ public class ViewConstants {
             }
         }
     }
-    
+
     /**
      * Audio constants.
      */
@@ -613,14 +616,14 @@ public class ViewConstants {
         /**
          * Private constructor.
          */
-        private AudioAssets() {}
+        private AudioAssets() { }
 
         /**
          * Get theme sources map.
          * 
          * @return the unmodifiable theme sources map.
          */
-        public static final Map<String, Integer> getThemeSources() {
+        public static Map<String, Integer> getThemeSources() {
             return Collections.unmodifiableMap(THEMESOURCES);
         }
 
@@ -629,24 +632,24 @@ public class ViewConstants {
          * 
          * @return the unmodifiable game theme sources map.
          */
-        public static final Map<String, Integer> getGameSources() {
+        public static Map<String, Integer> getGameSources() {
             return Collections.unmodifiableMap(GAMESOURCES);
         }
 
         /**
          * Load all menu and game sources.
          */
-        public static final void loadThemes() {
+        public static void loadThemes() {
             THEMESOURCES.put(MENU_MUSIC_0, 0);
             THEMESOURCES.put(MENU_MUSIC_1, 1);
-            
+
             GAMESOURCES.put(GAME_MUSIC_0, 0);
             GAMESOURCES.put(GAME_MUSIC_1, 1);
         }
     }
 
     /**
-     * Powerup constants.
+     * Powerup graphics constants.
      */
     public static final class PowerupAssets {
         /**
@@ -672,7 +675,7 @@ public class ViewConstants {
         /**
          * Power up active padding.
          */
-        public static final int PUPS_ACTIVE_PADDING = (int) (((float) (PUPS_BORDER_DIMENSION - PUPS_ACTIVE_DIMENSION) / 2) * Window.SCALE);
+        public static final int PUPS_ACTIVE_PADDING = (int) ((PUPS_BORDER_DIMENSION - PUPS_ACTIVE_DIMENSION) / 2);
         /**
          * Power up heart source.
          */
@@ -710,21 +713,21 @@ public class ViewConstants {
         /**
          * Private constructor.
          */
-        private PowerupAssets() {}
+        private PowerupAssets() { }
 
         /**
          * Get powerup sources map.
          * 
          * @return the unmodifiable powerup sources map.
          */
-        public static final Map<String, BufferedImage> getPowerupSources() {
+        public static Map<String, BufferedImage> getPowerupSources() {
             return Collections.unmodifiableMap(POWERUPSOURCES);
         }
 
         /**
          * Load powerup sources.
          */
-        public static final void loadPowerupSources() {
+        public static void loadPowerupSources() {
             POWERUPSOURCES.put(HEART, loadSources(HEART));
             POWERUPSOURCES.put(SHIELD, loadSources(SHIELD));
             POWERUPSOURCES.put(FREEZE, loadSources(FREEZE));
@@ -736,7 +739,7 @@ public class ViewConstants {
     }
 
     /**
-     * Barrel constants.
+     * Barrel graphics constants.
      */
     public static final class BarrelAssets {
         /**
@@ -772,28 +775,28 @@ public class ViewConstants {
         /**
          * Private constructor.
          */
-        private BarrelAssets() {}
+        private BarrelAssets() { }
 
         /**
          * Get barrel sources map.
          * 
          * @return the unmodifiable barrel sources map.
          */
-        public static final Map<Integer, BufferedImage> getBarrelSources() {
+        public static Map<Integer, BufferedImage> getBarrelSources() {
             return Collections.unmodifiableMap(BARRELSOURCES);
         }
 
         /**
          * Load barrel sources.
          */
-        public static final void loadBarrelSources() {
+        public static void loadBarrelSources() {
             BARRELSOURCES.put(BARREL_ANI, loadSources("barrel"));
             BARRELSOURCES.put(DD_BARREL_ANI, loadSources("barrel_dd"));
         }
     }
 
     /**
-     * Monkey constants.
+     * Monkey graphics constants.
      */
     public static final class MonkeyAssets {
         /**
@@ -806,7 +809,7 @@ public class ViewConstants {
         public static final int SPRITE_HEIGHT = 32;
         /**
          * Monkey ani index.
-         */     
+         */
         public static final int MONKEY_ANI = 0;
         /**
          * Number of monkey ani sprites.
@@ -814,36 +817,36 @@ public class ViewConstants {
         public static final int MONKEY_ANI_SPRITES = 4;
 
         /**
-         * Monkey sources map of index and image
+         * Monkey sources map of index and image.
          */
         private static final Map<Integer, BufferedImage> MONKEYSOURCES = new HashMap<>();
 
         /**
          * Private constructor.
          */
-        private MonkeyAssets() {}
+        private MonkeyAssets() { }
 
         /**
          * Get monkey sources map.
          * 
          * @return the unmodifiable monkey sources map.
          */
-        public static final Map<Integer, BufferedImage> getMonkeySources() {
+        public static Map<Integer, BufferedImage> getMonkeySources() {
             return Collections.unmodifiableMap(MONKEYSOURCES);
         }
 
         /**
          * Load monkey sources.
          */
-        public static final void loadMonkeySources() {
+        public static void loadMonkeySources() {
             MONKEYSOURCES.put(MONKEY_ANI, loadSources("donkeykong"));
         }
     }
 
     /**
-     * Princess constants.
+     * Princess graphics constants.
      */
-    public final static class PrincessAssets {
+    public static final class PrincessAssets {
         /**
          * Princess sprite width.
          */
@@ -873,26 +876,29 @@ public class ViewConstants {
         /**
          * Private constructor.
          */
-        private PrincessAssets() {}
+        private PrincessAssets() { }
 
         /**
          * Get princess sources map.
          * 
          * @return the unmodifiable princess sources map.
          */
-        public static final Map<Integer, BufferedImage> getPrincessSources() {
+        public static Map<Integer, BufferedImage> getPrincessSources() {
             return Collections.unmodifiableMap(PRINCESSSOURCES);
         }
 
         /**
          * Load princess sources.
          */
-        public static final void loadPrincessSources() {
+        public static void loadPrincessSources() {
             PRINCESSSOURCES.put(PRINCESS_ANI, loadSources("princess"));
         }
     }
 
-    public final static class PlayerAssets {
+    /**
+     * Player graphics constants.
+     */
+    public static final class PlayerAssets {
         /**
          * Climbing animation index.
          */
@@ -928,28 +934,28 @@ public class ViewConstants {
         /**
          * Player sources map of index and image.
          */
-        private static final Map<Integer, BufferedImage> playerSources = new HashMap<>();
+        private static final Map<Integer, BufferedImage> PLAYERSOURCES = new HashMap<>();
 
         /**
          * Private constructor.
          */
-        private PlayerAssets() {}
+        private PlayerAssets() { }
 
         /**
          * Get player sources map.
          * 
          * @return the unmodifiable player sources map.
          */
-        public static final Map<Integer, BufferedImage> getPlayerSources() {
-            return Collections.unmodifiableMap(playerSources);
+        public static Map<Integer, BufferedImage> getPlayerSources() {
+            return Collections.unmodifiableMap(PLAYERSOURCES);
         }
 
         /**
          * Load player sources.
          */
-        public static final void loadPlayerSources() {
-            playerSources.put(MOVEMENT_ANI, loadSources("mario_movement"));
-            playerSources.put(CLIMBING_ANI, loadSources("climbingplayer"));
+        public static void loadPlayerSources() {
+            PLAYERSOURCES.put(MOVEMENT_ANI, loadSources("mario_movement"));
+            PLAYERSOURCES.put(CLIMBING_ANI, loadSources("climbingplayer"));
         }
     }
 }

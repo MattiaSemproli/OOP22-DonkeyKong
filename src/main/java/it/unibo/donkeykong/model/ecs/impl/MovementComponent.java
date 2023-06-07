@@ -7,9 +7,9 @@ import it.unibo.donkeykong.common.Pair;
 import it.unibo.donkeykong.utilities.Direction;
 import it.unibo.donkeykong.utilities.PlayerIdle;
 import it.unibo.donkeykong.utilities.Type;
-import it.unibo.donkeykong.utilities.Constants.Action;
-import it.unibo.donkeykong.utilities.Constants.Physics;
-import it.unibo.donkeykong.utilities.Constants.Princess;
+import it.unibo.donkeykong.utilities.ModelConstants.Action;
+import it.unibo.donkeykong.utilities.ModelConstants.Physics;
+import it.unibo.donkeykong.utilities.ModelConstants.Princess;
 
 /**
  * Movement component, manages an entity's movement.

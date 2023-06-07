@@ -120,7 +120,8 @@ public final class EndPauseView implements View {
                 final Font font = new Font("Arial", Font.BOLD, MenuAssets.FONTSIZE);
                 g.setColor(Color.WHITE);
                 g.setFont(font);
-                final String txt = "Time: " + new DecimalFormat("0.00").format(this.endPauseController.getSecondsFromGameController());
+                final String txt = "Time: " + new DecimalFormat("0.00")
+                                                .format(this.endPauseController.getSecondsFromGameController());
                 final int textWidth = g.getFontMetrics(font).stringWidth(txt);
                 g.drawString(txt,
                              MENU_X + (MenuAssets.MENU_TEXTURE_BOX - textWidth) / 2,

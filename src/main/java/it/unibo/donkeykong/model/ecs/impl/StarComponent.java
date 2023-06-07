@@ -1,6 +1,6 @@
 package it.unibo.donkeykong.model.ecs.impl;
 
-import it.unibo.donkeykong.utilities.Constants.Player;
+import it.unibo.donkeykong.utilities.ModelConstants.Player;
 
 /**
  * Star component, manages a star power up.

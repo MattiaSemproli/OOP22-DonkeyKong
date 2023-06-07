@@ -37,10 +37,8 @@ public class GameView implements View {
 
     private final Level level;
     private final Map<Button, BufferedImage> buttons = new HashMap<>();
-    private BufferedImage[][] playerMovementAni = new BufferedImage[PlayerAssets.NUM_MOVEMENT_ANI][PlayerAssets.MOVEMENT_ANI_SPRITES];
-    private BufferedImage[] monkeyAni = new BufferedImage[MonkeyAssets.MONKEY_ANI_SPRITES];
-    private BufferedImage[][] barrelAni = new BufferedImage[BarrelAssets.NUM_BARREL][BarrelAssets.BARREL_ANI_SPRITES];
-    private BufferedImage[][] princessAni = new BufferedImage[PrincessAssets.NUM_PRINCESS_ANI][PrincessAssets.PRINCESS_ANI_SPRITES];
+    private BufferedImage[][] playerMovementAni, barrelAni, princessAni;
+    private BufferedImage[] monkeyAni;
 
     /**
      * Constructor.
@@ -214,6 +212,10 @@ public class GameView implements View {
         });
     }
     private void bufferAnimations() {
+        playerMovementAni = new BufferedImage[PlayerAssets.NUM_MOVEMENT_ANI][PlayerAssets.MOVEMENT_ANI_SPRITES];
+        monkeyAni = new BufferedImage[MonkeyAssets.MONKEY_ANI_SPRITES];
+        barrelAni = new BufferedImage[BarrelAssets.NUM_BARREL][BarrelAssets.BARREL_ANI_SPRITES];
+        princessAni = new BufferedImage[PrincessAssets.NUM_PRINCESS_ANI][PrincessAssets.PRINCESS_ANI_SPRITES];
         for (int r = 0; r < PlayerAssets.NUM_MOVEMENT_ANI - 1; r++) {
             for (int c = 0; c < PlayerAssets.MOVEMENT_ANI_SPRITES; c++) {
                 playerMovementAni[r][c] = PlayerAssets.getPlayerSources()

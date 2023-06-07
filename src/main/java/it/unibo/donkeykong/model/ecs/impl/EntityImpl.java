@@ -9,12 +9,12 @@ import it.unibo.donkeykong.common.Pair;
 import it.unibo.donkeykong.model.api.Gameplay;
 import it.unibo.donkeykong.model.ecs.api.Component;
 import it.unibo.donkeykong.model.ecs.api.Entity;
-import it.unibo.donkeykong.utilities.Constants.Barrel;
-import it.unibo.donkeykong.utilities.Constants.Monkey;
-import it.unibo.donkeykong.utilities.Constants.Player;
-import it.unibo.donkeykong.utilities.Constants.Princess;
-import it.unibo.donkeykong.utilities.Constants.Powerup;
-import it.unibo.donkeykong.utilities.Constants.Application;
+import it.unibo.donkeykong.utilities.ModelConstants.Barrel;
+import it.unibo.donkeykong.utilities.ModelConstants.Monkey;
+import it.unibo.donkeykong.utilities.ModelConstants.Player;
+import it.unibo.donkeykong.utilities.ModelConstants.Princess;
+import it.unibo.donkeykong.utilities.ModelConstants.Powerup;
+import it.unibo.donkeykong.utilities.ModelConstants.Application;
 import it.unibo.donkeykong.utilities.Type;
 
 /**
