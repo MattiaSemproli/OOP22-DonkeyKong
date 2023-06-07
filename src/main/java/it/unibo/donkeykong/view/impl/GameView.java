@@ -1,7 +1,7 @@
 package it.unibo.donkeykong.view.impl;
 
-import static it.unibo.donkeykong.utilities.Constants.MenuAssets.SettingsAssets.getSettingsSources;
-import static it.unibo.donkeykong.utilities.Constants.Window.SCALED_TILES_SIZE;
+import static it.unibo.donkeykong.view.ViewConstants.MenuAssets.SettingsAssets.getSettingsSources;
+import static it.unibo.donkeykong.view.ViewConstants.Window.SCALED_TILES_SIZE;
 
 import java.awt.Graphics;
 import java.awt.Point;
@@ -14,13 +14,13 @@ import java.util.stream.IntStream;
 import it.unibo.donkeykong.controller.impl.GameController;
 import it.unibo.donkeykong.model.ecs.api.Entity;
 import it.unibo.donkeykong.utilities.Constants.Barrel;
-import it.unibo.donkeykong.utilities.Constants.MenuAssets.LevelAssets;
-import it.unibo.donkeykong.utilities.Constants.MenuAssets.SettingsAssets;
+import it.unibo.donkeykong.view.ViewConstants.MenuAssets.LevelAssets;
+import it.unibo.donkeykong.view.ViewConstants.MenuAssets.SettingsAssets;
 import it.unibo.donkeykong.utilities.Constants.Monkey;
 import it.unibo.donkeykong.utilities.Constants.Player;
 import it.unibo.donkeykong.utilities.Constants.PowerupAssets;
 import it.unibo.donkeykong.utilities.Constants.Princess;
-import it.unibo.donkeykong.utilities.Constants.Window;
+import it.unibo.donkeykong.view.ViewConstants.Window;
 import it.unibo.donkeykong.utilities.Gamestate;
 import it.unibo.donkeykong.utilities.Pair;
 import it.unibo.donkeykong.utilities.Type;

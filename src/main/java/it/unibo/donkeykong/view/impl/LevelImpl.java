@@ -5,7 +5,7 @@ import static it.unibo.donkeykong.utilities.Constants.Level.levelOne;
 import static it.unibo.donkeykong.utilities.Constants.Level.levelSpritesLength;
 import static it.unibo.donkeykong.utilities.Constants.Level.levelThree;
 import static it.unibo.donkeykong.utilities.Constants.Level.levelTwo;
-import static it.unibo.donkeykong.utilities.Constants.Window.TILES_DEFAULT_SIZE;
+import static it.unibo.donkeykong.view.ViewConstants.Window.TILES_DEFAULT_SIZE;
 import static it.unibo.donkeykong.utilities.ResourceFuncUtilities.loadSources;
 
 import java.awt.Color;

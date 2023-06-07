@@ -1,14 +1,14 @@
 package it.unibo.donkeykong.view.impl;
 
-import static it.unibo.donkeykong.utilities.Constants.MenuAssets.getMenuSources;
-    import static it.unibo.donkeykong.utilities.Constants.MenuAssets.MENU_X;
-import static it.unibo.donkeykong.utilities.Constants.MenuAssets.MENU_Y;
-import static it.unibo.donkeykong.utilities.Constants.MenuAssets.LevelAssets.getLevelSources;
-import static it.unibo.donkeykong.utilities.Constants.MenuAssets.LevelAssets.LEVEL_ONE_SOURCE;
-import static it.unibo.donkeykong.utilities.Constants.MenuAssets.LevelAssets.LEVEL_TWO_SOURCE;
-import static it.unibo.donkeykong.utilities.Constants.MenuAssets.LevelAssets.LEVEL_THREE_SOURCE;
-import static it.unibo.donkeykong.utilities.Constants.MenuAssets.LevelAssets.LEVEL_FOUR_SOURCE;
-import static it.unibo.donkeykong.utilities.Constants.MenuAssets.SettingsAssets.getSettingsSources;
+import static it.unibo.donkeykong.view.ViewConstants.MenuAssets.getMenuSources;
+import static it.unibo.donkeykong.view.ViewConstants.MenuAssets.MENU_X;
+import static it.unibo.donkeykong.view.ViewConstants.MenuAssets.MENU_Y;
+import static it.unibo.donkeykong.view.ViewConstants.MenuAssets.LevelAssets.getLevelSources;
+import static it.unibo.donkeykong.view.ViewConstants.MenuAssets.LevelAssets.LEVEL_ONE_SOURCE;
+import static it.unibo.donkeykong.view.ViewConstants.MenuAssets.LevelAssets.LEVEL_TWO_SOURCE;
+import static it.unibo.donkeykong.view.ViewConstants.MenuAssets.LevelAssets.LEVEL_THREE_SOURCE;
+import static it.unibo.donkeykong.view.ViewConstants.MenuAssets.LevelAssets.LEVEL_FOUR_SOURCE;
+import static it.unibo.donkeykong.view.ViewConstants.MenuAssets.SettingsAssets.getSettingsSources;
 
 import java.awt.Graphics;
 import java.awt.Point;
@@ -18,10 +18,10 @@ import java.util.Map;
 
 import it.unibo.donkeykong.controller.impl.LevelsMenuController;
 import it.unibo.donkeykong.utilities.Constants.Audio;
-import it.unibo.donkeykong.utilities.Constants.MenuAssets;
-import it.unibo.donkeykong.utilities.Constants.MenuAssets.LevelAssets;
-import it.unibo.donkeykong.utilities.Constants.MenuAssets.SettingsAssets;
-import it.unibo.donkeykong.utilities.Constants.Window;
+import it.unibo.donkeykong.view.ViewConstants.MenuAssets;
+import it.unibo.donkeykong.view.ViewConstants.MenuAssets.LevelAssets;
+import it.unibo.donkeykong.view.ViewConstants.MenuAssets.SettingsAssets;
+import it.unibo.donkeykong.view.ViewConstants.Window;
 import it.unibo.donkeykong.utilities.AudioUtilities;
 import it.unibo.donkeykong.utilities.CurrentLevel;
 import it.unibo.donkeykong.utilities.Gamestate;

@@ -1,10 +1,10 @@
 package it.unibo.donkeykong.view.impl;
 
-import static it.unibo.donkeykong.utilities.Constants.MenuAssets.getMenuSources;
-    import static it.unibo.donkeykong.utilities.Constants.MenuAssets.MENU_X;
-import static it.unibo.donkeykong.utilities.Constants.MenuAssets.MENU_Y;
-import static it.unibo.donkeykong.utilities.Constants.MenuAssets.SettingsAssets.getSettingsSources;
-import static it.unibo.donkeykong.utilities.Constants.MenuAssets.SettingsAssets.REPEAT_BUTTON_LEFT_DISTANCE;
+import static it.unibo.donkeykong.view.ViewConstants.MenuAssets.getMenuSources;
+    import static it.unibo.donkeykong.view.ViewConstants.MenuAssets.MENU_X;
+import static it.unibo.donkeykong.view.ViewConstants.MenuAssets.MENU_Y;
+import static it.unibo.donkeykong.view.ViewConstants.MenuAssets.SettingsAssets.getSettingsSources;
+import static it.unibo.donkeykong.view.ViewConstants.MenuAssets.SettingsAssets.REPEAT_BUTTON_LEFT_DISTANCE;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -20,9 +20,9 @@ import java.util.Map;
 import it.unibo.donkeykong.controller.impl.EndPauseController;
 import it.unibo.donkeykong.utilities.AudioUtilities;
 import it.unibo.donkeykong.utilities.Constants.Audio;
-import it.unibo.donkeykong.utilities.Constants.MenuAssets;
-import it.unibo.donkeykong.utilities.Constants.MenuAssets.SettingsAssets;
-import it.unibo.donkeykong.utilities.Constants.Window;
+import it.unibo.donkeykong.view.ViewConstants.MenuAssets;
+import it.unibo.donkeykong.view.ViewConstants.MenuAssets.SettingsAssets;
+import it.unibo.donkeykong.view.ViewConstants.Window;
 import it.unibo.donkeykong.utilities.Gamestate;
 import it.unibo.donkeykong.utilities.Pair;
 import it.unibo.donkeykong.utilities.ResourceFuncUtilities;

@@ -11,7 +11,7 @@ import it.unibo.donkeykong.model.ecs.api.Entity;
 import it.unibo.donkeykong.utilities.Constants;
 import it.unibo.donkeykong.utilities.Constants.Barrel;
 import it.unibo.donkeykong.utilities.Constants.PowerupAssets;
-import it.unibo.donkeykong.utilities.Constants.Window;
+import it.unibo.donkeykong.utilities.Constants.Application;
 import it.unibo.donkeykong.utilities.Pair;
 import it.unibo.donkeykong.utilities.Type;
 
@@ -53,8 +53,8 @@ public class EntityImpl implements Entity {
                 this.height = Constants.Monkey.monkeyHeight;
                 break;
             case PLAYER:
-                this.width = Window.SCALED_TILES_SIZE;
-                this.height = Window.SCALED_TILES_SIZE;
+                this.width = Application.SCALED_TILES_SIZE;
+                this.height = Application.SCALED_TILES_SIZE;
                 this.speed = Constants.Player.velocity;
                 break;
             case PRINCESS:
@@ -84,8 +84,8 @@ public class EntityImpl implements Entity {
             case BLOCK_LADDER_UPDOWN:
             case LADDER:
             default:
-                this.width = Window.SCALED_TILES_SIZE;
-                this.height = Window.SCALED_TILES_SIZE;
+                this.width = Application.SCALED_TILES_SIZE;
+                this.height = Application.SCALED_TILES_SIZE;
                 break;
 
         }

@@ -1,7 +1,7 @@
 package it.unibo.donkeykong.model.impl;
 
 import static it.unibo.donkeykong.utilities.Constants.Level.platformBlockPadding;
-import static it.unibo.donkeykong.utilities.Constants.Window.SCALED_TILES_SIZE;
+import static it.unibo.donkeykong.utilities.Constants.Application.SCALED_TILES_SIZE;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -30,7 +30,7 @@ import it.unibo.donkeykong.utilities.Constants.Monkey;
 import it.unibo.donkeykong.utilities.Constants.Player;
 import it.unibo.donkeykong.utilities.Constants.PowerupAssets;
 import it.unibo.donkeykong.utilities.Constants.Princess;
-import it.unibo.donkeykong.utilities.Constants.Window;
+import it.unibo.donkeykong.utilities.Constants.Application;
 
 /**
  * Gameplay class, manages a gameplay.
@@ -148,7 +148,7 @@ public class GameplayImpl implements Gameplay {
         int passX, passY;
         boolean isOnBlock, isBlock, isOccupied;
         do {
-            final int x = random.nextInt(Window.TILES_IN_WIDTH);
+            final int x = random.nextInt(Application.TILES_IN_WIDTH);
             final int y = random.nextInt(PowerupAssets.minSpawn, PowerupAssets.maxSpawn);
             isBlock = this.getLevelMatrixType(x, y).isPresent();
             isOnBlock = this.getLevelMatrixType(x, y + 1).isPresent();

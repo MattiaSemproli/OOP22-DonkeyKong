@@ -9,7 +9,7 @@ import it.unibo.donkeykong.utilities.Constants.Monkey;
 import it.unibo.donkeykong.utilities.Constants.Player;
 import it.unibo.donkeykong.utilities.Constants.PowerupAssets;
 import it.unibo.donkeykong.utilities.Constants.Princess;
-import it.unibo.donkeykong.utilities.Constants.Window;
+import it.unibo.donkeykong.utilities.Constants.Application;
 import it.unibo.donkeykong.common.Line;
 import it.unibo.donkeykong.common.Rectangle;
 import it.unibo.donkeykong.model.ecs.api.Entity;
@@ -143,11 +143,11 @@ public class CollisionComponent extends AbstractComponent {
     }
 
     private void checkPlayerWallCollision() {
-        if (hitbox.getY() > Window.GAME_HEIGHT) {
+        if (hitbox.getY() > Application.GAME_HEIGHT) {
             Gamestate.setGamestate(Gamestate.DEATH);
             entity.getGameplay().stopTimer();
-        } else if (hitbox.getX() > (Window.GAME_WIDTH - hitbox.getWidth())) {
-            entity.setPosition(new Pair<>(Window.GAME_WIDTH - hitbox.getWidth(), this.nextPosition.get().getY()));
+        } else if (hitbox.getX() > (Application.GAME_WIDTH - hitbox.getWidth())) {
+            entity.setPosition(new Pair<>(Application.GAME_WIDTH - hitbox.getWidth(), this.nextPosition.get().getY()));
         } else if (hitbox.getY() < 0) {
             entity.setPosition(new Pair<>(this.nextPosition.get().getX(), 0f));
         } else if (hitbox.getX() < 0) {
@@ -309,9 +309,9 @@ public class CollisionComponent extends AbstractComponent {
                        }
                        this.barrelChangedDirection = true;
                    });
-        if (hitbox.getX() < 0 || hitbox.getMaxX() > Window.GAME_WIDTH) {
+        if (hitbox.getX() < 0 || hitbox.getMaxX() > Application.GAME_WIDTH) {
             mc.moveEntity(mc.getFacing().getOppositeDirection());
-        } else if (hitbox.getY() > Window.GAME_HEIGHT) {
+        } else if (hitbox.getY() > Application.GAME_HEIGHT) {
             this.entity.getGameplay().removeEntity(entity);
         } else {
             entity.setPosition(new Pair<>(this.nextPosition.get().getX(), this.nextPosition.get().getY()));
@@ -319,10 +319,10 @@ public class CollisionComponent extends AbstractComponent {
    }
 
     private void checkPrincessCollision() {
-        final int leftTile = (int) (Princess.levelOneStartingPrincessX / Window.SCALED_TILES_SIZE) - 1;
-        final int rightTile = (int) (Princess.levelOneStartingPrincessX / Window.SCALED_TILES_SIZE) + 1;
-        if (hitbox.getMaxX() > rightTile * Window.SCALED_TILES_SIZE + Window.SCALED_TILES_SIZE
-            || hitbox.getX() < leftTile * Window.SCALED_TILES_SIZE) {
+        final int leftTile = (int) (Princess.levelOneStartingPrincessX / Application.SCALED_TILES_SIZE) - 1;
+        final int rightTile = (int) (Princess.levelOneStartingPrincessX / Application.SCALED_TILES_SIZE) + 1;
+        if (hitbox.getMaxX() > rightTile * Application.SCALED_TILES_SIZE + Application.SCALED_TILES_SIZE
+            || hitbox.getX() < leftTile * Application.SCALED_TILES_SIZE) {
             final MovementComponent mc = this.entity.getComponent(MovementComponent.class).get();
             mc.moveEntity(mc.getFacing().getOppositeDirection());
         }
@@ -330,7 +330,7 @@ public class CollisionComponent extends AbstractComponent {
     }
 
     private void initDifferentHitbox(final Type type) {
-        int width = Window.SCALED_TILES_SIZE;
+        int width = Application.SCALED_TILES_SIZE;
         int height = width;
         switch (type) {
             case BARREL:

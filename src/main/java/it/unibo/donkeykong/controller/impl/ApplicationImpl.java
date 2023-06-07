@@ -4,6 +4,7 @@ import it.unibo.donkeykong.controller.api.Application;
 import it.unibo.donkeykong.game.core.api.GameEngine;
 import it.unibo.donkeykong.game.core.impl.GameEngineImpl;
 import it.unibo.donkeykong.utilities.AudioUtilities;
+import it.unibo.donkeykong.view.ViewConstants;
 import it.unibo.donkeykong.utilities.Constants;
 import it.unibo.donkeykong.view.impl.ApplicationPanel;
 import it.unibo.donkeykong.view.impl.ApplicationWindow;
@@ -77,15 +78,15 @@ public class ApplicationImpl implements Application {
     }
 
     private void loadAllSources() {
-        Constants.MenuAssets.loadMenuSources();
-        Constants.MenuAssets.SettingsAssets.loadSettingsSources();
+        ViewConstants.MenuAssets.loadMenuSources();
+        ViewConstants.MenuAssets.SettingsAssets.loadSettingsSources();
         Constants.Audio.loadThemes();
-        Constants.MenuAssets.LevelAssets.loadLevelSources();
+        ViewConstants.MenuAssets.LevelAssets.loadLevelSources();
         Constants.Player.loadPlayerSources();
         Constants.Barrel.loadBarrelSources();
         Constants.Monkey.loadMonkeySources();
         Constants.Princess.loadPrincessSources();
-        Constants.MenuAssets.SettingsAssets.loadTextSources();
+        ViewConstants.MenuAssets.SettingsAssets.loadTextSources();
         Constants.PowerupAssets.loadPowerupSources();
     }
 
