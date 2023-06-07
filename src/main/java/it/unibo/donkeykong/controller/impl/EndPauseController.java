@@ -35,10 +35,10 @@ public class EndPauseController implements Controller {
     }
 
     /**
-     * Start the timer.
+     * Resume the timer.
      */
-    public final void startTimer() {
-        this.application.getGameController().startTimer();
+    public final void resumeTimer() {
+        this.application.getGameController().resumeTimer();
     }
 
     /**
@@ -53,8 +53,8 @@ public class EndPauseController implements Controller {
      * 
      * @return the seconds from the game controller in float.
      */
-    public final float getSecondsFromGameController() {
-        return this.application.getGameController().getSeconds();
+    public final double getSecondsFromGameController() {
+        return this.application.getGameController().getElapsedTime();
     }
 
     /**

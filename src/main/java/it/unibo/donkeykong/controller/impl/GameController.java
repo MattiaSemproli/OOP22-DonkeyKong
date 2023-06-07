@@ -1,12 +1,9 @@
 package it.unibo.donkeykong.controller.impl;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.Timer;
-
+import it.unibo.donkeykong.common.Timer;
 import it.unibo.donkeykong.controller.api.Controller;
 import it.unibo.donkeykong.model.api.Gameplay;
 import it.unibo.donkeykong.model.ecs.api.Entity;
@@ -29,7 +26,6 @@ public class GameController implements Controller {
     private final Game game;
     private final Gameplay gameplay;
     private Timer timer;
-    private float seconds;
     private int timeElapsed;
 
     /**
@@ -40,7 +36,7 @@ public class GameController implements Controller {
         this.gameplay = new GameplayImpl(this);
         this.gameView = new GameView(this);
         this.gameplay.initializeGame(this.gameView.getLevelMap());
-        this.initializeTimer();
+        this.timer = new Timer();
     }
 
     /**
@@ -176,17 +172,6 @@ public class GameController implements Controller {
         return this.game.getIdle(entity);
     }
 
-    private void initializeTimer() {
-        this.seconds = 0;
-        this.timer = new Timer(1000, new ActionListener() {
-            @Override
-            public void actionPerformed(final ActionEvent e) {
-                seconds++;
-            }
-        });
-        this.timer.start();
-    }
-
     /**
      * Start the game timer.
      */
@@ -205,16 +190,23 @@ public class GameController implements Controller {
      * Pause temporarily the game timer.
      */
     public void pauseTimer() {
-        this.timer.stop();
+        this.timer.pause();
     }
 
     /**
-     * Get seconds passed from game start.
-     * 
-     * @return seconds passed.
+     * Resume the game timer.
      */
-    public float getSeconds() {
-        return this.seconds;
+    public void resumeTimer() {
+        this.timer.resume();
+    }
+
+    /**
+     * Get time passed from game start.
+     * 
+     * @return time passed.
+     */
+    public double getElapsedTime() {
+        return this.timer.getElapsedSeconds();
     }
 
     /**

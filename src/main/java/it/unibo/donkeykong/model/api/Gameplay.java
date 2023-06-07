@@ -105,7 +105,7 @@ public interface Gameplay {
     List<Integer> getInputs();
 
     /**
-     * Pause timer when player wins or loses.
+     * Stop timer when player wins or loses.
      */
-    void pauseTimer();
+    void stopTimer();
 }

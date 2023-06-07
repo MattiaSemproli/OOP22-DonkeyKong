@@ -354,7 +354,7 @@ public class GameplayImpl implements Gameplay {
      * {@inheritDoc}
      */
     @Override
-    public void pauseTimer() {
-        this.controller.pauseTimer();
+    public void stopTimer() {
+        this.controller.stopTimer();
     }
 }

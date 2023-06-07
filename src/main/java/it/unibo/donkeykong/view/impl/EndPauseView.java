@@ -13,6 +13,7 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
+import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -119,7 +120,7 @@ public final class EndPauseView implements View {
                 final Font font = new Font("Arial", Font.BOLD, MenuAssets.FONTSIZE);
                 g.setColor(Color.WHITE);
                 g.setFont(font);
-                final String txt = "Time: " + this.endPauseController.getSecondsFromGameController();
+                final String txt = "Time: " + new DecimalFormat("0.00").format(this.endPauseController.getSecondsFromGameController());
                 final int textWidth = g.getFontMetrics(font).stringWidth(txt);
                 g.drawString(txt,
                              MENU_X + (MenuAssets.MENU_TEXTURE_BOX - textWidth) / 2,
@@ -138,20 +139,21 @@ public final class EndPauseView implements View {
             if (b.getCorners().contains(e)) {
                 if (b.getButtonGamestate().equals(Gamestate.PLAYING)) {
                     if (Gamestate.getGamestate() == Gamestate.PAUSE) {
-                        this.endPauseController.startTimer();
+                        this.endPauseController.resumeTimer();
                     } else if (Gamestate.getGamestate() == Gamestate.WIN 
                                || Gamestate.getGamestate() == Gamestate.DEATH) {
                         AudioUtilities.playSoundtrack(Audio.gameMusic1);
                         this.endPauseController.startGameController();
                     }
+                } else if (b.getButtonGamestate().equals(Gamestate.MENU)) {
+                    AudioUtilities.playSoundtrack(Audio.menuMusic0);
+                    if (Gamestate.getGamestate() == Gamestate.PAUSE) {
+                        this.endPauseController.stopTimer();
+                    }
                 }
                 this.endPauseController.applyGamestate(b.getButtonGamestate());
             }
         });
-        if (Gamestate.getGamestate().equals(Gamestate.MENU)) {
-            AudioUtilities.playSoundtrack(Audio.menuMusic0);
-            this.endPauseController.stopTimer();
-        }
         this.mute(e);
         this.themeChange(e);
     }
