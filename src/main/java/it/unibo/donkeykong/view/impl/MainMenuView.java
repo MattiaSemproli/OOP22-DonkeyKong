@@ -1,10 +1,10 @@
 package it.unibo.donkeykong.view.impl;
 
-import static it.unibo.donkeykong.view.ViewConstants.MenuAssets.getMenuSources;
-import static it.unibo.donkeykong.view.ViewConstants.MenuAssets.MENU_X;
-import static it.unibo.donkeykong.view.ViewConstants.MenuAssets.MENU_Y;
-import static it.unibo.donkeykong.view.ViewConstants.MenuAssets.RIGHT_MENU_BORDER;
-import static it.unibo.donkeykong.view.ViewConstants.MenuAssets.UTILITY_BUTTON_RIGHT_BORDER_DISTANCE_X;
+import static it.unibo.donkeykong.utilities.ViewConstants.MenuAssets.MENU_X;
+import static it.unibo.donkeykong.utilities.ViewConstants.MenuAssets.MENU_Y;
+import static it.unibo.donkeykong.utilities.ViewConstants.MenuAssets.RIGHT_MENU_BORDER;
+import static it.unibo.donkeykong.utilities.ViewConstants.MenuAssets.UTILITY_BUTTON_RIGHT_BORDER_DISTANCE_X;
+import static it.unibo.donkeykong.utilities.ViewConstants.MenuAssets.getMenuSources;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -16,8 +16,8 @@ import java.util.Map;
 
 import it.unibo.donkeykong.controller.impl.MainMenuController;
 import it.unibo.donkeykong.utilities.Constants.Audio;
-import it.unibo.donkeykong.view.ViewConstants.MenuAssets;
-import it.unibo.donkeykong.view.ViewConstants.Window;
+import it.unibo.donkeykong.utilities.ViewConstants.MenuAssets;
+import it.unibo.donkeykong.utilities.ViewConstants.Window;
 import it.unibo.donkeykong.utilities.AudioUtilities;
 import it.unibo.donkeykong.utilities.Gamestate;
 import it.unibo.donkeykong.utilities.Pair;

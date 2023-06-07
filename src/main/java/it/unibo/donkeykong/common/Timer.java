@@ -19,7 +19,6 @@ public class Timer {
         this.pausedElapsedTime = 0;
         this.isStarted = false;
         this.isPaused = false;
-        this.start();
     }
 
     public void start() {

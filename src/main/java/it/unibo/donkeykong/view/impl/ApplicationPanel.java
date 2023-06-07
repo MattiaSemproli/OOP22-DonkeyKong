@@ -1,7 +1,7 @@
 package it.unibo.donkeykong.view.impl;
 
-import static it.unibo.donkeykong.view.ViewConstants.Window.GAME_HEIGHT;
-import static it.unibo.donkeykong.view.ViewConstants.Window.GAME_WIDTH;
+import static it.unibo.donkeykong.utilities.ViewConstants.Window.GAME_HEIGHT;
+import static it.unibo.donkeykong.utilities.ViewConstants.Window.GAME_WIDTH;
 
 import java.awt.Dimension;
 import java.awt.Graphics;

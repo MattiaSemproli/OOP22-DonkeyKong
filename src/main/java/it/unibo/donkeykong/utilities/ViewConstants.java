@@ -1,4 +1,4 @@
-package it.unibo.donkeykong.view;
+package it.unibo.donkeykong.utilities;
 
 import static it.unibo.donkeykong.utilities.ResourceFuncUtilities.loadSources;
 
@@ -6,9 +6,6 @@ import java.awt.image.BufferedImage;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
-
-import it.unibo.donkeykong.utilities.Gamestate;
-import it.unibo.donkeykong.utilities.Pair;
 
 public class ViewConstants {
     

@@ -1,12 +1,13 @@
 package it.unibo.donkeykong.utilities;
 
 import static it.unibo.donkeykong.utilities.ResourceFuncUtilities.loadSources;
-import it.unibo.donkeykong.view.ViewConstants.Window;
 
 import java.awt.image.BufferedImage;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+
+import it.unibo.donkeykong.utilities.ViewConstants.Window;
 
 /**
  * Constants class.

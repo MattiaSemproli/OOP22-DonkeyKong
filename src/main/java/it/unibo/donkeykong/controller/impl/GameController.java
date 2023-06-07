@@ -37,6 +37,7 @@ public class GameController implements Controller {
         this.gameView = new GameView(this);
         this.gameplay.initializeGame(this.gameView.getLevelMap());
         this.timer = new Timer();
+        this.timer.start();
     }
 
     /**

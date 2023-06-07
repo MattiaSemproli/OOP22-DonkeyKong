@@ -1,9 +1,9 @@
 package it.unibo.donkeykong.view.impl;
 
-import static it.unibo.donkeykong.view.ViewConstants.MenuAssets.getMenuSources;
-import static it.unibo.donkeykong.view.ViewConstants.MenuAssets.MENU_X;
-import static it.unibo.donkeykong.view.ViewConstants.MenuAssets.MENU_Y;
-import static it.unibo.donkeykong.view.ViewConstants.MenuAssets.SettingsAssets.getSettingsSources;
+import static it.unibo.donkeykong.utilities.ViewConstants.MenuAssets.MENU_X;
+import static it.unibo.donkeykong.utilities.ViewConstants.MenuAssets.MENU_Y;
+import static it.unibo.donkeykong.utilities.ViewConstants.MenuAssets.getMenuSources;
+import static it.unibo.donkeykong.utilities.ViewConstants.MenuAssets.SettingsAssets.getSettingsSources;
 
 import java.awt.Graphics;
 import java.awt.Point;
@@ -15,9 +15,9 @@ import java.util.Map;
 import it.unibo.donkeykong.controller.impl.SettingsController;
 import it.unibo.donkeykong.utilities.AudioUtilities;
 import it.unibo.donkeykong.utilities.Constants.Audio;
-import it.unibo.donkeykong.view.ViewConstants.MenuAssets;
-import it.unibo.donkeykong.view.ViewConstants.MenuAssets.SettingsAssets;
-import it.unibo.donkeykong.view.ViewConstants.Window;
+import it.unibo.donkeykong.utilities.ViewConstants.MenuAssets;
+import it.unibo.donkeykong.utilities.ViewConstants.Window;
+import it.unibo.donkeykong.utilities.ViewConstants.MenuAssets.SettingsAssets;
 import it.unibo.donkeykong.utilities.Gamestate;
 import it.unibo.donkeykong.utilities.Pair;
 import it.unibo.donkeykong.utilities.ResourceFuncUtilities;
