@@ -12,7 +12,7 @@ import javax.sound.sampled.FloatControl;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
-import it.unibo.donkeykong.utilities.Constants.Audio;
+import it.unibo.donkeykong.utilities.ViewConstants.AudioAssets;
 
 /**
  * Static class Audioutilities, manages the audio.
@@ -56,7 +56,7 @@ public final class AudioUtilities {
             clip.open(audioInputStream);
 
             final FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-            gainControl.setValue((float) (Math.log10(Audio.baseVolume) * Audio.gainMultiplier));
+            gainControl.setValue((float) (Math.log10(AudioAssets.BASE_VOLUME) * AudioAssets.GAIN_MULTIPLIER));
 
             clip.loop(Clip.LOOP_CONTINUOUSLY);
 
@@ -103,7 +103,7 @@ public final class AudioUtilities {
     public static void updateVolume() {
         final FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
         gainControl.setValue((gainControl.getMaximum() - gainControl.getMinimum()) 
-                             * Constants.Audio.baseVolume
+                             * AudioAssets.BASE_VOLUME
                              + gainControl.getMinimum());
     }
 

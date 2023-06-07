@@ -15,7 +15,7 @@ import java.util.Map;
 import it.unibo.donkeykong.common.Pair;
 import it.unibo.donkeykong.controller.impl.SettingsController;
 import it.unibo.donkeykong.utilities.AudioUtilities;
-import it.unibo.donkeykong.utilities.Constants.Audio;
+import it.unibo.donkeykong.utilities.ViewConstants.AudioAssets;
 import it.unibo.donkeykong.utilities.ViewConstants.MenuAssets;
 import it.unibo.donkeykong.utilities.ViewConstants.Window;
 import it.unibo.donkeykong.utilities.ViewConstants.MenuAssets.SettingsAssets;
@@ -32,7 +32,7 @@ public class SettingsView implements View {
     private final SettingsController settingsController;
 
     private final Rectangle[] volumeButtons = new Rectangle[SettingsAssets.NUM_VOLUME_BUTTONS];
-    private final Rectangle[] themesButtons = new Rectangle[Audio.numThemesButtons];
+    private final Rectangle[] themesButtons = new Rectangle[AudioAssets.NUM_THEMES_BUTTON];
     private final Map<Button, BufferedImage> buttons = new HashMap<>();
     private final Map<Rectangle, BufferedImage> alternativeButtons = new HashMap<>();
 
@@ -56,16 +56,16 @@ public class SettingsView implements View {
                                                                      SettingsAssets.MUTE_BUTTON_Y, 
                                                                      SettingsAssets.SQUARE_BUTTON_SIZE, 
                                                                      SettingsAssets.SQUARE_BUTTON_SIZE);
-        this.themesButtons[Audio.getThemeSources()
-                                .get(Audio.menuMusic0)] = new Rectangle(SettingsAssets.LEFT_SETTINGS_BUTTON_X, 
-                                                                        SettingsAssets.MUSIC_BUTTON_Y, 
-                                                                        SettingsAssets.THEMES_BUTTON_WIDTH, 
-                                                                        SettingsAssets.SQUARE_BUTTON_SIZE);
-        this.themesButtons[Audio.getThemeSources()
-                                .get(Audio.menuMusic1)] = new Rectangle(SettingsAssets.RIGHT_SETTINGS_BUTTON_X, 
-                                                                        SettingsAssets.MUSIC_BUTTON_Y, 
-                                                                        SettingsAssets.THEMES_BUTTON_WIDTH, 
-                                                                        SettingsAssets.SQUARE_BUTTON_SIZE);
+        this.themesButtons[AudioAssets.getThemeSources()
+                                .get(AudioAssets.MENU_MUSIC_0)] = new Rectangle(SettingsAssets.LEFT_SETTINGS_BUTTON_X, 
+                                                                                SettingsAssets.MUSIC_BUTTON_Y, 
+                                                                                SettingsAssets.THEMES_BUTTON_WIDTH, 
+                                                                                SettingsAssets.SQUARE_BUTTON_SIZE);
+        this.themesButtons[AudioAssets.getThemeSources()
+                                .get(AudioAssets.MENU_MUSIC_1)] = new Rectangle(SettingsAssets.RIGHT_SETTINGS_BUTTON_X, 
+                                                                                SettingsAssets.MUSIC_BUTTON_Y, 
+                                                                                SettingsAssets.THEMES_BUTTON_WIDTH, 
+                                                                                SettingsAssets.SQUARE_BUTTON_SIZE);
 
         buttons.put(backHome, getSettingsSources().get(SettingsAssets.HOME_BUTTON));
 
@@ -73,9 +73,9 @@ public class SettingsView implements View {
                                getSettingsSources().get(SettingsAssets.ROUNDED_VOLUME_ON));
         alternativeButtons.put(volumeButtons[SettingsAssets.VOL_OFF_B], 
                                getSettingsSources().get(SettingsAssets.ROUNDED_VOLUME_OFF));
-        alternativeButtons.put(themesButtons[Audio.getThemeSources().get(Audio.menuMusic0)],
+        alternativeButtons.put(themesButtons[AudioAssets.getThemeSources().get(AudioAssets.MENU_MUSIC_0)],
                                ResourceFuncUtilities.loadSources("1"));
-        alternativeButtons.put(themesButtons[Audio.getThemeSources().get(Audio.menuMusic1)],
+        alternativeButtons.put(themesButtons[AudioAssets.getThemeSources().get(AudioAssets.MENU_MUSIC_1)],
                                ResourceFuncUtilities.loadSources("2"));
     }
 
@@ -121,10 +121,10 @@ public class SettingsView implements View {
     }
 
     private void themeChange(final Point point) {
-        if (this.themesButtons[Audio.getThemeSources().get(Audio.menuMusic0)].contains(point)) {
-            AudioUtilities.playSoundtrack(Audio.menuMusic0);
-        } else if (this.themesButtons[Audio.getThemeSources().get(Audio.menuMusic1)].contains(point)) {
-            AudioUtilities.playSoundtrack(Audio.menuMusic1);
+        if (this.themesButtons[AudioAssets.getThemeSources().get(AudioAssets.MENU_MUSIC_0)].contains(point)) {
+            AudioUtilities.playSoundtrack(AudioAssets.MENU_MUSIC_0);
+        } else if (this.themesButtons[AudioAssets.getThemeSources().get(AudioAssets.MENU_MUSIC_1)].contains(point)) {
+            AudioUtilities.playSoundtrack(AudioAssets.MENU_MUSIC_1);
         }
     }
 

@@ -1,10 +1,10 @@
 package it.unibo.donkeykong.model.impl;
 
-import static it.unibo.donkeykong.utilities.Constants.Barrel.aniBarrelSpeed;
-import static it.unibo.donkeykong.utilities.Constants.Monkey.aniMonkeySpeed;
-import static it.unibo.donkeykong.utilities.Constants.Player.aniClimbSpeed;
-import static it.unibo.donkeykong.utilities.Constants.Player.aniPlayerSpeed;
-import static it.unibo.donkeykong.utilities.Constants.Princess.aniPrincessSpeed;
+import static it.unibo.donkeykong.utilities.Constants.Barrel.ANI_BARREL_SPEED;
+import static it.unibo.donkeykong.utilities.Constants.Monkey.ANI_MONKEY_SPEED;
+import static it.unibo.donkeykong.utilities.Constants.Player.ANI_CLIMB_SPEED;
+import static it.unibo.donkeykong.utilities.Constants.Player.ANI_PLAYER_SPEED;
+import static it.unibo.donkeykong.utilities.Constants.Princess.ANI_PRINCESS_SPEED;
 
 import it.unibo.donkeykong.common.Pair;
 import it.unibo.donkeykong.model.api.ViewModel;
@@ -59,38 +59,39 @@ public class Game implements ViewModel {
             final MovementComponent mc = entity.getComponent(MovementComponent.class).get();
             switch (PlayerIdle.getPlayerIdle()) {
                 case RUN:
-                    return new Pair<>(mc.getFacing() == Direction.LEFT ? Player.leftAni : Player.rightAni,
+                    return new Pair<>(mc.getFacing() == Direction.LEFT ? Player.LEFT_ANI : Player.RIGHT_ANI,
                                       aniPlayerIndex);
                 case FALLING:
                 case JUMP:
-                    return new Pair<>(mc.getFacing() == Direction.LEFT ? Player.jumpAni + Player.leftAni
-                                                                       : Player.jumpAni + Player.rightAni,
-                                      mc.isInAir() ? Player.midAirAni : Player.movementAni);
+                    return new Pair<>(mc.getFacing() == Direction.LEFT ? Player.JUMP_ANI + Player.LEFT_ANI
+                                                                       : Player.JUMP_ANI + Player.RIGHT_ANI,
+                                      mc.isInAir() ? Player.MID_AIR_ANI : Player.MOVEMENT_ANI);
                 case CLIMBING:
-                    return new Pair<>(Player.climbAni, aniClimbIndex);
+                    return new Pair<>(Player.CLIMB_ANI, aniClimbIndex);
                 case STOPCLIMBING:
                 case STOP:
                 default:
-                    return new Pair<>(mc.isOnLadder() ? Player.climbAni
-                                                      : mc.getFacing() == Direction.LEFT ? Player.leftAni : Player.rightAni,
-                                      Player.runAni);
+                    return new Pair<>(mc.isOnLadder() ? Player.CLIMB_ANI
+                                                      : mc.getFacing() == Direction.LEFT ? Player.LEFT_ANI : Player.RIGHT_ANI,
+                                      Player.RUN_ANI);
             }
         }
         if (entity.getEntityType() == Type.BARREL) {
             return new Pair<>(entity.getComponent(DoubleDamageComponent.class)
-                                    .get().isDoubleDamage() ? Barrel.ddBarrelAni : Barrel.barrelAni, 
+                                    .get().isDoubleDamage() ? Barrel.DD_BARREL_ANI : Barrel.BARREL_ANI, 
                               aniBarrelIndex);
         }
         if (entity.getEntityType() == Type.MONKEY) {
-            if (entity.getComponent(ThrowComponent.class).get().isThrowing()) {
-                return new Pair<>(Monkey.monkeyAni, aniMonkeyIndex);
+            final ThrowComponent tc = entity.getComponent(ThrowComponent.class).get();
+            if (tc.isThrowing()) {
+                return new Pair<>(Monkey.MONKEY_ANI, tc.isFreezed() ? Monkey.MONKEY_ANI : aniMonkeyIndex);
             } else {
-                return new Pair<>(Monkey.monkeyAni, Monkey.monkeyAni);
+                return new Pair<>(Monkey.MONKEY_ANI, Monkey.MONKEY_ANI);
             }
         }
         return new Pair<>(entity.getComponent(MovementComponent.class)
-                                .get().getFacing() == Direction.LEFT ? Princess.leftAni : Princess.rightAni, 
-                          PlayerIdle.getPrincessIdle() == PlayerIdle.STOP ? Princess.princessAni : aniPrincessIndex);
+                                .get().getFacing() == Direction.LEFT ? Princess.LEFT_ANI : Princess.RIGHT_ANI, 
+                          PlayerIdle.getPrincessIdle() == PlayerIdle.STOP ? Princess.PRINCESS_ANI : aniPrincessIndex);
     }
 
     /**
@@ -108,18 +109,18 @@ public class Game implements ViewModel {
      */
     private void updatePlayerAnimation() {
         aniPlayerTick++;
-        if (aniPlayerTick >= aniPlayerSpeed) {
+        if (aniPlayerTick >= ANI_PLAYER_SPEED) {
             aniPlayerTick = 0;
             aniPlayerIndex++;
-            if (aniPlayerIndex >= Player.movementAniSprites) {
+            if (aniPlayerIndex >= Player.MOVEMENT_ANI_SPRITES) {
                 aniPlayerIndex = 0;
             }
         }
         aniClimbTick++;
-        if (aniClimbTick >= aniClimbSpeed) {
+        if (aniClimbTick >= ANI_CLIMB_SPEED) {
             aniClimbTick = 0;
             aniClimbIndex++;
-            if (aniClimbIndex >= Player.climbingAniSprites) {
+            if (aniClimbIndex >= Player.CLIMB_ANI_SPRITES) {
                 aniClimbIndex = 0;
             }
         }
@@ -130,10 +131,10 @@ public class Game implements ViewModel {
      */
     private void updateBarrelAnimation() {
         aniBarrelTick++;
-        if (aniBarrelTick >= aniBarrelSpeed) {
+        if (aniBarrelTick >= ANI_BARREL_SPEED) {
             aniBarrelTick = 0;
             aniBarrelIndex++;
-            if (aniBarrelIndex >= Barrel.barrelAniSprites) {
+            if (aniBarrelIndex >= Barrel.BARREL_ANI_SPRITES) {
                 aniBarrelIndex = 0;
             }
         }
@@ -144,10 +145,10 @@ public class Game implements ViewModel {
      */
     private void updateMonkeyAnimation() {
         aniMonkeyTick++;
-        if (aniMonkeyTick >= aniMonkeySpeed) {
+        if (aniMonkeyTick >= ANI_MONKEY_SPEED) {
             aniMonkeyTick = 0;
             aniMonkeyIndex++;
-            if (aniMonkeyIndex >= Monkey.monkeyAniSprites) {
+            if (aniMonkeyIndex >= Monkey.MONKEY_ANI_SPRITES) {
                 aniMonkeyIndex = 0;
             }
         }
@@ -158,10 +159,10 @@ public class Game implements ViewModel {
      */
     private void updatePrincessAnimation() {
         aniPrincessTick++;
-        if (aniPrincessTick >= aniPrincessSpeed) {
+        if (aniPrincessTick >= ANI_PRINCESS_SPEED) {
             aniPrincessTick = 0;
             aniPrincessIndex++;
-            if (aniPrincessIndex >= Princess.princessAniSprites) {
+            if (aniPrincessIndex >= Princess.PRINCESS_ANI_SPRITES) {
                 aniPrincessIndex = 0;
             }
         }

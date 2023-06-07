@@ -1,11 +1,11 @@
 package it.unibo.donkeykong.view.impl;
 
-import static it.unibo.donkeykong.utilities.Constants.Level.levelFour;
-import static it.unibo.donkeykong.utilities.Constants.Level.levelOne;
-import static it.unibo.donkeykong.utilities.Constants.Level.levelSpritesLength;
-import static it.unibo.donkeykong.utilities.Constants.Level.levelThree;
-import static it.unibo.donkeykong.utilities.Constants.Level.levelTwo;
 import static it.unibo.donkeykong.utilities.ResourceFuncUtilities.loadSources;
+import static it.unibo.donkeykong.utilities.ViewConstants.MenuAssets.LevelAssets.LEVEL_FOUR;
+import static it.unibo.donkeykong.utilities.ViewConstants.MenuAssets.LevelAssets.LEVEL_ONE;
+import static it.unibo.donkeykong.utilities.ViewConstants.MenuAssets.LevelAssets.LEVEL_SPRITES_LENGHT;
+import static it.unibo.donkeykong.utilities.ViewConstants.MenuAssets.LevelAssets.LEVEL_THREE;
+import static it.unibo.donkeykong.utilities.ViewConstants.MenuAssets.LevelAssets.LEVEL_TWO;
 import static it.unibo.donkeykong.utilities.ViewConstants.Window.TILES_DEFAULT_SIZE;
 
 import java.awt.Color;
@@ -23,7 +23,7 @@ import it.unibo.donkeykong.view.api.Level;
 public class LevelImpl implements Level {
 
     private final Map<Pair<Integer, Integer>, Integer> levelData;
-    private final BufferedImage[] spritesArray = new BufferedImage[levelSpritesLength];
+    private final BufferedImage[] spritesArray = new BufferedImage[LEVEL_SPRITES_LENGHT];
     private final String levelSpriteName;
 
     /**
@@ -32,17 +32,17 @@ public class LevelImpl implements Level {
     public LevelImpl() {
         switch (CurrentLevel.getCurrentLevel()) {
             case ONE:
-                this.levelSpriteName = levelOne;
+                this.levelSpriteName = LEVEL_ONE;
                 break;
             case TWO:
-                this.levelSpriteName = levelTwo;
+                this.levelSpriteName = LEVEL_TWO;
                 break;
             case THREE:
-                this.levelSpriteName = levelThree;
+                this.levelSpriteName = LEVEL_THREE;
                 break;
             case FOUR:
             default:
-                this.levelSpriteName = levelFour;
+                this.levelSpriteName = LEVEL_FOUR;
                 break;
         }
         this.levelData = createLevel();
@@ -56,7 +56,7 @@ public class LevelImpl implements Level {
             for (int c = 0; c < img.getWidth(); c++) {
                 final Color color = new Color(img.getRGB(c, r));
                 int value = color.getRed();
-                if (value >= levelSpritesLength) {
+                if (value >= LEVEL_SPRITES_LENGHT) {
                     value = 0;
                 }
                 level.put(new Pair<>(c, r), value);
@@ -67,7 +67,7 @@ public class LevelImpl implements Level {
 
     private void importLevelSprites() {
         final BufferedImage img = loadSources("platform_ladder_" + levelSpriteName);
-        for (int i = 0; i < levelSpritesLength; i++) {
+        for (int i = 0; i < LEVEL_SPRITES_LENGHT; i++) {
             spritesArray[i] = img.getSubimage(i * TILES_DEFAULT_SIZE, 0, TILES_DEFAULT_SIZE, TILES_DEFAULT_SIZE);
         }
     }

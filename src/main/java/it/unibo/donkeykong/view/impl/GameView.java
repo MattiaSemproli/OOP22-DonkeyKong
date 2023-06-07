@@ -14,16 +14,16 @@ import java.util.stream.IntStream;
 import it.unibo.donkeykong.common.Pair;
 import it.unibo.donkeykong.controller.impl.GameController;
 import it.unibo.donkeykong.model.ecs.api.Entity;
-import it.unibo.donkeykong.utilities.Constants.Barrel;
-import it.unibo.donkeykong.utilities.Constants.Monkey;
-import it.unibo.donkeykong.utilities.Constants.Player;
-import it.unibo.donkeykong.utilities.Constants.PowerupAssets;
-import it.unibo.donkeykong.utilities.Constants.Princess;
-import it.unibo.donkeykong.utilities.ViewConstants.Window;
-import it.unibo.donkeykong.utilities.ViewConstants.MenuAssets.LevelAssets;
-import it.unibo.donkeykong.utilities.ViewConstants.MenuAssets.SettingsAssets;
 import it.unibo.donkeykong.utilities.Gamestate;
 import it.unibo.donkeykong.utilities.Type;
+import it.unibo.donkeykong.utilities.ViewConstants.BarrelAssets;
+import it.unibo.donkeykong.utilities.ViewConstants.MenuAssets.LevelAssets;
+import it.unibo.donkeykong.utilities.ViewConstants.MenuAssets.SettingsAssets;
+import it.unibo.donkeykong.utilities.ViewConstants.MonkeyAssets;
+import it.unibo.donkeykong.utilities.ViewConstants.PlayerAssets;
+import it.unibo.donkeykong.utilities.ViewConstants.PowerupAssets;
+import it.unibo.donkeykong.utilities.ViewConstants.PrincessAssets;
+import it.unibo.donkeykong.utilities.ViewConstants.Window;
 import it.unibo.donkeykong.view.api.Button;
 import it.unibo.donkeykong.view.api.Level;
 import it.unibo.donkeykong.view.api.View;
@@ -37,10 +37,10 @@ public class GameView implements View {
 
     private final Level level;
     private final Map<Button, BufferedImage> buttons = new HashMap<>();
-    private BufferedImage[][] playerMovementAni = new BufferedImage[Player.numMovementAni][Player.movementAniSprites];
-    private BufferedImage[] monkeyAni = new BufferedImage[Monkey.monkeyAniSprites];
-    private BufferedImage[][] barrelAni = new BufferedImage[Barrel.numBarrel][Barrel.barrelAniSprites];
-    private BufferedImage[][] princessAni = new BufferedImage[Princess.numPrincessAni][Princess.princessAniSprites];
+    private BufferedImage[][] playerMovementAni = new BufferedImage[PlayerAssets.NUM_MOVEMENT_ANI][PlayerAssets.MOVEMENT_ANI_SPRITES];
+    private BufferedImage[] monkeyAni = new BufferedImage[MonkeyAssets.MONKEY_ANI_SPRITES];
+    private BufferedImage[][] barrelAni = new BufferedImage[BarrelAssets.NUM_BARREL][BarrelAssets.BARREL_ANI_SPRITES];
+    private BufferedImage[][] princessAni = new BufferedImage[PrincessAssets.NUM_PRINCESS_ANI][PrincessAssets.PRINCESS_ANI_SPRITES];
 
     /**
      * Constructor.
@@ -75,9 +75,9 @@ public class GameView implements View {
                   });
         g.drawImage(LevelAssets.BARRELBOX, 
                     0, 
-                    Math.round(Monkey.levelOneStartingMonkeyY + Monkey.monkeyHeight - Barrel.barrelBoxHeight), 
-                    Barrel.barrelBoxWidth, 
-                    Barrel.barrelBoxHeight, null);
+                    Math.round(LevelAssets.BARREL_BOX_Y - LevelAssets.BARREL_BOX_HEIGHT), 
+                    LevelAssets.BARREL_BOX_WIDTH, 
+                    LevelAssets.BARREL_BOX_HEIGHT, null);
         this.drawLives(g);
         this.drawActivePowerUps(g);
         this.buttons.forEach((b, bi) -> g.drawImage(bi, 
@@ -172,15 +172,15 @@ public class GameView implements View {
     private void drawLives(final Graphics g) {
         final int lives = this.gameController.getPlayerLives();
         IntStream.range(0, lives).forEach(i -> {
-            g.drawImage(PowerupAssets.getPowerupSources().get(PowerupAssets.life),
-                        Window.GAME_WIDTH - SCALED_TILES_SIZE * (Player.NUM_LIVES + i) + PowerupAssets.LIFE_PADDING,
+            g.drawImage(PowerupAssets.getPowerupSources().get(PowerupAssets.LIFE),
+                        Window.GAME_WIDTH - SCALED_TILES_SIZE * (PlayerAssets.NUM_LIVES + i) + PowerupAssets.LIFE_PADDING,
                         PowerupAssets.LIFE_PADDING,
                         PowerupAssets.LIFE_DIMENSION, 
                         PowerupAssets.LIFE_DIMENSION, null);
         });
-        IntStream.range(lives, Player.NUM_LIVES).forEach(i -> {
-        g.drawImage(PowerupAssets.getPowerupSources().get(PowerupAssets.noLife),
-                    Window.GAME_WIDTH - SCALED_TILES_SIZE * (Player.NUM_LIVES + i) + PowerupAssets.LIFE_PADDING,
+        IntStream.range(lives, PlayerAssets.NUM_LIVES).forEach(i -> {
+        g.drawImage(PowerupAssets.getPowerupSources().get(PowerupAssets.NOLIFE),
+                    Window.GAME_WIDTH - SCALED_TILES_SIZE * (PlayerAssets.NUM_LIVES + i) + PowerupAssets.LIFE_PADDING,
                     PowerupAssets.LIFE_PADDING,
                     PowerupAssets.LIFE_DIMENSION, 
                     PowerupAssets.LIFE_DIMENSION, null);
@@ -189,80 +189,79 @@ public class GameView implements View {
 
     private BufferedImage getPowerUpSprite(final Type powerup) {
         if (powerup == Type.HEART) {
-            return PowerupAssets.getPowerupSources().get(PowerupAssets.heart);
+            return PowerupAssets.getPowerupSources().get(PowerupAssets.HEART);
         } else if (powerup == Type.SHIELD) {
-            return PowerupAssets.getPowerupSources().get(PowerupAssets.shield);
+            return PowerupAssets.getPowerupSources().get(PowerupAssets.SHIELD);
         } else if (powerup == Type.SNOWFLAKE) {
-            return PowerupAssets.getPowerupSources().get(PowerupAssets.freeze);
+            return PowerupAssets.getPowerupSources().get(PowerupAssets.FREEZE);
         }
-        return PowerupAssets.getPowerupSources().get(PowerupAssets.star);
+        return PowerupAssets.getPowerupSources().get(PowerupAssets.STAR);
     }
 
     private void drawActivePowerUps(final Graphics g) {
         final List<Type> activePowerUps = this.gameController.getListOfActivePowerUps();
         IntStream.range(0, activePowerUps.size()).forEach(i -> {
-            g.drawImage(PowerupAssets.getPowerupSources().get(PowerupAssets.emptyBorder), 
-                        i * SCALED_TILES_SIZE + PowerupAssets.powerupBorderPadding,
-                        PowerupAssets.powerupBorderPadding, 
-                        PowerupAssets.powerupBorderDimension, 
-                        PowerupAssets.powerupBorderDimension, null);
+            g.drawImage(PowerupAssets.getPowerupSources().get(PowerupAssets.EMPTYBORDER), 
+                        i * SCALED_TILES_SIZE + PowerupAssets.PUPS_BODER_PADDING,
+                        PowerupAssets.PUPS_BODER_PADDING, 
+                        PowerupAssets.PUPS_BORDER_DIMENSION, 
+                        PowerupAssets.PUPS_BORDER_DIMENSION, null);
             g.drawImage(getPowerUpSprite(activePowerUps.get(i)),
-                        i * SCALED_TILES_SIZE + PowerupAssets.powerupBorderPadding 
-                                                        + PowerupAssets.powerupActivePadding,
-                        PowerupAssets.powerupBorderPadding + PowerupAssets.powerupActivePadding, 
-                        PowerupAssets.powerupActiveDimension, 
-                        PowerupAssets.powerupActiveDimension, null);
+                        i * SCALED_TILES_SIZE + PowerupAssets.PUPS_BODER_PADDING + PowerupAssets.PUPS_ACTIVE_PADDING,
+                        PowerupAssets.PUPS_BODER_PADDING + PowerupAssets.PUPS_ACTIVE_PADDING, 
+                        PowerupAssets.PUPS_ACTIVE_DIMENSION, 
+                        PowerupAssets.PUPS_ACTIVE_DIMENSION, null);
         });
     }
     private void bufferAnimations() {
-        for (int r = 0; r < Player.numMovementAni - 1; r++) {
-            for (int c = 0; c < Player.movementAniSprites; c++) {
-                playerMovementAni[r][c] = Player.getPlayerSources()
-                                                .get(Player.movementAni)
-                                                .getSubimage(c * Player.spriteDimension, 
-                                                             r * Player.spriteDimension, 
-                                                             Player.spriteDimension, 
-                                                             Player.spriteDimension);
+        for (int r = 0; r < PlayerAssets.NUM_MOVEMENT_ANI - 1; r++) {
+            for (int c = 0; c < PlayerAssets.MOVEMENT_ANI_SPRITES; c++) {
+                playerMovementAni[r][c] = PlayerAssets.getPlayerSources()
+                                                .get(PlayerAssets.MOVEMENT_ANI)
+                                                .getSubimage(c * PlayerAssets.SPRITE_DIMENSION, 
+                                                             r * PlayerAssets.SPRITE_DIMENSION, 
+                                                             PlayerAssets.SPRITE_DIMENSION, 
+                                                             PlayerAssets.SPRITE_DIMENSION);
             }
         }
-        for (int c = 0; c < Player.climbingAniSprites; c++) {
-            playerMovementAni[Player.climbAni][c] = Player.getPlayerSources()
-                                                          .get(Player.climbingAni)
-                                                          .getSubimage(c * Player.spriteDimension, 
+        for (int c = 0; c < PlayerAssets.CLIMB_ANI_SPRITES; c++) {
+            playerMovementAni[PlayerAssets.CLIMB_ANI][c] = PlayerAssets.getPlayerSources()
+                                                          .get(PlayerAssets.CLIMBING_ANI)
+                                                          .getSubimage(c * PlayerAssets.SPRITE_DIMENSION, 
                                                                        0, 
-                                                                       Player.spriteDimension, 
-                                                                       Player.spriteDimension);
+                                                                       PlayerAssets.SPRITE_DIMENSION, 
+                                                                       PlayerAssets.SPRITE_DIMENSION);
         }
         for (int c = 0; c < monkeyAni.length; c++) {
-            monkeyAni[c] = Monkey.getMonkeySources()
-                                 .get(Monkey.monkeyAni)
-                                 .getSubimage(c * Monkey.spriteWidth, 
+            monkeyAni[c] = MonkeyAssets.getMonkeySources()
+                                 .get(MonkeyAssets.MONKEY_ANI)
+                                 .getSubimage(c * MonkeyAssets.SPRITE_WIDTH, 
                                               0, 
-                                              Monkey.spriteWidth, 
-                                              Monkey.spriteHeight);
+                                              MonkeyAssets.SPRITE_WIDTH, 
+                                              MonkeyAssets.SPRITE_HEIGHT);
         }
-        for (int c = 0; c < Barrel.barrelAniSprites; c++) {
-            barrelAni[Barrel.barrelAni][c] = Barrel.getBarrelSources()
-                                                   .get(Barrel.barrelAni)
-                                                   .getSubimage(c * Barrel.spriteWidth,
+        for (int c = 0; c < BarrelAssets.BARREL_ANI_SPRITES; c++) {
+            barrelAni[BarrelAssets.BARREL_ANI][c] = BarrelAssets.getBarrelSources()
+                                                   .get(BarrelAssets.BARREL_ANI)
+                                                   .getSubimage(c * BarrelAssets.SPRITE_WIDTH,
                                                                 0, 
-                                                                Barrel.spriteWidth, 
-                                                                Barrel.spriteHeight);
-            barrelAni[Barrel.ddBarrelAni][c] = Barrel.getBarrelSources()
-                                                     .get(Barrel.ddBarrelAni)
-                                                     .getSubimage(c * Barrel.spriteWidth,
+                                                                BarrelAssets.SPRITE_WIDTH, 
+                                                                BarrelAssets.SPRITE_HEIGHT);
+            barrelAni[BarrelAssets.DD_BARREL_ANI][c] = BarrelAssets.getBarrelSources()
+                                                     .get(BarrelAssets.DD_BARREL_ANI)
+                                                     .getSubimage(c * BarrelAssets.SPRITE_WIDTH,
                                                                   0, 
-                                                                  Barrel.spriteWidth, 
-                                                                  Barrel.spriteHeight);
+                                                                  BarrelAssets.SPRITE_WIDTH, 
+                                                                  BarrelAssets.SPRITE_HEIGHT);
         }
-        for (int r = 0; r < Princess.numPrincessAni; r++) {
-            for (int c = 0; c < Princess.princessAniSprites; c++) {
-                princessAni[r][c] = Princess.getPrincessSources()
-                                         .get(Princess.princessAni)
-                                         .getSubimage(c * Princess.spriteWidth,
-                                                      r * Princess.spriteHeight, 
-                                                      Princess.spriteWidth, 
-                                                      Princess.spriteHeight);
+        for (int r = 0; r < PrincessAssets.NUM_PRINCESS_ANI; r++) {
+            for (int c = 0; c < PrincessAssets.PRINCESS_ANI_SPRITES; c++) {
+                princessAni[r][c] = PrincessAssets.getPrincessSources()
+                                         .get(PrincessAssets.PRINCESS_ANI)
+                                         .getSubimage(c * PrincessAssets.SPRITE_WIDTH,
+                                                      r * PrincessAssets.SPRITE_HEIGHT, 
+                                                      PrincessAssets.SPRITE_WIDTH, 
+                                                      PrincessAssets.SPRITE_HEIGHT);
             }
         }
     }

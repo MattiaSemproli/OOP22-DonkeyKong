@@ -11,7 +11,7 @@ import it.unibo.donkeykong.model.ecs.api.Entity;
 import it.unibo.donkeykong.model.ecs.impl.HealthComponent;
 import it.unibo.donkeykong.model.impl.Game;
 import it.unibo.donkeykong.model.impl.GameplayImpl;
-import it.unibo.donkeykong.utilities.Constants.PowerupAssets;
+import it.unibo.donkeykong.utilities.Constants.Powerup;
 import it.unibo.donkeykong.utilities.Gamestate;
 import it.unibo.donkeykong.utilities.Type;
 import it.unibo.donkeykong.view.api.View;
@@ -46,10 +46,10 @@ public class GameController implements Controller {
     public void update() {
         this.timeElapsed++;
         this.gameplay.getEntities().forEach(e -> e.getAllComponents().forEach(c -> c.update()));
-        if (!this.gameplay.isSpawnedOpPowerUp() && this.timeElapsed > PowerupAssets.PUPS_SPAWN_DELAY) {
+        if (!this.gameplay.isSpawnedOpPowerUp() && this.timeElapsed > Powerup.PUPS_SPAWN_DELAY) {
             this.gameplay.spawnOpPowerUp();
             this.timeElapsed = 0;
-        } else if (this.gameplay.isSpawnedOpPowerUp() && this.timeElapsed > PowerupAssets.PUPS_MOVE_DELAY) {
+        } else if (this.gameplay.isSpawnedOpPowerUp() && this.timeElapsed > Powerup.PUPS_MOVE_DELAY) {
             this.gameplay.moveOpPowerUpRandom();
             this.timeElapsed = 0;
         }

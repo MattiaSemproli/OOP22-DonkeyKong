@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import it.unibo.donkeykong.common.Pair;
+import it.unibo.donkeykong.utilities.Constants.Monkey;
 
 public class ViewConstants {
     
@@ -54,59 +55,59 @@ public class ViewConstants {
          */
         public static final String TITLE = "title";
         /**
-         * Menu background string source.
+         * Menu background source.
          */
         public static final String MENU_BACKGROUND = "menu_background";
         /**
-         * Menu layout string source.
+         * Menu layout source.
          */
         public static final String MENU_TEXTURE = "menu_layout";
         /**
-         * Play button string source.
+         * Play button source.
          */
         public static final String PLAY_BUTTON = "play_button";
         /**
-         * Settings button string source.
+         * Settings button source.
          */
         public static final String SETTINGS_BUTTON = "settings_button";
         /**
-         * Quit button string source.
+         * Quit button source.
          */
         public static final String QUIT_BUTTON = "quit_button";
         /**
-         * Levels button string source.
+         * Levels button source.
          */
         public static final String LEVELS_BUTTON = "levels_button";
         /**
-         * A key string source.
+         * A key source.
          */
         public static final String A = "aKey";
         /**
-         * D key string source.
+         * D key source.
          */
         public static final String D = "dKey";
         /**
-         * W key string source.
+         * W key source.
          */
         public static final String W = "wKey";
         /**
-         * S key string source.
+         * S key source.
          */
         public static final String S = "sKey";
         /**
-         * Left arrow string source.
+         * Left arrow source.
          */
         public static final String LEFT = "left_arrow";
         /**
-         * Right arrow string source.
+         * Right arrow source.
          */
         public static final String RIGHT = "right_arrow";
         /**
-         * Up arrow string source.
+         * Up arrow source.
          */
         public static final String UP = "up_arrow";
         /**
-         * Down arrow string source.
+         * Down arrow source.
          */
         public static final String DOWN = "down_arrow";
         /**
@@ -213,7 +214,7 @@ public class ViewConstants {
         public static final int TITLE_Y = MENU_Y - (int) (65 * Window.SCALE);
 
         /**
-         * Menu sources map of string source and image.
+         * Menu sources map of source and image.
          */
         private static final Map<String, BufferedImage> MENUSOURCES = new HashMap<>();
 
@@ -257,27 +258,27 @@ public class ViewConstants {
          */
         public static final class SettingsAssets {
             /**
-             * Home button string source.
+             * Home button source.
              */
             public static final String HOME_BUTTON = "square_home_button";
             /**
-             * Rounded volume on button string source.
+             * Rounded volume on button source.
              */
             public static final String ROUNDED_VOLUME_ON = "square_volume_on_button";
             /**
-             * Rounded volume off button string source.
+             * Rounded volume off button source.
              */
             public static final String ROUNDED_VOLUME_OFF = "square_volume_off_button";
             /**
-             * Rounded settings button string source.
+             * Rounded settings button source.
              */
             public static final String ROUNDED_SETTINGS_BUTTON = "square_option_button";
             /**
-             * Themes button string source.
+             * Themes button source.
              */
             public static final String THEMESBUTTON = "button_layout";
             /**
-             * Play again (or back to play) button string source.
+             * Play again (or back to play) button source.
              */
             public static final String AGAIN_BUTTON = "square_playagain_button";
             /**
@@ -285,7 +286,7 @@ public class ViewConstants {
              */
             public static final int TEXTSCALE = 3;
             /**
-             * Lose text string source.
+             * Lose text source.
              */
             public static final String LOSE_TEXT = "lose";
             /**
@@ -297,7 +298,7 @@ public class ViewConstants {
              */
             public static final int LOSE_TEXT_HEIGHT = (int) (21 * TEXTSCALE  * Window.SCALE);
             /**
-             * Win text string source.
+             * Win text source.
              */
             public static final String WIN_TEXT = "win";
             /**
@@ -309,7 +310,7 @@ public class ViewConstants {
              */
             public static final int WIN_TEXT_HEIGHT = (int) (21 * TEXTSCALE  * Window.SCALE);
             /**
-             * Pause text string source.
+             * Pause text source.
              */
             public static final String PAUSE_TEXT = "pause";
             /**
@@ -321,7 +322,7 @@ public class ViewConstants {
              */
             public static final int PAUSE_TEXT_HEIGHT = (int) (21 * TEXTSCALE  * Window.SCALE);
             /**
-             * Settings text string source.
+             * Settings text source.
              */
             public static final String SETTINGS_TEXT = "settings";
             /**
@@ -390,7 +391,7 @@ public class ViewConstants {
             public static final int PAUSE_BG_OPACITY = 128;
 
             /**
-             * Settings sources map of string source and image.
+             * Settings sources map of source and image.
              */
             private static final Map<String, BufferedImage> SETTINGSSOURCES = new HashMap<>();
             /**
@@ -480,28 +481,60 @@ public class ViewConstants {
              */
             public static final int BOT_LEVEL_BUTTON_Y = TOP_LEVEL_BUTTON_Y + LEVEL_BUTTON_HEIGHT + LEVEL_BUTTON_SPACING_Y;
             /**
-             * Level one string source.
+             * Level one source (for levels chose view).
              */
             public static final String LEVEL_ONE_SOURCE = "level_one";
             /**
-             * Level two string source.
+             * Level two source (for levels chose view).
              */
             public static final String LEVEL_TWO_SOURCE = "level_two";
             /**
-             * Level three string source.
+             * Level three source (for levels chose view).
              */
             public static final String LEVEL_THREE_SOURCE = "level_three";
             /**
-             * Level four string source.
+             * Level four source (for levels chose view).
              */
-            public static final String LEVEL_FOUR_SOURCE = "level_four";
+            public static final String LEVEL_FOUR_SOURCE = "level_four";            
             /**
-             * Barrel box string source.
+             * Level one data source.
+             */
+            public static final String LEVEL_ONE = "one";
+            /**
+             * Level two data source.
+             */
+            public static final String LEVEL_TWO = "two";
+            /**
+             * Level three data source.
+             */
+            public static final String LEVEL_THREE = "three";
+            /**
+             * Level four data source.
+             */
+            public static final String LEVEL_FOUR = "four";
+            /**
+             * Barrel box x position.
+             */
+            public static final float BARREL_BOX_Y = Monkey.LEVEL_ONE_STARTING_Y + Monkey.MONKEY_HEIGHT;
+            /**
+             * Barrel box source.
              */
             public static final BufferedImage BARRELBOX = loadSources("barrelbox");
+            /**
+             * Barrel box width.
+             */
+            public static final int BARREL_BOX_WIDTH = (int) (56 * Window.SCALE);
+            /**
+             * Barrel box height.
+             */
+            public static final int BARREL_BOX_HEIGHT = (int) (96 * Window.SCALE);
+            /**
+             * Level sprites lenght.
+             */
+            public static final int LEVEL_SPRITES_LENGHT = 7;
 
             /**
-             * Level sources map of string source and pair of image and index.
+             * Level sources map of source and pair of image and index.
              */
             private static final Map<String, Pair<BufferedImage, Integer>> LEVELSOURCES = new HashMap<>();
 
@@ -530,5 +563,393 @@ public class ViewConstants {
             }
         }
     }
+    
+    /**
+     * Audio constants.
+     */
+    public static final class AudioAssets {
+        /**
+         * Menu music 0 source.
+         */
+        public static final String MENU_MUSIC_0 = "soundtrack.wav";
+        /**
+         * Menu music 1 source.
+         */
+        public static final String MENU_MUSIC_1 = "soundtrack1.wav";
+        /**
+         * Game music 0 source.
+         */
+        public static final String GAME_MUSIC_0 = "game.wav";
+        /**
+         * Game music 1 source.
+         */
+        public static final String GAME_MUSIC_1 = "game1.wav";
+        /**
+         * Number of themes buttons.
+         */
+        public static final int NUM_THEMES_BUTTON = 2;
+        /**
+         * Number of game themes buttons.
+         */
+        public static final int NUM_GAME_THEMES_BUTTON = 2;
+        /**
+         * Base volume value.
+         */
+        public static final float BASE_VOLUME = 0.03f;
+        /**
+         * Gain multiplier.
+         */
+        public static final int GAIN_MULTIPLIER = 20;
 
+        /**
+         * Theme sources map of music and index.
+         */
+        private static final Map<String, Integer> THEMESOURCES = new HashMap<>();
+        /**
+         * Game theme sources map of music and index.
+         */
+        private static final Map<String, Integer> GAMESOURCES = new HashMap<>();
+
+        /**
+         * Private constructor.
+         */
+        private AudioAssets() {}
+
+        /**
+         * Get theme sources map.
+         * 
+         * @return the unmodifiable theme sources map.
+         */
+        public static final Map<String, Integer> getThemeSources() {
+            return Collections.unmodifiableMap(THEMESOURCES);
+        }
+
+        /**
+         * Get game theme sources map.
+         * 
+         * @return the unmodifiable game theme sources map.
+         */
+        public static final Map<String, Integer> getGameSources() {
+            return Collections.unmodifiableMap(GAMESOURCES);
+        }
+
+        /**
+         * Load all menu and game sources.
+         */
+        public static final void loadThemes() {
+            THEMESOURCES.put(MENU_MUSIC_0, 0);
+            THEMESOURCES.put(MENU_MUSIC_1, 1);
+            
+            GAMESOURCES.put(GAME_MUSIC_0, 0);
+            GAMESOURCES.put(GAME_MUSIC_1, 1);
+        }
+    }
+
+    /**
+     * Powerup constants.
+     */
+    public static final class PowerupAssets {
+        /**
+         * Life powerup dimension.
+         */
+        public static final int LIFE_DIMENSION = (int) (28 * Window.SCALE);
+        /**
+         * Life powerup padding.
+         */
+        public static final int LIFE_PADDING = (int) (10 * Window.SCALE);
+        /**
+         * Power up border dimension.
+         */
+        public static final int PUPS_BORDER_DIMENSION = (int) ((Window.SCALED_TILES_SIZE - 8) * Window.SCALE);
+        /**
+         * Power up border padding.
+         */
+        public static final int PUPS_BODER_PADDING = (int) (4 * Window.SCALE);
+        /**
+         * Power up active dimension.
+         */
+        public static final int PUPS_ACTIVE_DIMENSION = (int) ((Window.SCALED_TILES_SIZE - 20) * Window.SCALE);
+        /**
+         * Power up active padding.
+         */
+        public static final int PUPS_ACTIVE_PADDING = (int) (((float) (PUPS_BORDER_DIMENSION - PUPS_ACTIVE_DIMENSION) / 2) * Window.SCALE);
+        /**
+         * Power up heart source.
+         */
+        public static final String HEART = "heart";
+        /**
+         * Power up shield source.
+         */
+        public static final String SHIELD = "shield";
+        /**
+         * Power up freeze source.
+         */
+        public static final String FREEZE = "snowflake";
+        /**
+         * Power up star source.
+         */
+        public static final String STAR = "star";
+        /**
+         * Life source.
+         */
+        public static final String LIFE = "playerlife";
+        /**
+         * No life source.
+         */
+        public static final String NOLIFE = "nolife";
+        /**
+         * Empty border source.
+         */
+        public static final String EMPTYBORDER = "empty_border";
+
+        /**
+         * Powerup sources map of source and image.
+         */
+        private static final Map<String, BufferedImage> POWERUPSOURCES = new HashMap<>();
+
+        /**
+         * Private constructor.
+         */
+        private PowerupAssets() {}
+
+        /**
+         * Get powerup sources map.
+         * 
+         * @return the unmodifiable powerup sources map.
+         */
+        public static final Map<String, BufferedImage> getPowerupSources() {
+            return Collections.unmodifiableMap(POWERUPSOURCES);
+        }
+
+        /**
+         * Load powerup sources.
+         */
+        public static final void loadPowerupSources() {
+            POWERUPSOURCES.put(HEART, loadSources(HEART));
+            POWERUPSOURCES.put(SHIELD, loadSources(SHIELD));
+            POWERUPSOURCES.put(FREEZE, loadSources(FREEZE));
+            POWERUPSOURCES.put(STAR, loadSources(STAR));
+            POWERUPSOURCES.put(LIFE, loadSources(LIFE));
+            POWERUPSOURCES.put(NOLIFE, loadSources(NOLIFE));
+            POWERUPSOURCES.put(EMPTYBORDER, loadSources(EMPTYBORDER));
+        }
+    }
+
+    /**
+     * Barrel constants.
+     */
+    public static final class BarrelAssets {
+        /**
+         * Number of barrel existing (normal and double damage).
+         */
+        public static final int NUM_BARREL = 2;
+        /**
+         * Barrel sprite width.
+         */
+        public static final int SPRITE_WIDTH = 12;
+        /**
+         * Barrel sprite height.
+         */
+        public static final int SPRITE_HEIGHT = 10;
+        /**
+         * Barrel animation index.
+         */
+        public static final int BARREL_ANI = 0;
+        /**
+         * Double damage barrel animation index.
+         */
+        public static final int DD_BARREL_ANI = 1;
+        /**
+         * Number of barrel animation sprites.
+         */
+        public static final int BARREL_ANI_SPRITES = 4;
+
+        /**
+         * Barrel sources map of type barrel and image.
+         */
+        private static final Map<Integer, BufferedImage> BARRELSOURCES = new HashMap<>();
+
+        /**
+         * Private constructor.
+         */
+        private BarrelAssets() {}
+
+        /**
+         * Get barrel sources map.
+         * 
+         * @return the unmodifiable barrel sources map.
+         */
+        public static final Map<Integer, BufferedImage> getBarrelSources() {
+            return Collections.unmodifiableMap(BARRELSOURCES);
+        }
+
+        /**
+         * Load barrel sources.
+         */
+        public static final void loadBarrelSources() {
+            BARRELSOURCES.put(BARREL_ANI, loadSources("barrel"));
+            BARRELSOURCES.put(DD_BARREL_ANI, loadSources("barrel_dd"));
+        }
+    }
+
+    /**
+     * Monkey constants.
+     */
+    public static final class MonkeyAssets {
+        /**
+         * Monkey sprite width.
+         */
+        public static final int SPRITE_WIDTH = 40;
+        /**
+         * Monkey sprite height.
+         */
+        public static final int SPRITE_HEIGHT = 32;
+        /**
+         * Monkey ani index.
+         */     
+        public static final int MONKEY_ANI = 0;
+        /**
+         * Number of monkey ani sprites.
+         */
+        public static final int MONKEY_ANI_SPRITES = 4;
+
+        /**
+         * Monkey sources map of index and image
+         */
+        private static final Map<Integer, BufferedImage> MONKEYSOURCES = new HashMap<>();
+
+        /**
+         * Private constructor.
+         */
+        private MonkeyAssets() {}
+
+        /**
+         * Get monkey sources map.
+         * 
+         * @return the unmodifiable monkey sources map.
+         */
+        public static final Map<Integer, BufferedImage> getMonkeySources() {
+            return Collections.unmodifiableMap(MONKEYSOURCES);
+        }
+
+        /**
+         * Load monkey sources.
+         */
+        public static final void loadMonkeySources() {
+            MONKEYSOURCES.put(MONKEY_ANI, loadSources("donkeykong"));
+        }
+    }
+
+    /**
+     * Princess constants.
+     */
+    public final static class PrincessAssets {
+        /**
+         * Princess sprite width.
+         */
+        public static final int SPRITE_WIDTH = 16;
+        /**
+         * Princess sprite height.
+         */
+        public static final int SPRITE_HEIGHT = 22;
+        /**
+         * Princess ani index.
+         */
+        public static final int PRINCESS_ANI = 0;
+        /**
+         * Number of princess ani sprites.
+         */
+        public static final int PRINCESS_ANI_SPRITES = 3;
+        /**
+         * Number of princess animation.
+         */
+        public static final int NUM_PRINCESS_ANI = 2; 
+
+        /**
+         * Princess source map of index and image.
+         */
+        private static final Map<Integer, BufferedImage> PRINCESSSOURCES = new HashMap<>();
+
+        /**
+         * Private constructor.
+         */
+        private PrincessAssets() {}
+
+        /**
+         * Get princess sources map.
+         * 
+         * @return the unmodifiable princess sources map.
+         */
+        public static final Map<Integer, BufferedImage> getPrincessSources() {
+            return Collections.unmodifiableMap(PRINCESSSOURCES);
+        }
+
+        /**
+         * Load princess sources.
+         */
+        public static final void loadPrincessSources() {
+            PRINCESSSOURCES.put(PRINCESS_ANI, loadSources("princess"));
+        }
+    }
+
+    public final static class PlayerAssets {
+        /**
+         * Climbing animation index.
+         */
+        public static final int CLIMB_ANI = 4;
+        /**
+         * Number of climbing ani sprites.
+         */
+        public static final int CLIMB_ANI_SPRITES = 2;
+        /**
+         * Movement animation index.
+         */
+        public static final int MOVEMENT_ANI = 0;
+        /**
+         * Number of movement ani sprites.
+         */
+        public static final int MOVEMENT_ANI_SPRITES = 3;
+        /**
+         * Player climbing animation index.
+         */
+        public static final int CLIMBING_ANI = 1;
+        /**
+         * Player sprite dimension.
+         */
+        public static final int SPRITE_DIMENSION = 16;
+        /**
+         * Player number of animation.
+         */
+        public static final int NUM_MOVEMENT_ANI = 5;
+        /**
+         * Player number of starting lives.
+         */
+        public static final int NUM_LIVES = 3;
+        /**
+         * Player sources map of index and image.
+         */
+        private static final Map<Integer, BufferedImage> playerSources = new HashMap<>();
+
+        /**
+         * Private constructor.
+         */
+        private PlayerAssets() {}
+
+        /**
+         * Get player sources map.
+         * 
+         * @return the unmodifiable player sources map.
+         */
+        public static final Map<Integer, BufferedImage> getPlayerSources() {
+            return Collections.unmodifiableMap(playerSources);
+        }
+
+        /**
+         * Load player sources.
+         */
+        public static final void loadPlayerSources() {
+            playerSources.put(MOVEMENT_ANI, loadSources("mario_movement"));
+            playerSources.put(CLIMBING_ANI, loadSources("climbingplayer"));
+        }
+    }
 }

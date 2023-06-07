@@ -20,7 +20,7 @@ import java.util.Map;
 import it.unibo.donkeykong.common.Pair;
 import it.unibo.donkeykong.controller.impl.EndPauseController;
 import it.unibo.donkeykong.utilities.AudioUtilities;
-import it.unibo.donkeykong.utilities.Constants.Audio;
+import it.unibo.donkeykong.utilities.ViewConstants.AudioAssets;
 import it.unibo.donkeykong.utilities.ViewConstants.MenuAssets;
 import it.unibo.donkeykong.utilities.ViewConstants.Window;
 import it.unibo.donkeykong.utilities.ViewConstants.MenuAssets.SettingsAssets;
@@ -37,7 +37,7 @@ public final class EndPauseView implements View {
     private final EndPauseController endPauseController;
 
     private final Rectangle[] volumeButtons = new Rectangle[SettingsAssets.NUM_VOLUME_BUTTONS];
-    private final Rectangle[] gameThemesButtons = new Rectangle[Audio.numGameThemesButtons];
+    private final Rectangle[] gameThemesButtons = new Rectangle[AudioAssets.NUM_GAME_THEMES_BUTTON];
     private final Map<Button, BufferedImage> buttons = new HashMap<>();
     private final Map<Rectangle, BufferedImage> alternativeButtons = new HashMap<>();
 
@@ -65,16 +65,16 @@ public final class EndPauseView implements View {
                                                                      SettingsAssets.MUTE_BUTTON_Y, 
                                                                      SettingsAssets.SQUARE_BUTTON_SIZE, 
                                                                      SettingsAssets.SQUARE_BUTTON_SIZE);
-        this.gameThemesButtons[Audio.getGameSources()
-                                    .get(Audio.gameMusic0)] = new Rectangle(SettingsAssets.LEFT_SETTINGS_BUTTON_X, 
-                                                                            SettingsAssets.MUSIC_BUTTON_Y, 
-                                                                            SettingsAssets.THEMES_BUTTON_WIDTH, 
-                                                                            SettingsAssets.SQUARE_BUTTON_SIZE);
-        this.gameThemesButtons[Audio.getGameSources()
-                                    .get(Audio.gameMusic1)] = new Rectangle(SettingsAssets.RIGHT_SETTINGS_BUTTON_X, 
-                                                                            SettingsAssets.MUSIC_BUTTON_Y, 
-                                                                            SettingsAssets.THEMES_BUTTON_WIDTH, 
-                                                                            SettingsAssets.SQUARE_BUTTON_SIZE);
+        this.gameThemesButtons[AudioAssets.getGameSources()
+                                    .get(AudioAssets.GAME_MUSIC_0)] = new Rectangle(SettingsAssets.LEFT_SETTINGS_BUTTON_X, 
+                                                                                    SettingsAssets.MUSIC_BUTTON_Y, 
+                                                                                    SettingsAssets.THEMES_BUTTON_WIDTH, 
+                                                                                    SettingsAssets.SQUARE_BUTTON_SIZE);
+        this.gameThemesButtons[AudioAssets.getGameSources()
+                                    .get(AudioAssets.GAME_MUSIC_1)] = new Rectangle(SettingsAssets.RIGHT_SETTINGS_BUTTON_X, 
+                                                                                    SettingsAssets.MUSIC_BUTTON_Y, 
+                                                                                    SettingsAssets.THEMES_BUTTON_WIDTH, 
+                                                                                    SettingsAssets.SQUARE_BUTTON_SIZE);
 
         this.buttons.put(backHome, getSettingsSources().get(SettingsAssets.HOME_BUTTON));
         this.buttons.put(backToPlay, getSettingsSources().get(SettingsAssets.AGAIN_BUTTON));
@@ -83,9 +83,9 @@ public final class EndPauseView implements View {
                                getSettingsSources().get(SettingsAssets.ROUNDED_VOLUME_ON));
         alternativeButtons.put(volumeButtons[SettingsAssets.VOL_OFF_B], 
                                getSettingsSources().get(SettingsAssets.ROUNDED_VOLUME_OFF));
-        alternativeButtons.put(gameThemesButtons[Audio.getThemeSources().get(Audio.menuMusic0)],
+        alternativeButtons.put(gameThemesButtons[AudioAssets.getThemeSources().get(AudioAssets.MENU_MUSIC_0)],
                                ResourceFuncUtilities.loadSources("1"));
-        alternativeButtons.put(gameThemesButtons[Audio.getThemeSources().get(Audio.menuMusic1)],
+        alternativeButtons.put(gameThemesButtons[AudioAssets.getThemeSources().get(AudioAssets.MENU_MUSIC_1)],
                                ResourceFuncUtilities.loadSources("2"));
     }
 
@@ -142,11 +142,11 @@ public final class EndPauseView implements View {
                         this.endPauseController.resumeTimer();
                     } else if (Gamestate.getGamestate() == Gamestate.WIN 
                                || Gamestate.getGamestate() == Gamestate.DEATH) {
-                        AudioUtilities.playSoundtrack(Audio.gameMusic1);
+                        AudioUtilities.playSoundtrack(AudioAssets.GAME_MUSIC_1);
                         this.endPauseController.startGameController();
                     }
                 } else if (b.getButtonGamestate().equals(Gamestate.MENU)) {
-                    AudioUtilities.playSoundtrack(Audio.menuMusic0);
+                    AudioUtilities.playSoundtrack(AudioAssets.MENU_MUSIC_0);
                     if (Gamestate.getGamestate() == Gamestate.PAUSE) {
                         this.endPauseController.stopTimer();
                     }
@@ -167,10 +167,10 @@ public final class EndPauseView implements View {
     }
 
     private void themeChange(final Point point) {
-        if (this.gameThemesButtons[Audio.getGameSources().get(Audio.gameMusic0)].contains(point)) {
-            AudioUtilities.playSoundtrack(Audio.gameMusic0);
-        } else if (this.gameThemesButtons[Audio.getGameSources().get(Audio.gameMusic1)].contains(point)) {
-            AudioUtilities.playSoundtrack(Audio.gameMusic1);
+        if (this.gameThemesButtons[AudioAssets.getGameSources().get(AudioAssets.GAME_MUSIC_0)].contains(point)) {
+            AudioUtilities.playSoundtrack(AudioAssets.GAME_MUSIC_0);
+        } else if (this.gameThemesButtons[AudioAssets.getGameSources().get(AudioAssets.GAME_MUSIC_1)].contains(point)) {
+            AudioUtilities.playSoundtrack(AudioAssets.GAME_MUSIC_1);
         }
     }
 

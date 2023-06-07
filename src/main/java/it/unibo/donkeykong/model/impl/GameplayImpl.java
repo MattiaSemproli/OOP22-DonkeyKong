@@ -1,6 +1,6 @@
 package it.unibo.donkeykong.model.impl;
 
-import static it.unibo.donkeykong.utilities.Constants.Level.platformBlockPadding;
+import static it.unibo.donkeykong.utilities.Constants.Level.PLATFORM_BLOCK_PADDING;
 import static it.unibo.donkeykong.utilities.Constants.Application.SCALED_TILES_SIZE;
 
 import java.util.ArrayList;
@@ -28,7 +28,7 @@ import it.unibo.donkeykong.utilities.Constants.Action;
 import it.unibo.donkeykong.utilities.Constants.Barrel;
 import it.unibo.donkeykong.utilities.Constants.Monkey;
 import it.unibo.donkeykong.utilities.Constants.Player;
-import it.unibo.donkeykong.utilities.Constants.PowerupAssets;
+import it.unibo.donkeykong.utilities.Constants.Powerup;
 import it.unibo.donkeykong.utilities.Constants.Princess;
 import it.unibo.donkeykong.utilities.Constants.Application;
 
@@ -70,31 +70,31 @@ public class GameplayImpl implements Gameplay {
 
     private void generateInteractableEntities() {
         this.generatePlayer();
-        this.entities.add(this.entityFactoryImpl.generateMonkey(new Pair<>(Monkey.levelOneStartingMonkeyX, 
-                                                                           Monkey.levelOneStartingMonkeyY)));
-        this.entities.add(this.entityFactoryImpl.generatePrincess(new Pair<>(Princess.levelOneStartingPrincessX, 
-                                                                             Princess.levelOneStartingPrincessY)));
+        this.entities.add(this.entityFactoryImpl.generateMonkey(new Pair<>(Monkey.LEVEL_ONE_STARTING_X, 
+                                                                           Monkey.LEVEL_ONE_STARTING_Y)));
+        this.entities.add(this.entityFactoryImpl.generatePrincess(new Pair<>(Princess.LEVEL_ONE_STARTING_X, 
+                                                                             Princess.LEVEL_ONE_STARTING_Y)));
     }
 
     private void generatePlayer() {
         float x, y;
         switch (CurrentLevel.getCurrentLevel()) {
             case ONE:
-                x = Player.levelOneStartingPlayerX;
-                y = Player.levelOneStartingPlayerY;
+                x = Player.LEVEL_ONE_STARTING_X;
+                y = Player.LEVEL_ONE_STARTING_Y;
                 break;
             case TWO:
-                x = Player.levelTwoStartingPlayerX;
-                y = Player.levelTwoStartingPlayerY;
+                x = Player.LEVEL_TWO_STARTING_X;
+                y = Player.LEVEL_TWO_STARTING_Y;
                 break;
             case THREE:
-                x = Player.levelThreeStartingPlayerX;
-                y = Player.levelThreeStartingPlayerY;
+                x = Player.LEVEL_THREE_STARTING_X;
+                y = Player.LEVEL_THREE_STARTING_Y;
                 break;
             case FOUR:
                 default:
-                x = Player.levelFourStartingPlayerX;
-                y = Player.levelFourStartingPlayerY;
+                x = Player.LEVEL_FOUR_STARTING_X;
+                y = Player.LEVEL_FOUR_STARTING_Y;
                 break;
         }
         this.entities.add(this.entityFactoryImpl.generatePlayer(new Pair<>(x, y)));
@@ -103,35 +103,35 @@ public class GameplayImpl implements Gameplay {
     private void createMapEntities() {
         this.levelMap.forEach((k, v) -> {
             switch (v) {
-                case Constants.Level.platformBlock:
+                case Constants.Level.PLATFORM_BLOCK:
                     this.entities.add(this.entityFactoryImpl
                                           .generateBlock(new Pair<>((float) k.getX() * SCALED_TILES_SIZE,
                                                                     (float) k.getY() * SCALED_TILES_SIZE
-                                                                     + platformBlockPadding)));
+                                                                     + PLATFORM_BLOCK_PADDING)));
                     break;
-                case Constants.Level.coloredLadder:
+                case Constants.Level.COLORED_LADDER:
                     this.entities.add(this.entityFactoryImpl
                                           .generateLadder(new Pair<>((float) k.getX() * SCALED_TILES_SIZE
-                                                                      + Constants.Level.ladderPadding, 
+                                                                      + Constants.Level.LADDER_PADDING, 
                                                                      (float) k.getY() * SCALED_TILES_SIZE)));
                     break;
-                case Constants.Level.blockWithUpperLadder:
+                case Constants.Level.BLOCK_UP_LADDER:
                     this.entities.add(this.entityFactoryImpl
                                           .generateBlockWithUpLadder(new Pair<>((float) k.getX() * SCALED_TILES_SIZE, 
                                                                                 (float) k.getY() * SCALED_TILES_SIZE
-                                                                                 + platformBlockPadding)));
+                                                                                 + PLATFORM_BLOCK_PADDING)));
                     break;
-                case Constants.Level.blockWithLowerLadder:
+                case Constants.Level.BLOCK_DOWN_LADDER:
                     this.entities.add(this.entityFactoryImpl
                                           .generateBlockWithDownLadder(new Pair<>((float) k.getX() * SCALED_TILES_SIZE, 
                                                                                   (float) k.getY() * SCALED_TILES_SIZE
-                                                                                   + platformBlockPadding)));
+                                                                                   + PLATFORM_BLOCK_PADDING)));
                     break;
-                case Constants.Level.blockWithDoubleLadder:
+                case Constants.Level.BLOCK_BOTH_LADDER:
                     this.entities.add(this.entityFactoryImpl
                                           .generateBlockWithUpDownLadder(new Pair<>((float) k.getX() * SCALED_TILES_SIZE, 
                                                                                     (float) k.getY() * SCALED_TILES_SIZE
-                                                                                     + platformBlockPadding)));
+                                                                                     + PLATFORM_BLOCK_PADDING)));
                     break;
                 default:
                     break;
@@ -149,7 +149,7 @@ public class GameplayImpl implements Gameplay {
         boolean isOnBlock, isBlock, isOccupied;
         do {
             final int x = random.nextInt(Application.TILES_IN_WIDTH);
-            final int y = random.nextInt(PowerupAssets.MIN_SPAWN, PowerupAssets.MAX_SPAWN);
+            final int y = random.nextInt(Powerup.MIN_SPAWN, Powerup.MAX_SPAWN);
             isBlock = this.getLevelMatrixType(x, y).isPresent();
             isOnBlock = this.getLevelMatrixType(x, y + 1).isPresent();
             isOccupied = this.getEntities().stream()
@@ -168,29 +168,29 @@ public class GameplayImpl implements Gameplay {
         passX *= SCALED_TILES_SIZE;
         passY *= SCALED_TILES_SIZE;
         if (t == Type.HEART) {
-            passY += PowerupAssets.HEART_Y_PADDING;
-            passX += PowerupAssets.HEART_X_PADDING;
+            passY += Powerup.HEART_Y_PADDING;
+            passX += Powerup.HEART_X_PADDING;
         } else if (t == Type.SHIELD) {
-            passY += PowerupAssets.SHIELD_Y_PADDING;
-            passX += PowerupAssets.SHIELD_X_PADDING;
+            passY += Powerup.SHIELD_Y_PADDING;
+            passX += Powerup.SHIELD_X_PADDING;
         } else if (t == Type.SNOWFLAKE) {
-            passY += PowerupAssets.FREEZE_PADDING;
-            passX += PowerupAssets.FREEZE_PADDING;
+            passY += Powerup.FREEZE_PADDING;
+            passX += Powerup.FREEZE_PADDING;
         } else if (t == Type.STAR) {
-            passY += PowerupAssets.STAR_PADDING;
-            passX += PowerupAssets.STAR_PADDING;
+            passY += Powerup.STAR_PADDING;
+            passX += Powerup.STAR_PADDING;
         }
-        return new Pair<>((float) passX, (float) passY + platformBlockPadding);
+        return new Pair<>((float) passX, (float) passY + PLATFORM_BLOCK_PADDING);
     }
 
     private Optional<Type> getLevelMatrixType(final int x, final int y) {
         switch (this.levelMap.get(new Pair<>(x, y))) {
-            case Constants.Level.platformBlock:
-            case Constants.Level.coloredLadder:
-            case Constants.Level.whiteLadder:
-            case Constants.Level.blockWithUpperLadder:
-            case Constants.Level.blockWithLowerLadder:
-            case Constants.Level.blockWithDoubleLadder:
+            case Constants.Level.PLATFORM_BLOCK:
+            case Constants.Level.COLORED_LADDER:
+            case Constants.Level.WHITE_LADDER:
+            case Constants.Level.BLOCK_UP_LADDER:
+            case Constants.Level.BLOCK_DOWN_LADDER:
+            case Constants.Level.BLOCK_BOTH_LADDER:
                 return Optional.of(Type.BLOCK);
             default:
                 return Optional.empty();

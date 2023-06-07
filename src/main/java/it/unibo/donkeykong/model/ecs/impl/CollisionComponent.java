@@ -7,7 +7,7 @@ import it.unibo.donkeykong.utilities.Constants.Barrel;
 import it.unibo.donkeykong.utilities.Constants.Level;
 import it.unibo.donkeykong.utilities.Constants.Monkey;
 import it.unibo.donkeykong.utilities.Constants.Player;
-import it.unibo.donkeykong.utilities.Constants.PowerupAssets;
+import it.unibo.donkeykong.utilities.Constants.Powerup;
 import it.unibo.donkeykong.utilities.Constants.Princess;
 import it.unibo.donkeykong.utilities.Constants.Application;
 import it.unibo.donkeykong.common.Line;
@@ -125,7 +125,7 @@ public class CollisionComponent extends AbstractComponent {
                                    && hitbox.intersects(e.getComponent(CollisionComponent.class).get().getHitbox()))
                       .findAny().ifPresentOrElse(e -> {
                             mc.setOnLadder(true);
-                            this.nextPosition = Optional.of(new Pair<>(e.getPosition().getX() - Level.ladderPadding,
+                            this.nextPosition = Optional.of(new Pair<>(e.getPosition().getX() - Level.LADDER_PADDING,
                                                                        this.nextPosition.get().getY()));
                             },
                             () -> {
@@ -253,17 +253,17 @@ public class CollisionComponent extends AbstractComponent {
     private void resetPlayer(final MovementComponent mc) {
         switch (CurrentLevel.getCurrentLevel()) {
             case ONE:
-                entity.setPosition(new Pair<>(Player.levelOneStartingPlayerX, Player.levelOneStartingPlayerY));
+                entity.setPosition(new Pair<>(Player.LEVEL_ONE_STARTING_X, Player.LEVEL_ONE_STARTING_Y));
                 break;
             case TWO:
-                entity.setPosition(new Pair<>(Player.levelTwoStartingPlayerX, Player.levelTwoStartingPlayerY));
+                entity.setPosition(new Pair<>(Player.LEVEL_TWO_STARTING_X, Player.LEVEL_TWO_STARTING_Y));
                 break;
             case THREE:
-                entity.setPosition(new Pair<>(Player.levelThreeStartingPlayerX, Player.levelThreeStartingPlayerY));
+                entity.setPosition(new Pair<>(Player.LEVEL_THREE_STARTING_X, Player.LEVEL_THREE_STARTING_Y));
                 break;
             case FOUR:
             default:
-                entity.setPosition(new Pair<>(Player.levelFourStartingPlayerX, Player.levelFourStartingPlayerY));
+                entity.setPosition(new Pair<>(Player.LEVEL_FOUR_STARTING_X, Player.LEVEL_FOUR_STARTING_Y));
                 break;
         }
         mc.resetInAir();
@@ -319,8 +319,8 @@ public class CollisionComponent extends AbstractComponent {
    }
 
     private void checkPrincessCollision() {
-        final int leftTile = (int) (Princess.levelOneStartingPrincessX / Application.SCALED_TILES_SIZE) - 1;
-        final int rightTile = (int) (Princess.levelOneStartingPrincessX / Application.SCALED_TILES_SIZE) + 1;
+        final int leftTile = (int) (Princess.LEVEL_ONE_STARTING_X / Application.SCALED_TILES_SIZE) - 1;
+        final int rightTile = (int) (Princess.LEVEL_ONE_STARTING_X / Application.SCALED_TILES_SIZE) + 1;
         if (hitbox.getMaxX() > rightTile * Application.SCALED_TILES_SIZE + Application.SCALED_TILES_SIZE
             || hitbox.getX() < leftTile * Application.SCALED_TILES_SIZE) {
             final MovementComponent mc = this.entity.getComponent(MovementComponent.class).get();
@@ -342,44 +342,44 @@ public class CollisionComponent extends AbstractComponent {
                 hitbox = new Rectangle(x, y, width, height);
                 break;
             case PRINCESS:
-                width = Princess.princessWidth;
-                height = Princess.princessHeight;
+                width = Princess.PRINCESS_WIDTH;
+                height = Princess.PRINCESS_HEIGHT;
                 hitbox = new Rectangle(x, y, width, height);
                 break;
             case MONKEY:
-                width = Monkey.monkeyWidth;
-                height = Monkey.monkeyHeight;
+                width = Monkey.MONKEY_WIDTH;
+                height = Monkey.MONKEY_HEIGHT;
                 hitbox = new Rectangle(x, y, width, height);
                 break;
             case HEART:
-                width = PowerupAssets.HEART_WIDTH;
-                height = PowerupAssets.HEART_HEIGHT;
+                width = Powerup.HEART_WIDTH;
+                height = Powerup.HEART_HEIGHT;
                 hitbox = new Rectangle(x, y, width, height);
                 break;
             case SNOWFLAKE:
-                width = PowerupAssets.FREEZE_DIMENSION;
-                height = PowerupAssets.FREEZE_DIMENSION;
+                width = Powerup.FREEZE_DIMENSION;
+                height = Powerup.FREEZE_DIMENSION;
                 hitbox = new Rectangle(x, y, width, height);
                 break;
             case STAR:
-                width = PowerupAssets.STAR_DIMENSION;
-                height = PowerupAssets.STAR_DIMENSION;
+                width = Powerup.STAR_DIMENSION;
+                height = Powerup.STAR_DIMENSION;
                 hitbox = new Rectangle(x, y, width, height);
                 break;
             case SHIELD:
-                width = PowerupAssets.SHIELD_WIDTH;
-                height = PowerupAssets.SHIELD_HEIGHT;
+                width = Powerup.SHIELD_WIDTH;
+                height = Powerup.SHIELD_HEIGHT;
                 hitbox = new Rectangle(x, y, width, height);
                 break;
             case LADDER:
-                hitbox = new Rectangle(x, y, width - (Level.ladderPadding * 2), height);
+                hitbox = new Rectangle(x, y, width - (Level.LADDER_PADDING * 2), height);
                 break;
             case BLOCK:
             case BLOCK_LADDER_DOWN:
             case BLOCK_LADDER_UP:
             case BLOCK_LADDER_UPDOWN:
             default:
-                hitbox = new Rectangle(x, y, width, height - Level.platformBlockPadding * 2);
+                hitbox = new Rectangle(x, y, width, height - Level.PLATFORM_BLOCK_PADDING * 2);
                 break;
         }
     }

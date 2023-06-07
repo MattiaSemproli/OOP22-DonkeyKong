@@ -1,12 +1,5 @@
 package it.unibo.donkeykong.utilities;
 
-import static it.unibo.donkeykong.utilities.ResourceFuncUtilities.loadSources;
-
-import java.awt.image.BufferedImage;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
-
 import it.unibo.donkeykong.utilities.ViewConstants.Window;
 
 /**
@@ -62,7 +55,7 @@ public class Constants {
     /**
      * Powerup constants.
      */
-    public static final class PowerupAssets {
+    public static final class Powerup {
         /**
          * Powerful powerup spawning delay.
          */
@@ -74,11 +67,11 @@ public class Constants {
         /**
          * Powerup minimum y position to spawn.
          */
-        public static final int MIN_SPAWN = (int) (Monkey.levelOneStartingMonkeyY / Window.SCALED_TILES_SIZE) + 2;
+        public static final int MIN_SPAWN = (int) (Monkey.LEVEL_ONE_STARTING_Y / Window.SCALED_TILES_SIZE) + 2;
         /**
          * Powerup maximum y position to spawn.
          */
-        public static final int MAX_SPAWN = (int) (Player.levelOneStartingPlayerY / Window.SCALED_TILES_SIZE) - 1;
+        public static final int MAX_SPAWN = (int) (Player.LEVEL_ONE_STARTING_Y / Window.SCALED_TILES_SIZE) - 1;
         /**
          * Heart powerup width.
          */
@@ -127,93 +120,52 @@ public class Constants {
          * Star powerup padding.
          */
         public static final int STAR_PADDING = (int) (4 * Window.SCALE);
-        /**
-         * Life powerup dimension.
-         */
-        public static final int LIFE_DIMENSION = (int) (28 * Window.SCALE);
-        /**
-         * Life powerup padding.
-         */
-        public static final int LIFE_PADDING = (int) (10 * Window.SCALE);
-        public static final int powerupBorderDimension = (int) ((Window.SCALED_TILES_SIZE - 8) * Window.SCALE);
-        public static final int powerupBorderPadding = (int) (4 * Window.SCALE);
-        public static final int powerupActiveDimension = (int) ((Window.SCALED_TILES_SIZE - 20) * Window.SCALE);
-        public static final int powerupActivePadding = (int) (((float) (powerupBorderDimension - powerupActiveDimension) / 2) * Window.SCALE);
-        public static final String heart = "heart";
-        public static final String shield = "shield";
-        public static final String freeze = "snowflake";
-        public static final String star = "star";
-        public static final String life = "playerlife";
-        public static final String noLife = "nolife";
-        public static final String emptyBorder = "empty_border";
-
-        private static final Map<String, BufferedImage> powerupsources = new HashMap<>();
-
-        private PowerupAssets() {}
-
-        public static final Map<String, BufferedImage> getPowerupSources() {
-            return Collections.unmodifiableMap(powerupsources);
-        }
-
-        public static final void loadPowerupSources() {
-            powerupsources.put(heart, loadSources(heart));
-            powerupsources.put(shield, loadSources(shield));
-            powerupsources.put(freeze, loadSources(freeze));
-            powerupsources.put(star, loadSources(star));
-            powerupsources.put(life, loadSources(life));
-            powerupsources.put(noLife, loadSources(noLife));
-            powerupsources.put(emptyBorder, loadSources(emptyBorder));
-        }
     }
 
+    /**
+     * Level constants.
+     */
     public static final class Level {
-        public static final String levelOne = "one";
-        public static final String levelTwo = "two";
-        public static final String levelThree = "three";
-        public static final String levelFour = "four";
-        public static final int defaultSpriteSize = 16;
-        public static final int blackBlock = 0;
-        public static final int platformBlock = 1;
-        public static final int coloredLadder = 2;
-        public static final int whiteLadder = 3;
-        public static final int blockWithUpperLadder = 4;
-        public static final int blockWithLowerLadder = 5;
-        public static final int blockWithDoubleLadder = 6;
-        public static final int levelSpritesLength = 7;
-        public static final int numLevelsButtons = 4;
-        public static final int platformBlockPadding = Math.round(12 * Window.SCALE);
-        public static final int ladderPadding = Math.round(9 * Window.SCALE);
-        public static final int princessPadding = 6;
-    }
-
-    public static final class Audio {
-        public static final String menuMusic0 = "soundtrack.wav";
-        public static final String menuMusic1 = "soundtrack1.wav";
-        public static final String gameMusic0 = "game.wav";
-        public static final String gameMusic1 = "game1.wav";
-        public static final int numThemesButtons = 2;
-        public static final int numGameThemesButtons = 2;
-        public static final float baseVolume = 0.03f;
-        public static final int gainMultiplier = 20;
-
-        private static final Map<String, Integer> themeSources = new HashMap<>();
-        private static final Map<String, Integer> gameSources = new HashMap<>();
-
-        public static final Map<String, Integer> getThemeSources() {
-            return Collections.unmodifiableMap(themeSources);
-        }
-
-        public static final Map<String, Integer> getGameSources() {
-            return Collections.unmodifiableMap(gameSources);
-        }
-
-        public static final void loadThemes() {
-            themeSources.put(menuMusic0, 0);
-            themeSources.put(menuMusic1, 1);
-            
-            gameSources.put(gameMusic0, 0);
-            gameSources.put(gameMusic1, 1);
-        }
+        /**
+         * Black block index.
+         */
+        public static final int BLACK_BLOCK = 0;
+        /**
+         * Platform block index.
+         */
+        public static final int PLATFORM_BLOCK = 1;
+        /**
+         * Ladder index.
+         */
+        public static final int COLORED_LADDER = 2;
+        /**
+         * White ladder index.
+         */
+        public static final int WHITE_LADDER = 3;
+        /**
+         * Block with up ladder index.
+         */
+        public static final int BLOCK_UP_LADDER = 4;
+        /**
+         * Block with down ladder index.
+         */
+        public static final int BLOCK_DOWN_LADDER = 5;
+        /**
+         * Block with both ladder down and up index.
+         */
+        public static final int BLOCK_BOTH_LADDER = 6;
+        /**
+         * Padding of a platform block.
+         */
+        public static final int PLATFORM_BLOCK_PADDING = Math.round(12 * Window.SCALE);
+        /**
+         * Padding of a ladder.
+         */
+        public static final int LADDER_PADDING = Math.round(9 * Window.SCALE);
+        /**
+         * Princess padding.
+         */
+        public static final int PRINCESS_PADDING = 6;
     }
 
     /**
@@ -247,10 +199,6 @@ public class Constants {
      */
     public static final class Barrel {
         /**
-         * Barrel dimension.
-         */
-        public static final int BARREL_DIMENSION = (int) (48 * Window.SCALE);
-        /**
          * Barrel width.
          */
         public static final int BARREL_WIDTH = (int) (36 * Window.SCALE);
@@ -258,8 +206,6 @@ public class Constants {
          * Barrel height.
          */
         public static final int BARREL_HEIGHT = (int) (30 * Window.SCALE);
-        public static final int barrelBoxWidth = (int) (56 * Window.SCALE);
-        public static final int barrelBoxHeight = (int) (96 * Window.SCALE);
         /**
          * Barrel floor error tolerance.
          */
@@ -288,39 +234,65 @@ public class Constants {
          * Index that barrel change direction.
          */
         public static final int CHANGE_DIR_INDEX = 1;
-        public static final int barrelAni = 0;
-        public static final int ddBarrelAni = 1;
-        public static final int barrelAniSprites = 4;
-        public static final int numBarrel = 2;
-        public static final int spriteWidth = 12;
-        public static final int spriteHeight = 10;
-        public static final int aniBarrelSpeed = 15;
-
-        private static final Map<Integer, BufferedImage> barrelSources = new HashMap<>();
-
-        public static final Map<Integer, BufferedImage> getBarrelSources() {
-            return Collections.unmodifiableMap(barrelSources);
-        }
-
-        public static final void loadBarrelSources() {
-            barrelSources.put(barrelAni, loadSources("barrel"));
-            barrelSources.put(ddBarrelAni, loadSources("barrel_dd"));
-        }
+        /**
+         * Barrel animation speed.
+         */
+        public static final int ANI_BARREL_SPEED = 15;
+        /**
+         * Barrel animation index.
+         */
+        public static final int BARREL_ANI = 0;
+        /**
+         * Double damage barrel animation index.
+         */
+        public static final int DD_BARREL_ANI = 1;
+        /**
+         * Number of barrel animation sprites.
+         */
+        public static final int BARREL_ANI_SPRITES = 4;
     }
 
     public static final class Player {
-        public static final float levelOneStartingPlayerX = Window.SCALED_TILES_SIZE;
-        public static final float levelOneStartingPlayerY = Window.SCALED_TILES_SIZE * 12 + Level.platformBlockPadding;
-        public static final float levelTwoStartingPlayerX = Window.SCALED_TILES_SIZE;
-        public static final float levelTwoStartingPlayerY = Window.SCALED_TILES_SIZE * 12 + Level.platformBlockPadding;
-        public static final float levelThreeStartingPlayerX = Window.SCALED_TILES_SIZE * 2;
-        public static final float levelThreeStartingPlayerY = Window.SCALED_TILES_SIZE * 12 + Level.platformBlockPadding;
-        public static final float levelFourStartingPlayerX = Window.SCALED_TILES_SIZE * (Window.TILES_IN_WIDTH / 2);
-        public static final float levelFourStartingPlayerY = Window.SCALED_TILES_SIZE * 12 + Level.platformBlockPadding;
-        public static final int playerDimension = (int) (48 * Window.SCALE);
-        public static final int ladderErrorPercentage = 40;
-        public static final float canLadderError = playerDimension * ladderErrorPercentage / 100;
-        public static final float velocity = 2f * Window.SCALE;
+        /**
+         * Player level one starting x position.
+         */
+        public static final float LEVEL_ONE_STARTING_X = Window.SCALED_TILES_SIZE;
+        /**
+         * Player level one starting y position.
+         */
+        public static final float LEVEL_ONE_STARTING_Y = Window.SCALED_TILES_SIZE * 12 + Level.PLATFORM_BLOCK_PADDING;
+        /**
+         * Player level two starting x position.
+         */
+        public static final float LEVEL_TWO_STARTING_X = Window.SCALED_TILES_SIZE;
+        /**
+         * Player level two starting y position.
+         */
+        public static final float LEVEL_TWO_STARTING_Y = Window.SCALED_TILES_SIZE * 12 + Level.PLATFORM_BLOCK_PADDING;
+        /**
+         * Player level three starting x position.
+         */
+        public static final float LEVEL_THREE_STARTING_X = Window.SCALED_TILES_SIZE * 2;
+        /**
+         * Player level three starting y position.
+         */
+        public static final float LEVEL_THREE_STARTING_Y = Window.SCALED_TILES_SIZE * 12 + Level.PLATFORM_BLOCK_PADDING;
+        /**
+         * Player level four starting x position.
+         */
+        public static final float LEVEL_FOUR_STARTING_X = Window.SCALED_TILES_SIZE * (Window.TILES_IN_WIDTH / 2);
+        /**
+         * Player level four starting y position.
+         */
+        public static final float LEVEL_FOUR_STARTING_Y = Window.SCALED_TILES_SIZE * 12 + Level.PLATFORM_BLOCK_PADDING;
+        /**
+         * Player dimension.
+         */
+        public static final int PLAYER_DIMENSION = (int) (48 * Window.SCALE);
+        /**
+         * Player speed.
+         */
+        public static final float VELOCITY = 2f * Window.SCALE;
         /**
          * Number of lives.
          */
@@ -345,86 +317,155 @@ public class Constants {
          * Freeze powerup duration.
          */
         public static final int FREEZE_DURATION = 120 * 3;
-        public static final int movementAni = 0;
-        public static final int climbingAni = 1;
-        public static final int spriteDimension = 16;
-        public static final int movementAniSprites = 3;
-        public static final int numMovementAni = 5;
-        public static final int runAni = 0;
-        public static final int jumpAni = 2;
-        public static final int leftAni = 0;
-        public static final int rightAni = 1;
-        public static final int midAirAni = 1;
-        public static final int climbingAniSprites = 2;
-        public static final int climbAni = 4;
-        public static final int aniPlayerSpeed = 15;
-        public static final int aniClimbSpeed = 15;
-        
-        private static final Map<Integer, BufferedImage> playerSources = new HashMap<>();
-
-        public static final Map<Integer, BufferedImage> getPlayerSources() {
-            return Collections.unmodifiableMap(playerSources);
-        }
-
-        public static final void loadPlayerSources() {
-            playerSources.put(movementAni, loadSources("mario_movement"));
-            playerSources.put(climbingAni, loadSources("climbingplayer"));
-        }
+        /**
+         * Run animation index.
+         */
+        public static final int RUN_ANI = 0;
+        /**
+         * Jump animation index.
+         */
+        public static final int JUMP_ANI = 2;
+        /**
+         * Player facing left animation index.
+         */
+        public static final int LEFT_ANI = 0;
+        /**
+         * Player facing right animation index.
+         */
+        public static final int RIGHT_ANI = 1;
+        /**
+         * Player when in mid air animation index.
+         */
+        public static final int MID_AIR_ANI = 1;
+        /**
+         * Player animation speed.
+         */
+        public static final int ANI_PLAYER_SPEED = 15;
+        /**
+         * Player climbing animation speed.
+         */
+        public static final int ANI_CLIMB_SPEED = 15;
+        /**
+         * Climbing animation index.
+         */
+        public static final int CLIMB_ANI = 4;
+        /**
+         * Number of climbing ani sprites.
+         */
+        public static final int CLIMB_ANI_SPRITES = 2;
+        /**
+         * Movement animation index.
+         */
+        public static final int MOVEMENT_ANI = 0;
+        /**
+         * Number of movement ani sprites.
+         */
+        public static final int MOVEMENT_ANI_SPRITES = 3;
     }
     
+    /**
+     * Monkey constants.
+     */
     public static final class Monkey {
-        public static final float levelOneStartingMonkeyX = Window.SCALED_TILES_SIZE / 2f;
-        public static final float levelOneStartingMonkeyY = Window.SCALED_TILES_SIZE * 2 + Level.platformBlockPadding;
-        public static final int monkeyWidth = (int) (120 * Window.SCALE);
-        public static final int monkeyHeight = (int) (96 * Window.SCALE);
-        public static final int monkeyAni = 0;
-        public static final int monkeyAniSprites = 4;
-        public static final int spriteWidth = 40;
-        public static final int spriteHeight = 32;
-        public static final int aniMonkeySpeed = 25;
-        public static final int throwAnimationTime = aniMonkeySpeed * (monkeyAniSprites - 1);
-
-        private static final Map<Integer, BufferedImage> monkeySources = new HashMap<>();
-
-        public static final Map<Integer, BufferedImage> getMonkeySources() {
-            return Collections.unmodifiableMap(monkeySources);
-        }
-
-        public static final void loadMonkeySources() {
-            monkeySources.put(monkeyAni, loadSources("donkeykong"));
-        }
+        /**
+         * Monkey starting x position.
+         */
+        public static final float LEVEL_ONE_STARTING_X = Window.SCALED_TILES_SIZE / 2f;
+        /**
+         * Monkey starting y position.
+         */
+        public static final float LEVEL_ONE_STARTING_Y = Window.SCALED_TILES_SIZE * 2 + Level.PLATFORM_BLOCK_PADDING;
+        /**
+         * Monkey width.
+         */
+        public static final int MONKEY_WIDTH = (int) (120 * Window.SCALE);
+        /**
+         * Monkey height.
+         */
+        public static final int MONKEY_HEIGHT = (int) (96 * Window.SCALE);
+        /**
+         * Monkey ani index.
+         */     
+        public static final int MONKEY_ANI = 0;
+        /**
+         * Number of monkey ani sprites.
+         */
+        public static final int MONKEY_ANI_SPRITES = 4;
+        /**
+         * Monkey animation speed.
+         */
+        public static final int ANI_MONKEY_SPEED = 25;
+        /**
+         * Monkey throw animation time.
+         */
+        public static final int THROW_ANIMATION_TIME = ANI_MONKEY_SPEED * (MONKEY_ANI_SPRITES - 1);
     }
 
     public static final class Princess {
-        public static final float levelOneStartingPrincessX = Window.SCALED_TILES_SIZE * 5;
-        public static final float levelOneStartingPrincessY = Window.SCALED_TILES_SIZE - Level.princessPadding;
-        public static final int princessWidth = (int) (48 * Window.SCALE);
-        public static final int princessHeight = (int) (66 * Window.SCALE);
-        public static final float velocity = 0.5f * Window.SCALE;
-        public static final int nextRandomMoveTime = 24;
-        public static final int totalProbability = 10;
-        public static final int sameDirProb = 4;
-        public static final int changeDirProb = 7;
-        public static final int noMoveProb = 9;
-        public static final int noMoveAddictionalTime = 24;
-        public static final int spriteWidth = 16;
-        public static final int spriteHeight = 22;
-        public static final int princessAni = 0;
-        public static final int leftAni = 0;
-        public static final int rightAni = 1;
-        public static final int princessAniSprites = 3;
-        public static final int numPrincessAni = 2; 
-        public static final int aniPrincessSpeed = 15;
-
-        private static final Map<Integer, BufferedImage> princessSources = new HashMap<>();
-
-        public static final Map<Integer, BufferedImage> getPrincessSources() {
-            return Collections.unmodifiableMap(princessSources);
-        }
-
-        public static final void loadPrincessSources() {
-            princessSources.put(princessAni, loadSources("princess"));
-        }
+        /**
+         * Princess starting x position.
+         */
+        public static final float LEVEL_ONE_STARTING_X = Window.SCALED_TILES_SIZE * 5;
+        /**
+         * Princess starting y position.
+         */
+        public static final float LEVEL_ONE_STARTING_Y = Window.SCALED_TILES_SIZE - Level.PRINCESS_PADDING;
+        /**
+         * Princess width.
+         */
+        public static final int PRINCESS_WIDTH = (int) (48 * Window.SCALE);
+        /**
+         * Princess height.
+         */
+        public static final int PRINCESS_HEIGHT = (int) (66 * Window.SCALE);
+        /**
+         * Princess speed.
+         */
+        public static final float VELOCITY = 0.5f * Window.SCALE;
+        /**
+         * Princess animation speed.
+         */
+        public static final int ANI_PRINCESS_SPEED = 15;
+        /**
+         * Princess facing left index.
+         */
+        public static final int LEFT_ANI = 0;
+        /**
+         * Princess facing right index.
+         */
+        public static final int RIGHT_ANI = 1;
+        /**
+         * Time until princess makes another move.
+         */
+        public static final int NEXT_RANDOM_MOVE_TIME = 24;
+        /**
+         * Total chance.
+         */
+        public static final int TOTAL_PROBABILITY = 10;
+        /**
+         * Chance of moving in the same direction.
+         */
+        public static final int SAME_DIR_PROB = 4;
+        /**
+         * Chance of changing direction.
+         */
+        public static final int CHANGE_DIR_PROB = 7;
+        /**
+         * Chance of not moving.
+         */
+        public static final int NO_MOVE_PROB = 9;
+        /**
+         * Addictional time when princess didn't move in the previous move.
+         */
+        public static final int NO_MOVE_ADDICTIONAL_TIME = 24;
+        /**
+         * Princess ani index.
+         */
+        public static final int PRINCESS_ANI = 0;
+        /**
+         * Number of princess ani sprites.
+         */
+        public static final int PRINCESS_ANI_SPRITES = 3;
     }
 
     /**

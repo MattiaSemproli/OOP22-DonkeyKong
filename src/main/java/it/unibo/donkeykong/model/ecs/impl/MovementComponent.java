@@ -76,19 +76,19 @@ public class MovementComponent extends AbstractComponent {
             }
         } else if (this.getEntity().getEntityType() == Type.PRINCESS) {
             final MovementComponent mc = this.getEntity().getComponent(MovementComponent.class).get();
-            if (timeElapsed > Princess.nextRandomMoveTime) {
+            if (timeElapsed > Princess.NEXT_RANDOM_MOVE_TIME) {
                 isPrincessWalking = true;
                 PlayerIdle.setPrincessIdle(PlayerIdle.RUN);
                 timeElapsed = 0;
-                final int randomInt = random.nextInt(Princess.totalProbability);
-                if (randomInt < Princess.sameDirProb) {
+                final int randomInt = random.nextInt(Princess.TOTAL_PROBABILITY);
+                if (randomInt < Princess.SAME_DIR_PROB) {
                     this.moveEntity(mc.getFacing());
-                } else if (randomInt < Princess.changeDirProb) {
+                } else if (randomInt < Princess.CHANGE_DIR_PROB) {
                     this.moveEntity(mc.getFacing().getOppositeDirection());
-                } else if (randomInt < Princess.noMoveProb) {
+                } else if (randomInt < Princess.NO_MOVE_PROB) {
                     movePos = new Pair<>(0f, 0f);
                     isPrincessWalking = false;
-                    timeElapsed = -Princess.noMoveAddictionalTime;
+                    timeElapsed = -Princess.NO_MOVE_ADDICTIONAL_TIME;
                     PlayerIdle.setPrincessIdle(PlayerIdle.STOP);
                 }
             } else {

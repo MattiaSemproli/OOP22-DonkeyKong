@@ -16,7 +16,7 @@ import java.util.Map;
 
 import it.unibo.donkeykong.common.Pair;
 import it.unibo.donkeykong.controller.impl.MainMenuController;
-import it.unibo.donkeykong.utilities.Constants.Audio;
+import it.unibo.donkeykong.utilities.ViewConstants.AudioAssets;
 import it.unibo.donkeykong.utilities.ViewConstants.MenuAssets;
 import it.unibo.donkeykong.utilities.ViewConstants.Window;
 import it.unibo.donkeykong.utilities.AudioUtilities;
@@ -89,7 +89,7 @@ public class MainMenuView implements View {
         this.buttons.keySet().forEach(b -> {
             if (b.getCorners().contains(new Point(point.getX(), point.getY()))) {
                 if (b.getButtonGamestate().equals(Gamestate.PLAYING)) {
-                    AudioUtilities.playSoundtrack(Audio.gameMusic0);
+                    AudioUtilities.playSoundtrack(AudioAssets.GAME_MUSIC_0);
                     this.menuController.startLevel();
                     this.menuController.startGameController();
                 }
@@ -153,26 +153,26 @@ public class MainMenuView implements View {
         g.setColor(Color.WHITE);
         g.setFont(font);
         g.drawString("TO MOVE LEFT",
-                MENU_X + MenuAssets.MENU_TEXTURE_BOX / 10 + MenuAssets.LEGEND_KEY_BOX * 2,
-                MENU_Y + MenuAssets.MENU_TEXTURE_BOX / 2);
+                     MENU_X + MenuAssets.MENU_TEXTURE_BOX / 10 + MenuAssets.LEGEND_KEY_BOX * 2,
+                     MENU_Y + MenuAssets.MENU_TEXTURE_BOX / 2);
 
         g.setColor(Color.WHITE);
         g.setFont(font);
         g.drawString("TO MOVE RIGHT",
-                MENU_X + MenuAssets.MENU_TEXTURE_BOX / 10 + MenuAssets.LEGEND_KEY_BOX * 2,
-                MENU_Y + MenuAssets.MENU_TEXTURE_BOX / 2 + MenuAssets.LEGEND_KEY_BOX);
+                     MENU_X + MenuAssets.MENU_TEXTURE_BOX / 10 + MenuAssets.LEGEND_KEY_BOX * 2,
+                     MENU_Y + MenuAssets.MENU_TEXTURE_BOX / 2 + MenuAssets.LEGEND_KEY_BOX);
 
         g.setColor(Color.WHITE);
         g.setFont(font);
         g.drawString("TO MOVE UP",
-                MENU_X + MenuAssets.MENU_TEXTURE_BOX / 10 + MenuAssets.LEGEND_KEY_BOX * 2,
-                MENU_Y + MenuAssets.MENU_TEXTURE_BOX / 2 + MenuAssets.LEGEND_KEY_BOX * 2);
+                         MENU_X + MenuAssets.MENU_TEXTURE_BOX / 10 + MenuAssets.LEGEND_KEY_BOX * 2,
+                         MENU_Y + MenuAssets.MENU_TEXTURE_BOX / 2 + MenuAssets.LEGEND_KEY_BOX * 2);
 
         g.setColor(Color.WHITE);
         g.setFont(font);
         g.drawString("TO MOVE DOWN",
-                MENU_X + MenuAssets.MENU_TEXTURE_BOX / 10 + MenuAssets.LEGEND_KEY_BOX * 2,
-                MENU_Y + MenuAssets.MENU_TEXTURE_BOX / 2 + MenuAssets.LEGEND_KEY_BOX * 3);
+                     MENU_X + MenuAssets.MENU_TEXTURE_BOX / 10 + MenuAssets.LEGEND_KEY_BOX * 2,
+                     MENU_Y + MenuAssets.MENU_TEXTURE_BOX / 2 + MenuAssets.LEGEND_KEY_BOX * 3);
     }
 
     /**

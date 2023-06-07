@@ -4,7 +4,6 @@ import it.unibo.donkeykong.controller.api.Application;
 import it.unibo.donkeykong.game.core.api.GameEngine;
 import it.unibo.donkeykong.game.core.impl.GameEngineImpl;
 import it.unibo.donkeykong.utilities.AudioUtilities;
-import it.unibo.donkeykong.utilities.Constants;
 import it.unibo.donkeykong.utilities.ViewConstants;
 import it.unibo.donkeykong.view.impl.ApplicationPanel;
 import it.unibo.donkeykong.view.impl.ApplicationWindow;
@@ -26,7 +25,7 @@ public class ApplicationImpl implements Application {
      * Constructor.
      */
     public ApplicationImpl() {
-        AudioUtilities.playSoundtrack(Constants.Audio.menuMusic0);
+        AudioUtilities.playSoundtrack(ViewConstants.AudioAssets.MENU_MUSIC_0);
         loadAllSources();
         initialize();
         this.dkPanel = new ApplicationPanel(this);
@@ -80,14 +79,14 @@ public class ApplicationImpl implements Application {
     private void loadAllSources() {
         ViewConstants.MenuAssets.loadMenuSources();
         ViewConstants.MenuAssets.SettingsAssets.loadSettingsSources();
-        Constants.Audio.loadThemes();
+        ViewConstants.AudioAssets.loadThemes();
         ViewConstants.MenuAssets.LevelAssets.loadLevelSources();
-        Constants.Player.loadPlayerSources();
-        Constants.Barrel.loadBarrelSources();
-        Constants.Monkey.loadMonkeySources();
-        Constants.Princess.loadPrincessSources();
+        ViewConstants.PlayerAssets.loadPlayerSources();
+        ViewConstants.BarrelAssets.loadBarrelSources();
+        ViewConstants.MonkeyAssets.loadMonkeySources();
+        ViewConstants.PrincessAssets.loadPrincessSources();
         ViewConstants.MenuAssets.SettingsAssets.loadTextSources();
-        Constants.PowerupAssets.loadPowerupSources();
+        ViewConstants.PowerupAssets.loadPowerupSources();
     }
 
     /**

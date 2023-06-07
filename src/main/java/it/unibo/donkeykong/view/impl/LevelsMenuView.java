@@ -18,7 +18,7 @@ import java.util.Map;
 
 import it.unibo.donkeykong.common.Pair;
 import it.unibo.donkeykong.controller.impl.LevelsMenuController;
-import it.unibo.donkeykong.utilities.Constants.Audio;
+import it.unibo.donkeykong.utilities.ViewConstants.AudioAssets;
 import it.unibo.donkeykong.utilities.ViewConstants.MenuAssets;
 import it.unibo.donkeykong.utilities.ViewConstants.Window;
 import it.unibo.donkeykong.utilities.ViewConstants.MenuAssets.LevelAssets;
@@ -96,7 +96,7 @@ public class LevelsMenuView implements View {
         this.buttons.keySet().forEach(b -> {
             if (b.getCorners().contains(new Point(point.getX(), point.getY()))) {
                 if (b.getButtonGamestate().equals(Gamestate.PLAYING)) {
-                            AudioUtilities.playSoundtrack(Audio.gameMusic0);
+                            AudioUtilities.playSoundtrack(AudioAssets.GAME_MUSIC_0);
                             this.levelToBePlayed(b);
                             this.levelsMenuController.startGameController();
                         }

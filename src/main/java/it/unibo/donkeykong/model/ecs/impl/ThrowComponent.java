@@ -31,7 +31,7 @@ public class ThrowComponent extends AbstractComponent {
             this.isThrowing = false;
         } else if (!isFreezed 
                    && this.timeElapsed < Barrel.SPAWN_DELAY 
-                   && this.timeElapsed > Barrel.SPAWN_DELAY - Monkey.throwAnimationTime) {
+                   && this.timeElapsed > Barrel.SPAWN_DELAY - Monkey.THROW_ANIMATION_TIME) {
             this.isThrowing = true;
         }
     }

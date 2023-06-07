@@ -13,7 +13,7 @@ import it.unibo.donkeykong.utilities.Constants.Barrel;
 import it.unibo.donkeykong.utilities.Constants.Monkey;
 import it.unibo.donkeykong.utilities.Constants.Player;
 import it.unibo.donkeykong.utilities.Constants.Princess;
-import it.unibo.donkeykong.utilities.Constants.PowerupAssets;
+import it.unibo.donkeykong.utilities.Constants.Powerup;
 import it.unibo.donkeykong.utilities.Constants.Application;
 import it.unibo.donkeykong.utilities.Type;
 
@@ -51,34 +51,34 @@ public class EntityImpl implements Entity {
                 this.speed = Barrel.VELOCITY;
                 break;
             case MONKEY:
-                this.width = Monkey.monkeyWidth;
-                this.height = Monkey.monkeyHeight;
+                this.width = Monkey.MONKEY_WIDTH;
+                this.height = Monkey.MONKEY_HEIGHT;
                 break;
             case PLAYER:
                 this.width = Application.SCALED_TILES_SIZE;
                 this.height = Application.SCALED_TILES_SIZE;
-                this.speed = Player.velocity;
+                this.speed = Player.VELOCITY;
                 break;
             case PRINCESS:
-                this.width = Princess.princessWidth;
-                this.height = Princess.princessHeight;
-                this.speed = Princess.velocity;
+                this.width = Princess.PRINCESS_WIDTH;
+                this.height = Princess.PRINCESS_HEIGHT;
+                this.speed = Princess.VELOCITY;
                 break;
             case HEART:
-                this.width = PowerupAssets.HEART_WIDTH;
-                this.height = PowerupAssets.HEART_HEIGHT;
+                this.width = Powerup.HEART_WIDTH;
+                this.height = Powerup.HEART_HEIGHT;
                 break;
             case SHIELD:
-                this.width = PowerupAssets.SHIELD_WIDTH;
-                this.height = PowerupAssets.SHIELD_HEIGHT;
+                this.width = Powerup.SHIELD_WIDTH;
+                this.height = Powerup.SHIELD_HEIGHT;
                 break;
             case SNOWFLAKE:
-                this.width = PowerupAssets.FREEZE_DIMENSION;
-                this.height = PowerupAssets.FREEZE_DIMENSION;
+                this.width = Powerup.FREEZE_DIMENSION;
+                this.height = Powerup.FREEZE_DIMENSION;
                 break;
             case STAR:
-                this.width = PowerupAssets.STAR_DIMENSION;
-                this.height = PowerupAssets.STAR_DIMENSION;
+                this.width = Powerup.STAR_DIMENSION;
+                this.height = Powerup.STAR_DIMENSION;
                 break;
             case BLOCK:
             case BLOCK_LADDER_DOWN:
