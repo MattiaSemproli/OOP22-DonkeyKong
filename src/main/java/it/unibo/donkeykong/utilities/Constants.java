@@ -680,6 +680,9 @@ public class Constants {
         public static final float JUMP_GRAVITY_MULTIPLIER = 1.3f;
     }
 
+    /**
+     * Barrel constants.
+     */
     public static final class Barrel {
         /**
          * Barrel dimension.
