@@ -1,9 +1,10 @@
 package it.unibo.donkeykong;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
+
+import it.unibo.donkeykong.utilities.Gamestate;
 
 /**
  * Application test.
@@ -13,8 +14,9 @@ class AppTest {
     /**
      * Launches the app, intecepts exceptions.
      */
-    @Test void testApp() {
-        assertNotNull(System.getenv("OMDB_API_KEY"));
-        assertFalse(System.getenv("OMDB_API_KEY").isBlank());
+    @Test
+    void testPlay() {
+        Gamestate.setGamestate(Gamestate.PLAYING);
+        assertEquals(Gamestate.PLAYING, Gamestate.getGamestate());
     }
 }

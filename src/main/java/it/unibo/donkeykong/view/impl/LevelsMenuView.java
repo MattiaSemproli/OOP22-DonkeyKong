@@ -88,6 +88,19 @@ public class LevelsMenuView implements View {
                                                     b.getButtonDim().getY(), null));
     }
 
+    private void drawBackgroundAssets(final Graphics g) {
+        g.drawImage(getMenuSources().get(MenuAssets.MENU_BACKGROUND), 
+                    0, 
+                    0, 
+                    Window.GAME_WIDTH, 
+                    Window.GAME_HEIGHT, null);
+        g.drawImage(getMenuSources().get(MenuAssets.MENU_TEXTURE), 
+                    MENU_X, 
+                    MENU_Y, 
+                    MenuAssets.MENU_TEXTURE_BOX, 
+                    MenuAssets.MENU_TEXTURE_BOX, null);
+    }
+
     /**
      * {@inheritDoc}
      */
@@ -115,19 +128,6 @@ public class LevelsMenuView implements View {
         } else if (b.equals(this.levelFourButton)) {
             this.levelsMenuController.handleChoosenLevel(CurrentLevel.FOUR);
         }
-    }
-
-    private void drawBackgroundAssets(final Graphics g) {
-        g.drawImage(getMenuSources().get(MenuAssets.MENU_BACKGROUND), 
-                    0, 
-                    0, 
-                    Window.GAME_WIDTH, 
-                    Window.GAME_HEIGHT, null);
-        g.drawImage(getMenuSources().get(MenuAssets.MENU_TEXTURE), 
-                    MENU_X, 
-                    MENU_Y, 
-                    MenuAssets.MENU_TEXTURE_BOX, 
-                    MenuAssets.MENU_TEXTURE_BOX, null);
     }
 
     /**
