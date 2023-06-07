@@ -134,7 +134,7 @@ public class MovementComponent extends AbstractComponent {
     public final void jump() {
         if (!this.inAir && !this.onLadder) {
             this.setInAir(true);
-            this.airSpeed = Physics.jumpSpeed;
+            this.airSpeed = Physics.JUMP_SPEED;
         }
     }
 
@@ -150,15 +150,15 @@ public class MovementComponent extends AbstractComponent {
         if (this.getEntity().getEntityType() == Type.PLAYER) {
             if (this.movingInAir) {
                 this.movePos = new Pair<>(this.direction.getX() * this.getEntity().getSpeed()
-                                          * Physics.speedInAirMultiplierPlayer, this.airSpeed);
+                                          * Physics.PLAYER_AIR_MULTIPLIER, this.airSpeed);
             } else {
                 this.movePos = new Pair<>(0f, this.airSpeed);
             }
-            this.airSpeed += Physics.gravity * Physics.jumpGravityMultiplier;
+            this.airSpeed += Physics.GRAVITY * Physics.JUMP_GRAVITY_MULTIPLIER;
         } else if (this.getEntity().getEntityType() == Type.BARREL) {
             this.movePos = new Pair<>(this.direction.getX() * this.getEntity().getSpeed()
-                                      * Physics.speedInAirMultiplierBarrel, this.airSpeed);
-            this.airSpeed += Physics.gravity;
+                                      * Physics.BARREL_AIR_MULTIPLIER, this.airSpeed);
+            this.airSpeed += Physics.GRAVITY;
         }
     }
 

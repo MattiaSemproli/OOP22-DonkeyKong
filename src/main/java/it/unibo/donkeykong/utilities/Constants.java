@@ -46,11 +46,26 @@ public class Constants {
         public static final int GAME_HEIGHT = SCALED_TILES_SIZE * TILES_IN_HEIGHT;
     }
 
+    /**
+     * GameLoop constants.
+     */
     public static class GameLoop {
-        public final static int FPS_SET = 120;
-        public final static double NANOSECOND = 1000000000.0;
-        public final static int FRAME_DEFAULT = 0;
-        public final static int DELTAF_DEFAULT = 0;
+        /**
+         * FPS capslock;
+         */
+        public static final int FPS_SET = 120;
+        /**
+         * Nanoseconds in a second.
+         */
+        public static final double NANOSECOND = 1_000_000_000.0;
+        /**
+         * Starting frame value.
+         */
+        public static final int FRAME_DEFAULT = 0;
+        /**
+         * Starting delta value.
+         */
+        public static final int DELTAF_DEFAULT = 0;
     }
 
     /**
@@ -639,13 +654,30 @@ public class Constants {
         }
     }
 
+    /**
+     * Physics constants.
+     */
     public static final class Physics {
-        public static final float jumpSpeed = -2.4f * Window.SCALE;
-        public static final float gravity = 0.04f * Window.SCALE;
-        public static final float speedInAirMultiplierPlayer = 0.6f;
-        public static final float speedInAirMultiplierBarrel = 0.4f;
-        public static final float fallingSpeed = 1.5f * Window.SCALE;
-        public static final float jumpGravityMultiplier = 1.3f;
+        /**
+         * Jump speed.
+         */
+        public static final float JUMP_SPEED = -2.4f * Window.SCALE;
+        /**
+         * Gravity.
+         */
+        public static final float GRAVITY = 0.04f * Window.SCALE;
+        /**
+         * Player's speed in air multiplier.
+         */
+        public static final float PLAYER_AIR_MULTIPLIER = 0.6f;
+        /**
+         * Barrel's speed in air multiplier.
+         */
+        public static final float BARREL_AIR_MULTIPLIER = 0.4f;
+        /**
+         * Gravity while jumping.
+         */
+        public static final float JUMP_GRAVITY_MULTIPLIER = 1.3f;
     }
 
     public static final class Barrel {
