@@ -281,7 +281,7 @@ public class CollisionComponent extends AbstractComponent {
                                                                e2hitbox.getY(),
                                                                e2hitbox.getMaxX(),
                                                                e2hitbox.getY()))
-                                && hitbox.getMaxY() < e2hitbox.getY() + Barrel.barrelFloorError) {
+                                && hitbox.getMaxY() < e2hitbox.getY() + Barrel.BARREL_FLOOR_ERROR) {
                                     this.nextPosition = Optional.of(new Pair<>(this.nextPosition.get().getX(),
                                                                                e2hitbox.getY() - hitbox.getHeight()));
                                     return true;
@@ -301,7 +301,7 @@ public class CollisionComponent extends AbstractComponent {
                    .filter(e -> !this.checkIsNotBlock(e.getEntityType()))
                    .filter(e -> hitbox.intersects(e.getComponent(CollisionComponent.class).get().getHitbox()))
                    .forEach(e -> {
-                       if (random.nextInt(Barrel.totalDirProbability) == Barrel.changeDirProbability
+                       if (random.nextInt(Barrel.TOTAL_DIR_PROBABILITY) == Barrel.CHANGE_DIR_INDEX
                            && !this.barrelChangedDirection
                            && !mc.isInAir()
                        ) {
@@ -334,8 +334,8 @@ public class CollisionComponent extends AbstractComponent {
         int height = width;
         switch (type) {
             case BARREL:
-                width = Barrel.barrelWidth;
-                height = Barrel.barrelHeight;
+                width = Barrel.BARREL_WIDTH;
+                height = Barrel.BARREL_HEIGHT;
                 hitbox = new Rectangle(x, y, width, height);
                 break;
             case PLAYER:

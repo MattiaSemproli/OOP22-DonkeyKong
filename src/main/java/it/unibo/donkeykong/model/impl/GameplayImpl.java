@@ -257,7 +257,7 @@ public class GameplayImpl implements Gameplay {
     @Override
     public void throwBarrel(final Pair<Float, Float> position) {
         final Entity barrel = this.entityFactoryImpl.generateBarrel(position);
-        if (random.nextInt(Barrel.totalPUProbability) < Barrel.doubleDamageProbability) {
+        if (random.nextInt(Barrel.TOTAL_PU_PROBABILITY) < Barrel.DOUBLE_DAMAGE_INDEX) {
             barrel.getComponent(DoubleDamageComponent.class).get().setDoubleDamage(true);
         }
         this.entities.add(barrel);

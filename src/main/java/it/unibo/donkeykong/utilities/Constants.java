@@ -184,20 +184,52 @@ public class Constants {
         public static final float JUMP_GRAVITY_MULTIPLIER = 1.3f;
     }
 
+    /**
+     * Barrel constants.
+     */
     public static final class Barrel {
-        public static final int barrelDimension = (int) (48 * Window.SCALE);
-        public static final int barrelWidth = (int) (36 * Window.SCALE);
-        public static final int barrelHeight = (int) (30 * Window.SCALE);
+        /**
+         * Barrel dimension.
+         */
+        public static final int BARREL_DIMENSION = (int) (48 * Window.SCALE);
+        /**
+         * Barrel width.
+         */
+        public static final int BARREL_WIDTH = (int) (36 * Window.SCALE);
+        /**
+         * Barrel height.
+         */
+        public static final int BARREL_HEIGHT = (int) (30 * Window.SCALE);
         public static final int barrelBoxWidth = (int) (56 * Window.SCALE);
         public static final int barrelBoxHeight = (int) (96 * Window.SCALE);
-        public static final int barrelFloorError = 12;
-        public static final Direction firstLevelDirection = Direction.RIGHT;
-        public static final float velocity = 2f * Window.SCALE;
-        public static final int spawnDelay = 130;
-        public static final int doubleDamageProbability = 3;
-        public static final int totalPUProbability = 10;
-        public static final int totalDirProbability = 2;
-        public static final int changeDirProbability = 1;
+        /**
+         * Barrel floor error tolerance.
+         */
+        public static final int BARREL_FLOOR_ERROR = 12;
+        /**
+         * Barrel velocity.
+         */
+        public static final float VELOCITY = 2f * Window.SCALE;
+        /**
+         * Barrel spawning delay.
+         */
+        public static final int SPAWN_DELAY = 130;
+        /**
+         * INDEX that spawning barrel is a double damage type.
+         */
+        public static final int DOUBLE_DAMAGE_INDEX = 3;
+        /**
+         * Probability that spawning barrel is double damage type.
+         */
+        public static final int TOTAL_PU_PROBABILITY = 10;
+        /**
+         * Probability that barrel change direction or not.
+         */
+        public static final int TOTAL_DIR_PROBABILITY = 2;
+        /**
+         * Index that barrel change direction.
+         */
+        public static final int CHANGE_DIR_INDEX = 1;
         public static final int barrelAni = 0;
         public static final int ddBarrelAni = 1;
         public static final int barrelAniSprites = 4;
