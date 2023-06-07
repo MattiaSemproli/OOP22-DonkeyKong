@@ -5,6 +5,7 @@ import java.util.Optional;
 import java.util.Set;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
+import it.unibo.donkeykong.common.Pair;
 import it.unibo.donkeykong.model.api.Gameplay;
 import it.unibo.donkeykong.model.ecs.api.Component;
 import it.unibo.donkeykong.model.ecs.api.Entity;
@@ -14,7 +15,6 @@ import it.unibo.donkeykong.utilities.Constants.Player;
 import it.unibo.donkeykong.utilities.Constants.Princess;
 import it.unibo.donkeykong.utilities.Constants.PowerupAssets;
 import it.unibo.donkeykong.utilities.Constants.Application;
-import it.unibo.donkeykong.utilities.Pair;
 import it.unibo.donkeykong.utilities.Type;
 
 /**

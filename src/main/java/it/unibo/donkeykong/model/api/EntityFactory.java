@@ -1,7 +1,7 @@
 package it.unibo.donkeykong.model.api;
 
+import it.unibo.donkeykong.common.Pair;
 import it.unibo.donkeykong.model.ecs.api.Entity;
-import it.unibo.donkeykong.utilities.Pair;
 
 /**
  * EntityFactory interface, manages creation of different entities.

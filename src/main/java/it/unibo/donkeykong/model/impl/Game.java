@@ -6,6 +6,7 @@ import static it.unibo.donkeykong.utilities.Constants.Player.aniClimbSpeed;
 import static it.unibo.donkeykong.utilities.Constants.Player.aniPlayerSpeed;
 import static it.unibo.donkeykong.utilities.Constants.Princess.aniPrincessSpeed;
 
+import it.unibo.donkeykong.common.Pair;
 import it.unibo.donkeykong.model.api.ViewModel;
 import it.unibo.donkeykong.model.ecs.api.Entity;
 import it.unibo.donkeykong.model.ecs.impl.DoubleDamageComponent;
@@ -17,7 +18,6 @@ import it.unibo.donkeykong.utilities.Constants.Player;
 import it.unibo.donkeykong.utilities.Constants.Princess;
 import it.unibo.donkeykong.utilities.Direction;
 import it.unibo.donkeykong.utilities.Gamestate;
-import it.unibo.donkeykong.utilities.Pair;
 import it.unibo.donkeykong.utilities.PlayerIdle;
 import it.unibo.donkeykong.utilities.Type;
 

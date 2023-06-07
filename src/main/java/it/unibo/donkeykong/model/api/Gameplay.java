@@ -3,8 +3,8 @@ package it.unibo.donkeykong.model.api;
 import java.util.List;
 import java.util.Map;
 
+import it.unibo.donkeykong.common.Pair;
 import it.unibo.donkeykong.model.ecs.api.Entity;
-import it.unibo.donkeykong.utilities.Pair;
 import it.unibo.donkeykong.utilities.Type;
 
 /**

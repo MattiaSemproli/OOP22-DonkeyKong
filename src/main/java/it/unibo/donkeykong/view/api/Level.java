@@ -3,7 +3,7 @@ package it.unibo.donkeykong.view.api;
 import java.awt.image.BufferedImage;
 import java.util.Map;
 
-import it.unibo.donkeykong.utilities.Pair;
+import it.unibo.donkeykong.common.Pair;
 
 /**
  * Level interface, models a level.

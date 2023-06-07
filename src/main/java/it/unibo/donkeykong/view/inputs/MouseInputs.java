@@ -3,9 +3,9 @@ package it.unibo.donkeykong.view.inputs;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import it.unibo.donkeykong.common.Pair;
 import it.unibo.donkeykong.controller.api.Application;
 import it.unibo.donkeykong.utilities.Gamestate;
-import it.unibo.donkeykong.utilities.Pair;
 
 /**
  * MouseInputs class, manages mouse's inputs.

@@ -1,4 +1,4 @@
-package it.unibo.donkeykong.utilities;
+package it.unibo.donkeykong.common;
 
 /**
  * A standard generic Pair, with getters, hashCode, equals, and toString

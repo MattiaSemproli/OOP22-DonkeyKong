@@ -2,8 +2,8 @@ package it.unibo.donkeykong.view.impl;
 
 import java.awt.Rectangle;
 
+import it.unibo.donkeykong.common.Pair;
 import it.unibo.donkeykong.utilities.Gamestate;
-import it.unibo.donkeykong.utilities.Pair;
 import it.unibo.donkeykong.view.api.Button;
 
 /**

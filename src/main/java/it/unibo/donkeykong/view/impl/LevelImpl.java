@@ -13,8 +13,8 @@ import java.awt.image.BufferedImage;
 import java.util.HashMap;
 import java.util.Map;
 
+import it.unibo.donkeykong.common.Pair;
 import it.unibo.donkeykong.utilities.CurrentLevel;
-import it.unibo.donkeykong.utilities.Pair;
 import it.unibo.donkeykong.view.api.Level;
 
 /**

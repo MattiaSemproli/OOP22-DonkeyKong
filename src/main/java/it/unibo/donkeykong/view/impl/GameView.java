@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.IntStream;
 
+import it.unibo.donkeykong.common.Pair;
 import it.unibo.donkeykong.controller.impl.GameController;
 import it.unibo.donkeykong.model.ecs.api.Entity;
 import it.unibo.donkeykong.utilities.Constants.Barrel;
@@ -22,7 +23,6 @@ import it.unibo.donkeykong.utilities.ViewConstants.Window;
 import it.unibo.donkeykong.utilities.ViewConstants.MenuAssets.LevelAssets;
 import it.unibo.donkeykong.utilities.ViewConstants.MenuAssets.SettingsAssets;
 import it.unibo.donkeykong.utilities.Gamestate;
-import it.unibo.donkeykong.utilities.Pair;
 import it.unibo.donkeykong.utilities.Type;
 import it.unibo.donkeykong.view.api.Button;
 import it.unibo.donkeykong.view.api.Level;

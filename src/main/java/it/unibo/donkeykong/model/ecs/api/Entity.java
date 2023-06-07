@@ -3,9 +3,9 @@ package it.unibo.donkeykong.model.ecs.api;
 import java.util.Optional;
 import java.util.Set;
 
+import it.unibo.donkeykong.common.Pair;
 import it.unibo.donkeykong.model.api.Gameplay;
 import it.unibo.donkeykong.model.ecs.impl.AbstractComponent;
-import it.unibo.donkeykong.utilities.Pair;
 import it.unibo.donkeykong.utilities.Type;
 
 /**

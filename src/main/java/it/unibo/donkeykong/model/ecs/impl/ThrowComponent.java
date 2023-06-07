@@ -1,8 +1,8 @@
 package it.unibo.donkeykong.model.ecs.impl;
 
+import it.unibo.donkeykong.common.Pair;
 import it.unibo.donkeykong.utilities.Constants.Barrel;
 import it.unibo.donkeykong.utilities.Constants.Monkey;
-import it.unibo.donkeykong.utilities.Pair;
 
 /**
  * Throw Component, manages barrel's throw.

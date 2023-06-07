@@ -2,6 +2,7 @@ package it.unibo.donkeykong.model.impl;
 
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.donkeykong.utilities.Constants.Player;
+import it.unibo.donkeykong.common.Pair;
 import it.unibo.donkeykong.model.api.EntityFactory;
 import it.unibo.donkeykong.model.api.Gameplay;
 import it.unibo.donkeykong.model.ecs.api.Entity;
@@ -16,7 +17,6 @@ import it.unibo.donkeykong.model.ecs.impl.ShieldComponent;
 import it.unibo.donkeykong.model.ecs.impl.SlowComponent;
 import it.unibo.donkeykong.model.ecs.impl.StarComponent;
 import it.unibo.donkeykong.model.ecs.impl.ThrowComponent;
-import it.unibo.donkeykong.utilities.Pair;
 import it.unibo.donkeykong.utilities.Type;
 
 /**

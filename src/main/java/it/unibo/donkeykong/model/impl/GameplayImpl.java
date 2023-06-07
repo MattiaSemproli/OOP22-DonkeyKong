@@ -11,6 +11,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Random;
 
+import it.unibo.donkeykong.common.Pair;
 import it.unibo.donkeykong.controller.impl.GameController;
 import it.unibo.donkeykong.model.api.EntityFactory;
 import it.unibo.donkeykong.model.api.Gameplay;
@@ -22,7 +23,6 @@ import it.unibo.donkeykong.model.ecs.impl.StarComponent;
 import it.unibo.donkeykong.utilities.Constants;
 import it.unibo.donkeykong.utilities.CurrentLevel;
 import it.unibo.donkeykong.utilities.Gamestate;
-import it.unibo.donkeykong.utilities.Pair;
 import it.unibo.donkeykong.utilities.Type;
 import it.unibo.donkeykong.utilities.Constants.Action;
 import it.unibo.donkeykong.utilities.Constants.Barrel;

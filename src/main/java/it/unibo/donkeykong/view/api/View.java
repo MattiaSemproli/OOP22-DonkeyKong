@@ -2,7 +2,7 @@ package it.unibo.donkeykong.view.api;
 
 import java.awt.Graphics;
 
-import it.unibo.donkeykong.utilities.Pair;
+import it.unibo.donkeykong.common.Pair;
 
 /**
  * View interface, models a view.

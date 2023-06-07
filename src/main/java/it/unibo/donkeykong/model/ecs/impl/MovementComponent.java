@@ -3,8 +3,8 @@ package it.unibo.donkeykong.model.ecs.impl;
 import java.util.Optional;
 import java.util.Random;
 
+import it.unibo.donkeykong.common.Pair;
 import it.unibo.donkeykong.utilities.Direction;
-import it.unibo.donkeykong.utilities.Pair;
 import it.unibo.donkeykong.utilities.PlayerIdle;
 import it.unibo.donkeykong.utilities.Type;
 import it.unibo.donkeykong.utilities.Constants.Action;

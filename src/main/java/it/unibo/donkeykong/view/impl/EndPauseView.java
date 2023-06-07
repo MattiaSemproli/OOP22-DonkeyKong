@@ -17,6 +17,7 @@ import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Map;
 
+import it.unibo.donkeykong.common.Pair;
 import it.unibo.donkeykong.controller.impl.EndPauseController;
 import it.unibo.donkeykong.utilities.AudioUtilities;
 import it.unibo.donkeykong.utilities.Constants.Audio;
@@ -24,7 +25,6 @@ import it.unibo.donkeykong.utilities.ViewConstants.MenuAssets;
 import it.unibo.donkeykong.utilities.ViewConstants.Window;
 import it.unibo.donkeykong.utilities.ViewConstants.MenuAssets.SettingsAssets;
 import it.unibo.donkeykong.utilities.Gamestate;
-import it.unibo.donkeykong.utilities.Pair;
 import it.unibo.donkeykong.utilities.ResourceFuncUtilities;
 import it.unibo.donkeykong.view.api.Button;
 import it.unibo.donkeykong.view.api.View;

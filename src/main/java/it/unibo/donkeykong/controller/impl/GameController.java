@@ -3,6 +3,7 @@ package it.unibo.donkeykong.controller.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import it.unibo.donkeykong.common.Pair;
 import it.unibo.donkeykong.common.Timer;
 import it.unibo.donkeykong.controller.api.Controller;
 import it.unibo.donkeykong.model.api.Gameplay;
@@ -12,7 +13,6 @@ import it.unibo.donkeykong.model.impl.Game;
 import it.unibo.donkeykong.model.impl.GameplayImpl;
 import it.unibo.donkeykong.utilities.Constants.PowerupAssets;
 import it.unibo.donkeykong.utilities.Gamestate;
-import it.unibo.donkeykong.utilities.Pair;
 import it.unibo.donkeykong.utilities.Type;
 import it.unibo.donkeykong.view.api.View;
 import it.unibo.donkeykong.view.impl.GameView;

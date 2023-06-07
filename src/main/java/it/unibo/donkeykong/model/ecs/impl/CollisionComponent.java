@@ -11,11 +11,11 @@ import it.unibo.donkeykong.utilities.Constants.PowerupAssets;
 import it.unibo.donkeykong.utilities.Constants.Princess;
 import it.unibo.donkeykong.utilities.Constants.Application;
 import it.unibo.donkeykong.common.Line;
+import it.unibo.donkeykong.common.Pair;
 import it.unibo.donkeykong.common.Rectangle;
 import it.unibo.donkeykong.model.ecs.api.Entity;
 import it.unibo.donkeykong.utilities.CurrentLevel;
 import it.unibo.donkeykong.utilities.Gamestate;
-import it.unibo.donkeykong.utilities.Pair;
 import it.unibo.donkeykong.utilities.Type;
 
 /**
