@@ -8,9 +8,11 @@ import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import it.unibo.donkeykong.model.api.Gameplay;
 import it.unibo.donkeykong.model.ecs.api.Component;
 import it.unibo.donkeykong.model.ecs.api.Entity;
-import it.unibo.donkeykong.utilities.Constants;
 import it.unibo.donkeykong.utilities.Constants.Barrel;
+import it.unibo.donkeykong.utilities.Constants.Monkey;
+import it.unibo.donkeykong.utilities.Constants.Player;
 import it.unibo.donkeykong.utilities.Constants.PowerupAssets;
+import it.unibo.donkeykong.utilities.Constants.Princess;
 import it.unibo.donkeykong.utilities.Constants.Window;
 import it.unibo.donkeykong.utilities.Pair;
 import it.unibo.donkeykong.utilities.Type;
@@ -44,23 +46,23 @@ public class EntityImpl implements Entity {
         this.speed = 0;
         switch (type) {
             case BARREL:
-                this.width = Barrel.barrelWidth;
-                this.height = Barrel.barrelHeight;
-                this.speed = Constants.Barrel.velocity;
+                this.width = Barrel.BARREL_WIDTH;
+                this.height = Barrel.BARREL_HEIGHT;
+                this.speed = Barrel.VELOCITY;
                 break;
             case MONKEY:
-                this.width = Constants.Monkey.monkeyWidth;
-                this.height = Constants.Monkey.monkeyHeight;
+                this.width = Monkey.monkeyWidth;
+                this.height = Monkey.monkeyHeight;
                 break;
             case PLAYER:
                 this.width = Window.SCALED_TILES_SIZE;
                 this.height = Window.SCALED_TILES_SIZE;
-                this.speed = Constants.Player.velocity;
+                this.speed = Player.velocity;
                 break;
             case PRINCESS:
-                this.width = Constants.Princess.princessWidth;
-                this.height = Constants.Princess.princessHeight;
-                this.speed = Constants.Princess.velocity;
+                this.width = Princess.princessWidth;
+                this.height = Princess.princessHeight;
+                this.speed = Princess.velocity;
                 break;
             case HEART:
                 this.width = PowerupAssets.heartWidth;

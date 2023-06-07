@@ -12,7 +12,7 @@ public class ThrowComponent extends AbstractComponent {
     private boolean isFreezed;
     private boolean isThrowing;
 
-    private int timeElapsed = Barrel.spawnDelay;
+    private int timeElapsed = Barrel.SPAWN_DELAY;
 
     /**
      * Constructor.
@@ -25,20 +25,20 @@ public class ThrowComponent extends AbstractComponent {
     @Override
     public final void update() {
         this.timeElapsed++;
-        if (!isFreezed() && this.timeElapsed > Barrel.spawnDelay) {
+        if (!isFreezed() && this.timeElapsed > Barrel.SPAWN_DELAY) {
             this.getEntity().getGameplay().throwBarrel(this.getBarrelStartingPosition());
             this.timeElapsed = 0;
             this.isThrowing = false;
         } else if (!isFreezed 
-                   && this.timeElapsed < Barrel.spawnDelay 
-                   && this.timeElapsed > Barrel.spawnDelay - Monkey.throwAnimationTime) {
+                   && this.timeElapsed < Barrel.SPAWN_DELAY 
+                   && this.timeElapsed > Barrel.SPAWN_DELAY - Monkey.throwAnimationTime) {
             this.isThrowing = true;
         }
     }
 
     private Pair<Float, Float> getBarrelStartingPosition() {
         return new Pair<>(this.getEntity().getPosition().getX() + this.getEntity().getWidth(), 
-                          this.getEntity().getPosition().getY() + this.getEntity().getHeight() - Barrel.barrelHeight);
+                          this.getEntity().getPosition().getY() + this.getEntity().getHeight() - Barrel.BARREL_HEIGHT);
     }
 
     /**
