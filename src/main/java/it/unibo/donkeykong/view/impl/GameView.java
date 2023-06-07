@@ -173,17 +173,17 @@ public class GameView implements View {
         final int lives = this.gameController.getPlayerLives();
         IntStream.range(0, lives).forEach(i -> {
             g.drawImage(PowerupAssets.getPowerupSources().get(PowerupAssets.life),
-                        Window.GAME_WIDTH - SCALED_TILES_SIZE * (Player.numLives + i) + PowerupAssets.lifePadding,
-                        PowerupAssets.lifePadding,
-                        PowerupAssets.lifeDimension, 
-                        PowerupAssets.lifeDimension, null);
+                        Window.GAME_WIDTH - SCALED_TILES_SIZE * (Player.NUM_LIVES + i) + PowerupAssets.LIFE_PADDING,
+                        PowerupAssets.LIFE_PADDING,
+                        PowerupAssets.LIFE_DIMENSION, 
+                        PowerupAssets.LIFE_DIMENSION, null);
         });
-        IntStream.range(lives, Player.numLives).forEach(i -> {
+        IntStream.range(lives, Player.NUM_LIVES).forEach(i -> {
         g.drawImage(PowerupAssets.getPowerupSources().get(PowerupAssets.noLife),
-                    Window.GAME_WIDTH - SCALED_TILES_SIZE * (Player.numLives + i) + PowerupAssets.lifePadding,
-                    PowerupAssets.lifePadding,
-                    PowerupAssets.lifeDimension, 
-                    PowerupAssets.lifeDimension, null);
+                    Window.GAME_WIDTH - SCALED_TILES_SIZE * (Player.NUM_LIVES + i) + PowerupAssets.LIFE_PADDING,
+                    PowerupAssets.LIFE_PADDING,
+                    PowerupAssets.LIFE_DIMENSION, 
+                    PowerupAssets.LIFE_DIMENSION, null);
         });
     }
 

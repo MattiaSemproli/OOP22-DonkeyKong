@@ -46,10 +46,10 @@ public class GameController implements Controller {
     public void update() {
         this.timeElapsed++;
         this.gameplay.getEntities().forEach(e -> e.getAllComponents().forEach(c -> c.update()));
-        if (!this.gameplay.isSpawnedOpPowerUp() && this.timeElapsed > PowerupAssets.spawnOpPowerUpDelay) {
+        if (!this.gameplay.isSpawnedOpPowerUp() && this.timeElapsed > PowerupAssets.PUPS_SPAWN_DELAY) {
             this.gameplay.spawnOpPowerUp();
             this.timeElapsed = 0;
-        } else if (this.gameplay.isSpawnedOpPowerUp() && this.timeElapsed > PowerupAssets.moveOpPowerUpDelay) {
+        } else if (this.gameplay.isSpawnedOpPowerUp() && this.timeElapsed > PowerupAssets.PUPS_MOVE_DELAY) {
             this.gameplay.moveOpPowerUpRandom();
             this.timeElapsed = 0;
         }

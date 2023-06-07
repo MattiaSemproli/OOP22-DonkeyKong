@@ -200,14 +200,14 @@ public class CollisionComponent extends AbstractComponent {
                         if (!starC.isInvincible()) {
                             if (!shieldC.isShielded()) {
                                 if (e.getComponent(DoubleDamageComponent.class).get().isDoubleDamage()) {
-                                    healthC.setLifes(Player.doubleDamage);
+                                    healthC.setLifes(Player.DOUBLE_DAMAGE);
                                 } else {
-                                    healthC.setLifes(Player.damageTaken);
+                                    healthC.setLifes(Player.DAMAGE_TAKEN);
                                 }
                                 this.resetPlayer(movementC);
                             } else {
                                 if (e.getComponent(DoubleDamageComponent.class).get().isDoubleDamage()) {
-                                    healthC.setLifes(Player.damageTaken);
+                                    healthC.setLifes(Player.DAMAGE_TAKEN);
                                 }
                                 shieldC.setShield(false);
                             }
@@ -233,7 +233,7 @@ public class CollisionComponent extends AbstractComponent {
                         entity.getGameplay().removeEntity(e);
                     }
                     if (e.getEntityType() == Type.HEART) {
-                        healthC.setLifes(Player.extraLife);
+                        healthC.setLifes(Player.EXTRA_LIFE);
                         entity.getGameplay().removeEntity(e);
                     }
                     if (e.getEntityType() == Type.SNOWFLAKE) {
@@ -352,23 +352,23 @@ public class CollisionComponent extends AbstractComponent {
                 hitbox = new Rectangle(x, y, width, height);
                 break;
             case HEART:
-                width = PowerupAssets.heartWidth;
-                height = PowerupAssets.heartHeight;
+                width = PowerupAssets.HEART_WIDTH;
+                height = PowerupAssets.HEART_HEIGHT;
                 hitbox = new Rectangle(x, y, width, height);
                 break;
             case SNOWFLAKE:
-                width = PowerupAssets.freezeDimension;
-                height = PowerupAssets.freezeDimension;
+                width = PowerupAssets.FREEZE_DIMENSION;
+                height = PowerupAssets.FREEZE_DIMENSION;
                 hitbox = new Rectangle(x, y, width, height);
                 break;
             case STAR:
-                width = PowerupAssets.starDimension;
-                height = PowerupAssets.starDimension;
+                width = PowerupAssets.STAR_DIMENSION;
+                height = PowerupAssets.STAR_DIMENSION;
                 hitbox = new Rectangle(x, y, width, height);
                 break;
             case SHIELD:
-                width = PowerupAssets.shieldWidth;
-                height = PowerupAssets.shieldHeight;
+                width = PowerupAssets.SHIELD_WIDTH;
+                height = PowerupAssets.SHIELD_HEIGHT;
                 hitbox = new Rectangle(x, y, width, height);
                 break;
             case LADDER:

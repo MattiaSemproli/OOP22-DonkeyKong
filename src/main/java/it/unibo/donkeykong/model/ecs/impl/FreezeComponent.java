@@ -22,7 +22,7 @@ public class FreezeComponent extends AbstractComponent {
     @Override
     public final void update() {
         this.timeElapsed++;
-        if (this.freezer && this.timeElapsed > Player.freezeDuration) {
+        if (this.freezer && this.timeElapsed > Player.FREEZE_DURATION) {
             this.freezer = false;
             this.setMonkeyFreezer(freezer);
         }

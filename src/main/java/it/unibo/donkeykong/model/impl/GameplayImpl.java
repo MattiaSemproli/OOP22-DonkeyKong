@@ -149,7 +149,7 @@ public class GameplayImpl implements Gameplay {
         boolean isOnBlock, isBlock, isOccupied;
         do {
             final int x = random.nextInt(Application.TILES_IN_WIDTH);
-            final int y = random.nextInt(PowerupAssets.minSpawn, PowerupAssets.maxSpawn);
+            final int y = random.nextInt(PowerupAssets.MIN_SPAWN, PowerupAssets.MAX_SPAWN);
             isBlock = this.getLevelMatrixType(x, y).isPresent();
             isOnBlock = this.getLevelMatrixType(x, y + 1).isPresent();
             isOccupied = this.getEntities().stream()
@@ -168,17 +168,17 @@ public class GameplayImpl implements Gameplay {
         passX *= SCALED_TILES_SIZE;
         passY *= SCALED_TILES_SIZE;
         if (t == Type.HEART) {
-            passY += PowerupAssets.heartYpadding;
-            passX += PowerupAssets.heartXpadding;
+            passY += PowerupAssets.HEART_Y_PADDING;
+            passX += PowerupAssets.HEART_X_PADDING;
         } else if (t == Type.SHIELD) {
-            passY += PowerupAssets.shieldYpadding;
-            passX += PowerupAssets.shieldXpadding;
+            passY += PowerupAssets.SHIELD_Y_PADDING;
+            passX += PowerupAssets.SHIELD_X_PADDING;
         } else if (t == Type.SNOWFLAKE) {
-            passY += PowerupAssets.freezePadding;
-            passX += PowerupAssets.freezePadding;
+            passY += PowerupAssets.FREEZE_PADDING;
+            passX += PowerupAssets.FREEZE_PADDING;
         } else if (t == Type.STAR) {
-            passY += PowerupAssets.starPadding;
-            passX += PowerupAssets.starPadding;
+            passY += PowerupAssets.STAR_PADDING;
+            passX += PowerupAssets.STAR_PADDING;
         }
         return new Pair<>((float) passX, (float) passY + platformBlockPadding);
     }

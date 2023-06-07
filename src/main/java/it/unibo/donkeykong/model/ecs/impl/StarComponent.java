@@ -21,7 +21,7 @@ public class StarComponent extends AbstractComponent {
     @Override
     public final void update() {
         this.timeElapsed++;
-        if (this.isInvincible && this.timeElapsed > Player.starDuration) {
+        if (this.isInvincible && this.timeElapsed > Player.STAR_DURATION) {
             this.isInvincible = false;
         }
     }

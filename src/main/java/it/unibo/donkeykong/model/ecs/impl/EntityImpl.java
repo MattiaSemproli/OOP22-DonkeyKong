@@ -65,20 +65,20 @@ public class EntityImpl implements Entity {
                 this.speed = Princess.velocity;
                 break;
             case HEART:
-                this.width = PowerupAssets.heartWidth;
-                this.height = PowerupAssets.heartHeight;
+                this.width = PowerupAssets.HEART_WIDTH;
+                this.height = PowerupAssets.HEART_HEIGHT;
                 break;
             case SHIELD:
-                this.width = PowerupAssets.shieldWidth;
-                this.height = PowerupAssets.shieldHeight;
+                this.width = PowerupAssets.SHIELD_WIDTH;
+                this.height = PowerupAssets.SHIELD_HEIGHT;
                 break;
             case SNOWFLAKE:
-                this.width = PowerupAssets.freezeDimension;
-                this.height = PowerupAssets.freezeDimension;
+                this.width = PowerupAssets.FREEZE_DIMENSION;
+                this.height = PowerupAssets.FREEZE_DIMENSION;
                 break;
             case STAR:
-                this.width = PowerupAssets.starDimension;
-                this.height = PowerupAssets.starDimension;
+                this.width = PowerupAssets.STAR_DIMENSION;
+                this.height = PowerupAssets.STAR_DIMENSION;
                 break;
             case BLOCK:
             case BLOCK_LADDER_DOWN:

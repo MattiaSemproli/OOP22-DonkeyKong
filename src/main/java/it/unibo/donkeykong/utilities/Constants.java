@@ -59,25 +59,82 @@ public class Constants {
         public static final int DELTAF_DEFAULT = 0;
     }
 
+    /**
+     * Powerup constants.
+     */
     public static final class PowerupAssets {
-        public static final int spawnOpPowerUpDelay = 120 * 15;
-        public static final int moveOpPowerUpDelay = 180;
-        public static final int minSpawn = (int) (Monkey.levelOneStartingMonkeyY / Window.SCALED_TILES_SIZE) + 2;
-        public static final int maxSpawn = (int) (Player.levelOneStartingPlayerY / Window.SCALED_TILES_SIZE) - 1;
-        public static final int heartWidth = (int) (36 * Window.SCALE);
-        public static final int heartHeight = (int) (33 * Window.SCALE);
-        public static final int heartYpadding = (int) (8 * Window.SCALE);
-        public static final int heartXpadding = (int) (6 * Window.SCALE);
-        public static final int shieldWidth = (int) (36 * Window.SCALE);
-        public static final int shieldHeight = (int) (40 * Window.SCALE);
-        public static final int shieldXpadding = (int) (6 * Window.SCALE);
-        public static final int shieldYpadding = (int) (4 * Window.SCALE);
-        public static final int freezeDimension = (int) (46 * Window.SCALE);
-        public static final int freezePadding = (int) (1 * Window.SCALE);
-        public static final int starDimension = (int) (40 * Window.SCALE);
-        public static final int starPadding = (int) (4 * Window.SCALE);
-        public static final int lifeDimension = (int) (28 * Window.SCALE);
-        public static final int lifePadding = (int) (10 * Window.SCALE);
+        /**
+         * Powerful powerup spawning delay.
+         */
+        public static final int PUPS_SPAWN_DELAY = 120 * 15;
+        /**
+         * Powerful powerup moving delay.
+         */
+        public static final int PUPS_MOVE_DELAY = 180;
+        /**
+         * Powerup minimum y position to spawn.
+         */
+        public static final int MIN_SPAWN = (int) (Monkey.levelOneStartingMonkeyY / Window.SCALED_TILES_SIZE) + 2;
+        /**
+         * Powerup maximum y position to spawn.
+         */
+        public static final int MAX_SPAWN = (int) (Player.levelOneStartingPlayerY / Window.SCALED_TILES_SIZE) - 1;
+        /**
+         * Heart powerup width.
+         */
+        public static final int HEART_WIDTH = (int) (36 * Window.SCALE);
+        /**
+         * Heart powerup height.
+         */
+        public static final int HEART_HEIGHT = (int) (33 * Window.SCALE);
+        /**
+         * Heart powerup y padding.
+         */
+        public static final int HEART_Y_PADDING = (int) (8 * Window.SCALE);
+        /**
+         * Heart powerup x padding.
+         */
+        public static final int HEART_X_PADDING = (int) (6 * Window.SCALE);
+        /**
+         * Shield powerup width.
+         */
+        public static final int SHIELD_WIDTH = (int) (36 * Window.SCALE);
+        /**
+         * Shield powerup height.
+         */
+        public static final int SHIELD_HEIGHT = (int) (40 * Window.SCALE);
+        /**
+         * Shield powerup y padding.
+         */
+        public static final int SHIELD_Y_PADDING = (int) (4 * Window.SCALE);
+        /**
+         * Shield powerup x padding.
+         */
+        public static final int SHIELD_X_PADDING = (int) (6 * Window.SCALE);
+        /**
+         * Freeze powerup dimension.
+         */
+        public static final int FREEZE_DIMENSION = (int) (46 * Window.SCALE);
+        /**
+         * Freeze powerup padding.
+         */
+        public static final int FREEZE_PADDING = (int) (1 * Window.SCALE);
+        /**
+         * Star powerup dimension.
+         */
+        public static final int STAR_DIMENSION = (int) (40 * Window.SCALE);
+        /**
+         * Star powerup padding.
+         */
+        public static final int STAR_PADDING = (int) (4 * Window.SCALE);
+        /**
+         * Life powerup dimension.
+         */
+        public static final int LIFE_DIMENSION = (int) (28 * Window.SCALE);
+        /**
+         * Life powerup padding.
+         */
+        public static final int LIFE_PADDING = (int) (10 * Window.SCALE);
         public static final int powerupBorderDimension = (int) ((Window.SCALED_TILES_SIZE - 8) * Window.SCALE);
         public static final int powerupBorderPadding = (int) (4 * Window.SCALE);
         public static final int powerupActiveDimension = (int) ((Window.SCALED_TILES_SIZE - 20) * Window.SCALE);
@@ -264,12 +321,30 @@ public class Constants {
         public static final int ladderErrorPercentage = 40;
         public static final float canLadderError = playerDimension * ladderErrorPercentage / 100;
         public static final float velocity = 2f * Window.SCALE;
-        public static final int numLives = 3;
-        public static final int damageTaken = -1;
-        public static final int doubleDamage = 2 * damageTaken;
-        public static final int extraLife = 1;
-        public static final int starDuration = 120 * 3;
-        public static final int freezeDuration = 120 * 3;
+        /**
+         * Number of lives.
+         */
+        public static final int NUM_LIVES = 3;
+        /**
+         * Damage taken from barrel.
+         */
+        public static final int DAMAGE_TAKEN = -1;
+        /**
+         * Double damage.
+         */
+        public static final int DOUBLE_DAMAGE = 2 * DAMAGE_TAKEN;
+        /**
+         * Extra life.
+         */
+        public static final int EXTRA_LIFE = 1;
+        /**
+         * Star powerup duration.
+         */
+        public static final int STAR_DURATION = 120 * 3;
+        /**
+         * Freeze powerup duration.
+         */
+        public static final int FREEZE_DURATION = 120 * 3;
         public static final int movementAni = 0;
         public static final int climbingAni = 1;
         public static final int spriteDimension = 16;
@@ -352,18 +427,57 @@ public class Constants {
         }
     }
 
+    /**
+     * Action constants.
+     */
     public static final class Action {
+        /**
+         * Integer code for left action (Key A).
+         */
         public static final int MOVE_LEFT = 65;
+        /**
+         * Integer code for left action (Left arrow).
+         */
         public static final int MOVE_LEFT_ARROW = 37;
+        /**
+         * Integer code for right action (Key D).
+         */
         public static final int MOVE_RIGHT = 68;
+        /**
+         * Integer code for right action (Right arrow).
+         */
         public static final int MOVE_RIGHT_ARROW = 39;
+        /**
+         * Integer code for up action (Key W).
+         */
         public static final int MOVE_UP = 87;
+        /**
+         * Integer code for up action (Up arrow).
+         */
         public static final int MOVE_UP_ARROW = 38;
+        /**
+         * Integer code for down action (Key S).
+         */
         public static final int MOVE_DOWN = 83;
+        /**
+         * Integer code for down action (Down arrow).
+         */
         public static final int MOVE_DOWN_ARROW = 40;
+        /**
+         * Integer code for jump action (Space).
+         */
         public static final int JUMP = 32;
+        /**
+         * Integer code for pause action (Esc).
+         */
         public static final int ESCAPE = 27;
 
+        /**
+         * Check if a code is a movement code (no escape).
+         * 
+         * @param code the code to check.
+         * @return true if a code is a movement code.
+         */
         public static boolean isMovementCode(final int code) {
             return code == MOVE_LEFT || code == MOVE_LEFT_ARROW 
                 || code == MOVE_RIGHT || code == MOVE_RIGHT_ARROW
