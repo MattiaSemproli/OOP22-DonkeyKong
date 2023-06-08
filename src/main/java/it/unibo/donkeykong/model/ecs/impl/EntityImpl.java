@@ -28,7 +28,7 @@ public class EntityImpl implements Entity {
     private Optional<Pair<Float, Float>> nextPosition = Optional.empty();
     private final Gameplay gameplay;
     private final int width, height;
-    private float speed;
+    private Optional<Float> speed;
 
     /**
      * Constructor.
@@ -43,12 +43,12 @@ public class EntityImpl implements Entity {
         this.components = new HashSet<>();
         this.pos = new Pair<>(pos.getX(), pos.getY());
         this.gameplay = gameplay;
-        this.speed = 0;
+        this.speed = Optional.empty();
         switch (type) {
             case BARREL:
                 this.width = Barrel.BARREL_WIDTH;
                 this.height = Barrel.BARREL_HEIGHT;
-                this.speed = Barrel.VELOCITY;
+                this.speed = Optional.of(Barrel.VELOCITY);
                 break;
             case MONKEY:
                 this.width = Monkey.MONKEY_WIDTH;
@@ -57,12 +57,12 @@ public class EntityImpl implements Entity {
             case PLAYER:
                 this.width = Application.SCALED_TILES_SIZE;
                 this.height = Application.SCALED_TILES_SIZE;
-                this.speed = Player.VELOCITY;
+                this.speed = Optional.of(Player.VELOCITY);
                 break;
             case PRINCESS:
                 this.width = Princess.PRINCESS_WIDTH;
                 this.height = Princess.PRINCESS_HEIGHT;
-                this.speed = Princess.VELOCITY;
+                this.speed = Optional.of(Princess.VELOCITY);
                 break;
             case HEART:
                 this.width = Powerup.HEART_WIDTH;
@@ -191,7 +191,7 @@ public class EntityImpl implements Entity {
      */
     @Override
     public float getSpeed() {
-        return this.speed;
+        return this.speed.isPresent() ? this.speed.get() : 0;
     }
 
     /**
@@ -199,6 +199,6 @@ public class EntityImpl implements Entity {
      */
     @Override
     public void setSpeed(final float speedModifier) {
-        this.speed += speedModifier;
+        this.speed = this.speed.isPresent() ? Optional.of(this.speed.get() + speedModifier) : Optional.empty(); 
     }
 }
