@@ -10,7 +10,6 @@ import it.unibo.donkeykong.model.api.EntityFactory;
 import it.unibo.donkeykong.model.api.Gameplay;
 import it.unibo.donkeykong.model.ecs.api.Entity;
 import it.unibo.donkeykong.model.ecs.impl.DoubleDamageComponent;
-import it.unibo.donkeykong.model.ecs.impl.ThrowComponent;
 import it.unibo.donkeykong.model.impl.EntityFactoryImpl;
 import it.unibo.donkeykong.model.impl.GameplayImpl;
 import it.unibo.donkeykong.utilities.Type;
