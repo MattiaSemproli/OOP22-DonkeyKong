@@ -9,12 +9,12 @@ import it.unibo.donkeykong.common.Pair;
 import it.unibo.donkeykong.model.api.Gameplay;
 import it.unibo.donkeykong.model.ecs.api.Component;
 import it.unibo.donkeykong.model.ecs.api.Entity;
+import it.unibo.donkeykong.utilities.ModelConstants.Application;
 import it.unibo.donkeykong.utilities.ModelConstants.Barrel;
 import it.unibo.donkeykong.utilities.ModelConstants.Monkey;
 import it.unibo.donkeykong.utilities.ModelConstants.Player;
-import it.unibo.donkeykong.utilities.ModelConstants.Princess;
 import it.unibo.donkeykong.utilities.ModelConstants.Powerup;
-import it.unibo.donkeykong.utilities.ModelConstants.Application;
+import it.unibo.donkeykong.utilities.ModelConstants.Princess;
 import it.unibo.donkeykong.utilities.Type;
 
 /**
@@ -93,73 +93,112 @@ public class EntityImpl implements Entity {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public final Set<Component> getAllComponents() {
+    public Set<Component> getAllComponents() {
         return new HashSet<>(this.components);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public final <E extends Component> Optional<E> getComponent(final Class<E> classComponent) {
+    public <E extends Component> Optional<E> getComponent(final Class<E> classComponent) {
         return this.components.stream().filter(classComponent::isInstance).map(classComponent::cast).findAny();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public final Entity addComponent(final AbstractComponent component) {
+    public Entity addComponent(final AbstractComponent component) {
         component.setEntity(this);
         this.components.add(component);
         return this;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public final Pair<Float, Float> getPosition() {
+    public Pair<Float, Float> getPosition() {
         return this.pos;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public final void saveNextPosition(final Optional<Pair<Float, Float>> nextPos) {
+    public void saveNextPosition(final Optional<Pair<Float, Float>> nextPos) {
         this.nextPosition = nextPos.isPresent() ? Optional.of(new Pair<>(nextPos.get().getX() + this.pos.getX(), 
                                                                          nextPos.get().getY() + this.pos.getY()))
                                                 : Optional.empty();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public final Optional<Pair<Float, Float>> getNextPosition() {
+    public Optional<Pair<Float, Float>> getNextPosition() {
         return this.nextPosition;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public final void setPosition(final Pair<Float, Float> pos) {
+    public void setPosition(final Pair<Float, Float> pos) {
         this.pos = new Pair<>(pos.getX(), pos.getY());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public final Type getEntityType() {
+    public Type getEntityType() {
         return this.type;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @SuppressFBWarnings(value = "EI_EXPOSE_REP", justification = "We need the original object")
     @Override
-    public final Gameplay getGameplay() {
+    public Gameplay getGameplay() {
         return this.gameplay;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public final int getWidth() {
+    public int getWidth() {
         return this.width;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public final int getHeight() {
+    public int getHeight() {
         return this.height;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public final float getSpeed() {
+    public float getSpeed() {
         return this.speed;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public final void setSpeed(final float speedModifier) {
+    public void setSpeed(final float speedModifier) {
         this.speed += speedModifier;
     }
 }
