@@ -176,6 +176,26 @@ public class ViewConstants {
          */
         public static final int RIGHT_MENU_BORDER = MENU_X + MENU_TEXTURE_BOX;
         /**
+         * Center x menu position.
+         */
+        public static final int CENTER_X_MENU = MENU_X + MENU_TEXTURE_BOX / 2;
+        /**
+         * Center y menu position.
+         */
+        public static final int CENTER_Y_MENU = MENU_Y + MENU_TEXTURE_BOX / 2;
+        /**
+         * Legend width.
+         */
+        public static final int LEGEND_WIDTH = (int) (250 * Window.SCALE);
+        /**
+         * Legend height.
+         */
+        public static final int LEGEND_HEIGHT = (int) (160 * Window.SCALE);
+        /**
+         * Legend y padding from top.
+         */
+        public static final int LEGEND_TOP_PADDING = (int) (50 * Window.SCALE);
+        /**
          * Function buttons x position.
          */
         public static final int FUNC_BUTTON_X = MENU_X + (MENU_TEXTURE_BOX - BUTTON_WIDTH) / 2;

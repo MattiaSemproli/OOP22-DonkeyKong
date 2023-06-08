@@ -6,8 +6,6 @@ import static it.unibo.donkeykong.utilities.ViewConstants.MenuAssets.RIGHT_MENU_
 import static it.unibo.donkeykong.utilities.ViewConstants.MenuAssets.UTILITY_BUTTON_RIGHT_BORDER_DISTANCE_X;
 import static it.unibo.donkeykong.utilities.ViewConstants.MenuAssets.getMenuSources;
 
-import java.awt.Color;
-import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.image.BufferedImage;
@@ -21,6 +19,7 @@ import it.unibo.donkeykong.utilities.ViewConstants.MenuAssets;
 import it.unibo.donkeykong.utilities.ViewConstants.Window;
 import it.unibo.donkeykong.utilities.AudioUtilities;
 import it.unibo.donkeykong.utilities.Gamestate;
+import it.unibo.donkeykong.utilities.ResourceFuncUtilities;
 import it.unibo.donkeykong.view.api.Button;
 import it.unibo.donkeykong.view.api.View;
 
@@ -117,62 +116,11 @@ public class MainMenuView implements View {
     }
 
     private void drawLegend(final Graphics g) {
-        g.drawImage(getMenuSources().get(MenuAssets.A),
-                    MENU_X + MenuAssets.MENU_TEXTURE_BOX / 10, MENU_Y + MenuAssets.BUTTON_HEIGHT * 3,
-                    MenuAssets.LEGEND_KEY_BOX, MenuAssets.LEGEND_KEY_BOX, null);
-        g.drawImage(getMenuSources().get(MenuAssets.D),
-                    MENU_X + MenuAssets.MENU_TEXTURE_BOX / 10, MENU_Y + MenuAssets.BUTTON_HEIGHT * 3 + MenuAssets.LEGEND_KEY_BOX,
-                    MenuAssets.LEGEND_KEY_BOX, MenuAssets.LEGEND_KEY_BOX, null);
-        g.drawImage(getMenuSources().get(MenuAssets.W),
-                    MENU_X + MenuAssets.MENU_TEXTURE_BOX / 10,
-                    MENU_Y + MenuAssets.BUTTON_HEIGHT * 3 + MenuAssets.LEGEND_KEY_BOX * 2,
-                    MenuAssets.LEGEND_KEY_BOX, MenuAssets.LEGEND_KEY_BOX, null);
-        g.drawImage(getMenuSources().get(MenuAssets.S),
-                    MENU_X + MenuAssets.MENU_TEXTURE_BOX / 10,
-                    MENU_Y + MenuAssets.BUTTON_HEIGHT * 3 + MenuAssets.LEGEND_KEY_BOX * 3,
-                    MenuAssets.LEGEND_KEY_BOX, MenuAssets.LEGEND_KEY_BOX, null);
-
-        g.drawImage(getMenuSources().get(MenuAssets.LEFT),
-                    MENU_X + MenuAssets.MENU_TEXTURE_BOX / 10 + MenuAssets.LEGEND_KEY_BOX, MENU_Y + MenuAssets.BUTTON_HEIGHT * 3,
-                    MenuAssets.LEGEND_KEY_BOX, MenuAssets.LEGEND_KEY_BOX, null);
-        g.drawImage(getMenuSources().get(MenuAssets.RIGHT),
-                    MENU_X + MenuAssets.MENU_TEXTURE_BOX / 10 + MenuAssets.LEGEND_KEY_BOX,
-                    MENU_Y + MenuAssets.BUTTON_HEIGHT * 3 + MenuAssets.LEGEND_KEY_BOX,
-                    MenuAssets.LEGEND_KEY_BOX, MenuAssets.LEGEND_KEY_BOX, null);
-        g.drawImage(getMenuSources().get(MenuAssets.UP),
-                    MENU_X + MenuAssets.MENU_TEXTURE_BOX / 10 + MenuAssets.LEGEND_KEY_BOX,
-                    MENU_Y + MenuAssets.BUTTON_HEIGHT * 3 + MenuAssets.LEGEND_KEY_BOX * 2,
-                    MenuAssets.LEGEND_KEY_BOX, MenuAssets.LEGEND_KEY_BOX, null);
-        g.drawImage(getMenuSources().get(MenuAssets.DOWN),
-                    MENU_X + MenuAssets.MENU_TEXTURE_BOX / 10 + MenuAssets.LEGEND_KEY_BOX,
-                    MENU_Y + MenuAssets.BUTTON_HEIGHT * 3 + MenuAssets.LEGEND_KEY_BOX * 3,
-                    MenuAssets.LEGEND_KEY_BOX, MenuAssets.LEGEND_KEY_BOX, null);
-
-        final Font font = new Font("Arial", Font.BOLD, 10 * 2);
-
-        g.setColor(Color.WHITE);
-        g.setFont(font);
-        g.drawString("TO MOVE LEFT",
-                     MENU_X + MenuAssets.MENU_TEXTURE_BOX / 10 + MenuAssets.LEGEND_KEY_BOX * 2,
-                     MENU_Y + MenuAssets.MENU_TEXTURE_BOX / 2);
-
-        g.setColor(Color.WHITE);
-        g.setFont(font);
-        g.drawString("TO MOVE RIGHT",
-                     MENU_X + MenuAssets.MENU_TEXTURE_BOX / 10 + MenuAssets.LEGEND_KEY_BOX * 2,
-                     MENU_Y + MenuAssets.MENU_TEXTURE_BOX / 2 + MenuAssets.LEGEND_KEY_BOX);
-
-        g.setColor(Color.WHITE);
-        g.setFont(font);
-        g.drawString("TO MOVE UP",
-                         MENU_X + MenuAssets.MENU_TEXTURE_BOX / 10 + MenuAssets.LEGEND_KEY_BOX * 2,
-                         MENU_Y + MenuAssets.MENU_TEXTURE_BOX / 2 + MenuAssets.LEGEND_KEY_BOX * 2);
-
-        g.setColor(Color.WHITE);
-        g.setFont(font);
-        g.drawString("TO MOVE DOWN",
-                     MENU_X + MenuAssets.MENU_TEXTURE_BOX / 10 + MenuAssets.LEGEND_KEY_BOX * 2,
-                     MENU_Y + MenuAssets.MENU_TEXTURE_BOX / 2 + MenuAssets.LEGEND_KEY_BOX * 3);
+        g.drawImage(ResourceFuncUtilities.loadSources("legend"),
+                    MENU_X + MenuAssets.MENU_TEXTURE_BOX / 2 - MenuAssets.LEGEND_WIDTH / 2, 
+                    MENU_Y + MenuAssets.MENU_TEXTURE_BOX / 2 - MenuAssets.LEGEND_TOP_PADDING,
+                    MenuAssets.LEGEND_WIDTH, 
+                    MenuAssets.LEGEND_HEIGHT, null);
     }
 
     /**
