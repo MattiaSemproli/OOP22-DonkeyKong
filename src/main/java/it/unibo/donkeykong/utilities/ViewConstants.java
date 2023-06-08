@@ -82,37 +82,9 @@ public class ViewConstants {
          */
         public static final String LEVELS_BUTTON = "levels_button";
         /**
-         * A key source.
+         * Legend source.
          */
-        public static final String A = "aKey";
-        /**
-         * D key source.
-         */
-        public static final String D = "dKey";
-        /**
-         * W key source.
-         */
-        public static final String W = "wKey";
-        /**
-         * S key source.
-         */
-        public static final String S = "sKey";
-        /**
-         * Left arrow source.
-         */
-        public static final String LEFT = "left_arrow";
-        /**
-         * Right arrow source.
-         */
-        public static final String RIGHT = "right_arrow";
-        /**
-         * Up arrow source.
-         */
-        public static final String UP = "up_arrow";
-        /**
-         * Down arrow source.
-         */
-        public static final String DOWN = "down_arrow";
+        public static final String LEGEND = "legend";
         /**
          * Menu texture box size.
          */
@@ -266,14 +238,7 @@ public class ViewConstants {
             MENUSOURCES.put(SETTINGS_BUTTON, loadSources(SETTINGS_BUTTON));
             MENUSOURCES.put(QUIT_BUTTON, loadSources(QUIT_BUTTON));
             MENUSOURCES.put(LEVELS_BUTTON, loadSources(LEVELS_BUTTON));
-            MENUSOURCES.put(A, loadSources(A));
-            MENUSOURCES.put(D, loadSources(D));
-            MENUSOURCES.put(W, loadSources(W));
-            MENUSOURCES.put(S, loadSources(S));
-            MENUSOURCES.put(LEFT, loadSources(LEFT));
-            MENUSOURCES.put(RIGHT, loadSources(RIGHT));
-            MENUSOURCES.put(UP, loadSources(UP));
-            MENUSOURCES.put(DOWN, loadSources(DOWN));
+            MENUSOURCES.put(LEGEND, loadSources(LEGEND));
         }
 
         /**
