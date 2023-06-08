@@ -19,6 +19,13 @@ public interface Gameplay {
     List<Entity> getEntities();
 
     /**
+     * Add entity to the game.
+     * 
+     * @param entity the entity to be added.
+     */
+    void addEntity(Entity entity);
+
+    /**
      * Remove entity from game.
      * 
      * @param entity the entity to be removed.

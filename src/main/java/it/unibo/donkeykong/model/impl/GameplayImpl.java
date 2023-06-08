@@ -322,6 +322,14 @@ public class GameplayImpl implements Gameplay {
      * {@inheritDoc}
      */
     @Override
+    public void addEntity(final Entity entity) {
+        this.entities.add(entity);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public void removeEntity(final Entity entity) {
         this.entities.remove(entity);
     }
@@ -355,6 +363,8 @@ public class GameplayImpl implements Gameplay {
      */
     @Override
     public void stopTimer() {
-        this.controller.stopTimer();
+        if (this.controller != null) {
+            this.controller.stopTimer();
+        }
     }
 }

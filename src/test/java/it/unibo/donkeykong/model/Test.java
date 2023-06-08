@@ -1,4 +1,4 @@
-package it.unibo.donkeykong;
+package it.unibo.donkeykong.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
