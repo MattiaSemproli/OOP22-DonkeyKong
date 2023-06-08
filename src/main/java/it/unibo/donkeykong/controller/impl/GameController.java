@@ -44,27 +44,19 @@ public class GameController implements Controller {
      * Update the game.
      */
     public void update() {
-        this.timeElapsed++;
-        this.gameplay.getEntities().forEach(e -> e.getAllComponents().forEach(c -> c.update()));
-        if (!this.gameplay.isSpawnedOpPowerUp() && this.timeElapsed > Powerup.PUPS_SPAWN_DELAY) {
-            this.gameplay.spawnOpPowerUp();
-            this.timeElapsed = 0;
-        } else if (this.gameplay.isSpawnedOpPowerUp() && this.timeElapsed > Powerup.PUPS_MOVE_DELAY) {
-            this.gameplay.moveOpPowerUpRandom();
-            this.timeElapsed = 0;
-        }
-        if (!hasPlayerLife()) {
-            Gamestate.setGamestate(Gamestate.DEATH);
-            this.stopTimer();
-        } else {
+        if (!this.gameplay.isOver()) {
+            this.timeElapsed++;
+            this.gameplay.getEntities().forEach(e -> e.getAllComponents().forEach(c -> c.update()));
+            this.gameplay.checkIsOver();
+            if (!this.gameplay.isSpawnedOpPowerUp() && this.timeElapsed > Powerup.PUPS_SPAWN_DELAY) {
+                this.gameplay.spawnOpPowerUp();
+                this.timeElapsed = 0;
+            } else if (this.gameplay.isSpawnedOpPowerUp() && this.timeElapsed > Powerup.PUPS_MOVE_DELAY) {
+                this.gameplay.moveOpPowerUpRandom();
+                this.timeElapsed = 0;
+            }
             this.gameView.update();
         }
-    }
-
-    private boolean hasPlayerLife() {
-        return this.gameplay.getEntities().stream()
-                                          .filter(e -> e.getEntityType() == Type.PLAYER)
-                                          .findFirst().get().getComponent(HealthComponent.class).get().getLives() > 0;
     }
 
     /**

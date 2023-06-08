@@ -15,7 +15,6 @@ import it.unibo.donkeykong.common.Pair;
 import it.unibo.donkeykong.common.Rectangle;
 import it.unibo.donkeykong.model.ecs.api.Entity;
 import it.unibo.donkeykong.utilities.CurrentLevel;
-import it.unibo.donkeykong.utilities.Gamestate;
 import it.unibo.donkeykong.utilities.Type;
 
 /**
@@ -144,8 +143,7 @@ public class CollisionComponent extends AbstractComponent {
 
     private void checkPlayerWallCollision() {
         if (hitbox.getY() > Application.GAME_HEIGHT) {
-            Gamestate.setGamestate(Gamestate.DEATH);
-            entity.getGameplay().stopTimer();
+            entity.getGameplay().removePlayer();
         } else if (hitbox.getX() > (Application.GAME_WIDTH - hitbox.getWidth())) {
             entity.setPosition(new Pair<>(Application.GAME_WIDTH - hitbox.getWidth(), this.nextPosition.get().getY()));
         } else if (hitbox.getY() < 0) {
@@ -217,12 +215,10 @@ public class CollisionComponent extends AbstractComponent {
                         entity.getGameplay().removeEntity(e);
                     }
                     if (e.getEntityType() == Type.PRINCESS && movementC.isOnFloor()) {
-                        Gamestate.setGamestate(Gamestate.WIN);
-                        entity.getGameplay().stopTimer();
+                        entity.getGameplay().setWin();
                     }
                     if (e.getEntityType() == Type.MONKEY) {
-                        Gamestate.setGamestate(Gamestate.DEATH);
-                        entity.getGameplay().stopTimer();
+                        entity.getGameplay().removePlayer();
                     }
                     if (e.getEntityType() == Type.STAR) {
                         starC.setInvincible(true);
@@ -232,7 +228,7 @@ public class CollisionComponent extends AbstractComponent {
                         shieldC.setShield(true);
                         entity.getGameplay().removeEntity(e);
                     }
-                    if (e.getEntityType() == Type.HEART) {
+                    if (e.getEntityType() == Type.HEART && healthC.getLives() != Player.NUM_LIVES) {
                         healthC.setLifes(Player.EXTRA_LIFE);
                         entity.getGameplay().removeEntity(e);
                     }

@@ -115,4 +115,28 @@ public interface Gameplay {
      * Stop timer when player wins or loses.
      */
     void stopTimer();
+
+    /**
+     * Set player's win.
+     */
+    void setWin();
+
+    /**
+     * Get if player won.
+     * 
+     * @return true if player won.
+     */
+    boolean isWin();
+
+    /**
+     * Check if game is over.
+     */
+    void checkIsOver();
+
+    /**
+     * Get if game is over.
+     * 
+     * @return true if game is over.
+     */
+    boolean isOver();
 }

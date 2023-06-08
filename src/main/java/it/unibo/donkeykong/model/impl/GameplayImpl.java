@@ -18,6 +18,7 @@ import it.unibo.donkeykong.model.api.Gameplay;
 import it.unibo.donkeykong.model.ecs.api.Entity;
 import it.unibo.donkeykong.model.ecs.impl.DoubleDamageComponent;
 import it.unibo.donkeykong.model.ecs.impl.FreezeComponent;
+import it.unibo.donkeykong.model.ecs.impl.HealthComponent;
 import it.unibo.donkeykong.model.ecs.impl.ShieldComponent;
 import it.unibo.donkeykong.model.ecs.impl.StarComponent;
 import it.unibo.donkeykong.utilities.ModelConstants;
@@ -43,6 +44,7 @@ public class GameplayImpl implements Gameplay {
     private final List<Entity> entities = new ArrayList<>();
     private final Random random = new Random();
     private boolean opPowerUpSpawned;
+    private boolean win;
     private final List<Integer> keyInputs;
 
     /**
@@ -54,6 +56,7 @@ public class GameplayImpl implements Gameplay {
         this.controller = controller;
         this.entityFactoryImpl = new EntityFactoryImpl(this);
         this.opPowerUpSpawned = false;
+        this.win = false;
         this.keyInputs = new ArrayList<>();
     }
 
@@ -195,6 +198,54 @@ public class GameplayImpl implements Gameplay {
             default:
                 return Optional.empty();
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean isWin() {
+        return this.win;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void setWin() {
+        this.win = true;
+        Gamestate.setGamestate(Gamestate.WIN);
+        this.stopTimer();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean isOver() {
+        if (!this.getEntities().stream()
+                               .anyMatch(e -> e.getEntityType() == Type.PLAYER)) {
+            Gamestate.setGamestate(Gamestate.DEATH);
+            this.stopTimer();
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void checkIsOver() {
+        if (!isOver() && !this.hasPlayerLife()) {
+            this.removePlayer();
+        }
+    }
+
+    private boolean hasPlayerLife() {
+        return this.getEntities().stream()
+                                 .filter(e -> e.getEntityType() == Type.PLAYER)
+                                 .findFirst().get().getComponent(HealthComponent.class).get().getLives() > 0;
     }
 
     /**
