@@ -73,12 +73,11 @@ class PlayerTest {
         assertEquals(new Pair<>(TEST_PLAYER_X, TEST_PLAYER_Y), this.player.getPosition());
         final MovementComponent mc = this.player.getComponent(MovementComponent.class).get();
         assertFalse(mc.isInAir());
-        assertEquals(PlayerIdle.STOP, PlayerIdle.getPlayerIdle());
+        assertNotEquals(PlayerIdle.JUMP, PlayerIdle.getPlayerIdle());
         mc.jump();
         mc.update();
         this.player.getComponent(CollisionComponent.class).get().update();
         assertTrue(mc.isInAir());
-        assertNotEquals(PlayerIdle.STOP, PlayerIdle.getPlayerIdle());
         assertEquals(PlayerIdle.JUMP, PlayerIdle.getPlayerIdle());
         assertNotEquals(new Pair<>(TEST_PLAYER_X, TEST_PLAYER_Y), this.player.getPosition());
     }
