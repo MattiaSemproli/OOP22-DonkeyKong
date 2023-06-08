@@ -1,6 +1,6 @@
 package it.unibo.donkeykong.utilities;
 
-import java.io.File;
+import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.util.logging.Logger;
 
@@ -49,8 +49,8 @@ public final class AudioUtilities {
      */
     private static void startSong(final String fileName) {
         try {
-            final File soundtrackFile = new File("src/main/resources/" + fileName);
-            final AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(soundtrackFile);
+            final BufferedInputStream is = new BufferedInputStream(AudioUtilities.class.getResourceAsStream("/" + fileName));
+            final AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(is);
 
             clip = AudioSystem.getClip();
             clip.open(audioInputStream);
