@@ -37,7 +37,7 @@ public class HealthComponent extends AbstractComponent {
      * @param lives the new player's number of lives.
      */
     public final void setLifes(final int lives) {
-        this.lives = this.lives + lives > Player.NUM_LIVES ? this.lives : this.lives + lives;
+        this.lives = this.lives + lives > Player.NUM_LIVES ? Player.NUM_LIVES : this.lives + lives;
         this.lives = this.lives < 0 ? 0 : this.lives;
     }
 }
