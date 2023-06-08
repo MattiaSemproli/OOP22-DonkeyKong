@@ -85,14 +85,7 @@ class CollisionTest {
     void testPlayerHitNormalBarrel() {
         final Entity player = ef.generatePlayer(new Pair<>(TEST_PLAYER_X, TEST_PLAYER_X));
         gp.addEntity(ef.generateBarrel(new Pair<>((float) (ModelConstants.Player.PLAYER_DIMENSION), TEST_PLAYER_Y)));
-        gp.addEntity(ef.generateBlock(new Pair<>(0f, (float) (ModelConstants.Player.PLAYER_DIMENSION))));
-        gp.addEntity(ef.generateBlock(new Pair<>((float) (ModelConstants.Player.PLAYER_DIMENSION),
-                                                 (float) (ModelConstants.Player.PLAYER_DIMENSION))));
-        assertEquals(ModelConstants.Player.NUM_LIVES, player.getComponent(HealthComponent.class).get().getLives());
-        final MovementComponent mc = player.getComponent(MovementComponent.class).get();
-        mc.moveEntity(Direction.RIGHT);
-        mc.update();
-        player.getComponent(CollisionComponent.class).get().update();
+        barrelCollisionInit(player);
         assertEquals(ModelConstants.Player.NUM_LIVES - 1, player.getComponent(HealthComponent.class).get().getLives());
     }
 
@@ -103,6 +96,11 @@ class CollisionTest {
         gp.getEntities().stream().filter(e -> e.getEntityType() == Type.BARREL).forEach(e -> {
             e.getComponent(DoubleDamageComponent.class).get().setDoubleDamage(true);
         });
+        barrelCollisionInit(player);
+        assertEquals(ModelConstants.Player.NUM_LIVES - 2, player.getComponent(HealthComponent.class).get().getLives());
+    }
+
+    private void barrelCollisionInit(final Entity player) {
         gp.addEntity(ef.generateBlock(new Pair<>(0f, (float) (ModelConstants.Player.PLAYER_DIMENSION))));
         gp.addEntity(ef.generateBlock(new Pair<>((float) (ModelConstants.Player.PLAYER_DIMENSION),
                                                  (float) (ModelConstants.Player.PLAYER_DIMENSION))));
@@ -111,6 +109,5 @@ class CollisionTest {
         mc.moveEntity(Direction.RIGHT);
         mc.update();
         player.getComponent(CollisionComponent.class).get().update();
-        assertEquals(ModelConstants.Player.NUM_LIVES - 2, player.getComponent(HealthComponent.class).get().getLives());
     }
 }
