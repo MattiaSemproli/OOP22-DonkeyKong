@@ -5,6 +5,7 @@ package it.unibo.donkeykong.common;
  */
 public class Timer {
 
+    private static final double NANO_TO_MILLIS = 1_000_000;
     private static final double NANO_TO_SECOND = 1_000_000_000;
 
     private long initialTime;
@@ -94,6 +95,15 @@ public class Timer {
             return elapsed;
         }
         return this.elapsedTime;
+    }
+
+    /**
+     * Get the elapsed time in milliseconds.
+     * 
+     * @return the elapsed time in milliseconds.
+     */
+    public double getElapsedMillis() {
+        return this.getElapsedNanos() / NANO_TO_MILLIS;
     }
 
     /**
