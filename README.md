@@ -16,8 +16,8 @@ colpire dai barili. Il giocatore possiede 3 vite.
 
 I comandi di gioco sono i seguenti:
 - **ESC** (Escape): mette in pausa durante il gioco.
-- **W o **↑**: Movimento verso l’alto sulla scala.
-- **A o **←**: Movimento verso sinistra.
+- **W** o **↑**: Movimento verso l’alto sulla scala.
+- **A** o **←**: Movimento verso sinistra.
 - **S** o **↓**: Movimento verso il basso sulla scala.
 - **D** o **→**: movimento verso destra
 - **SPACE**: salto.
