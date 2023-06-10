@@ -29,7 +29,7 @@ public enum Gamestate {
      */
     WIN,
     /**
-     * Currently in you death (death = lose) view.
+     * Currently in death (death = lose) view.
      */
     DEATH, 
     /**
