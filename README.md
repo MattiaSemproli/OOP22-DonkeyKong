@@ -19,13 +19,15 @@ I comandi di gioco sono i seguenti:
 - **W** o **↑**: Movimento verso l’alto sulla scala.
 - **A** o **←**: Movimento verso sinistra.
 - **S** o **↓**: Movimento verso il basso sulla scala.
-- **D** o **→**: movimento verso destra
+- **D** o **→**: movimento verso destra.
 - **SPACE**: salto.
+
 I power-ups, che spawnano una volta per partita, sono i seguenti:
-- **Stella**: rende invincibili per 3 secondi
-- **Gelo**: congela donkey kong dal lancio dei barili per 4 secondi
-- **Cuore**: ripristina una vita
-- **Scudo**: protegge dal prossimo colpo subito
+- **Stella**: rende invincibili per 3 secondi.
+- **Gelo**: congela donkey kong dal lancio dei barili per 4 secondi.
+- **Cuore**: ripristina una vita.
+- **Scudo**: protegge dal prossimo colpo subito.
+
 Esistono due tipi di barili:
 - **Barile normale**: di colore marrone, se si viene colpiti si perde una vita.
 Se si viene colpiti da un barile mentre si possiede uno scudo, non si
