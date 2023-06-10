@@ -90,7 +90,7 @@ public class MainMenuView implements View {
                 if (b.getButtonGamestate().equals(Gamestate.PLAYING)) {
                     AudioUtilities.playSoundtrack(AudioAssets.GAME_MUSIC_0);
                     this.menuController.startLevel();
-                    this.menuController.startGameController();
+                    this.menuController.startGame();
                 }
                 this.menuController.applyGamestate(b.getButtonGamestate());
             }

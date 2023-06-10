@@ -144,7 +144,7 @@ public final class EndPauseView implements View {
                     } else if (Gamestate.getGamestate() == Gamestate.WIN 
                                || Gamestate.getGamestate() == Gamestate.DEATH) {
                         AudioUtilities.playSoundtrack(AudioAssets.GAME_MUSIC_1);
-                        this.endPauseController.startGameController();
+                        this.endPauseController.startGame();
                     }
                 } else if (b.getButtonGamestate().equals(Gamestate.MENU)) {
                     AudioUtilities.playSoundtrack(AudioAssets.MENU_MUSIC_0);

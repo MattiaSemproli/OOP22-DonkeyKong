@@ -30,7 +30,7 @@ public class EndPauseController implements Controller {
     /**
      * Start game controller.
      */
-    public void startGameController() {
+    public void startGame() {
         this.application.startGame();
     }
 

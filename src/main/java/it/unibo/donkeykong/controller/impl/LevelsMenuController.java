@@ -31,7 +31,7 @@ public class LevelsMenuController implements Controller {
     /**
      * Start game controller.
      */
-    public final void startGameController() {
+    public final void startGame() {
         this.application.startGame();
     }
 

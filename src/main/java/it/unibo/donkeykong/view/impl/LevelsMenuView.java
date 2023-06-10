@@ -111,7 +111,7 @@ public class LevelsMenuView implements View {
                 if (b.getButtonGamestate().equals(Gamestate.PLAYING)) {
                             AudioUtilities.playSoundtrack(AudioAssets.GAME_MUSIC_0);
                             this.levelToBePlayed(b);
-                            this.levelsMenuController.startGameController();
+                            this.levelsMenuController.startGame();
                         }
                 this.levelsMenuController.applyGamestate(b.getButtonGamestate());
             }
