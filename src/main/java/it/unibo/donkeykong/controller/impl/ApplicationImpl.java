@@ -93,7 +93,7 @@ public class ApplicationImpl implements Application {
      * {@inheritDoc}
      */
     @Override
-    public void startGameController() {
+    public void startGame() {
         this.gameController = new GameController();
     }
 

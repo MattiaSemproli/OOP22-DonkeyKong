@@ -72,5 +72,5 @@ public interface Application {
     /**
      * Create GameController and start Gameplay.
      */
-    void startGameController();
+    void startGame();
 }

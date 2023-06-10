@@ -31,7 +31,7 @@ public class MainMenuController implements Controller {
      * Start game controller.
      */
     public void startGameController() {
-        this.application.startGameController();
+        this.application.startGame();
     }
 
     /**
